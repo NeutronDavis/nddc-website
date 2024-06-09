@@ -1,0 +1,1583 @@
+﻿@page
+@using System.Web
+@using System.Text.RegularExpressions
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="click" style="display:none;">
+	Launch modal
+</button>
+
+@{
+	// Function to strip HTML tags from a string
+	string StripHtml(string input)
+	{
+		return Regex.Replace(input, "<.*?>", string.Empty);
+	}
+}
+<!-- Modal -->
+@if (Model.Announcement != null)
+{
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Public Announcement</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="card" style="border: 0;">
+						<div class="card-body">
+							<h5 class="card-title">@Model.Announcement.Title</h5>
+							<p class="card-text">@StripHtml(Model.Announcement.Details)</p>
+							<a href="#" class="text-success pt-3">Learn more</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+
+
+@* <section class="cta-three">
+	<div class="cta-three-inner" style="background-image: url(/assets/image/bg/slider-two-bg-2.png)">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 p-5">
+					<div class="cta-three-content text-center p-5">
+						<div class="slider-tagline-two">City Goverment Online Services</div>
+						<h1 class="section-title">Good Governance <br> Part of the Democracy</h1>
+						<a href="index-2.html" class="btn btn-primary">Discover More</a>
+					</div><!-- cta-three-content -->
+				</div><!-- col-lg-12 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!--cta-three-inner-->
+</section> *@
+
+@if (Model.CriticalUpdate != null)
+{
+<!--Prominent News Section-->
+	<section class="main-slider main-slider-two">
+		<div class="main-slider-two-swiper owl-carousel owl-theme owl-loaded owl-drag">
+			<!--item-->
+			<!--item-->
+			<div class="owl-stage-outer">
+				<div class="owl-stage">
+					<div class="owl-item" style="width: 2260px;">
+						<div class="item">
+							<div class="item-slider-bg" style="background-image: url(@Model._containerUrl@Model.CriticalUpdate.ImageUrl)"></div>
+							<div class="container">
+								<div class="row">
+									<div class="col-12 col-md-12 col-lg-12">
+										<div class="slider-content-two text-center">
+											<div class="slider-tagline-two" style="color: #ffd300;">Critical News Update</div>
+											<h1 class="section-title fs-1">@Model.CriticalUpdate.Subject</h1>
+											<a asp-page="/News/NewsDetails" asp-route-Id="@Model.CriticalUpdate.Id" class="btn btn-primary">Learn More</a>
+										</div><!-- slider-content-two -->
+									</div><!-- col-12 col-md-12 col-lg-12 -->
+								</div><!-- row -->
+							</div><!-- container -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- main-slider-two-swiper -->
+	</section>
+
+	<section class="service-two-section">
+		<div class="container">
+			<div class="row row-gutter-y-40">
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="/assets/image/services/about-1.jpg" class="img-fluid" alt="img-28" width="375" height="288">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Mission</h4>
+							<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
+							<a href="service-details.html">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="assets/image/services/service-5.png" class="img-fluid" alt="img-29">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Vision</h4>
+							<p>
+								To accelerate the Niger Delta's transition to a prosperous, stable and peaceful region.
+							</p>
+							<a href="service-details.html">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-link-box">
+						<h4 class="section-title">Digital <br>Services</h4>
+						<ul class="my-4 py-2">
+							<li><a href="/Services/ProjectDatabase/index">Project Database<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Jobs">Empowerment Programs <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Tenders">Tenders & Adverts<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/OnlineForms">Online Forms<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/ServiceGate/index">Service Gate <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/IReports/index">iReports<i class="fa-solid fa-chevron-right"></i></a></li>
+						</ul><!-- ul -->
+					</div><!--service-link-box-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+
+	<section class="about-two-section">
+		<div class="container">
+			<div class="row justify-content-between row-gutter-y-60">
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-image">
+						<div id="imageHolder" class="">
+							<div class="imageHolderDiv">
+								<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
+								<img src="/assets/image/gallery/MD.png" alt="MD- Samuel Ogbuku">
+								<img src="/assets/image/gallery/EDFA.png" alt="EDFA- Boma Iyaye">
+								<img src="/assets/image/gallery/EDP.png" alt="EDP- Victor Etim Antai">
+								<img src="/assets/image/gallery/EDCS.png" alt="EDCS- Ifedayo Abegunde">
+							</div>
+						</div>
+					</div><!--about-two-image-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-inner pt-0">
+						<h2 class="section-title">Welcome to Niger Delta Development Commission</h2><!-- section-title -->
+						<div class="about-two-text">
+							<div class="about-two-text-inner-one">
+								<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
+							</div><!-- about-two-text-inner-one -->
+							<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
+						</div><!--about-two-text-->
+						<div class="about-two-author-content">
+							<a href="/WhoWeAre/Vision" class="text-success hover:text-blue-700 font-semibold">
+								LEARN MORE →
+							</a>
+						</div><!-- about-two-author-content -->
+					</div><!--about-two-inner-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+
+
+	@* <section class="about-two-section">
+		<div class="container">
+			<div class="row justify-content-between row-gutter-y-60">
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-image">
+						<div class="about-two-image-inner img-one">
+							<img src="/assets/image/gallery/about-1.png" alt="img-30">
+							<img src="/assets/image/shapes/about-3.jpg" class="floated-image" alt="img-31">
+						</div><!-- about-two-image-inner -->
+						<div class="about-two-image-inner img-two">
+							<img src="/assets/image/shapes/shape-1.png" alt="img-32" class="mayor-image">
+							<img src="/assets/image/gallery/about-2.png" alt="img-33">
+						</div><!-- about-two-image-inner img-two -->
+						<div class="about-two-service-video">
+							<a href="https://www.youtube.com/watch?v=rzfmZC3kg3M" class="video-popup">
+								<i class="fa fa-play"></i>
+							</a><!-- video-popup -->
+						</div><!-- about-two-service-video -->
+					</div><!--about-two-image-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-inner">
+						<div class="section-tagline">Our introductions</div><!-- section-tagline -->
+						<h2 class="section-title">Welcome to Niger Delta Development Commission</h2><!-- section-title -->
+						<div class="row row-gutter-y-20">
+							<div class="col-xl-6 col-lg-12 col-md-6">
+								<div class="about-two-content">
+									<i class="fa-solid fa-circle-check"></i><h4 class="about-two-title">Human Resources</h4>
+								</div><!-- about-two-content -->
+							</div><!-- col-xl-6 col-lg-12 col-md-6 -->
+							<div class="col-xl-6 col-lg-12 col-md-6">
+								<div class="about-two-content">
+									<i class="fa-solid fa-circle-check"></i><h4 class="about-two-title">Economic Data</h4>
+								</div><!-- about-two-content -->
+							</div><!-- col-xl-6 col-lg-12 col-md-6 -->
+						</div><!--row-->
+						<div class="about-two-text">
+							<div class="about-two-text-inner-one">
+								<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
+							</div><!-- about-two-text-inner-one -->
+							<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
+						</div><!--about-two-text-->
+						<div class="about-two-author-content">
+							<div class="about-two-author-content-box">
+								<div class="about-two-author-content-icon">
+									<i class="fa-solid fa-phone-flip"></i>
+								</div><!-- about-two-author-content-icon -->
+								<div class="about-two-author-content-contact">
+									<h5>NDDC Office</h5>
+									<a href="tel:+92-9800-6869">+92 (9800) 6869</a>
+								</div><!-- about-two-author-content-contact -->
+							</div><!--about-two-author-content-box-->
+							<div class="about-two-author-content-socials">
+								<a href="#"><i class="fa-brands fa-twitter"></i></a>
+								<a href="#"><i class="fa-brands fa-facebook"></i></a>
+								<a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+								<a href="#"><i class="fa-brands fa-instagram"></i></a>
+							</div><!-- about-two-author-content-socials -->
+						</div><!-- about-two-author-content -->
+					</div><!--about-two-inner-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section> *@
+	<!--Prominent News Section End-->
+}
+else
+{
+	<!--Splide Slider Section-->
+	<section class="splide" aria-labelledby="carousel-heading">
+		<div class="splide__track">
+			<div class="splide__list">
+				@foreach (var item in Model.NewsSlide)
+				{
+					<div class="splide__slide" style="width: 1648px; ">
+						<div class="item">
+							<div class="item-splide-bg" style="background-image: url(@Model._containerUrl@item.ImageUrl)"></div>
+							<div class="container">
+								<div class="row">
+									<div class="col-md-12">
+										<div class="slider-content">
+											<div class="slider-tagline animate__animated animate__slideInDown">Niger Delta Development Commission</div>
+											<h3 class="section-title animate">@item.Subject</h3>
+											<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID" class="btn btn-primary">Learn More</a>
+										</div><!-- slider-content -->
+									</div><!-- col-md-12 -->
+								</div><!-- row -->
+							</div><!-- container -->
+						</div>
+					</div>
+				}
+			</div>
+			<div class="splide__progress">
+				<div class="splide__progress__bar">
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--Splide Slider Section-->
+
+
+
+
+	@* <!--Slider Section-->
+	<section class="main-slider">
+		<div class="main-slider-swiper owl-carousel owl-theme owl-loaded owl-drag">
+			<!--item-->
+			<!--item-->
+			<div class="owl-stage-outer">
+				<div class="owl-stage" style="transform: translate3d(-4269px, 0px, 0px); transition: all 0.25s ease 0s; width: 8538px;">
+					@foreach (var item in Model.NewsSlide)
+					{
+						<div class="owl-item" style="width: 1648px;">
+							<div class="item">
+								<div class="item-slider-bg" style="background-image: url(@Model._containerUrl@item.ImageUrl)"></div>
+								<div class="container">
+									<div class="row">
+										<div class="col-md-12">
+											<div class="slider-content">
+												<div class="slider-tagline">Niger Delta Development Commission</div>
+												<h3 class="section-title">@item.Subject</h3>
+												<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID" class="btn btn-primary">Learn More</a>
+											</div><!-- slider-content -->
+										</div><!-- col-md-12 -->
+									</div><!-- row -->
+								</div><!-- container -->
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+			<div class="owl-nav">
+				<button type="button" role="presentation" class="owl-prev">
+					<i class="fa-solid fa-arrow-left-long"></i>
+				</button>
+				<button type="button" role="presentation" class="owl-next">
+					<i class="fa-solid fa-arrow-right-long"></i>
+				</button>
+			</div>
+			<div class="owl-dots disabled"></div>
+		</div><!-- main-slider-swiper -->
+	</section>
+	<!--Slider Section-->
+ *@
+
+
+
+
+	<!--Home Shortcuts-->
+	<section class="department-section">
+		<div class="container">
+			<div class="department-section-inner">
+				<div class="row row-gutter-y-40">
+					<div class="col-xl-2 col-lg-4 col-md-6">
+						<div class="department-card">
+							<div class="department-card-icon">
+								<a href="/WhoWeAre/Vision"><i class="flaticon-parthenon"></i></a>
+							</div><!-- department-card-icon -->
+							<div class="department-card-content">
+								<h5><a href="/WhoWeAre/Vision">Our Mission</a></h5>
+							</div><!-- department-card-content -->
+						</div><!--department-card-->
+					</div><!--col-xl-2 col-lg-4 col-md-6-->
+					<div class="col-xl-2 col-lg-4 col-md-6">
+						<div class="department-card">
+							<div class="department-card-icon">
+								<a href="/WhoWeAre/ManagementStaff"><i class="flaticon-suitcase"></i></a>
+							</div><!-- department-card-icon -->
+							<div class="department-card-content">
+								<h5><a href="/WhoWeAre/Board">Our Leadership</a></h5>
+							</div><!-- department-card-content -->
+						</div><!--department-card-->
+					</div><!--col-xl-2 col-lg-4 col-md-6-->
+					<div class="col-xl-2 col-lg-4 col-md-6">
+						<div class="department-card">
+							<div class="department-card-icon">
+								<a href="/WhatWeDo/Projects"><i class="flaticon-industry"></i></a>
+							</div><!-- department-card-icon -->
+							<div class="department-card-content">
+								<h5><a href="/Services/ProjectDatabase">Projects & Programs</a></h5>
+							</div><!-- department-card-content -->
+						</div><!--department-card-->
+					</div><!--col-xl-2 col-lg-4 col-md-6-->
+					<div class="col-xl-2 col-lg-4 col-md-6">
+						<div class="department-card">
+							<div class="department-card-icon">
+								<a href="/Services/OnlineForms"><i class="flaticon-bus"></i></a>
+							</div><!-- department-card-icon -->
+							<div class="department-card-content">
+								<h5><a href="/Services/OnlineForms">Online Forms</a></h5>
+							</div><!-- department-card-content -->
+						</div><!--department-card-->
+					</div><!--col-xl-2 col-lg-4 col-md-6-->
+					<div class="col-xl-2 col-lg-4 col-md-6">
+						<div class="department-card">
+							<div class="department-card-icon">
+								<a href="/Services/Tenders"><i class="flaticon-lotus"></i></a>
+							</div><!-- department-card-icon -->
+							<div class="department-card-content">
+								<h5><a href="/Services/Tenders">Tenders & Adverts</a></h5>
+							</div><!-- department-card-content -->
+						</div><!--department-card-->
+					</div><!--col-xl-2 col-lg-4 col-md-6-->
+					<div class="col-xl-2 col-lg-4 col-md-6">
+						<div class="department-card">
+							<div class="department-card-icon">
+								<a href="/Services/Jobs"><i class="flaticon-balance-1"></i></a>
+							</div><!-- department-card-icon -->
+							<div class="department-card-content">
+								<h5><a href="/Services/Jobs">Empowerment Programs</a></h5>
+							</div><!-- department-card-content -->
+						</div><!--department-card-->
+					</div><!--col-xl-2 col-lg-4 col-md-6-->
+				</div><!-- row -->
+			</div><!--department-section-inner-->
+		</div><!-- container -->
+		<div class="department-search-section">
+			<div class="container">
+				<form class="department-search-form justify-content-end">
+					<input type="email" placeholder="Keep up with our Latest News and Updates" name="email">
+					<button type="submit">Subscribe</button>
+				</form><!-- department-search-form -->
+			</div><!-- container -->
+		</div><!-- department-search-section -->
+	</section>
+
+	<!-- Carousel -->
+	<!--Home Shortcuts-->
+	<!--Wecome Section-->
+	<section class="about-section">
+		<div class="container">
+			<div class="row justify-content-between">
+				<div class="col-lg-6 ">
+					<div class="about-image">
+						<div class="about-image-inner img-one">
+							<img src="assets/image/gallery/about-1.png" class="img-fluid mw-100 h-100" alt="img-2">
+							<div class="about-caption-image">
+								<div class="about-two-service-video">
+									<a href="https://www.youtube.com/watch?v=8I02WAUjkyM" class="video-popup">
+										<i class="fa fa-play"></i>
+									</a><!-- video-popup -->
+								</div>
+							</div>
+						</div><!--about-image-inner img-one-->
+						<div class="about-image-inner img-two">
+							<img src="assets/image/shapes/about-3.jpg" class="floated-image" alt="img-3">
+							<img src="assets/image/gallery/about-2.png" class="img-fluid mw-100 h-100" alt="img-4">
+						</div><!--about-image-inner img-two-->
+					</div><!--about-image-->
+				</div><!--col-lg-6-->
+				<div class="col-lg-6">
+					<div class="about-inner">
+						<div class="section-title-box">
+							<!-- section-tagline -->
+							<h2 class="section-title"> Welcome to Niger Delta Development Commission </h2>
+							<p>
+								Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.
+
+							</p>
+						</div><!-- section-title-box -->
+						<a href="/WhoWeAre/Vision" class="text-blue-600 hover:text-blue-700 font-semibold">
+							LEARN MORE →
+						</a>
+						<!--row-->
+					</div><!-- about-inner -->
+				</div><!--col-lg-6-->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+	<!--Welcome Section-->
+}
+
+
+ 
+
+
+
+<!--Updates Section-->
+<section class="blog-section">
+	<div class="container">
+		<div class="blog-box">
+			<div class="section-title-box text-center">
+				<div class="section-tagline">Updates From Our Programs and Activities</div>
+				<h2 class="section-title">Updates</h2>
+			</div><!-- section-title-box -->
+		</div><!--blog-box-->
+			<div class="row row-gutter-30">
+				<div class=" col-lg-6 col-xl-4 ">
+					<div class="department-two-card">
+						<div class="department-two-imgbox">
+							<div class="department-two-img">
+								<img src="@Model._containerUrl@Model.PhysicalInfraUpdatePhoto.DescriptionImage" style="height:250px;" class=" mw-100" alt="img-150">
+							<a href="/WhatWeDo/Projects"></a>
+							</div><!-- department-two-img -->
+							<div class="department-two-img-icon">
+								<a href="/WhatWeDo/Projects"><i class="flaticon-highway"></i></a>
+							</div><!-- department-two-img-icon -->
+						</div><!-- department-two-imgbox -->
+					<div class="department-two-content" style="height: 15rem;">
+						<h4><a href="/WhatWeDo/Projects">Physical Infrastructure</a></h4>
+						<p style="height: 6rem; overflow: hidden;">@Model.PhysicalInfraUpdatePhoto.ShortTitle ...</p>
+							<div class="department-two-button">
+							<a href="/WhatWeDo/Projects">
+								<i class="fa-solid fa-arrow-right-long"></i>
+							<span>Read More</span></a>
+							</div><!-- department-two-button -->
+						</div><!-- department-two-content -->
+					</div><!--department-two-card-->
+				</div><!-- col-12 col-lg-4 -->
+				<div class=" col-lg-6 col-xl-4 ">
+					<div class="department-two-card">
+						<div class="department-two-imgbox">
+							<div class="department-two-img">
+							<img src="@Model._containerUrl@Model.SocialInfraUpdatePhoto.DescriptionImage" style="height:250px;" class="mw-100" alt="img-151">
+							<a href="/WhatWeDo/Projects"></a>
+							</div><!-- department-two-img -->
+							<div class="department-two-img-icon">
+							<a href="/WhatWeDo/Projects"><i class="flaticon-police-badge-1"></i></a>
+							</div><!-- department-two-img-icon -->
+						</div><!-- department-two-imgbox -->
+					<div class="department-two-content" style="height: 15rem;">
+						<h4><a href="/WhatWeDo/Projects">Social Infrastructure</a></h4>
+						<p style="height: 6rem; overflow: hidden;">@Model.SocialInfraUpdatePhoto.Title</p>
+							<div class="department-two-button">
+							<a href="/WhatWeDo/Projects"><i class="fa-solid fa-arrow-right-long"></i><span>Read More</span></a>
+							</div><!-- department-two-button -->
+						</div><!-- department-two-content -->
+					</div><!--department-two-card-->
+				</div><!-- col-lg-6 col-xl-4 -->
+				<div class=" col-lg-6 col-xl-4 ">
+					<div class="department-two-card">
+						<div class="department-two-imgbox">
+							<div class="department-two-img">
+							<img src="@Model._containerUrl@Model.PartnershipsPhoto.DescriptionImage" style="height:250px;" class=" mw-100" alt="img-152">
+							<a href="/WhatWeDo/Projects"></a>
+							</div><!-- department-two-img -->
+							<div class="department-two-img-icon">
+							<a href="/WhatWeDo/Projects"><i class="flaticon-team"></i></a>
+							</div><!-- department-two-img-icon -->
+						</div><!-- department-two-imgbox -->
+						<div class="department-two-content" style="height: 15rem;">
+						<h4>
+							<a href="/WhatWeDo/Projects">Global Partnerships</a>
+						</h4>
+						<p style="height: 6rem; overflow: hidden;">@Model.PartnershipsPhoto.Title</p>
+							<div class="department-two-button">
+							<a href="/WhatWeDo/Projects"><i class="fa-solid fa-arrow-right-long"></i><span>Read More</span></a>
+							</div><!-- department-two-button -->
+						</div><!-- department-two-content -->
+					</div><!--department-two-card-->
+				</div><!-- col-lg-6 col-xl-4 -->
+				
+			</div>
+		@*<div class="row row-gutter-y-155">
+			<div class="col-lg-4">
+				<div class="blog-card">
+					<div class="blog-card-image">
+						<img src="assets/image/blog/blog-1.jpg" class="img-fluid mw-100 h-100" alt="img-22">
+						<a href="news-details.html"></a>
+					</div><!-- blog-card-image -->
+					<div class="blog-card-date">
+						<a href="news-details.html">28SEP</a>
+					</div><!-- blog-card-date -->
+					<div class="blog-card-content">
+						<div class="blog-card-meta">
+							<span class="author">
+								by<a href="news-details.html">Admin</a>
+							</span><!-- author -->
+							<span class="comment">
+								<a href="news-details.html">02 Comments</a>
+							</span><!-- comment -->
+						</div><!-- blog-card-meta -->
+						<h4><a href="news-details.html">Physical Infrastructure</a></h4>
+						<p>Tellus amet vel nisi, vel felis morbi sit et. Risus, pulvinar ultricie</p>
+					</div><!-- blog-card-content -->
+				</div><!-- blog-card -->
+			</div><!-- col-lg-4 -->
+			<div class="col-lg-4">
+				<div class="blog-card">
+					<div class="blog-card-image">
+						<img src="assets/image/blog/blog-2.jpg" class="img-fluid mw-100 h-100" alt="img-23">
+						<a href="news-details.html"></a>
+					</div><!-- blog-card-image -->
+					<div class="blog-card-date">
+						<a href="news-details.html">28SEP</a>
+					</div><!-- blog-card-date -->
+					<div class="blog-card-content">
+						<div class="blog-card-meta">
+							<span class="author">
+								by<a href="news-details.html">Admin</a>
+							</span><!-- author -->
+							<span class="comment">
+								<a href="news-details.html">02 Comments</a>
+							</span><!-- comment -->
+						</div><!-- blog-card-meta -->
+						<h4><a href="news-details.html">Social Infrastructuret</a></h4>
+						<p>Tellus amet vel nisi, vel felis morbi sit et. Risus, pulvinar ultricie</p>
+					</div><!-- blog-card-content -->
+				</div><!-- blog-card -->
+			</div><!-- col-lg-4 -->
+			<div class="col-lg-4">
+				<div class="blog-card">
+					<div class="blog-card-image">
+						<img src="assets/image/blog/blog-3.jpg" class="img-fluid mw-100 h-100" alt="img-24">
+						<a href="news-details.html"></a>
+					</div><!-- blog-card-image -->
+					<div class="blog-card-date">
+						<a href="news-details.html">28SEP</a>
+					</div><!-- blog-card-date -->
+					<div class="blog-card-content">
+						<div class="blog-card-meta">
+							<span class="author">
+								by<a href="news-details.html">Admin</a>
+							</span><!-- author -->
+							<span class="comment">
+								<a href="news-details.html">02 Comments</a>
+							</span><!-- comment -->
+						</div><!-- blog-card-meta -->
+						<h4><a href="news-details.html">Global Partnerships</a></h4>
+						<p>Tellus amet vel nisi, vel felis morbi sit et. Risus, pulvinar ultricie</p>
+					</div><!-- blog-card-content -->
+				</div><!-- blog-card -->
+			</div><!-- col-lg-4 -->
+		</div><!-- row -->*@
+	</div><!-- container -->
+</section>
+<!--Updates Section Banner-->
+
+@*<div class="elementor-container elementor-column-gap-default">
+	<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-becf424 animated fadeInLeft" data-id="becf424" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
+			<div class="elementor-widget-wrap elementor-element-populated">
+				<div class="elementor-element elementor-element-7bf95fb2 elementor-widget elementor-widget-heading" data-id="7bf95fb2" data-element_type="widget" data-widget_type="heading.default">
+				<div class="elementor-widget-container">
+				<h2 class="elementor-heading-title elementor-size-default" data-fontsize="42">Key Thrusts of the NOGICD Act of 2010</h2>		</div>
+				</div>
+				<div class="elementor-element elementor-element-19cef799 elementor-widget elementor-widget-text-editor" data-id="19cef799" data-element_type="widget" data-widget_type="text-editor.default">
+				<div class="elementor-widget-container">
+				<ul><li>Integrate oil producing communities into the oil and gas value chain.</li><li>Foster institutional collaboration.</li><li>Maximize participation of Nigerians in oil and gas activities.</li><li>Link oil and gas sector to other sectors of the economy.</li><li>Maximize utilization of Nigerian resources i.e. goods, services and assets.</li><li>Attract investments to the Nigeria oil and gas sector (service providers, equipment suppliers etc)</li></ul>						</div>
+				</div>
+				<div class="elementor-element elementor-element-649e24 elementor-widget elementor-widget-button" data-id="649e24" data-element_type="widget" data-widget_type="button.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-button-wrapper">
+					<a class="elementor-button elementor-button-link elementor-size-sm" href="#" data-fontsize="15">
+						<span class="elementor-button-content-wrapper">
+						<span class="elementor-button-text">Discover More</span>
+						</span>
+					</a>
+				</div>
+				</div>
+				</div>
+				</div>
+				</div>
+				<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-660dfdd0" data-id="660dfdd0" data-element_type="column">
+				<div class="elementor-widget-wrap elementor-element-populated">
+				<div class="elementor-element elementor-element-5176daf0 elementor-position-left elementor-mobile-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box animated fadeInRight" data-id="5176daf0" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInRight&quot;}" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+						<div class="elementor-icon-box-icon">
+				<span class="elementor-icon elementor-animation-">
+				<i aria-hidden="true" class=" arrow_carrot-right_alt"></i>				
+				</span>
+			</div>
+				<div class="elementor-icon-box-content">
+				<div class="elementor-icon-box-title">
+					<span>
+						Vision					
+					</span>
+				</div>
+						<p class="elementor-icon-box-description" data-fontsize="16">
+						To be the catalyst for the industrialization of the Nigerian Oil and Gas Industry and its linkage sectors.					
+						</p>
+							</div>
+				</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-48d89ad0 elementor-position-left elementor-mobile-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box animated fadeInRight" data-id="48d89ad0" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInRight&quot;}" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+						<div class="elementor-icon-box-icon">
+				<span class="elementor-icon elementor-animation-">
+				<i aria-hidden="true" class=" arrow_carrot-right_alt"></i>				
+				</span>
+				</div>
+						<div class="elementor-icon-box-content">
+				<div class="elementor-icon-box-title">
+					<span>
+						Mission					
+				</span>
+				</div>
+				<p class="elementor-icon-box-description" data-fontsize="16">
+						To promote the development and utilization of in-country capacities for the industrialization of Nigeria through the effective implementation of the Nigerian Content Act.					</p>
+							</div>
+				</div>
+				</div>
+				</div>
+				<div class="elementor-element elementor-element-6b7edb9 elementor-position-left elementor-mobile-position-left elementor-view-default elementor-vertical-align-top elementor-widget elementor-widget-icon-box animated fadeInRight" data-id="6b7edb9" data-element_type="widget" data-settings="{&quot;_animation&quot;:&quot;fadeInRight&quot;}" data-widget_type="icon-box.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-icon-box-wrapper">
+						<div class="elementor-icon-box-icon">
+				<span class="elementor-icon elementor-animation-">
+				<i aria-hidden="true" class=" arrow_carrot-right_alt"></i>				</span>
+			</div>
+						<div class="elementor-icon-box-content">
+				<div class="elementor-icon-box-title">
+					<span>
+						Core Values					</span>
+				</div>
+									<p class="elementor-icon-box-description" data-fontsize="16">
+						Patriotism, Passion, Professionalism, Integrity,  Creativity and Team Spirit.					</p>
+							</div>
+					</div>
+				</div>
+				</div>
+				</div>
+		</div>
+	</div>*@
+
+<!--Key Thrust Section-->
+<section class="cta-three">
+	<div class="cta-three-inner position-relative pt-5 pb-1" style="background-attachment: fixed;">
+
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="cta-three-content align-items-center justify-content-between">
+
+						<div class="row section-title-box" style="/* background-color: #03335c7a; */">
+							<h1 class="text-white section-title text-center">
+								Core Focus of the Niger Delta Development Commission
+							</h1>
+							<div class="col-lg-6 pe-lg-5 pt-5">
+								<div class="about-card ">
+
+									<ul class="fs-6 fw-bold text-light lh-lg">
+										<li class="about-text pb-2">Enhancing Infrastructure in the Niger Delta.</li>
+										<li class="about-text pb-2">Improving Healthcare Access for our People.</li>
+										<li class="about-text pb-2">Empowering Communities through Education, Skills and Jobs.</li>
+										<li class="about-text pb-2">Sustainable Environmental Management of our Environment and Resources.</li>
+										<li class="about-text pb-2">Facilitating Agricultural Development and supporting Agro Allied Industries.</li>
+										<li class="about-text pb-2">Fostering Social Welfare Programs for all our people.</li>
+									</ul>
+									<!-- service-button -->
+								</div><!-- about-card -->
+							</div><!-- col-xl-6 col-lg-12 col-md-6 -->
+							<div class="col-lg-6 ps-lg-5 align-self-center">
+								<div class="about-card ">
+									<h4 class="about-title fs-5 text-white"><i class="fa-solid fa-circle-check"></i>Vision</h4>
+									<p class="about-text fs-6 fw-bold text-light">To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
+								</div><!-- about-card -->
+								<div class="about-card">
+									<h4 class="about-title  fs-5 text-white"><i class="fa-solid fa-circle-check"></i>Mission</h4>
+									<p class="about-text fs-6 fw-bold text-light">
+										To facilitate the rapid and sustainable development of the Niger Delta into a region that is economically
+										prosperous, socially stable, ecologically regenerative and and politically peaceful.
+									</p>
+								</div><!-- about-card -->
+								<div class="about-card">
+									<h4 class="about-title fs-5 text-white"><i class="fa-solid fa-circle-check"></i>Core Values</h4>
+									<p class="about-text fs-6 fw-bold text-light">Patriotism, Passion, Professionalism, Integrity, Creativity and Team Spirit</p>
+								</div><!-- about-card -->
+							</div><!-- col-xl-6 col-lg-12 col-md-6 -->
+							<div class="text-center pb-5">
+								<a href="department-details.html" class="btn btn-primary">Discover More</a>
+							</div>
+						</div>
+					</div><!-- cta-three-content -->
+				</div><!-- col-lg-12 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!--cta-three-inner-->
+</section>
+<!--Key Thrust Section-->
+
+<!--News Point Section-->
+<section class="blog-section">
+	<div class="container">
+		<div class="blog-box">
+			<div class="section-title-box text-center">
+				<div class="section-tagline">Updates From Our Programs and Activities</div>
+				<h2 class="section-title">News Point</h2>
+			</div><!-- section-title-box -->
+		</div><!--blog-box-->
+
+		
+
+		<div class="row row-gutter-y-155 news-top">
+			@foreach (var item in Model.NewsList)
+			{
+				<div class="col-lg-4">
+					<div class="blog-card">
+						<div class="blog-card-image">
+							<img src="@Model._containerUrl@item.ImageUrl" width="600" height="200" class="mw-100" alt="img-22">
+							<a href="news-details.html"></a>
+						</div><!-- blog-card-image -->
+						<div class="blog-card-date">
+							<a href="news-details.html">@item.PublishDate.ToString("dd/MM/yy")</a>
+						</div><!-- blog-card-date -->
+						<div class="blog-card-content">
+							<div class="blog-card-meta">
+								<span class="author">
+									By: <a href="#">Corporate Affairs Dept.</a>
+								</span><!-- author -->
+								@* <span class="comment">
+									<a href="news-details.html">02 Comments</a>
+								</span> *@<!-- comment -->
+							</div><!-- blog-card-meta -->
+							<div class="" style="height: 10rem;overflow: hidden;">
+								<h4 style="height: 4.5rem;overflow: hidden;"><a asp-page="/News/NewsDetails" asp-route-nid="@item.NID">@item.Subject</a></h4>
+								<div style="height: 4.7rem; overflow: hidden;">@item.ShortSummary</div>
+							</div> 
+							<div class="department-two-button">
+								<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID"><i class="fa-solid fa-arrow-right-long pe-2"></i><span class="text-dark">Read More</span></a>
+							</div>
+						</div><!-- blog-card-content -->
+					</div><!-- blog-card -->
+				</div>
+
+				<!-- col-lg-4 -->
+			}
+			
+			
+		</div><!-- row -->
+	</div><!-- container -->
+</section>
+<!--News Point Section-->
+
+
+<!--Photo Speak Section-->
+<section class="portfolio-section">
+	<div class="section-title-box text-center">
+		<div class="section-tagline">Recent Photos of Our Activities</div>
+		<h2 class="section-title">Photo Speak </h2>
+	</div><!-- section-title-box -->
+	<div class="portfolio-content conatainer-fluid">
+		<div class="portfolio-carousel owl-carousel owl-theme owl-loaded owl-drag">
+			<!-- item -->
+			<!-- item -->
+			<!-- item -->
+			<!-- item -->
+			<div class="owl-stage-outer">
+				<div class="owl-stage" style="transform: translate3d(-1078px, 0px, 0px); transition: all 2s ease 0s; width: 3234px;">
+					@foreach (var item in Model.Photos)
+					{
+						<div class="owl-item" style="width: 239.5px; margin-right: 30px;">
+							<div class="item">
+								<div class="portfolio-card">
+									<img src="@Model._containerUrl@item.ImageUrl" 
+									@* style="height:525px; width:555px;"  *@
+									class="img-fluid" alt="img-9">
+									<div class="portfolio-card-meta">
+										<div class="portfolio-card-text"><a href="portfolio-details.html">@item.Location</a></div>
+										<div class="portfolio-card-title"><a href="portfolio-details.html">@item.Title</a></div>
+									</div><!-- portfolio-card-meta -->
+								</div><!--portfolio-card-->
+							</div>
+						</div>
+					}
+					
+				</div>
+			</div>
+		</div><!--portfolio-carousel-->
+	</div><!--portfolio-content-->
+</section>
+<!--Photo Speak-->
+
+<!--Testimonial Section-->
+<div class="row text-center justify-content-center">
+	<div class="col-lg-6 align-content-center">
+		<div class="section-title-box text-center section-tagline:before">
+			<div class="section-tagline">Testimonials</div>
+			<h2 class="section-title px-2">What Our People Are Saying</h2>
+		</div><!-- section-title-box -->
+	</div>
+</div>
+
+<section class="testimonial-section">
+	<div class="container">
+		<div class="testimonial-name">TESTIMONIALS</div>
+		<div class="testimonial-slider">
+			<div class="swiper testimonial-reviews swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+				<div class="swiper-wrapper" id="swiper-wrapper-f90a178476c11e3c" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-2472px, 0px, 0px);">
+					
+					<div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1176px; margin-right: 60px;">
+						<div class="testimonial-content">
+							<div class="testimonial-text">
+								NDDC has shown capacity in developing the region and the Samuel Ogbuku led board has provided the needed driver for enhancing the growth and development of the region with well meaning project that truly addreses the dire needs of the Niger Delta People.
+							</div><!-- testimonial-text -->
+							<div class="testimonial-thumb-card">
+								<h5>Niger Delta Stakholder</h5>
+								<span>Civil Society</span>
+							</div><!-- testimonial-thumb-card -->
+						</div><!--testimonial-content-->
+					</div><!--swiper-slide-->
+				</div><!-- swiper-wrapper -->
+				<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 2" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
+				<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+			</div><!--swiper testimonial-reviews-->
+			@*<div class="testimonial-thumb swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden swiper-thumbs">
+				<div class="swiper-wrapper" id="swiper-wrapper-da9731a17a9c3d44" aria-live="polite" style="transform: translate3d(0px, 0px, 0px); transition-duration: 0ms;">
+					<div class="swiper-slide swiper-slide-active" role="group" aria-label="1 / 3" style="width: 80px;">
+						<img src="assets/image/testimonial/testimonial-2.jpg" class="img-fluid mw-100 h-100" alt="img-17">
+						<i class="fa-solid fa-quote-left"></i>
+					</div><!-- swiper-slide -->
+					<div class="swiper-slide swiper-slide-next swiper-slide-thumb-active" role="group" aria-label="2 / 3" style="width: 80px;">
+						<img src="assets/image/testimonial/testimonial-3.jpg" class="img-fluid mw-100 h-100" alt="img-18">
+						<i class="fa-solid fa-quote-left"></i>
+					</div><!-- swiper-slide -->
+					<div class="swiper-slide" role="group" aria-label="3 / 3" style="width: 80px;">
+						<img src="assets/image/testimonial/testimonial-4.jpg" class="img-fluid mw-100 h-100" alt="img-19">
+						<i class="fa-solid fa-quote-left"></i>
+					</div><!-- swiper-slide -->
+				</div><!--swiper-wrapper-->
+				<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
+			</div><!--testimonial-thumb-->*@
+		</div><!--testimonial-slider-->
+	</div><!-- container -->
+</section>
+<!--testimonial-section-->
+
+
+<!-- Executive Management Section -->
+<section class="event-section">
+	<div class="container">
+		<div class="event-section-inner">
+			<div class="row">
+				<div class="col-lg-6">
+					<div class="section-title-box">
+						<div class="section-tagline">Our People</div>
+						<h2 class="section-title">Our Executives And Management Staff </h2>
+					</div><!-- section-title-box -->
+				</div><!--col-lg-6-->
+				<div class="col-lg-6">
+					<div class="event-content-box">
+						<div class="section-text">
+							<p>
+								The Niger Delta Development Commission is Governed by seaseoned experts from accross the region that help navigate the affairs of the Commission.
+							</p>
+						</div><!-- section-text -->
+					</div><!--event-content-box-->
+				</div><!-- col-lg-6 -->
+			</div><!-- row -->
+			<div class="team-card">
+						<div class="team-card-img">
+							<img src="assets/image/team/team-GB-Chair.png" class="img-fluid mw-100 h-100" alt="Chairman">
+						 
+						<div class="team-card-content">
+							<h4><a href="/WhoWeAre/BoardDetails/11">Mr. Chiedu Ebie</a></h4>
+							<p>Chairman</p>
+						</div><!-- team-card-content -->
+					</div>
+					<div class="team-card-dual">
+						<div class="team-card">
+						<div class="team-card-img">
+							<img src="assets/image/team/team-GB-MD.png" class="img-fluid mw-100 h-100" alt="img-78">
+							</div><!-- team-card-icon -->
+						 
+						<div class="team-card-content">
+							<h4><a href="/WhoWeAre/BoardDetails/1">Dr. Samuel Ogbuku</a></h4>
+							<p>MD</p>
+						</div><!-- team-card-content -->
+					</div>
+					<div class="team-card">
+						<div class="team-card-img">
+							<img src="assets/image/team/team-GB-EDP.png" class="img-fluid mw-100 h-100" alt="img-78">
+							</div><!-- team-card-icon -->
+						 
+						<div class="team-card-content">
+							<h4><a href="/WhoWeAre/BoardDetails/7">Mr. Victor Antai</a></h4>
+							<p>EDP</p>
+						</div><!-- team-card-content -->
+					</div>
+					<div class="team-card">
+						<div class="team-card-img">
+							<img src="assets/image/team/team-GB-EDCS.png" class="img-fluid mw-100 h-100" alt="img-78">
+							</div><!-- team-card-icon -->
+						 
+						<div class="team-card-content">
+							<h4><a href="/WhoWeAre/BoardDetails/9">Mr. Ifedayo Abegunde</a></h4>
+							<p>EDCS</p>
+						</div><!-- team-card-content -->
+					</div>
+						<div class="team-card">
+							<div class="team-card-img">
+								<img src="assets/image/team/team-GB-EDFA.png" class="img-fluid mw-100 h-100" alt="img-78">
+								</div><!-- team-card-icon -->
+							<div class="team-card-content">
+								<h4><a href="/WhoWeAre/BoardDetails/8">Mr. Boma Iyaye</a></h4>
+								<p>EDFA</p>
+							</div><!-- team-card-content -->
+						</div>
+					</div>
+					
+					<div class="text-center">
+					<a class="btn btn-primary mt-4" href="/WhoWeAre/Board">View More</a>
+					</div>
+				
+		</div><!--event-section-inner-->
+		</div>
+	</div><!--container-->
+</section>
+<!--Executives-->
+
+
+<!-- Publications Section -->
+<section class="service-one-section">
+	<div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline">Our Recent Publications</div>
+			<h2 class="section-title">Publications </h2>
+		</div>
+		<!-- section-title-box -->
+
+		<div class="row row-gutter-30">
+			<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-card-content" style="height: 13rem;">
+						<h4><a href="service-details.html"> Building Partnerships for Regional Development</a></h4>
+						<p>News Letter</p>
+						<a target="_blank" href="https://nddc-website.s3.eu-north-1.amazonaws.com/Publications/PARTNERSHIPSTHATWORK.pdf" class="btn btn-primary">Download Now</a>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->
+			<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-card-content" style="height: 13rem;">
+						<h4><a href="service-details.html">A New Dawn Is Here</a></h4>
+						<p>News Letter</p>
+						<a target="_blank" href="https://nddc-website.s3.eu-north-1.amazonaws.com/Publications/NDDC+Newslete+August+2022.pdf" class="btn btn-primary">Download Now</a>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->
+			<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-card-content" style="height: 13rem;">
+						<h4><a href="service-details.html">New Thinking. New Frontiers. New Partnerships</a></h4>
+						<p>News Letter</p>
+						<a target="_blank" href="https://nddc-website.s3.eu-north-1.amazonaws.com/Publications/NDDC+Newslete+January+2023.pdf" class="btn btn-primary">Download Now</a>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->
+
+			@*<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-icon">
+						<a href="service-details.html"><i class="flaticon-factory"></i></a>
+					</div><!-- service-one-icon -->
+					<div class="service-one-card-content">
+						<h4><a href="service-details.html">Business &amp; Industry</a></h4>
+						<p>When nothing prevents our being able to we like best every.</p>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->
+			<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-icon">
+						<a href="service-details.html"><i class="flaticon-businessman"></i></a>
+					</div><!-- service-one-icon -->
+					<div class="service-one-card-content">
+						<h4><a href="service-details.html">Jobs &amp; Unemployment</a></h4>
+						<p>When nothing prevents our being able to we like best every.</p>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->
+			<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-icon">
+						<a href="service-details.html"><i class="flaticon-clinic"></i></a>
+					</div><!-- service-one-icon -->
+					<div class="service-one-card-content">
+						<h4><a href="service-details">Health &amp; Securities</a></h4>
+						<p>When nothing prevents our being able to we like best every.</p>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->*@
+		</div><!-- row -->
+	</div><!-- container -->
+</section> 
+<!-- Publications -->
+
+
+@*<section class="blog-section">
+	<div class="container">
+		<div class="blog-box">
+			<div class="section-title-box text-center">
+				<div class="section-tagline">Updates From Our Programs and Activities</div>
+				<h2 class="section-title">News Point</h2>
+			</div><!-- section-title-box -->
+		</div><!--blog-box-->
+		<div class="row row-gutter-y-155 news-top">
+			@foreach (var item in Model.NewsList)
+			{
+				<div class="col-lg-4">
+					<div class="blog-card">
+						<div class="blog-card-image">
+							<img src="@Model._containerUrl@item.ImageUrl" width="350" height="300" class="img-fluid mw-100 h-100" alt="img-22">
+							<a href="news-details.html"></a>
+						</div><!-- blog-card-image -->
+						<div class="blog-card-date">
+							<a href="news-details.html">28SEP</a>
+						</div><!-- blog-card-date -->
+						<div class="blog-card-content">
+							<div class="blog-card-meta">
+								<span class="author">
+									By: <a href="news-details.html">Cooperate Affairs Dept.</a>
+								</span><!-- author -->
+								@* <span class="comment">
+									<a href="news-details.html">02 Comments</a>
+								</span> <!-- comment -->@*
+							</div><!-- blog-card-meta -->
+							<h4><a href="news-details.html">@item.Subject</a></h4>
+							<p>@item.Summary</p>
+						</div><!-- blog-card-content -->
+					</div><!-- blog-card -->
+				</div>
+
+				<!-- col-lg-4 -->
+			}
+			
+			
+		</div><!-- row -->
+	</div><!-- container -->
+</section>*@
+<!-- blog-section -->
+
+
+@*<section class="portfolio-section">
+	<div class="container">
+	<div class="section-title-box text-center">
+		<div class="section-tagline">Our Recent Publications</div>
+		<h2 class="section-title">Publications </h2>
+	</div><!-- section-title-box -->
+	<div class="row row-gutter-30">
+				<div class="col-lg-6 col-xl-4">
+					<div class="causes-card">
+						<div class="causes-card-imgbox">
+							<img src="assets/image/causes/pub-1.png" class="img-fluid mw-100 h-100" alt="img-117">
+						</div><!-- causes-card-imgbox -->
+						<div class="causes-content">
+							
+							<h4> <a href="cause-details.html">Building Partnerships for Regional Development</a> </h4>
+							<a href="cause-details.html" class="btn btn-primary">Download Now</a>
+						</div><!-- causes-content -->
+					</div><!-- causes-card -->
+				</div><!-- col-lg-6 col-xl-4 -->
+				<div class="col-lg-6 col-xl-4">
+					<div class="causes-card">
+						<div class="causes-card-imgbox">
+							<img src="assets/image/causes/pub-2.png" class="img-fluid mw-100 h-100" alt="img-117">
+						</div><!-- causes-card-imgbox -->
+						<div class="causes-content">
+							
+							<h4> <a href="cause-details.html">A New Dawn Is Here</a> </h4>
+							<a href="cause-details.html" class="btn btn-primary">Download Now</a>
+						</div><!-- causes-content -->
+					</div><!-- causes-card -->
+				</div><!-- col-lg-6 col-xl-4 -->
+				<div class="col-lg-6 col-xl-4">
+					<div class="causes-card">
+						<div class="causes-card-imgbox">
+							<img src="assets/image/causes/pub-3.png" class="img-fluid mw-100 h-100" alt="img-117">
+						</div><!-- causes-card-imgbox -->
+						<div class="causes-content">
+							
+							<h4> <a href="cause-details.html">New Thinking. New Frontiers. New Partnerships</a> </h4>
+							<a href="cause-details.html" class="btn btn-primary">Download Now</a>
+						</div><!-- causes-content -->
+					</div><!-- causes-card -->
+				</div><!-- col-lg-6 col-xl-4 -->
+			</div>
+			</div>
+	</section><!--publications-section-->*@
+<!-- old Publications -->
+
+
+
+<!-- Project Database Section -->
+<section class="service-section">
+	<div class="container">
+		<div class="row justify-content-between">
+			<div class="col-lg-6">
+				<div class="section-title-box">
+					<div class="section-tagline">Government Service</div><!-- section-tagline -->
+					<h2 class="section-title text-white">Explore our Online<br> Project Database <br> &amp; Resources</h2>
+					<div class="section-text">
+						<p>Get current updates on our Projects and Programs cut accross the Nine States of the Niger Delta Region, gain deep insights and analysis of developmental trends within the region and the impact of our Projects and Programs on our people along with developmental projections</p>
+					</div><!-- section-text -->
+
+					<div class="department-search-section">
+						<a href="~/Services/ProjectDatabase/" class="btn btn-success">Search Our Project Database</a>
+					</div>
+					<div class="service-arrow-image">
+						<img src="assets/image/shapes/arrow.png" alt="img-6">
+					</div><!-- service-arrow-image -->
+				</div><!--section-title-box-->
+			</div><!--col-lg-6-->
+			<div class="col-lg-5">
+				<div class="service-card">
+					<div class="service-card-video">
+						<a href="https://www.youtube.com/watch?v=4lHS8DacJkw" class="video-popup">
+							<i class="fa fa-play"></i>
+						</a><!-- video-popup -->
+					</div><!-- service-card-video -->
+					<div>
+						<img src="assets/image/bg/service-two-bg-1.png" class="img-fluid mw-100 h-100" alt="Chart">
+					</div>
+					@*<ul class="list-unstyled">
+						<li><a href="department-details.html">Parking Permission <i class="fa-solid fa-chevron-right"></i></a></li>
+						<li><a href="department-details.html">File a Tax Return <i class="fa-solid fa-chevron-right"></i></a></li>
+						<li><a href="department-details.html">Order Birth Certificate <i class="fa-solid fa-chevron-right"></i></a></li>
+						<li><a href="department-details.html">Get Building Permission <i class="fa-solid fa-chevron-right"></i></a></li>
+						<li><a href="department-details.html">Apply for Driving License <i class="fa-solid fa-chevron-right"></i></a></li>
+						<li><a href="department-details.html">Report Polution <i class="fa-solid fa-chevron-right"></i></a></li>
+					</ul><!-- list-unstyled -->*@
+					<div class="service-button">
+						<a href="/Services/ProjectDatabase/index" class="btn btn-primary">Discover More</a>
+					</div><!-- service-button -->
+				</div><!--service-card-->
+			</div><!--col-lg-5-->
+		</div><!-- row -->
+	</div><!-- container -->
+</section>
+<!--Projects Database section-->
+
+
+
+
+<section class="funfact-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-xl-3 col-md-6">
+				<div class="funfact-counter-item">
+					<div class="funfact-counter-box">
+						<div class="funfact-counter-icon">
+							<i class="flaticon-running-man"></i>
+						</div><!-- funfact-counter-icon -->
+						<div class="funfact-counter-number">
+							<h3 class="counter-number">16</h3>
+							<span class="funfact-counter-number-postfix">k+</span>
+						</div><!-- funfact-counter-number -->
+					</div><!-- funfact-counter-box -->
+					<p class="funfact-text">Projects Delivered<br>Since 2015 in All Regions.</p>
+				</div><!--funfact-counter-item-->
+			</div><!--col-xl-3 col-md-6-->
+			<div class="col-xl-3 col-md-6">
+				<div class="funfact-counter-item">
+					<div class="funfact-counter-box">
+						<div class="funfact-counter-icon">
+							<i class="flaticon-coverage"></i>
+						</div><!-- funfact-counter-icon -->
+						<div class="funfact-counter-number">
+							<h3 class="counter-number">60</h3>
+							<span class="funfact-counter-number-postfix">%</span>
+						</div><!-- funfact-counter-number -->
+					</div><!-- funfact-counter-box -->
+					<p class="funfact-text">Capital Projects<br> Covering Roads, Electricity and Water Supply.</p>
+				</div><!--funfact-counter-item-->
+			</div><!--col-xl-3 col-md-6-->
+			<div class="col-xl-3 col-md-6">
+				<div class="funfact-counter-item">
+					<div class="funfact-counter-box">
+						<div class="funfact-counter-icon">
+							<i class="flaticon-landscape"></i>
+						</div><!-- funfact-counter-icon -->
+						<div class="funfact-counter-number">
+							<h3 class="counter-number">26</h3>
+							<span class="funfact-counter-number-postfix">%</span>
+						</div><!-- funfact-counter-number -->
+					</div><!-- funfact-counter-box -->
+					<p class="funfact-text">Private &amp; Domestic <br>Garden Land</p>
+				</div><!--funfact-counter-item-->
+			</div><!--col-xl-3 col-md-6-->
+			<div class="col-xl-3 col-md-6">
+				<div class="funfact-counter-item">
+					<div class="funfact-counter-box">
+						<div class="funfact-counter-icon">
+							<i class="flaticon-barn-3"></i>
+						</div><!-- funfact-counter-icon -->
+						<div class="funfact-counter-number">
+							<h3 class="counter-number">3000</h3>
+							<span class="funfact-counter-number-postfix">+</span>
+						</div><!-- funfact-counter-number -->
+					</div><!-- funfact-counter-box -->
+					<p class="funfact-text">Rural Projects <br> Including Rural Electrification and Water Projects</p>
+				</div><!--funfact-counter-item-->
+			</div><!--col-xl-3 col-md-6-->
+		</div><!-- row -->
+	</div><!-- container -->
+</section><!-- /.funfact-section -->
+
+@* <section class="mayor-section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-6">
+				<div class="mayor-box">
+					<div class="section-title-box">
+						<div class="section-tagline">Featured Project</div><!-- section-tagline -->
+						<h2 class="section-title">Construction of 100KM Niger Delta Coastal Link Road</h2>
+					</div><!--section-title-box-->
+					<div class="mayor-icon-box">
+						<div class="mayor-icon">
+							<i class="flaticon-professor"></i>
+						</div><!-- mayor-icon -->
+						<h4 class="mayor-icon-title">Project Statistics</h4>
+					</div><!--mayor-icon-box-->
+					<ul class="list-unstyled list-style-one">
+						<li>
+							<i class="fa-solid fa-circle-check"></i>
+							<p>Location</p>
+						</li><!-- li -->
+						<li>
+							<i class="fa-solid fa-circle-check"></i>
+							<p>Cost</p>
+						</li><!-- li -->
+						<li>
+							<i class="fa-solid fa-circle-check"></i>
+							<p>Percentage Completed</p>
+						</li><!-- li -->
+					</ul><!-- ul -->
+				</div><!--mayor-box-->
+			</div><!-- col-lg-6 -->
+			<div class="col-lg-6">
+				<div class="mayor-img">
+					<img src="assets/image/shapes/shape-1.png" class="floated-image-one" alt="img-7">
+					<img src="assets/image/gallery/featured-2.png" alt="img-8">
+					<div class="mayor-name">
+						NDDC PROJECTS
+					</div><!-- mayor-name -->
+				</div><!--mayor-img-->
+			</div><!--col-lg-6"-->
+		</div><!-- row -->
+	</div><!-- container -->
+</section><!--mayor-section-->
+ *@
+
+
+<!-- Gallery Section -->
+@* <section class="portfolio-section">
+	<div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline">Gallery of Activities from the Region</div>
+			<h2 class="section-title">Gallery </h2>
+		</div><!-- section-title-box -->
+		<div class="row row-gutter-30">
+			<div class="col-lg-4">
+				<div class="event-subscribe-card">
+					<div class="causes-card-imgbox">
+						<img src="assets/image/event/Photoalbum-1.png" class="img-fluid mw-100 h-100" alt="img-117">
+					</div><!-- event-details-card-title -->
+					<div class="event-details-card-content text-center">
+						<form action="assets/inc/sendemail.php" class="contact-form" method="post">
+							<h3>Photo Album</h3>
+							<button class="btn btn-primary w-100">View Now</button><!-- button -->
+						</form><!-- form -->
+					</div><!-- event-details-card-content -->
+				</div><!-- event-subscribe-card -->
+			</div>
+			<div class="col-lg-4">
+				<div class="event-subscribe-card">
+					<div class="causes-card-imgbox">
+						<img src="assets/image/event/Videos-1.png" class="img-fluid mw-100 h-100" alt="img-117">
+					</div><!-- event-details-card-title -->
+					<div class="event-details-card-content text-center">
+						<form action="assets/inc/sendemail.php" class="contact-form" method="post">
+							<h3>Videos</h3>
+							<button class="btn btn-primary w-100">View Now</button><!-- button -->
+						</form><!-- form -->
+					</div><!-- event-details-card-content -->
+				</div><!-- event-subscribe-card -->
+			</div>
+			<div class="col-lg-4">
+				<div class="event-subscribe-card">
+					<div class="causes-card-imgbox">
+						<img src="assets/image/event/SightsIcons-1.png" class="img-fluid mw-100 h-100" alt="img-117">
+					</div><!-- event-details-card-title -->
+					<div class="event-details-card-content text-center">
+						<form action="assets/inc/sendemail.php" class="contact-form" method="post">
+							<h3>Sights and Icons</h3>
+							<button class="btn btn-primary w-100">View Now</button><!-- button -->
+						</form><!-- form -->
+					</div><!-- event-details-card-content -->
+				</div><!-- event-subscribe-card -->
+			</div>
+		</div>
+	</div>
+</section> *@
+<!-- Gallery Section -->
+
+<!-- Video Section -->
+<section class="mayor-section">
+	<div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline">Videos of Activities from the Region</div>
+			<h2 class="section-title">Videos </h2>
+		</div>
+		<div class="row container">
+			<div class="col-md-3 order-1">
+				<div class="">
+					@foreach (var item in Model.Videos)
+					{
+						@if (@item.YoutubeUrl != Model.MainVideo.YoutubeUrl)
+						{
+							<div class="row mb-2 align-items-center">
+								<div class="col-12 text-center pe-0">
+									<iframe width="300" height="100" src="https://www.youtube.com/embed/@item.YoutubeUrl;rel=0&amp;cc_load_policy=1&amp;color=white" title="NDDC Inaugurates Aquaculture Training Centre in Abia, Advances SDGs on Poverty Eradication." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen="" class="img-fluid "></iframe>
+								</div><!-- sidebar-recent-donations-img -->
+								@* <div class="sidebar-widget p-3 mb-0 col-12 col-md-6 ms-0">
+									<div class="sidebar-widget-organizer-name justify-content-between d-flex">
+										<a href="#" class="">@item.VideoTitle</a><span style=""></span>
+									</div><!-- sidebar-widget-organizer-name -->
+										<p class="mb-0">@item.VideoDesc</p>
+								</div><!-- sidebar-recent-donations-content --> *@
+							</div>
+						}
+						
+
+						<!-- sidebar-recent-donations -->
+					}	
+					
+					
+
+				</div>
+			</div>
+			<div class="col-md-9 text-center">
+				<div class="">
+					<div class="">
+						<div>
+							<div class="portfolio-card">
+								<iframe class="mw-100 m-0 mayor-img" width="1000" height="480" src="https://www.youtube.com/embed/@Model.MainVideo.YoutubeUrl;rel=0&amp;cc_load_policy=1&amp;color=white" title="NDDC Inaugurates Aquaculture Training Centre in Abia, Advances SDGs on Poverty Eradication." frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen=""></iframe>
+							</div>
+						</div>
+					</div><!--mayor-img-->
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- Video Section -->
+
+<section class="cta-five-section">
+	<div class="container">
+		<div class="cta-five-card">
+			<div class="cta-five-card-icon">
+				<i class="flaticon-file"></i>
+			</div><!-- cta-five-card-icon -->
+			<div class="cta-five-content">
+				<h4>NDDC <i class="fa-solid fa-info rounded p-2 bg-success"></i> Report Center</h4>
+				<p>You can send us a report on the performance of NDDC Projects in your community to give us direct performance reports on our project.</p>
+			</div><!-- cta-five-content -->
+			<div class="cta-five-button">
+				<a href="/Services/IReports/index" class="btn btn-primary d-lg-flex">Send <i class="fa-solid fa-info rounded p-2 mx-2 bg-success"></i> Report</a>
+			</div><!-- cta-five-button -->
+			<div class="cta-five-img">
+				<i class="flaticon-file"></i>
+			</div><!-- cta-five-img -->
+		</div><!--cta-five-card-->
+	</div><!-- container -->
+</section><!--cta-five-section-->
+
+
+
+<section class="cta-two-section">
+	<div class="container">
+		<div class="cta-two-section-inner">
+			<div class="row">
+				<div class="col-xl-5">
+					<div class="cta-two-title">
+						<div class="cta-two-card-icon">
+							<i class="flaticon-envelope-2"></i>
+						</div><!-- cta-two-card-icon -->
+						<div class="cta-two-card-content">
+							<p>Stay Connected</p>
+                            <h2 style="line-height: 40px; color: var(--thm-white); margin-bottom: 0;">Join Our Newsletter</h2>
+						</div><!-- cta-two-card-content -->
+					</div><!--cta-two-title-->
+				</div><!--col-xl-5-->
+				<div class="col-xl-7">
+					<form action="assets/inc/sendemail.php" class="cta-two-form" method="post">
+						<div class="cta-two-form-group">
+							<input type="email" id="email" class="input-text" placeholder="Email address" name="email" required="">
+						</div><!-- cta-two-card-form -->
+						<button class="btn btn-primary">Subscribe</button>
+					</form><!-- cta-two-form -->
+				</div><!-- col-xl-7-->
+			</div><!-- row -->
+		</div><!-- cta-two-section-inner -->
+	</div><!-- container -->
+</section><!--cta-two-section-->
+
+@* <!--Splide Slider Section-->
+<div id="image-carousel" class="splide" aria-labelledby="photospeak">
+	<div class="splide__track">
+		<div class="splide__list">
+			@foreach (var item in Model.Photos)
+			{
+				<div class="splide__slide" style="width: 239.5px; margin-right: 20px;">
+					<img src="@Model._containerUrl@item.ImageUrl"
+						 class="img-fluid pe-3" alt="img-9">
+					<div class="portfolio-card-meta">
+						<div class="portfolio-card-text"><a href="portfolio-details.html">@item.Location</a></div>
+						<div class="portfolio-card-title"><a href="portfolio-details.html">@item.Title</a></div>
+					</div><!-- portfolio-card-meta -->
+				</div>
+			}
+			
+		</div>
+		@* <div class="splide__progress">
+			<div class="splide__progress__bar">
+			</div>
+		</div> 
+	</div>
+</div>*@
+<!--Splide Slider Section--> 
+
+
+
+
+
+<script type='text/javascript'>
+	var image = document.getElementsByClassName('parallax');
+	new simpleParallax(image, {
+		scale: 2.0
+	});
+</script>
+
+@* <script type="text/javascript">
+	var myModal = new bootstrap.Modal(document.getElementById('myModal'), {})
+	myModal.toggle()
+
+</script> *@
+
+@* <script>
+	$("button[data-dismiss=modal]").click(function () {
+		$(".modal.in").removeClass("in").addClass("fade").hide();
+		$(".modal-backdrop").remove();
+	});
+</script> *@
+@section Scripts {
+	<script>
+		new Splide('.splide').mount();
+		new Splide('#image-carousel').mount();
+	</script>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			var splide = new Splide('.splide', {
+				type: 'loop',
+				perPage: 1,
+				autoplay: true,
+				interval: 5000,
+				pauseOnHover: false,
+				pauseOnFocus: false,
+			});;
+
+			splide.on('active', function (e) {
+				const element = document.querySelectorAll('.animate');
+				element[e.index].classList.add('animate__animated', 'animate__slideInUp');
+			});
+
+			splide.on('inactive', function (e) {
+				const element = document.querySelectorAll('.animate');
+				element[e.index].classList.remove('animate__animated', 'animate__slideInUp');
+			});
+
+			splide.mount();
+		});
+
+		document.addEventListener('DOMContentLoaded', function () {
+			var splide2 = new Splide('#image-carousel', {
+				type: 'loop',
+				autoplay: true,
+				interval: 4000,
+				pauseOnHover: false,
+				pauseOnFocus: false,
+				perPage: 4,
+				breakpoints: {
+					768: {
+						perPage: 3,
+					},
+					640: {
+						perPage: 2,
+					},
+					425: {
+						perPage: 1,
+					},
+				},
+				
+			});;
+			splide2.mount();
+		});
+	</script>
+	<script>
+		
+	</script>
+
+}
+

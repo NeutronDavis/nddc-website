@@ -1,0 +1,197 @@
+﻿@page
+@model NDDC_Website_2024.Pages.WhatWeDo.ProjectsModel
+@{
+}
+<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
+		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+			<li class="breadcrumb-item"><a style="font-size: smaller;color: #003b49;">What We Do</a></li>
+			<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Transformaional Projects</li>
+		</ol><!-- list-unstyled -->
+	@* <ol class="bg-white breadcrumb justify-content-end px-4 pt-2 mb-0" style="--bs-bg-opacity: .5;">
+		<li class="breadcrumb-item text-light"><a href="/index" class="text-light">Home</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Who We Are</li>
+	</ol> *@
+</nav>
+
+<section class="cta-three-section mt-5">
+	<div class="container">
+		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+		  <div class="carousel-indicators">
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  </div>
+		  <div class="carousel-inner">
+			@foreach (var item in Model.ProjectImageSlide)
+				{
+					<div class="carousel-item active">
+						<img src="@Model._containerUrl@item.DescriptionImage" class="d-block" width="1200" height="600" alt="...">
+						<div class="carousel-caption d-none d-md-block">
+							<h5 class="text-white">@item.Title</h5>
+							<p class="text-white">@item.ProjectProgramType</p>
+						</div>
+					</div>
+
+				}
+		  </div>
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Previous</span>
+		  </button>
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="visually-hidden">Next</span>
+		  </button>
+		</div>
+	</div>
+</section>
+
+
+<section class="service-one-section pt-5 pb-5">
+    <div class="container">
+		<div class="section-title-box text-center">
+				<div class="section-tagline"></div>
+				<h2 class="section-title">Project Statistics</h2>
+			</div>
+        <div class="row row-gutter-30">
+			<div class="col-lg-4 ">
+				<div class="testimonial-two-card">
+					<div class="testimonial-two-card-content">
+						<div class="testimonial-two-card-text d-flex align-items-center justify-content-around m-4">
+							<div class="funfact-counter-box">
+							<div class="funfact-counter-icon w-auto h-auto me-0 p-2">
+								<i class="flaticon-running-man"></i>
+							</div>
+							</div>
+							<p class="mb-0 fs-1">34%</p>
+						</div><!-- testimonial-two-card-text -->
+						<div class="testimonial-two-card-outer d-block text-center m-1">
+							<div class="testimonial-two-card-outer-title">
+								<h5 class="ms-0 ">Roads and Bridges</h5>
+							</div><!-- testimonial-two-card-outer-title -->
+							<div class="testimonial-two-card-outer-title">
+								<span class="ms-0">Projects</span>
+							</div><!-- testimonial-two-card-outer-title -->
+						</div><!-- testimonial-two-card-outer -->
+						
+					</div><!-- testimonial-two-card-content -->
+				</div>
+			</div>
+			<div class="col-lg-4 ">
+				<div class="testimonial-two-card">
+					<div class="testimonial-two-card-content">
+						<div class="testimonial-two-card-text d-flex align-items-center justify-content-around m-4">
+							<div class="funfact-counter-box">
+							<div class="funfact-counter-icon w-auto h-auto me-0 p-2">
+								<i class="flaticon-running-man"></i>
+							</div>
+							</div>
+							<p class="mb-0 fs-1">34%</p>
+						</div><!-- testimonial-two-card-text -->
+						<div class="testimonial-two-card-outer d-block text-center m-1">
+							<div class="testimonial-two-card-outer-title">
+								<h5 class="ms-0 ">Roads and Bridges</h5>
+							</div><!-- testimonial-two-card-outer-title -->
+							<div class="testimonial-two-card-outer-title">
+								<span class="ms-0">Projects</span>
+							</div><!-- testimonial-two-card-outer-title -->
+						</div><!-- testimonial-two-card-outer -->
+						
+					</div><!-- testimonial-two-card-content -->
+				</div>
+			</div>
+			<div class="col-lg-4 ">
+				<div class="testimonial-two-card">
+					<div class="testimonial-two-card-content">
+						<div class="testimonial-two-card-text d-flex align-items-center justify-content-around m-4">
+							<div class="funfact-counter-box">
+							<div class="funfact-counter-icon w-auto h-auto me-0 p-2">
+								<i class="flaticon-running-man"></i>
+							</div>
+							</div>
+							<p class="mb-0 fs-1">34%</p>
+						</div><!-- testimonial-two-card-text -->
+						<div class="testimonial-two-card-outer d-block text-center m-1">
+							<div class="testimonial-two-card-outer-title">
+								<h5 class="ms-0 ">Roads and Bridges</h5>
+							</div><!-- testimonial-two-card-outer-title -->
+							<div class="testimonial-two-card-outer-title">
+								<span class="ms-0">Projects</span>
+							</div><!-- testimonial-two-card-outer-title -->
+						</div><!-- testimonial-two-card-outer -->
+						
+					</div><!-- testimonial-two-card-content -->
+				</div>
+			</div>
+			
+		</div>
+    </div>
+</section>
+
+<section class="service-one-section pt-5 pb-5">
+    <div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline"></div>
+			<h2 class="section-title">Recent Transformaional Projects</h2>
+		</div>
+		<div class="row row-gutter-30">
+			@foreach (var p in Model.UpdateProjects)
+			{
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-4">
+							<div class="department-details-benefits-box-image">
+								<img src="@Model._containerUrl@p.DescriptionImage" class="img-fluid" alt="160">
+
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3><a href="#" class="text-success">@p.Title</a></h3>
+								<p class="text-secondary">@p.Description</p>
+								<ul class="list-unstyled list-style">
+									<li>
+										<i class="fa-solid fa-circle-arrow-right"></i>
+										<h5>@p.Location</h5>
+									</li><!-- li -->
+								</ul><!-- ul -->
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+			}
+			
+			@*<div class="department-details-benefits-inner-box col-lg-4 ">
+				<div class="row row-gutter-30">
+					<div class="col-lg-8">
+						<div class="department-details-benefits-box-image">
+							<img src="/assets/image/department/department-2.jpg" class="img-fluid" alt="160">
+						</div><!-- department-details-benefits-box-image -->
+					</div><!--col-lg-6-->
+					<div class="col-lg-10">
+						<div class="department-details-benefits-box">
+							<h3>Our Benefits</h3>
+							<p class="text-secondary">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							<ul class="list-unstyled list-style">
+								<li>
+									<i class="fa-solid fa-circle-arrow-right"></i>
+									<h5>Praesent efficitur quam sit amet</h5>
+								</li><!-- li -->
+								<li>
+									<i class="fa-solid fa-circle-arrow-right"></i>
+									<h5>Nunc cursus dolor id purus euismod</h5>
+								</li><!-- li -->
+								<li>
+									<i class="fa-solid fa-circle-arrow-right"></i>
+									<h5>Quisque tincidunt eros ac place viverra</h5>
+								</li><!-- li -->
+							</ul><!-- ul -->
+						</div><!-- department-details-benefits-box -->
+					</div><!-- col-lg-6 -->
+				</div><!-- row -->
+			</div>*@
+		</div>
+	</div>
+</section>
+
+

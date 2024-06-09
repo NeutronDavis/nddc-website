@@ -1,0 +1,58 @@
+﻿@page
+@model NDDC_Website_2024.Pages.News.AnnouncementsModel
+@{
+}
+@* @{
+	// Function to strip HTML tags from a string
+	string StripHtml(string input)
+	{
+		return Regex.Replace(input, "<.*?>", string.Empty);
+	}
+} *@
+<section class="announce mb-5">
+	<div class="container">
+		<div class="page-breadcrumbs">
+			<ul class="list-unstyled">
+				<li><a>News</a></li>
+				<li>Announcements</li>
+			</ul><!-- list-unstyled -->
+		</div><!-- page-breadcrumbs -->
+		<div class="page-banner-title">
+			<h3 class="fs-1">Latest Announcements</h3>
+		</div><!-- page-banner-title -->
+	</div><!-- container -->
+</section><!--page-banner-->
+
+<section class="news-details-section pt-0">
+	<div class="container">
+		<div class="row justify-content-center">
+			@foreach (var item in Model.Announcements)
+            {
+			<div class="col-lg-10">
+				<div class="news-details-meta-box">
+					<div class="news-details-meta-box-inner">
+						<span class="author">
+								Announced on:<a href="news-details.html">@item.StartDate.ToString("dd/MM/yy")</a>
+						</span><!-- author -->
+					</div><!-- news-details-meta-box-inner -->
+				</div><!-- news-details-meta-box -->
+				<div class="news-details-content-box">
+					<h3>@item.Title</h3>
+						<p>@item.Details</p>
+				</div><!-- /.news-details-content-box -->
+				<div class="news-details-share-box">
+					<div class="news-details-inner justify-content-end">
+						<div class="news-details-list">
+							<!-- news-details-list-title -->
+							<div class="news-details-list-button">
+								<a href="news-details.html" class="btn btn-primary">More Information</a>
+							</div><!-- news-details-list-button -->
+						</div><!--news-details-list-->
+						<!-- news-details-list -->
+					</div><!-- news-details-inner -->
+				</div>
+			</div> 
+			}
+		</div><!-- row -->
+	</div><!-- container -->
+</section>

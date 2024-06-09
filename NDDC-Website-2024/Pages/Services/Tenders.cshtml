@@ -1,0 +1,356 @@
+﻿@page
+@model NDDC_Website_2024.Pages.Services.TendersModel
+@{
+}
+<section class="announce mb-5">
+		<div class="container">
+			<div class="page-breadcrumbs">
+				<ul class="list-unstyled">
+					<li><a href="/index">Home</a></li>
+					<li>Tenders and RFPs</li>
+				</ul><!-- list-unstyled -->
+			</div><!-- page-breadcrumbs -->
+			<div class="page-banner-title">
+            <h3 class="fs-1">Tenders and RFPs</h3>
+			</div><!-- page-banner-title -->
+		</div><!-- container -->			
+</section>
+
+
+<section class="document-section">
+    <div class="container">
+        <ul class="nav nav-pills" id="pills-tab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button" role="tab" aria-controls="pills-all" aria-selected="true">All</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-tenders-tab" data-bs-toggle="pill" data-bs-target="#pills-tenders" type="button" role="tab" aria-controls="pills-tenders" aria-selected="false"><i class="flaticon-team"></i>Tenders</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-RFPs-tab" data-bs-toggle="pill" data-bs-target="#pills-RFPs" type="button" role="tab" aria-controls="pills-RFPs" aria-selected="false"><i class="flaticon-home"></i>RFP's</button>
+            </li>
+        </ul><!-- nav nav-pills -->
+        <div class="tab-content" id="pills-tabContent">
+            <div class="tab-pane fade show active" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab">
+                <div class="row row-gutter-30">
+					@foreach (var item in Model.Tenders)
+            {
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+								<h3><a href="documentation-details.html">@item.Title</a></h3>
+                                <p>@item.Category</p>
+                                <div class="service-three-detail">
+                                    <a href="@item.DocumentUrl"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+					}
+                </div><!-- row -->
+            </div><!-- tab-pane -->
+            <div class="tab-pane fade" id="pills-tenders" role="tabpanel" aria-labelledby="pills-tenders-tab">
+                <div class="row row-gutter-30">
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+                                <h3><a href="documentation-details.html">Professional Tax Document</a></h3>
+                                <p>When nothing prevents our being able to we like best every.</p>
+                                <div class="service-three-detail">
+                                    <a href="documentation-details.html"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+                                <h3><a href="documentation-details.html">Online Job Acticity</a></h3>
+                                <p>When nothing prevents our being able to we like best every.</p>
+                                <div class="service-three-detail">
+                                    <a href="documentation-details.html"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+                                <h3><a href="documentation-details.html">Garbage Management</a></h3>
+                                <p>When nothing prevents our being able to we like best every.</p>
+                                <div class="service-three-detail">
+                                    <a href="documentation-details.html"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+                </div><!-- row -->
+            </div><!-- tab-pane -->
+            <div class="tab-pane fade" id="pills-RFPs" role="tabpanel" aria-labelledby="pills-RFPs-tab">
+                <div class="row row-gutter-30">
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+                                <h3><a href="documentation-details.html">Water Management</a></h3>
+                                <p>When nothing prevents our being able to we like best every.</p>
+                                <div class="service-three-detail">
+                                    <a href="documentation-details.html"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+                                <h3><a href="documentation-details.html">Green Garden Development</a></h3>
+                                <p>When nothing prevents our being able to we like best every.</p>
+                                <div class="service-three-detail">
+                                    <a href="documentation-details.html"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+                    <div class="">
+                        <div class="service-three-card">
+                            <div class="service-three-icon">
+                                <i class="flaticon-pdf"></i>
+                            </div><!-- service-three-icon -->
+                            <div class="service-three-card-content">
+                                <h3><a href="documentation-details.html">Town Hall Booking</a></h3>
+                                <p>When nothing prevents our being able to we like best every.</p>
+                                <div class="service-three-detail">
+                                    <a href="documentation-details.html"><span>Read More</span><i class="fa-solid fa-arrow-right-long"></i></a>
+                                    <i class="flaticon-pdf"></i>
+                                </div><!-- service-three-detail -->
+                            </div><!-- service-three-card-content -->
+                        </div><!-- service-three-card -->
+                    </div><!--  -->
+                </div><!-- row -->
+            </div><!-- tab-pane -->
+        </div><!-- tab-content -->
+    </div><!-- container -->
+</section>
+
+
+@* <section class="service-one-section">
+    <div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline"></div>
+			<h2 class="section-title">Tenders and RFPs</h2>
+		</div>
+		<div class="row row-gutter-30">
+			<div class="row row-gutter-30">
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+
+			</div>
+		</div>
+	</div>
+</section>
+
+<section class="service-one-section">
+    <div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline"></div>
+			<h2 class="section-title">RFPs</h2>
+		</div>
+		<div class="row row-gutter-30">
+			<div class="row row-gutter-30">
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+				<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+
+			</div>
+		</div>
+		<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+		</div>
+		<div class="department-details-benefits-inner-box col-lg-12 ">
+					<div class="row row-gutter-30 align-items-center">
+						<div class="col-lg-2">
+							<div class="department-details-benefits-box-image">
+								<div class="department-two-img-icon position-relative ">
+									<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+								</div>
+							</div><!-- department-details-benefits-box-image -->
+						</div><!--col-lg-6-->
+						<div class="col-lg-6">
+							<div class="department-details-benefits-box">
+								<h3>Jobs Title</h3>
+								<p> Jobs Description: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							
+							</div><!-- department-details-benefits-box -->
+						</div><!-- col-lg-6 -->
+					</div><!-- row -->
+				</div>
+	</div>
+</section>
+ *@
+@*<div class="row row-gutter-30">
+			<div class="department-details-benefits-inner-box col-lg-12 ">
+				<div class="row row-gutter-30 align-items-center">
+					<div class="col-lg-4">
+						<div class="department-details-benefits-box-image">
+							<div class="department-two-img-icon">
+								<a href="/News/Updates"><i class="flaticon-portfolio"></i></a>
+							</div>
+						</div><!-- department-details-benefits-box-image -->
+					</div><!--col-lg-6-->
+					<div class="col-lg-6">
+						<div class="department-details-benefits-box">
+							<h3>Project Title</h3>
+							<p> Summary: Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
+							<ul class="list-unstyled list-style">
+								<li>
+									<i class="fa-solid fa-circle-arrow-right"></i>
+									<h5>Location</h5>
+								</li><!-- li -->
+							</ul><!-- ul -->
+						</div><!-- department-details-benefits-box -->
+					</div><!-- col-lg-6 -->
+				</div><!-- row -->
+			</div>
+
+		</div>*@

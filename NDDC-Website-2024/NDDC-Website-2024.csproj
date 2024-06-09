@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>NDDC_Website_2024</RootNamespace>
+    <UserSecretsId>cff96924-e293-4e0f-98fb-b0060b5c5262</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NddcWebsiteLibrary\NddcWebsiteLibrary.csproj" />
+  </ItemGroup>
+
+</Project>

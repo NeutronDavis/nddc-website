@@ -1,0 +1,135 @@
+﻿@page "{nid:int?}"
+@using System.Web
+@using System.Text.RegularExpressions
+@model NDDC_Website_2024.Pages.News.NewsDetailsModel
+@{
+}
+
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v19.0" nonce="ijI1VuoW"></script>
+
+<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
+		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+			<li class="breadcrumb-item">
+				<a href="/News/News" style="font-size: smaller;color: #003b49;">News</a>
+			</li>
+			<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">News Details</li>
+		</ol><!-- list-unstyled -->
+</nav>
+<section class="news-details-section">
+	<div class="container">
+		<div class="row justify-content-center">
+			@* <div class="col-lg-4">
+				<div class="sidebar">
+					<div class="sidebar-form-content">
+						<div class="sidebar__item sidebar__item--search">
+							<form action="#" class="sidebar__search">
+								<label for="search" class="sr-only">search here</label><!-- sr-only -->
+								<input type="text" placeholder="Search Here">
+								<button type="submit" aria-label="search submit" class="thm-btn">
+									<i class="flaticon-search-interface-symbol"></i>
+								</button><!-- thm-btn -->
+							</form><!-- sidebar__search -->
+						</div><!-- sidebar__item -->
+					</div><!-- sidebar-form-content -->
+					<div class="sidebar-widget sidebar-widget-recent-category">
+						<div class="sidebar-widget-recent-category-box">
+							<h4 class="section-title text-left">Categories</h4>
+							<ul class="list-unstyled">
+								<li><a href="news-details.html">Corporate Affairs<i class="fa-solid fa-chevron-right"></i></a></li>
+								<li><a href="news-details.html">Project Monitoring and Supervision<i class="fa-solid fa-chevron-right"></i></a></li>
+								<li><a href="news-details.html">Information Technology <i class="fa-solid fa-chevron-right"></i></a></li>
+								<li><a href="news-details.html">Agric<i class="fa-solid fa-chevron-right"></i></a></li>
+							</ul><!-- list-unstyled -->
+						</div><!-- sidebar-widget-recent-category-box -->
+					</div><!-- sidebar-widget-one sidebar-widget-recent-category -->
+					<div class="sidebar-widget sidebar-widget-tag d-none d-lg-block">
+						<h4>Tags</h4>
+						<div class="sidebar-widget-tag-inner">
+							<a href="news-details.html">Corporate Affairs</a>
+							<a href="news-details.html">Project Monitoring and Supervision</a>
+							<a href="news-details.html">Information Technology</a>
+							<a href="news-details.html">Agric</a>
+						</div><!-- sidebar-widget-tag-inner -->
+					</div><!-- sidebar-widget sidebar-widget-tag -->
+				</div><!-- sidebar -->
+			</div> *@
+			<div class="col-lg-8">
+				<div class="news-details-box-image">
+					<div class="news-details-box-image-inner">
+						<img src="@Model._containerUrl@Model.NewsDetails.ImageUrl" class="img-fluid" alt="img-193">
+						<a href="news-details.html" class="news-details-box-date">@Model.NewsDetails.PublishDate.ToString("dd - MMM")</a>
+					</div><!-- news-details-box-image-inner -->
+				</div><!-- news-details-box-image -->
+				@* <div class="news-details-meta-box d-flex justify-content-between">
+					<div class="news-details-meta-box-inner">
+						<span class="author">
+							by<a href="news-details.html">Admin</a>
+						</span><!-- author -->
+						<span class="comment">
+							<a href="news-details.html">0 Comments</a>
+						</span><!-- comment -->
+					</div><!-- news-details-meta-box-inner -->
+					<div class="news-details-meta-box-inner">
+						<span class="image fw-bold pe-5">
+							<a href="/News/NewsPhotoGallery">View Photo Gallery</a>
+						</span><!-- comment -->
+					</div><!-- news-details-meta-box-inner -->
+				</div> *@<!-- news-details-meta-box -->
+				<br />
+				
+				<div class="news-details-content-box">
+					<h4>@Model.NewsDetails.Subject</h4>
+					<div class="pb-3">
+						@Html.Raw(Model.NewsDetails.Details)
+					</div>
+					
+					
+                </div><!-- /.news-details-content-box -->
+				<div class="news-details-share-box pb-3" style="border-bottom: 1px solid var(--thm-border);">
+					<div class="news-details-inner justify-content-end">
+						
+						<!--news-details-list-->
+                        <div class="news-details-list">
+                            <div class="sidebar-widget-tag-inner">
+								<a class="fs-6">Share</a>
+                            </div>
+							<div class="news-details-socials">
+								
+								@*<a href="https://twitter.com/intent/tweet?screen_name=x&ref_src=twsrc%5Etfw" class="twitter-mention-button" data-text="NDDC News: @Model.NewsDetails.Subject https://www.nddc.gov.ng/" data-show-count="false"><i class="fa-brands fa-twitter"></i> </a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>*@								
+								<a href="https://twitter.com/intent/tweet?screen_name=x&ref_src=twsrc%5Etfw" data-text="NDDC News: @Model.NewsDetails.Subject https://www.nddc.gov.ng/"><i class="fa-brands fa-twitter"></i></a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+								<a data-href="https://web.facebook.com/OfficialNDDC" target=" _blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fweb.facebook.com%2FOfficialNDDC&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore"><i class="fa-brands fa-facebook"></i></a>
+								<a href="https://www.linkedin.com/company/officialnddc/">
+									<i class="fa-brands fa-linkedin">
+                                    </i>
+                                </a>
+								<a href="https://www.instagram.com/nddconline/"><i class="fa-brands fa-instagram"></i></a>
+							</div><!-- news-details-socials -->
+                        </div><!-- news-details-list -->
+						@* <div class="sidebar-widget-tag-inner">
+
+                            <a class="fs-6"><i class="fa-solid fa-share pe-2"></i>Share</a>
+                        </div> *@
+					</div><!-- news-details-inner -->
+				</div>
+				<br />
+				<h3>Photo Gallery</h3>
+				<div class="row row-gutter-30">
+					@foreach (var item in Model.PhotoGallery)
+					{
+						<div class="col-lg-4 col-md-4">
+							<div class="portfolio-card">
+								<img src="@Model._containerUrl@item.ImageUrl" class="img-fluid" alt="img-97" height="557" width="500">
+
+							</div><!--portfolio-card-->
+						</div>
+
+						<!-- col-lg-4 col-md-4 -->
+					}
+					
+				</div><!-- row -->
+			</div><!-- col-lg-8 -->
+
+		</div><!-- row -->
+	</div><!-- container -->
+</section><!--causes-one-section-->

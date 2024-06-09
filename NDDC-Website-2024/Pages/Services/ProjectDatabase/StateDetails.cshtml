@@ -1,0 +1,258 @@
+﻿@page
+@model NDDC_Website_2024.Pages.Services.ProjectDatabase.StateDetailsModel
+@{
+}
+<section class="page-banner">
+	<div class="container">
+        <div class="page-breadcrumbs">
+            <ul class="list-unstyled">
+                <li><a>Project Database</a></li>
+                <li>State Details</li>
+            </ul><!-- list-unstyled -->
+        </div>
+        <div class="page-banner-title text-center">
+			<h3>Bayelsa</h3>
+            <h2 class="text-white">4,344 projects</h2>
+		</div><!-- page-banner-title -->
+	</div><!-- container -->
+</section>
+
+
+<section class="department-details-section pb-0">
+    <div class="container">
+        <div class="row  d-flex align-items-center justify-content-center">
+            <div class="input-group pb-5">
+                <input type="text" class="form-control bg-light" placeholder="Search projects in Bayelsa">
+                <div class="input-group-append" style=" display: contents; ">
+                    <button class="btn btn-primary" type="button">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="">
+                <div id="chart"></div>
+            </div>
+            </div>
+            </div>
+            </section>
+
+
+<section class="service-one-section pt-5">
+    <div class="container">
+        <div class="row row-gutter-30">
+            <div class="col-lg-3">
+                <div class="team-card">
+                    <!-- team-card-img -->
+                    <div class="team-card-content">
+                        <p class="fs-4">
+                            Buildings
+                        </p>
+                        <h4><a href="service-details.html"> <span class="fs-3">139</span> Projects</a></h4>
+                        
+                    </div><!-- team-card-content -->
+                </div>
+            </div><!--col-lg-6 col-xl-4-->
+            <div class="col-lg-3">
+                <div class="team-card">
+                    <!-- team-card-img -->
+                    <div class="team-card-content">
+                        <p class="fs-4">
+                            Canalization
+                        </p>
+                        <h4><a href="service-details.html"> <span class="fs-3">420</span> Projects</a></h4>
+                        
+                    </div><!-- service-one-card-content -->
+                </div><!--service-one-card-->
+            </div><!--col-lg-6 col-xl-4-->
+            <div class="col-lg-3">
+                <div class="team-card">
+                    <!-- team-card-img -->
+                    <div class="team-card-content">
+                        <p class="fs-4">
+                            Consultancy
+                        </p>
+                        <h4><a href="service-details.html" ><span class="fs-3">106</span> Projects</a></h4>
+                        
+                    </div><!-- service-one-card-content -->
+                </div><!--service-one-card-->
+            </div><!--col-lg-6 col-xl-4-->
+            <div class="col-lg-3">
+                <div class="team-card">
+                    <!-- team-card-img -->
+                    <div class="team-card-content">
+                        <p class="fs-4">
+                            Consultancy
+                        </p>
+                        <h4>
+                            <a href="service-details.html"> <span class ="fs-3">202</span> Projects</a>
+                            
+                        </h4>
+                        
+                    </div><!-- service-one-card-content -->
+                </div><!--service-one-card-->
+            </div><!--col-lg-6 col-xl-4-->
+
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
+
+@* <section class="blog-section">
+    <div class="container">
+        <div class="blog-box">
+            <h4 class="section-title text-center">List Of Projects</h4>
+
+            <div class="container table-responsive py-5">
+                
+                    <table class="table table-bordered table-hover ">
+                        <thead class="table-primary">
+                            <tr>
+                                <th scope="col">S/N</th>
+                                <th scope="col">Project Title</th>
+                                <th scope="col">Project Type</th>
+                                <th scope="col">Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-striped-columns">
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>Recent Project</td>
+                                <td>Rivers</td>
+                                <td>Road</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>Recent Project</td>
+                                <td>Abia</td>
+                                <td>Road</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>Recent Project</td>
+                                <td>Bayelsa</td>
+                                <td>Road</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>Recent Project</td>
+                                <td>Bayelsa</td>
+                                <td>Road</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>Recent Project</td>
+                                <td>Bayelsa</td>
+                                <td>Road</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">6</th>
+                                <td>Recent Project</td>
+                                <td>Bayelsa</td>
+                                <td>Road</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">7</th>
+                                <td>Recent Project</td>
+                                <td>Bayelsa</td>
+                                <td>Road</td>
+                            </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</section> *@
+
+
+<script type="text/javascript">
+
+
+    var options = {
+        series: [
+            {
+                data: [
+                    {
+                        x: '2008',
+                        y: [2800, 4500]
+                    },
+                    {
+                        x: '2009',
+                        y: [3200, 4100]
+                    },
+                    {
+                        x: '2010',
+                        y: [2950, 7800]
+                    },
+                    {
+                        x: '2011',
+                        y: [3000, 4600]
+                    },
+                    {
+                        x: '2012',
+                        y: [3500, 4100]
+                    },
+                    {
+                        x: '2013',
+                        y: [4500, 6500]
+                    },
+                    {
+                        x: '2014',
+                        y: [4100, 5600]
+                    }
+                ]
+            }
+        ],
+        chart: {
+            height: 350,
+            type: 'rangeBar',
+            zoom: {
+                enabled: false
+            }
+        },
+        plotOptions: {
+            bar: {
+                isDumbbell: true,
+                columnWidth: 3,
+                dumbbellColors: [['#008FFB', '#00E396']]
+            }
+        },
+        legend: {
+            show: true,
+            showForSingleSeries: true,
+            position: 'top',
+            horizontalAlign: 'left',
+            customLegendItems: ['Product A', 'Product B']
+        },
+        fill: {
+            type: 'gradient',
+            gradient: {
+                type: 'vertical',
+                gradientToColors: ['#00E396'],
+                inverseColors: true,
+                stops: [0, 100]
+            }
+        },
+        grid: {
+            xaxis: {
+                lines: {
+                    show: true
+                }
+            },
+            yaxis: {
+                lines: {
+                    show: false
+                }
+            }
+        },
+        xaxis: {
+            tickPlacement: 'on'
+        }
+    };
+
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+
+
+
+</script>

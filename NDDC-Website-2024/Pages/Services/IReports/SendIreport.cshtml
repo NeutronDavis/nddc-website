@@ -1,0 +1,107 @@
+﻿@page
+@model NDDC_Website_2024.Pages.Services.IReports.SendIreportModel
+@{
+}
+<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
+        <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+            <li class="breadcrumb-item">
+                <a style="font-size: smaller;color: #003b49;">IReports</a>
+            </li>
+        <li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Send Ireport</li>
+        </ol><!-- list-unstyled -->
+</nav>
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-box lh-lg">
+            <h1 class="section-title text-center">Send iReport</h1>
+            <row class="d-flex justify-content-center">
+                <div class="col-lg-8">
+                    <form class="contact-form" method="post" enctype="multipart/form-data">
+                        <div class="row row-gutter-10">
+                            <div class="col-12 col-lg-12">
+                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Tell Us What You Want To Report On (In the Comment section kindly indicate detailed description of the Cntractor Name, the exect loctaion of the Project and a brief description of the situation as witnessed.)</label>
+                                <div class="input-group form-floating mb-3 d-flex align-items-center">
+                                    <select asp-for="@Model.Ireport.Type" class="form-select input-text" aria-label="Select what you want to report on">
+                                        <option value="">Select Report Type</option>
+                                        <option value="Ongoing Project">NDDC Ongoing Project</option>
+                                        <option value="Abandoned Project">NDDC Abandoned Project</option>
+                                        <option value="Project Quality">Poor Project Quality</option>
+                                        <option value="Incompetent Contractor">Incompetent Contractor</option>
+                                        <option value="NDDC Program">NDDC Program</option>
+                                        <option value="Other">Other</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.Ireport.Type"></span>
+                                </div>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <input type="text" class="input-text" asp-for="@Model.Ireport.Title" placeholder="Enter Report Title" aria-required="true">
+                                <span class="text-danger" asp-validation-for="@Model.Ireport.Title"></span>
+                            </div>
+                            <div class="col-12 col-lg-6">
+                                <input type="text" asp-for="@Model.Ireport.Name" class="input-text" placeholder="Your name" aria-required="true">
+                                <span class="text-danger" asp-validation-for="@Model.Ireport.Name"></span>
+                            </div><!-- col-12 col-lg-6 -->
+                            <div class="col-12 col-lg-6">
+                                <input type="email" asp-for="@Model.Ireport.Email" class="input-text" placeholder="Email address" aria-required="true">
+                                <span class="text-danger" asp-validation-for="@Model.Ireport.Email"></span>
+                            </div><!-- col-12 col-lg-6 -->
+                            <div class="col-12 col-lg-6">
+                                <input type="text" asp-for="@Model.Ireport.Phone" class="input-text" placeholder="Phone number" aria-required="true">
+                                <span class="text-danger" asp-validation-for="@Model.Ireport.Phone"></span>
+                            </div><!-- col-12 col-lg-6 -->
+                            <div class="col-12 col-lg-6">
+                                <div class="input-group form-floating mb-3 d-flex align-items-center">
+                                    <select asp-for="@Model.Ireport.State" class="form-select input-text" aria-label="Select your state">
+                                        <option value="">Select Your State</option>
+                                        <option value="Abia State">Abia</option>
+                                        <option value="AkwaIbom State">Akwa Ibom</option>
+                                        <option value="Bayelsa State">Bayelsa</option>
+                                        <option value="CrossRivers State">Cross Rivers</option>
+                                        <option value="Delta State">Delta</option>
+                                        <option value="Edo State">Edo</option>
+                                        <option value="Imo State">Imo</option>
+                                        <option value="Ondo State">Ondo</option>
+                                        <option value="Rivers State">Rivers</option>
+                                    </select>
+                                    <span class="text-danger" asp-validation-for="@Model.Ireport.State"></span>
+                                </div>
+                            </div><!-- col-12 col-lg-6 -->
+                            <div class="col-12 col-lg-12">
+                                <input type="text" class="input-text" asp-for="@Model.Ireport.Location" placeholder="Enter the Location of the Project" aria-required="true">
+                                <span class="text-danger" asp-validation-for="@Model.Ireport.Location"></span>
+                            </div>
+                            <div class="col-12 col-lg-12">
+                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Upload Photos</label>
+                                <div class="input-text form-floating mb-3 d-flex align-items-center">
+                                    <input type="file" class="" asp-for="Upload1" placeholder="Upload Photos" aria-required="true">
+                                </div>
+                                <div class="input-text form-floating mb-3 d-flex align-items-center">
+                                    <input type="file" asp-for="Upload2" class="" placeholder="Upload Photos" aria-required="true">
+                                </div>
+                                <div class="input-text form-floating mb-3 d-flex align-items-center">
+                                    <input type="file" asp-for="Upload3" class="" placeholder="Upload Photos" aria-required="true">
+                                </div>
+                                <div class="input-text form-floating mb-3 d-flex align-items-center">
+                                    <input type="file" asp-for="Upload4" class="" placeholder="Upload Photos" aria-required="true">
+                                </div>
+                            </div>
+                            @* <div class="col-12 col-lg-12">
+                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Upload Video</label>
+                                <div class="input-text form-floating mb-3 d-flex align-items-center">
+                                    <input type="file" id="Videos" class="" placeholder="Upload Videos" name="Videos" aria-required="true">
+                                </div>
+                            </div> *@
+                            <div class="col-12 col-lg-12">
+                                <textarea asp-for="@Model.Ireport.Comment" placeholder="Enter Your Comment" class="input-text" aria-required="true"></textarea>
+                            </div><!-- col-12 col-lg-12 -->
+                            <div class="col-12 col-lg-12 d-flex justify-content-center">
+                                <button class="btn btn-primary" type="submit">Send Report</button>
+                            </div><!-- col-12 col-lg-12 -->
+                        </div><!-- row -->
+                    </form><!-- contact-form -->
+                </div><!-- col-lg-8 -->
+            </row>
+
+        </div>
+    </div>
+</section>

@@ -1,0 +1,49 @@
+﻿@page
+@model NDDC_Website_2024.Pages.News.PublicationsModel
+@{
+}
+<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
+		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+		<li class="breadcrumb-item">
+				<a style="font-size: smaller;color: #003b49;">News</a>
+			</li>
+			<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Publications</li>
+		</ol><!-- list-unstyled -->
+</nav>
+@* <section class="page-banner mb-5">
+	<div class="container">
+		<div class="page-breadcrumbs">
+			<ul class="list-unstyled">
+				<li><a href="index.html">Home</a></li>
+				<li>Publications</li>
+			</ul><!-- list-unstyled -->
+		</div><!-- page-breadcrumbs -->
+		<div class="page-banner-title">
+			<h3>Publications</h3>
+		</div><!-- page-banner-title -->
+	</div><!-- container -->			
+</section><!--page-banner--> *@
+<section class="service-one-section pt-5">
+	<div class="container">
+		<div class="section-title-box text-center">
+			<div class="section-tagline">Publications</div>
+            <h2 class="section-title">Our Publications </h2>
+		</div>
+		<!-- section-title-box -->
+
+		<div class="row row-gutter-30">
+			@foreach (var item in Model.Publications)
+            {
+			<div class="col-lg-6 col-xl-4">
+				<div class="service-one-card">
+					<div class="service-one-card-content">
+							<h4><a href="service-details.html"> @item.PubTitle</a></h4>
+							<p>@item.PubSummary</p>
+							<a href="@item.PubUploadUrl" class="btn btn-primary">Download Now</a>
+					</div><!-- service-one-card-content -->
+				</div><!--service-one-card-->
+			</div><!--col-lg-6 col-xl-4-->
+			}
+		</div><!-- row -->
+	</div><!-- container -->
+</section>

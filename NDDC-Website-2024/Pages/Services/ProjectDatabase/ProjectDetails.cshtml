@@ -1,0 +1,92 @@
+﻿@page "{pid:int?}"
+@model NDDC_Website_2024.Pages.Services.ProjectDatabase.ProjectDetailsModel
+@{
+}
+<section class="blog-section">
+    <div class="container">
+        <div class="blog-box lh-lg">
+            <h1 class="pb-4 fs-4 border-bottom">Project Details</h1>
+            <div class="">
+                <div class="card border-0 shadow-sm">
+                    <div class="border-bottom ps-4 py-4 d-flex">
+                        <h5 class="m-0">Reclamation Project At Ojobo Community, Delta State </h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">LGA </span><span class=" col-md-8">@Model.ProjectDetails.Location</span></li>
+                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Location </span><span class=" col-md-8">@Model.ProjectDetails.Location</span></li>
+                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Commencement Date </span><span class=" col-md-8">@Model.ProjectDetails.CommencementDate</span></li>
+                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Status </span><span class=" col-md-8">@Model.ProjectDetails.Status</span></li>
+                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Project Type </span><span class=" col-md-8">@Model.ProjectDetails.CatName</span></li>
+                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Contractor </span><span class=" col-md-8">@Model.ProjectDetails.Contractor</span></li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="mt-4">
+                <h1 class="py-4 fs-4 border-bottom">
+                    Project Pictures
+                </h1>
+            </div>
+            <div id="gallery" class="pt-3 d-flex">
+                @foreach (var item in Model.ProjectPictures)
+                {
+                    <a class="pe-3 rounded" data-lg-size="1000-600"
+                       data-src="/assets/image/department/plan-1.png">
+                        <img class="rounded" src="@Model._containerUrl@item.ImageUrl"
+                             alt="" width="180" height="100" />
+                    </a>
+                }
+                
+               
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+@section Scripts {
+    <!-- Light Gallery -->
+    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" integrity="sha512-jEJ0OA9fwz5wUn6rVfGhAXiiCSGrjYCwtQRUwI/wRGEuWRZxrnxoeDoNc+Pnhx8qwKVHs2BRQrVR9RE6T4UHBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/autoplay/lg-autoplay.min.js" integrity="sha512-1YRlp9jO1ermVx9E3UzfBwoo88ODK0i9l2C2lNoZwCZAzvRdA+O0Lm00bUfkIf/A1esj4OK9yZ3yfgfa+FcYwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/autoplay/lg-autoplay.umd.min.js" integrity="sha512-GtFOSYOB4Gx5+0hQxi/nVFJk77Tvmmgs/Kdbl4PZLjiZ8RBRMiKU2r33gsdn19r4Nlnx9lDqKf8ZdOSNwdgUtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js" integrity="sha512-11B0rPDzvnSOYzAT37QdnYgt0z9Xg+wX5tckB1QKl5Znl8RPvrB5npo38K2jCt+Ad44udCfBiKt9D4jRdkSE1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/hash/lg-hash.min.js" integrity="sha512-7c9ZgozFwxmWalyapzhmzAChRvi0p7vhxWdrE3OjvFHnxuw6h6DBSOvtO1XytEj8MQI2Jp0Tm2BJwLUU7zAMvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/mediumZoom/lg-medium-zoom.min.js" integrity="sha512-2YGO4SLBlm8K0whW1s/ohvaEdA/GdBywKoHlz3yhXzKxrvzq2AjdprtDu6sGQZe8rjDX4X9m3YUI1W7ahRYVFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/pager/lg-pager.min.js" integrity="sha512-p/vQczdCk287Uzj8GS8480KbjCQ8MGzRrXoQ/XFJhySSxWlRzWfgmVk0bjsixwgvLlfddccXMo/sKLpSBONTzw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/relativeCaption/lg-relative-caption.min.js" integrity="sha512-QRsZVsmfEnbACIQuoM17u3529cvEAuClvRjBIZ+iKbOkrCRqT/Q3aupz5QGr6j336q6woOLkquUc7ZvTNuxB3w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/rotate/lg-rotate.min.js" integrity="sha512-hmy1UozeMGRd6LjMO6S+uWsVJ5dsyLWOcolgvg1scR7o9+uXjSCGzx2bS855JI/o1C6vStutQ+UfW2F0PCid2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js" integrity="sha512-VBbe8aA3uiK90EUKJnZ4iEs0lKXRhzaAXL8CIHWYReUwULzxkOSxlNixn41OLdX0R1KNP23/s76YPyeRhE6P+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js" integrity="sha512-BLW2Jrofiqm6m7JhkQDIh2olT0EBI58+hIL/AXWvo8gOXKmsNlU6myJyEkTy6rOAAZjn0032FRk8sl9RgXPYIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    @* <script>
+        const container = document.querySelector('#gallery');
+        window.lightGallery(container, {
+            selector: '.lg-item',
+            zoomFromOrigin: true,
+            download: true,
+            thumbnail: true,
+            plugins: [
+                lgZoom,
+                lgAutoplay,
+                lgFullscreen,
+                lgRotate,
+                lgShare,
+                lgThumbnail
+            ],
+        });
+</script> *@
+    <script>
+        let gallery = document.getElementById('gallery')
+        lightGallery(gallery, {
+            controls: true,
+            download: false,
+            thumbnail: true,
+            zoomFromOrigin: true,
+            plugins: [lgThumbnail, lgZoom, lgFullscreen, lgRotate, lgAutoplay],
+            thumbWidth: 100,
+            thumbHeight: 100
+        });
+    </script>
+}

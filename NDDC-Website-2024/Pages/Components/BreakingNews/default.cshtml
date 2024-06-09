@@ -1,0 +1,38 @@
+﻿@model NddcWebsiteLibrary.Model.Home.MyNewsModel
+
+@if (Model != null)
+{
+	
+	<div class="topbar">
+		<div class="topbar-inner justify-content-center bg-secondary">
+			<div class="topbar-left bg-secondary">
+				<div class="topbar-info text-white">
+					<ul>
+						<li>
+							<div class="topbar-text-div fw-bold">
+								<span>Breaking News</span>
+							</div><!-- topbar-text -->
+						</li><!-- li -->
+						<li>
+							<div class="topbar-text-div">
+								<span class="fs-4 fw-lighter">|</span>
+							</div>
+						</li>
+						<li>
+							@* <div class="topbar-text-div text-white">
+						<a class="text-white" href="index.html">“The W.H.O has agreed to partner with us on our health programmes” : MD/CEO states. </a>
+						</div> *@<!-- topbar-text -->
+							<div class="topbar-text-div text-white">
+								<label>@Model.Subject</label> <a class="text-white" asp-page="NewsDetails" asp-route-NID="@Model.NID">Learn More </a>
+							</div>
+						</li><!-- li -->
+					</ul><!-- ul -->
+				</div><!--topbar-info-->
+			</div><!-- topbar-left -->
+		</div>
+		<div class="topbar-inner">
+		</div><!-- topbar-inner -->
+	</div>
+
+	<!--topbar-->
+}
