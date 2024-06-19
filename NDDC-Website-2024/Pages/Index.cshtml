@@ -261,12 +261,12 @@ else
 				{
 					<div class="splide__slide" style="width: 1648px; ">
 						<div class="item">
-							<div class="item-splide-bg" style="background-image: url(@Model._containerUrl@item.ImageUrl)"></div>
+							<div class="item-splide-bg " style="background-image: url(@Model._containerUrl@item.ImageUrl)"></div>
 							<div class="container">
 								<div class="row">
 									<div class="col-md-12">
 										<div class="slider-content">
-											<div class="slider-tagline animate__animated animate__slideInDown">Niger Delta Development Commission</div>
+											<div class="slider-tagline">Niger Delta Development Commission</div>
 											<h3 class="section-title animate">@item.Subject</h3>
 											<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID" class="btn btn-primary">Learn More</a>
 										</div><!-- slider-content -->
@@ -1536,6 +1536,7 @@ else
 				interval: 5000,
 				pauseOnHover: false,
 				pauseOnFocus: false,
+				lazyLoad:'nearby',
 			});;
 
 			splide.on('active', function (e) {
