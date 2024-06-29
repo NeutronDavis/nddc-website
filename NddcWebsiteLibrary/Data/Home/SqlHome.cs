@@ -181,5 +181,11 @@ namespace NddcWebsiteLibrary.Data.Home
 		{
 			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl, Details, PositionCount From ExecMngt Where EMID = @Id", new { Id = emid }, connectionStringName, false).FirstOrDefault();
 		}
+
+		//Testimonial
+		public List<MyTestimonialModel> ViewTestimonials()
+		{
+			return db.LoadData<MyTestimonialModel, dynamic>("Select Id, TestimonialBy, Occupation, Testimonial From Testimonial Order By Id DESC", new { }, connectionStringName, false).ToList();
+		}
 	}
 }

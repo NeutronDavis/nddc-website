@@ -19,6 +19,7 @@ namespace NDDC_Website_2024.Pages
         public List<MyVideoModel> Videos { get; set; }
         public MyAnnouncementModel Announcement { get; set; }
         public MyNewsModel CriticalUpdate { get; set; }
+        public List<MyTestimonialModel> Testimonials { get; set; }
         public IndexModel(IHomeData homeDb, IConfiguration configuration)
         {
             this.homeDb = homeDb;
@@ -37,6 +38,7 @@ namespace NDDC_Website_2024.Pages
             Videos = homeDb.DisplayVideos();
             Announcement = homeDb.GetAnnouncement();
             CriticalUpdate = homeDb.GetCriticalNewsUpdate();
+            Testimonials = homeDb.ViewTestimonials();
         }
     }
 }

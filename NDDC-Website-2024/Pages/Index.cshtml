@@ -883,19 +883,26 @@ else
 		<div class="testimonial-name">TESTIMONIALS</div>
 		<div class="testimonial-slider">
 			<div class="swiper testimonial-reviews swiper-initialized swiper-horizontal swiper-pointer-events swiper-backface-hidden">
+				
 				<div class="swiper-wrapper" id="swiper-wrapper-f90a178476c11e3c" aria-live="off" style="transition-duration: 0ms; transform: translate3d(-2472px, 0px, 0px);">
+					@foreach (var p in Model.Testimonials)
+					{
+						<div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1176px; margin-right: 60px;">
+							<div class="testimonial-content">
+								<div class="testimonial-text">
+									@p.Testimonial
+								</div><!-- testimonial-text -->
+								<div class="testimonial-thumb-card">
+									<h5>@p.TestimonialBy</h5>
+									<span>@p.Occupation</span>
+								</div><!-- testimonial-thumb-card -->
+							</div><!--testimonial-content-->
+						</div>
+
+						<!--swiper-slide-->
+					}
 					
-					<div class="swiper-slide swiper-slide-prev" data-swiper-slide-index="0" role="group" aria-label="1 / 3" style="width: 1176px; margin-right: 60px;">
-						<div class="testimonial-content">
-							<div class="testimonial-text">
-								NDDC has shown capacity in developing the region and the Samuel Ogbuku led board has provided the needed driver for enhancing the growth and development of the region with well meaning project that truly addreses the dire needs of the Niger Delta People.
-							</div><!-- testimonial-text -->
-							<div class="testimonial-thumb-card">
-								<h5>Niger Delta Stakholder</h5>
-								<span>Civil Society</span>
-							</div><!-- testimonial-thumb-card -->
-						</div><!--testimonial-content-->
-					</div><!--swiper-slide-->
+					
 				</div><!-- swiper-wrapper -->
 				<div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets swiper-pagination-horizontal"><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 1"></span><span class="swiper-pagination-bullet swiper-pagination-bullet-active" tabindex="0" role="button" aria-label="Go to slide 2" aria-current="true"></span><span class="swiper-pagination-bullet" tabindex="0" role="button" aria-label="Go to slide 3"></span></div>
 				<span class="swiper-notification" aria-live="assertive" aria-atomic="true"></span>
