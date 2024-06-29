@@ -31,5 +31,6 @@ namespace NddcWebsiteLibrary.Data.Home
 		MyExecMngtModel ViewExecMngtDetails(int emid);
 		MySightsAndIconModel ViewSightsAndIconDetails(int id);
 		MyTenderModel ViewTenderDetails(int Id);
-    }
+		List<MyTestimonialModel> ViewTestimonials();
+	}
 }
