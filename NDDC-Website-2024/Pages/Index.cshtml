@@ -32,7 +32,7 @@
 					<div class="card" style="border: 0;">
 						<div class="card-body">
 							<h5 class="card-title">@Model.Announcement.Title</h5>
-							<p class="card-text">@StripHtml(Model.Announcement.Details)</p>
+							<p class="card-text">@Html.Raw(Model.Announcement.Details)</p>
 							<a href="#" class="text-success pt-3">Learn more</a>
 						</div>
 					</div>
@@ -63,7 +63,25 @@
 @if (Model.CriticalUpdate != null)
 {
 <!--Prominent News Section-->
-	<section class="main-slider main-slider-two">
+
+	<section class="cta-one" style="background: url(@Model._containerUrl@Model.CriticalUpdate.ImageUrl) #003b4980;background-position: center;background-blend-mode: multiply;background-size: cover;background-repeat: no-repeat;">
+		<div class="cta-one-inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="cta-one-content text-center">
+							<div class="" style="color: #ffd300;">Critical News Update</div>
+							<h1 class="section-title text-white fs-1">@Model.CriticalUpdate.Subject</h1>
+							<a asp-page="/News/NewsDetails" asp-route-NID="@Model.CriticalUpdate.NID" class="btn btn-primary">Learn More</a>
+						</div><!-- cta-one-content -->
+					</div><!-- col-lg-12 -->
+				</div><!-- row -->
+			</div><!-- container -->
+		</div><!--cta-one-inner-->
+	</section>
+
+
+	@* <section class="main-slider main-slider-two">
 		<div class="main-slider-two-swiper owl-carousel owl-theme owl-loaded owl-drag">
 			<!--item-->
 			<!--item-->
@@ -88,7 +106,7 @@
 				</div>
 			</div>
 		</div><!-- main-slider-two-swiper -->
-	</section>
+	</section> *@
 
 	<section class="service-two-section">
 		<div class="container">
@@ -104,7 +122,7 @@
 						<div class="service-two-card-content">
 							<h4>Mission</h4>
 							<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
-							<a href="service-details.html">
+							<a href="/WhoWeAre/Vision">
 								<i class="fa-solid fa-arrow-right-long"></i>
 								<span>Read More</span>
 							</a>
@@ -124,7 +142,7 @@
 							<p>
 								To accelerate the Niger Delta's transition to a prosperous, stable and peaceful region.
 							</p>
-							<a href="service-details.html">
+							<a href="/WhoWeAre/Vision">
 								<i class="fa-solid fa-arrow-right-long"></i>
 								<span>Read More</span>
 							</a>
