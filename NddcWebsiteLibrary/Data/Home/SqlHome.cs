@@ -187,5 +187,19 @@ namespace NddcWebsiteLibrary.Data.Home
 		{
 			return db.LoadData<MyTestimonialModel, dynamic>("Select Id, TestimonialBy, Occupation, Testimonial From Testimonial Order By Id DESC", new { }, connectionStringName, false).ToList();
 		}
+
+		//Board Members
+		public MyExecMngtModel GetChairmanSingle()
+		{
+			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl From ExecMngt Where PositionCount = 1", new { }, connectionStringName, false).FirstOrDefault();
+		}
+		public List<MyExecMngtModel> GetAllBoardMembers()
+		{
+			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl From ExecMngt  Order By PositionCount DESC", new { }, connectionStringName, false).ToList();
+		}
+		public MyExecMngtModel ViewBoardMemberDetails(int emid)
+		{
+			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl, Details, PositionCount From ExecMngt Where EMID = @Id", new { Id = emid }, connectionStringName, false).FirstOrDefault();
+		}
 	}
 }
