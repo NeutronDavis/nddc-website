@@ -195,7 +195,7 @@ namespace NddcWebsiteLibrary.Data.Home
 		}
 		public List<MyExecMngtModel> GetAllBoardMembers()
 		{
-			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl From ExecMngt  Order By PositionCount DESC", new { }, connectionStringName, false).ToList();
+			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl From ExecMngt  Order By PositionCount ASC", new { }, connectionStringName, false).ToList();
 		}
 		public MyExecMngtModel ViewBoardMemberDetails(int emid)
 		{
