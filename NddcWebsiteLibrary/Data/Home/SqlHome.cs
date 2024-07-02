@@ -46,7 +46,7 @@ namespace NddcWebsiteLibrary.Data.Home
 		public MyNewsModel GetLatestNews()
 		{
 
-			return db.LoadData<MyNewsModel, dynamic>("Select Top 1 NID, Subject from News Order By NID DESC", new { }, connectionStringName, false).FirstOrDefault();
+			return db.LoadData<MyNewsModel, dynamic>("Select Top 1 NID, Subject, ImageUrl from News Order By NID DESC", new { }, connectionStringName, false).FirstOrDefault();
 		}
 
 		//Photo Speak Methods
