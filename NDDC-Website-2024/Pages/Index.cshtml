@@ -480,156 +480,59 @@ else
 
 
 
-<!--Updates Section-->
+
+<!--News Point Section-->
 <section class="blog-section">
 	<div class="container">
 		<div class="blog-box">
 			<div class="section-title-box text-center">
 				<div class="section-tagline">Updates From Our Programs and Activities</div>
-				<h2 class="section-title">Updates</h2>
+				<h2 class="section-title">News Point</h2>
 			</div><!-- section-title-box -->
 		</div><!--blog-box-->
-			<div class="row row-gutter-30">
-				<div class=" col-lg-6 col-xl-4 ">
-					<div class="department-two-card">
-						<div class="department-two-imgbox">
-							<div class="department-two-img">
-								<img src="@Model._containerUrl@Model.PhysicalInfraUpdatePhoto.DescriptionImage" style="height:250px;" class=" mw-100" alt="img-150">
-							<a href="/WhatWeDo/Projects"></a>
-							</div><!-- department-two-img -->
-							<div class="department-two-img-icon">
-								<a href="/WhatWeDo/Projects"><i class="flaticon-highway"></i></a>
-							</div><!-- department-two-img-icon -->
-						</div><!-- department-two-imgbox -->
-					<div class="department-two-content" style="height: 15rem;">
-						<h4><a href="/WhatWeDo/Projects">Physical Infrastructure</a></h4>
-						<p style="height: 6rem; overflow: hidden;">@Model.PhysicalInfraUpdatePhoto.ShortTitle ...</p>
+
+
+
+		<div class="row row-gutter-y-155 news-top">
+			@foreach (var item in Model.NewsList)
+			{
+				<div class="col-lg-4">
+					<div class="blog-card">
+						<div class="blog-card-image">
+							<img src="@Model._containerUrl@item.ImageUrl" width="600" height="200" class="mw-100" alt="img-22">
+							<a href="news-details.html"></a>
+						</div><!-- blog-card-image -->
+						<div class="blog-card-date">
+							<a href="news-details.html">@item.PublishDate.ToString("dd/MM/yy")</a>
+						</div><!-- blog-card-date -->
+						<div class="blog-card-content">
+							<div class="blog-card-meta">
+								<span class="author">
+									By: <a href="#">Corporate Affairs Dept.</a>
+								</span><!-- author -->
+								@* <span class="comment">
+							<a href="news-details.html">02 Comments</a>
+							</span> *@<!-- comment -->
+							</div><!-- blog-card-meta -->
+							<div class="" style="height: 10rem;overflow: hidden;">
+								<h4 style="height: 4.5rem;overflow: hidden;"><a asp-page="/News/NewsDetails" asp-route-nid="@item.NID">@item.Subject</a></h4>
+								<div style="height: 4.7rem; overflow: hidden;">@item.ShortSummary</div>
+							</div>
 							<div class="department-two-button">
-							<a href="/WhatWeDo/Projects">
-								<i class="fa-solid fa-arrow-right-long"></i>
-							<span>Read More</span></a>
-							</div><!-- department-two-button -->
-						</div><!-- department-two-content -->
-					</div><!--department-two-card-->
-				</div><!-- col-12 col-lg-4 -->
-				<div class=" col-lg-6 col-xl-4 ">
-					<div class="department-two-card">
-						<div class="department-two-imgbox">
-							<div class="department-two-img">
-							<img src="@Model._containerUrl@Model.SocialInfraUpdatePhoto.DescriptionImage" style="height:250px;" class="mw-100" alt="img-151">
-							<a href="/WhatWeDo/Projects"></a>
-							</div><!-- department-two-img -->
-							<div class="department-two-img-icon">
-							<a href="/WhatWeDo/Projects"><i class="flaticon-police-badge-1"></i></a>
-							</div><!-- department-two-img-icon -->
-						</div><!-- department-two-imgbox -->
-					<div class="department-two-content" style="height: 15rem;">
-						<h4><a href="/WhatWeDo/Projects">Social Infrastructure</a></h4>
-						<p style="height: 6rem; overflow: hidden;">@Model.SocialInfraUpdatePhoto.Title</p>
-							<div class="department-two-button">
-							<a href="/WhatWeDo/Projects"><i class="fa-solid fa-arrow-right-long"></i><span>Read More</span></a>
-							</div><!-- department-two-button -->
-						</div><!-- department-two-content -->
-					</div><!--department-two-card-->
-				</div><!-- col-lg-6 col-xl-4 -->
-				<div class=" col-lg-6 col-xl-4 ">
-					<div class="department-two-card">
-						<div class="department-two-imgbox">
-							<div class="department-two-img">
-							<img src="@Model._containerUrl@Model.PartnershipsPhoto.DescriptionImage" style="height:250px;" class=" mw-100" alt="img-152">
-							<a href="/WhatWeDo/Projects"></a>
-							</div><!-- department-two-img -->
-							<div class="department-two-img-icon">
-							<a href="/WhatWeDo/Projects"><i class="flaticon-team"></i></a>
-							</div><!-- department-two-img-icon -->
-						</div><!-- department-two-imgbox -->
-						<div class="department-two-content" style="height: 15rem;">
-						<h4>
-							<a href="/WhatWeDo/Projects">Global Partnerships</a>
-						</h4>
-						<p style="height: 6rem; overflow: hidden;">@Model.PartnershipsPhoto.Title</p>
-							<div class="department-two-button">
-							<a href="/WhatWeDo/Projects"><i class="fa-solid fa-arrow-right-long"></i><span>Read More</span></a>
-							</div><!-- department-two-button -->
-						</div><!-- department-two-content -->
-					</div><!--department-two-card-->
-				</div><!-- col-lg-6 col-xl-4 -->
-				
-			</div>
-		@*<div class="row row-gutter-y-155">
-			<div class="col-lg-4">
-				<div class="blog-card">
-					<div class="blog-card-image">
-						<img src="assets/image/blog/blog-1.jpg" class="img-fluid mw-100 h-100" alt="img-22">
-						<a href="news-details.html"></a>
-					</div><!-- blog-card-image -->
-					<div class="blog-card-date">
-						<a href="news-details.html">28SEP</a>
-					</div><!-- blog-card-date -->
-					<div class="blog-card-content">
-						<div class="blog-card-meta">
-							<span class="author">
-								by<a href="news-details.html">Admin</a>
-							</span><!-- author -->
-							<span class="comment">
-								<a href="news-details.html">02 Comments</a>
-							</span><!-- comment -->
-						</div><!-- blog-card-meta -->
-						<h4><a href="news-details.html">Physical Infrastructure</a></h4>
-						<p>Tellus amet vel nisi, vel felis morbi sit et. Risus, pulvinar ultricie</p>
-					</div><!-- blog-card-content -->
-				</div><!-- blog-card -->
-			</div><!-- col-lg-4 -->
-			<div class="col-lg-4">
-				<div class="blog-card">
-					<div class="blog-card-image">
-						<img src="assets/image/blog/blog-2.jpg" class="img-fluid mw-100 h-100" alt="img-23">
-						<a href="news-details.html"></a>
-					</div><!-- blog-card-image -->
-					<div class="blog-card-date">
-						<a href="news-details.html">28SEP</a>
-					</div><!-- blog-card-date -->
-					<div class="blog-card-content">
-						<div class="blog-card-meta">
-							<span class="author">
-								by<a href="news-details.html">Admin</a>
-							</span><!-- author -->
-							<span class="comment">
-								<a href="news-details.html">02 Comments</a>
-							</span><!-- comment -->
-						</div><!-- blog-card-meta -->
-						<h4><a href="news-details.html">Social Infrastructuret</a></h4>
-						<p>Tellus amet vel nisi, vel felis morbi sit et. Risus, pulvinar ultricie</p>
-					</div><!-- blog-card-content -->
-				</div><!-- blog-card -->
-			</div><!-- col-lg-4 -->
-			<div class="col-lg-4">
-				<div class="blog-card">
-					<div class="blog-card-image">
-						<img src="assets/image/blog/blog-3.jpg" class="img-fluid mw-100 h-100" alt="img-24">
-						<a href="news-details.html"></a>
-					</div><!-- blog-card-image -->
-					<div class="blog-card-date">
-						<a href="news-details.html">28SEP</a>
-					</div><!-- blog-card-date -->
-					<div class="blog-card-content">
-						<div class="blog-card-meta">
-							<span class="author">
-								by<a href="news-details.html">Admin</a>
-							</span><!-- author -->
-							<span class="comment">
-								<a href="news-details.html">02 Comments</a>
-							</span><!-- comment -->
-						</div><!-- blog-card-meta -->
-						<h4><a href="news-details.html">Global Partnerships</a></h4>
-						<p>Tellus amet vel nisi, vel felis morbi sit et. Risus, pulvinar ultricie</p>
-					</div><!-- blog-card-content -->
-				</div><!-- blog-card -->
-			</div><!-- col-lg-4 -->
-		</div><!-- row -->*@
+								<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID"><i class="fa-solid fa-arrow-right-long pe-2"></i><span class="text-dark">Read More</span></a>
+							</div>
+						</div><!-- blog-card-content -->
+					</div><!-- blog-card -->
+				</div>
+
+				<!-- col-lg-4 -->
+			}
+
+
+		</div><!-- row -->
 	</div><!-- container -->
 </section>
-<!--Updates Section Banner-->
+<!--News Point Section-->
 
 @*<div class="elementor-container elementor-column-gap-default">
 	<div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-becf424 animated fadeInLeft" data-id="becf424" data-element_type="column" data-settings="{&quot;animation&quot;:&quot;fadeInLeft&quot;}">
@@ -776,58 +679,86 @@ else
 </section>
 <!--Key Thrust Section-->
 
-<!--News Point Section-->
+
+<!--Updates Section-->
 <section class="blog-section">
 	<div class="container">
 		<div class="blog-box">
 			<div class="section-title-box text-center">
 				<div class="section-tagline">Updates From Our Programs and Activities</div>
-				<h2 class="section-title">News Point</h2>
+				<h2 class="section-title">Updates</h2>
 			</div><!-- section-title-box -->
 		</div><!--blog-box-->
-
-		
-
-		<div class="row row-gutter-y-155 news-top">
-			@foreach (var item in Model.NewsList)
-			{
-				<div class="col-lg-4">
-					<div class="blog-card">
-						<div class="blog-card-image">
-							<img src="@Model._containerUrl@item.ImageUrl" width="600" height="200" class="mw-100" alt="img-22">
-							<a href="news-details.html"></a>
-						</div><!-- blog-card-image -->
-						<div class="blog-card-date">
-							<a href="news-details.html">@item.PublishDate.ToString("dd/MM/yy")</a>
-						</div><!-- blog-card-date -->
-						<div class="blog-card-content">
-							<div class="blog-card-meta">
-								<span class="author">
-									By: <a href="#">Corporate Affairs Dept.</a>
-								</span><!-- author -->
-								@* <span class="comment">
-									<a href="news-details.html">02 Comments</a>
-								</span> *@<!-- comment -->
-							</div><!-- blog-card-meta -->
-							<div class="" style="height: 10rem;overflow: hidden;">
-								<h4 style="height: 4.5rem;overflow: hidden;"><a asp-page="/News/NewsDetails" asp-route-nid="@item.NID">@item.Subject</a></h4>
-								<div style="height: 4.7rem; overflow: hidden;">@item.ShortSummary</div>
-							</div> 
-							<div class="department-two-button">
-								<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID"><i class="fa-solid fa-arrow-right-long pe-2"></i><span class="text-dark">Read More</span></a>
-							</div>
-						</div><!-- blog-card-content -->
-					</div><!-- blog-card -->
-				</div>
-
-				<!-- col-lg-4 -->
-			}
-			
-			
-		</div><!-- row -->
+		<div class="row row-gutter-30">
+			<div class=" col-lg-6 col-xl-4 ">
+				<div class="department-two-card">
+					<div class="department-two-imgbox">
+						<div class="department-two-img">
+							<img src="@Model._containerUrl@Model.PhysicalInfraUpdatePhoto.DescriptionImage" style="height:250px;" class=" mw-100" alt="img-150">
+							<a href="/WhatWeDo/Projects"></a>
+						</div><!-- department-two-img -->
+						<div class="department-two-img-icon">
+							<a href="/WhatWeDo/Projects"><i class="flaticon-highway"></i></a>
+						</div><!-- department-two-img-icon -->
+					</div><!-- department-two-imgbox -->
+					<div class="department-two-content" style="height: 15rem;">
+						<h4><a href="/WhatWeDo/Projects">Physical Infrastructure</a></h4>
+						<p style="height: 6rem; overflow: hidden;">@Model.PhysicalInfraUpdatePhoto.ShortTitle ...</p>
+						<div class="department-two-button">
+							<a href="/WhatWeDo/Projects">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!-- department-two-button -->
+					</div><!-- department-two-content -->
+				</div><!--department-two-card-->
+			</div><!-- col-12 col-lg-4 -->
+			<div class=" col-lg-6 col-xl-4 ">
+				<div class="department-two-card">
+					<div class="department-two-imgbox">
+						<div class="department-two-img">
+							<img src="@Model._containerUrl@Model.SocialInfraUpdatePhoto.DescriptionImage" style="height:250px;" class="mw-100" alt="img-151">
+							<a href="/WhatWeDo/Projects"></a>
+						</div><!-- department-two-img -->
+						<div class="department-two-img-icon">
+							<a href="/WhatWeDo/Projects"><i class="flaticon-police-badge-1"></i></a>
+						</div><!-- department-two-img-icon -->
+					</div><!-- department-two-imgbox -->
+					<div class="department-two-content" style="height: 15rem;">
+						<h4><a href="/WhatWeDo/Projects">Social Infrastructure</a></h4>
+						<p style="height: 6rem; overflow: hidden;">@Model.SocialInfraUpdatePhoto.Title</p>
+						<div class="department-two-button">
+							<a href="/WhatWeDo/Projects"><i class="fa-solid fa-arrow-right-long"></i><span>Read More</span></a>
+						</div><!-- department-two-button -->
+					</div><!-- department-two-content -->
+				</div><!--department-two-card-->
+			</div><!-- col-lg-6 col-xl-4 -->
+			<div class=" col-lg-6 col-xl-4 ">
+				<div class="department-two-card">
+					<div class="department-two-imgbox">
+						<div class="department-two-img">
+							<img src="@Model._containerUrl@Model.PartnershipsPhoto.DescriptionImage" style="height:250px;" class=" mw-100" alt="img-152">
+							<a href="/WhatWeDo/Projects"></a>
+						</div><!-- department-two-img -->
+						<div class="department-two-img-icon">
+							<a href="/WhatWeDo/Projects"><i class="flaticon-team"></i></a>
+						</div><!-- department-two-img-icon -->
+					</div><!-- department-two-imgbox -->
+					<div class="department-two-content" style="height: 15rem;">
+						<h4>
+							<a href="/WhatWeDo/Projects">Global Partnerships</a>
+						</h4>
+						<p style="height: 6rem; overflow: hidden;">@Model.PartnershipsPhoto.Title</p>
+						<div class="department-two-button">
+							<a href="/WhatWeDo/Projects"><i class="fa-solid fa-arrow-right-long"></i><span>Read More</span></a>
+						</div><!-- department-two-button -->
+					</div><!-- department-two-content -->
+				</div><!--department-two-card-->
+			</div><!-- col-lg-6 col-xl-4 -->
+		</div>
 	</div><!-- container -->
 </section>
-<!--News Point Section-->
+<!--Updates Section Banner-->
 
 
 <!--Photo Speak Section-->
