@@ -101,8 +101,8 @@
 											@item.PublishDate.ToString("dd/MM/yy")
 									</span><!-- author -->
                                 </div> *@
-									<h1 class="fs-4 text-start lead mt-2 m-0 ">
-                                        <a class="text-dark" asp-route-nid="@item.NID" asp-page="NewsDetails">@item.Subject</a>
+									<h1 class="fs-4 text-start lead mt-2 m-0">
+										<a class=" link-underline link-underline-opacity-0 link-underline-opacity-100-hover text-primary fw-bold" asp-route-nid="@item.NID" asp-page="NewsDetails">@item.Subject</a>
                                     </h1>
 									<div class="d-block justify-content-between pt-3">
 										<p class="m-0 fs-5" style="height: 10rem; overflow: hidden;">@item.Summary</p>

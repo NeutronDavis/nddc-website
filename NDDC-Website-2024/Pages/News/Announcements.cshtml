@@ -37,7 +37,7 @@
 					</div><!-- news-details-meta-box-inner -->
 				</div><!-- news-details-meta-box -->
 					<div class="news-details-content-box" style="max-height: 11rem; overflow: hidden;">
-					<h3>@item.Title</h3>
+					<h3 class="">@item.Title</h3>
 						<p>@Html.Raw(@item.Details)</p>
 				</div><!-- /.news-details-content-box -->
 				<div class="news-details-share-box">
@@ -45,7 +45,7 @@
 						<div class="news-details-list">
 							<!-- news-details-list-title -->
 							<div class="news-details-list-button">
-								<a href="news-details.html" class="btn btn-primary">More Information</a>
+									<a asp-route-Id="@item.Id" asp-page="AnnouncementDetails" class="btn btn-primary">More Information</a>
 							</div><!-- news-details-list-button -->
 						</div><!--news-details-list-->
 						<!-- news-details-list -->
