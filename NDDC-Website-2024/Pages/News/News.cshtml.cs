@@ -12,7 +12,9 @@ namespace NDDC_Website_2024.Pages
 		private readonly IConfiguration config;
 
 		public List<MyNewsModel> NewsList { get; set; }
-		public readonly string _containerUrl;
+		public MyNewsModel LatestNews { get; set; }
+
+        public readonly string _containerUrl;
 		public NewsModel(IHomeData homeDb, IConfiguration config)
         {
             this.homeDb = homeDb;
@@ -21,6 +23,7 @@ namespace NDDC_Website_2024.Pages
         public void OnGet()
         {
             NewsList = homeDb.AllNews();
+            LatestNews = homeDb.GetLatestNews();
         }
     }
 }
