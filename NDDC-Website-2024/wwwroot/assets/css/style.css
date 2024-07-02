@@ -5384,6 +5384,10 @@ border-radius: 100px;
 	height: 100%;
 	object-fit: cover;
 }
+
+.swiper-wrapper {
+	transition-delay: 2000ms !important;
+}
 /***********************
 * News
 ***********************/
