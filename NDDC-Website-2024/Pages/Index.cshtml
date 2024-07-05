@@ -69,8 +69,8 @@
 						</h2>
 						<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
 						<div class="d-flex pt-4">
-							<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Sign Up</a>
-							<a href="service-details.html" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+							<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+							<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 						</div>
 					</div><!--section-title-box-->
 					<!--mayor-icon-box-->
@@ -1624,7 +1624,7 @@ else
 	
 	<script>
 		// Set the date we're counting down to
-		var countDownDate = new Date("Jul 7, 2024 15:37:25").getTime();
+		var countDownDate = new Date("@Model.CountDownDate.ToString("yyyy-MM-ddTHH:mm:ss")").getTime();
 
 		// Update the count down every 1 second
 		var x = setInterval(function () {
