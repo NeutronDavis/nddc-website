@@ -43,147 +43,151 @@
 }
 
 
-<!--Live Events Section-->
+@if (Model.LiveEvent != null)
+{
+	<!--Live Events Section-->
 
-<section class="" style="background-color:#4b8d9c;">
-	<div class="container mt-0" style="">
-		<div class="row">
-			<div class="col-lg-12 d-flex text-light px-5 py-3 justify-content-between align-items-center flex-wrap" style="background-color: #026DB5;">
-				<p class="text-light fs-4 fw-bold mb-0">This event will be starting in:</p>
-				<div><span class="lead fs-4 fw-bold pe-2 days"> </span><span class="lead fs-4 fw-bold pe-2">days</span></div>
-				<div><span class="lead fs-4 fw-bold pe-2 hours"> </span><span class="lead fs-4 fw-bold pe-2">hours</span></div>
-				<div><span class="lead fs-4 fw-bold pe-2 minutes"> </span><span class="lead fs-4 fw-bold pe-2">minutes</span></div>
-				<div><span class="lead fs-4 fw-bold pe-2 seconds"> </span><span class="lead fs-4 fw-bold pe-2">seconds</span></div>
-                
-				
-                
-			</div>
-			<div class="col-lg-5" style=" background-color:var(--thm-black);">
-				<div class="mayor-box" style=" padding-right: 1rem;">
-					<div class="section-title-box m-4">
-						<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
-							NDDC LIVE EVENT - Jul 9
-						</div><!-- section-tagline -->
-						<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
-							The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-						</h2>
-						<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
-						<div class="d-flex pt-4">
-							<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
-							<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+	<section class="" style="background-color:#4b8d9c;">
+		<div class="container-xxl mt-0" style="">
+			<div class="row">
+				<div class="col-lg-12 d-flex text-light px-5 py-3 justify-content-between align-items-center flex-wrap" style="background-color: #026DB5;">
+					<p class="text-light fs-4 fw-bold mb-0">This event will be starting in:</p>
+					<div><span class="lead fs-4 fw-bold pe-2 days"> </span><span class="lead fs-4 fw-bold pe-2">days</span></div>
+					<div><span class="lead fs-4 fw-bold pe-2 hours"> </span><span class="lead fs-4 fw-bold pe-2">hours</span></div>
+					<div><span class="lead fs-4 fw-bold pe-2 minutes"> </span><span class="lead fs-4 fw-bold pe-2">minutes</span></div>
+					<div><span class="lead fs-4 fw-bold pe-2 seconds"> </span><span class="lead fs-4 fw-bold pe-2">seconds</span></div>
+
+
+
+				</div>
+				<div class="col-lg-5" style=" background-color:var(--thm-black);">
+					<div class="mayor-box" style=" padding-right: 1rem;">
+						<div class="section-title-box m-4">
+							<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+								NDDC LIVE EVENT - Jul 9
+							</div><!-- section-tagline -->
+							<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
+								The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
+							</h2>
+							<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
+							<div class="d-flex pt-4">
+								<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+								<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+							</div>
+						</div><!--section-title-box-->
+						<!--mayor-icon-box-->
+						<!-- ul -->
+					</div><!--mayor-box-->
+				</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
+					<div class="">
+						<img src="https://d1z885rebbc6q3.cloudfront.net/News/qgck5rnr.png" alt="img-138" class="mw-100" height="600">
+					</div><!--mayor-img-->
+				</div>
+
+
+				<!--col-lg-6"-->
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</section>
+
+	<section class="">
+		<div class="container">
+			<div class="row row-gutter-y-40">
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="/assets/image/services/about-1.jpg" class="img-fluid" alt="img-28" width="375" height="288">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Mission</h4>
+							<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
+							<a href="/WhoWeAre/Vision">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="assets/image/services/service-5.png" class="img-fluid" alt="img-29">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Vision</h4>
+							<p>
+								To accelerate the Niger Delta's transition to a prosperous, stable and peaceful region.
+							</p>
+							<a href="/WhoWeAre/Vision">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-link-box">
+						<h4 class="section-title">Digital <br>Services</h4>
+						<ul class="my-4 py-2">
+							<li><a href="/Services/ProjectDatabase/index">Project Database<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Jobs">Empowerment Programs <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Tenders">Tenders & Adverts<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/OnlineForms">Online Forms<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/ServiceGate/index">Service Gate <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/IReports/index">iReports<i class="fa-solid fa-chevron-right"></i></a></li>
+						</ul><!-- ul -->
+					</div><!--service-link-box-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+
+	<section class="about-two-section">
+		<div class="container">
+			<div class="row justify-content-between row-gutter-y-60">
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-image">
+						<div id="imageHolder" class="">
+							<div class="imageHolderDiv">
+								<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
+								<img src="/assets/image/gallery/MD.png" alt="MD- Samuel Ogbuku">
+								<img src="/assets/image/gallery/EDFA.png" alt="EDFA- Boma Iyaye">
+								<img src="/assets/image/gallery/EDP.png" alt="EDP- Victor Etim Antai">
+								<img src="/assets/image/gallery/EDCS.png" alt="EDCS- Ifedayo Abegunde">
+							</div>
 						</div>
-					</div><!--section-title-box-->
-					<!--mayor-icon-box-->
-					<!-- ul -->
-				</div><!--mayor-box-->
-			</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
-				<div class="">
-					<img src="https://d1z885rebbc6q3.cloudfront.net/News/qgck5rnr.png" alt="img-138" class="mw-100" height="600">
-				</div><!--mayor-img-->
-			</div>
-			
-			
-			<!--col-lg-6"-->
-		</div><!-- row -->
+					</div><!--about-two-image-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-inner pt-0">
+						<h2 class="section-title">Welcome to The Niger Delta Development Commission</h2><!-- section-title -->
+						<div class="about-two-text">
+							<div class="about-two-text-inner-one">
+								<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
+							</div><!-- about-two-text-inner-one -->
+							<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
+						</div><!--about-two-text-->
+						<div class="about-two-author-content">
+							<a href="/WhoWeAre/Vision" class="text-success hover:text-blue-700 font-semibold">
+								LEARN MORE →
+							</a>
+						</div><!-- about-two-author-content -->
+					</div><!--about-two-inner-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
 
-	</div><!-- container -->
-</section>
+	<!--Live Events Section-->
+}
 
-<section class="">
-	<div class="container">
-		<div class="row row-gutter-y-40">
-			<div class="col-12 col-lg-4 col-xl-4">
-				<div class="service-two-card">
-					<div class="service-two-imgbox">
-						<div class="service-two-image">
-							<img src="/assets/image/services/about-1.jpg" class="img-fluid" alt="img-28" width="375" height="288">
-							<a href="service-details.html"></a>
-						</div><!-- service-two-image -->
-					</div><!-- service-two-imgbox -->
-					<div class="service-two-card-content">
-						<h4>Mission</h4>
-						<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
-						<a href="/WhoWeAre/Vision">
-							<i class="fa-solid fa-arrow-right-long"></i>
-							<span>Read More</span>
-						</a>
-					</div><!--service-two-card-content-->
-				</div><!--service-two-card-->
-			</div><!--col-12 col-lg-4 col-xl-4-->
-			<div class="col-12 col-lg-4 col-xl-4">
-				<div class="service-two-card">
-					<div class="service-two-imgbox">
-						<div class="service-two-image">
-							<img src="assets/image/services/service-5.png" class="img-fluid" alt="img-29">
-							<a href="service-details.html"></a>
-						</div><!-- service-two-image -->
-					</div><!-- service-two-imgbox -->
-					<div class="service-two-card-content">
-						<h4>Vision</h4>
-						<p>
-							To accelerate the Niger Delta's transition to a prosperous, stable and peaceful region.
-						</p>
-						<a href="/WhoWeAre/Vision">
-							<i class="fa-solid fa-arrow-right-long"></i>
-							<span>Read More</span>
-						</a>
-					</div><!--service-two-card-content-->
-				</div><!--service-two-card-->
-			</div><!--col-12 col-lg-4 col-xl-4-->
-			<div class="col-12 col-lg-4 col-xl-4">
-				<div class="service-link-box">
-					<h4 class="section-title">Digital <br>Services</h4>
-					<ul class="my-4 py-2">
-						<li><a href="/Services/ProjectDatabase/index">Project Database<i class="fa-solid fa-chevron-right"></i></a></li>
-						<li><a href="/Services/Jobs">Empowerment Programs <i class="fa-solid fa-chevron-right"></i></a></li>
-						<li><a href="/Services/Tenders">Tenders & Adverts<i class="fa-solid fa-chevron-right"></i></a></li>
-						<li><a href="/Services/OnlineForms">Online Forms<i class="fa-solid fa-chevron-right"></i></a></li>
-						<li><a href="/ServiceGate/index">Service Gate <i class="fa-solid fa-chevron-right"></i></a></li>
-						<li><a href="/Services/IReports/index">iReports<i class="fa-solid fa-chevron-right"></i></a></li>
-					</ul><!-- ul -->
-				</div><!--service-link-box-->
-			</div><!--col-12 col-lg-4 col-xl-4-->
-		</div><!-- row -->
-	</div><!-- container -->
-</section>
-
-<section class="about-two-section">
-	<div class="container">
-		<div class="row justify-content-between row-gutter-y-60">
-			<div class="col-lg-12 col-xl-6 col-xxl-6">
-				<div class="about-two-image">
-					<div id="imageHolder" class="">
-						<div class="imageHolderDiv">
-							<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
-							<img src="/assets/image/gallery/MD.png" alt="MD- Samuel Ogbuku">
-							<img src="/assets/image/gallery/EDFA.png" alt="EDFA- Boma Iyaye">
-							<img src="/assets/image/gallery/EDP.png" alt="EDP- Victor Etim Antai">
-							<img src="/assets/image/gallery/EDCS.png" alt="EDCS- Ifedayo Abegunde">
-						</div>
-					</div>
-				</div><!--about-two-image-->
-			</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
-			<div class="col-lg-12 col-xl-6 col-xxl-6">
-				<div class="about-two-inner pt-0">
-					<h2 class="section-title">Welcome to The Niger Delta Development Commission</h2><!-- section-title -->
-					<div class="about-two-text">
-						<div class="about-two-text-inner-one">
-							<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
-						</div><!-- about-two-text-inner-one -->
-						<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
-					</div><!--about-two-text-->
-					<div class="about-two-author-content">
-						<a href="/WhoWeAre/Vision" class="text-success hover:text-blue-700 font-semibold">
-							LEARN MORE →
-						</a>
-					</div><!-- about-two-author-content -->
-				</div><!--about-two-inner-->
-			</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
-		</div><!-- row -->
-	</div><!-- container -->
-</section>
-
-<!--Live Events Section-->
 
 
 
@@ -203,7 +207,7 @@
 	</div><!--cta-three-inner-->
 </section> *@
 
-@if (Model.CriticalUpdate != null)
+@if (Model.CriticalUpdate != null && Model.LiveEvent == null)
 {
 <!--Prominent News Section-->
 
@@ -412,7 +416,7 @@
 	</section> *@
 	<!--Prominent News Section End-->
 }
-else
+else if (Model.LiveEvent == null)
 {
 	<!--Splide Slider Section-->
 	<section class="splide" aria-labelledby="carousel-heading">

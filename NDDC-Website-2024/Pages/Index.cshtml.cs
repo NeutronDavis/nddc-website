@@ -21,6 +21,7 @@ namespace NDDC_Website_2024.Pages
         public MyNewsModel CriticalUpdate { get; set; }
         public List<MyTestimonialModel> Testimonials { get; set; }
         public DateTime CountDownDate { get; set; }
+        public MyLiveEventModel LiveEvent { get; set; }
         public IndexModel(IHomeData homeDb, IConfiguration configuration)
         {
             this.homeDb = homeDb;
@@ -40,7 +41,8 @@ namespace NDDC_Website_2024.Pages
             Announcement = homeDb.GetAnnouncement();
             CriticalUpdate = homeDb.GetCriticalNewsUpdate();
             Testimonials = homeDb.ViewTestimonials();
-			CountDownDate = new DateTime(2024, 7, 10, 15, 37, 25);
+			CountDownDate = new DateTime(2024, 7, 10, 07, 00, 00);
+            LiveEvent = homeDb.GetLiveEvent();
 		}
     }
 }

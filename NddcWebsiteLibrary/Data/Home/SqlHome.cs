@@ -201,5 +201,37 @@ namespace NddcWebsiteLibrary.Data.Home
 		{
 			return db.LoadData<MyExecMngtModel, dynamic>("Select EMID, ExecName, Position, ImageUrl, Details, PositionCount From ExecMngt Where EMID = @Id", new { Id = emid }, connectionStringName, false).FirstOrDefault();
 		}
+
+		//Live Event
+		public MyLiveEventModel GetLiveEvent()
+		{
+			DateTime endDate = db.LoadData<DateTime, dynamic>("select top 1 EndDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+
+			DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+
+			DateTime currDate = DateTime.Now;
+
+			if (currDate <= endDate)
+			{
+				return db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+			}
+
+			return null;
+		}
+
+		public bool GoLive()
+		{
+
+			DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+
+			double dateDiff = (startDate - DateTime.Now).TotalDays;
+
+			if (dateDiff <= 0)
+			{
+				return true;
+			}
+
+			return false;
+		}
 	}
 }

@@ -19,10 +19,12 @@ namespace NddcWebsiteLibrary.Data.Home
 		MyNewsModel GetCriticalNewsUpdate();
         MyUpdateModel? GetImageByUpdateCategory(string updateCategory);
 		MyNewsModel GetLatestNews();
+		MyLiveEventModel GetLiveEvent();
 		MyNewsModel GetNewsDetails(int nid);
 		List<MyNewsModel> GetNewsPhotoGallery(int newsId);
 		List<MyUpdateModel> GetUpdatesListForProgram();
 		List<MyUpdateModel> GetUpdatesListForProject();
+		bool GoLive();
 		List<MyNewsModel> ListHomePageNews();
 		List<MyAnnouncementModel> ViewAllAnnoncements();
 		List<MyExecMngtModel> ViewAllExecutiveManagement();
