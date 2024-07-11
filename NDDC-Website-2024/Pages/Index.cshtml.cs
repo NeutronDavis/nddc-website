@@ -22,6 +22,7 @@ namespace NDDC_Website_2024.Pages
         public List<MyTestimonialModel> Testimonials { get; set; }
         public DateTime CountDownDate { get; set; }
         public MyLiveEventModel LiveEvent { get; set; }
+        public bool IsEventLive { get; set; }
         public IndexModel(IHomeData homeDb, IConfiguration configuration)
         {
             this.homeDb = homeDb;
@@ -43,6 +44,7 @@ namespace NDDC_Website_2024.Pages
             Testimonials = homeDb.ViewTestimonials();
 			CountDownDate = new DateTime(2024, 7, 10, 07, 00, 00);
             LiveEvent = homeDb.GetLiveEvent();
+            IsEventLive = homeDb.GoLive();
 		}
     }
 }

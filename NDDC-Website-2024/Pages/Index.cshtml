@@ -46,50 +46,92 @@
 @if (Model.LiveEvent != null)
 {
 	<!--Live Events Section-->
-
-	<section class="" style="background-color:#4b8d9c;">
-		<div class="container-xxl mt-0" style="">
-			<div class="row">
-				<div class="col-lg-12 d-flex text-light px-5 py-3 justify-content-between align-items-center flex-wrap" style="background-color: #026DB5;">
-					<p class="text-light fs-4 fw-bold mb-0">This event will be starting in:</p>
-					<div><span class="lead fs-4 fw-bold pe-2 days"> </span><span class="lead fs-4 fw-bold pe-2">days</span></div>
-					<div><span class="lead fs-4 fw-bold pe-2 hours"> </span><span class="lead fs-4 fw-bold pe-2">hours</span></div>
-					<div><span class="lead fs-4 fw-bold pe-2 minutes"> </span><span class="lead fs-4 fw-bold pe-2">minutes</span></div>
-					<div><span class="lead fs-4 fw-bold pe-2 seconds"> </span><span class="lead fs-4 fw-bold pe-2">seconds</span></div>
-
-
-
-				</div>
-				<div class="col-lg-5" style=" background-color:var(--thm-black);">
-					<div class="mayor-box" style=" padding-right: 1rem;">
-						<div class="section-title-box m-4">
-							<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
-								NDDC LIVE EVENT - Jul 9
-							</div><!-- section-tagline -->
-							<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
-								The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-							</h2>
-							<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
-							<div class="d-flex pt-4">
-								<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
-								<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
-							</div>
-						</div><!--section-title-box-->
-						<!--mayor-icon-box-->
-						<!-- ul -->
-					</div><!--mayor-box-->
-				</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
-					<div class="">
-						<img src="https://d1z885rebbc6q3.cloudfront.net/News/qgck5rnr.png" alt="img-138" class="mw-100" height="600">
-					</div><!--mayor-img-->
-				</div>
+	@if(Model.IsEventLive =false)
+	{
+		<section class="" style="background-color:#4b8d9c;">
+			<div class="container-xxl mt-0" style="">
+				<div class="row">
+					<div class="col-lg-12 d-flex text-light px-5 py-3 justify-content-between align-items-center flex-wrap" style="background-color: #026DB5;">
+						<p class="text-light fs-4 fw-bold mb-0">This event will be starting in:</p>
+						<div><span class="lead fs-4 fw-bold pe-2 days"> </span><span class="lead fs-4 fw-bold pe-2">days</span></div>
+						<div><span class="lead fs-4 fw-bold pe-2 hours"> </span><span class="lead fs-4 fw-bold pe-2">hours</span></div>
+						<div><span class="lead fs-4 fw-bold pe-2 minutes"> </span><span class="lead fs-4 fw-bold pe-2">minutes</span></div>
+						<div><span class="lead fs-4 fw-bold pe-2 seconds"> </span><span class="lead fs-4 fw-bold pe-2">seconds</span></div>
 
 
-				<!--col-lg-6"-->
-			</div><!-- row -->
 
-		</div><!-- container -->
-	</section>
+					</div>
+					<div class="col-lg-5" style=" background-color:var(--thm-black);">
+						<div class="mayor-box" style=" padding-right: 1rem;">
+							<div class="section-title-box m-4">
+								<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+									NDDC LIVE EVENT - Jul 9
+								</div><!-- section-tagline -->
+								<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
+									The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
+								</h2>
+								<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
+								<div class="d-flex pt-4">
+									<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+								</div>
+							</div><!--section-title-box-->
+							<!--mayor-icon-box-->
+							<!-- ul -->
+						</div><!--mayor-box-->
+					</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
+						<div class="">
+							<img src="https://d1z885rebbc6q3.cloudfront.net/News/qgck5rnr.png" alt="img-138" class="mw-100" height="600">
+						</div><!--mayor-img-->
+					</div>
+
+
+					<!--col-lg-6"-->
+				</div><!-- row -->
+
+			</div><!-- container -->
+		</section>
+	}
+	else
+	{
+		<section class="" style="background-color:#4b8d9c;">
+			<div class="container-xxl mt-0" style="">
+				<div class="row">
+					
+					<div class="col-lg-5" style=" background-color:var(--thm-black);">
+						<div class="mayor-box" style=" padding-right: 1rem;">
+							<div class="section-title-box m-4">
+								<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+									NDDC LIVE EVENT - Jul 9
+								</div><!-- section-tagline -->
+								<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
+									The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
+								</h2>
+								<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
+								<div class="d-flex pt-4">
+									<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+								</div>
+							</div><!--section-title-box-->
+							<!--mayor-icon-box-->
+							<!-- ul -->
+						</div><!--mayor-box-->
+					</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
+						<div class="">
+
+							<iframe width="700" height="500" src="https://www.youtube.com/embed/@Model.LiveEvent.LiveEventLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+						</div><!--mayor-img-->
+					</div>
+
+
+					<!--col-lg-6"-->
+				</div><!-- row -->
+
+			</div><!-- container -->
+		</section>
+		
+	}
+
 
 	<section class="">
 		<div class="container">

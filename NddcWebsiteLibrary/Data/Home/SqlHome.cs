@@ -213,7 +213,7 @@ namespace NddcWebsiteLibrary.Data.Home
 
 			if (currDate <= endDate)
 			{
-				return db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+				return db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate, LiveEventLink from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
 			}
 
 			return null;
