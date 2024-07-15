@@ -20,7 +20,8 @@ namespace NddcWebsiteLibrary.Data.Home
         MyUpdateModel? GetImageByUpdateCategory(string updateCategory);
 		MyNewsModel GetLatestNews();
 		MyLiveEventModel GetLiveEvent();
-		MyNewsModel GetNewsDetails(int nid);
+        MyLiveEventModel GetLiveEventForEventsPage();
+        MyNewsModel GetNewsDetails(int nid);
 		List<MyNewsModel> GetNewsPhotoGallery(int newsId);
 		List<MyUpdateModel> GetUpdatesListForProgram();
 		List<MyUpdateModel> GetUpdatesListForProject();

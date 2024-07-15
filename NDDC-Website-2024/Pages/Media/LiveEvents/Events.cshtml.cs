@@ -20,7 +20,7 @@ namespace NDDC_Website_2024.Pages.Media.LiveEvents
 
         public void OnGet()
         {
-			LiveEvent = homeDb.GetLiveEvent();
+			LiveEvent = homeDb.GetLiveEventForEventsPage();
 			if (LiveEvent != null)
 			{
 				CountDownDate = new DateTime(LiveEvent.StartDate.Year, LiveEvent.StartDate.Month, LiveEvent.StartDate.Day, 0, 00, 00);
