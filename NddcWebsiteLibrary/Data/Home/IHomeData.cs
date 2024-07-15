@@ -13,6 +13,7 @@ namespace NddcWebsiteLibrary.Data.Home
 		List<MyUpdateModel> DisplayUpdateSlidesForProjects();
 		List<MyVideoModel> DisplayVideos();
 		List<MyExecMngtModel> GetAllBoardMembers();
+		List<MyLiveEventModel> GetAllEvents();
 		MyAnnouncementModel GetAnnouncement();
         MyNewsModel GetBreakingNews();
 		MyExecMngtModel GetChairmanSingle();
@@ -20,7 +21,8 @@ namespace NddcWebsiteLibrary.Data.Home
         MyUpdateModel? GetImageByUpdateCategory(string updateCategory);
 		MyNewsModel GetLatestNews();
 		MyLiveEventModel GetLiveEvent();
-        MyLiveEventModel GetLiveEventForEventsPage();
+		MyLiveEventModel GetLiveEventDetails(int Id);
+		MyLiveEventModel GetLiveEventForEventsPage();
         MyNewsModel GetNewsDetails(int nid);
 		List<MyNewsModel> GetNewsPhotoGallery(int newsId);
 		List<MyUpdateModel> GetUpdatesListForProgram();
