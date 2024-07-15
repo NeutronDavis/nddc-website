@@ -42,8 +42,13 @@ namespace NDDC_Website_2024.Pages
             Announcement = homeDb.GetAnnouncement();
             CriticalUpdate = homeDb.GetCriticalNewsUpdate();
             Testimonials = homeDb.ViewTestimonials();
-			CountDownDate = new DateTime(2024, 7, 10, 07, 00, 00);
+            //CountDownDate = new DateTime(2024, 7, 10, 07, 00, 00);
             LiveEvent = homeDb.GetLiveEvent();
+            if (LiveEvent != null)
+            {
+				CountDownDate = new DateTime(LiveEvent.StartDate.Year, LiveEvent.StartDate.Month, LiveEvent.StartDate.Day, 0, 00, 00);
+			}
+            
             IsEventLive = homeDb.GoLive();
 		}
     }

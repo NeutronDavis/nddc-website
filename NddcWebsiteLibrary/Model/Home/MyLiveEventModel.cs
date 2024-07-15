@@ -22,5 +22,6 @@ namespace NddcWebsiteLibrary.Model.Home
         public string LiveEventLink { get; set; }
         public DateTime DateCreated { get; set; }
         public string CreatedBy { get; set; }
+        public bool ShowOnHomePage { get; set; }
     }
 }

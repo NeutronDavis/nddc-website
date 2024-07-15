@@ -18,6 +18,7 @@ namespace NddcWebsiteLibrary.Model.Validators
             RuleFor(e => e.Phone).NotEmpty();
             RuleFor(e => e.State).NotEmpty();
             RuleFor(e => e.Location).NotEmpty();
+           
         }
     }
 }

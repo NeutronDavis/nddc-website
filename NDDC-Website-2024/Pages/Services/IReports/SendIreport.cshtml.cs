@@ -7,6 +7,8 @@ using NddcWebsiteLibrary.Model.IReport;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
 using NddcWebsiteLibrary.Model.Validators;
+using FluentValidation;
+using NDDC_Website_2024.Validators;
 
 namespace NDDC_Website_2024.Pages.Services.IReports
 {
@@ -14,6 +16,9 @@ namespace NDDC_Website_2024.Pages.Services.IReports
     {
         private readonly IReportData irep;
         private readonly ICloudStorage storage;
+        private readonly IValidator<MyIReportModel> validator;
+
+        //private readonly IValidator<IReportValidator> validator;
 
         [BindProperty]
         public IFormFile Upload1 { get; set; }
@@ -27,10 +32,11 @@ namespace NDDC_Website_2024.Pages.Services.IReports
         [BindProperty]
         public MyIReportModel Ireport { get; set; }
 
-        public SendIreportModel(IReportData irep, ICloudStorage storage)
+        public SendIreportModel(IReportData irep, ICloudStorage storage, IValidator<MyIReportModel> validator)
         {
             this.irep = irep;
             this.storage = storage;
+            this.validator = validator;
         }
         public void OnGet()
         {
@@ -42,6 +48,7 @@ namespace NDDC_Website_2024.Pages.Services.IReports
             var validator = new IReportValidator();
             var result = validator.Validate(Ireport);
 
+            
             //if (!result.IsValid)
             //{
             //    foreach (var error in result.Errors)
@@ -84,6 +91,10 @@ namespace NDDC_Website_2024.Pages.Services.IReports
             }
             else
             {
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError(string.Empty, error.ErrorMessage);
+                }
                 return Page();
             }
 

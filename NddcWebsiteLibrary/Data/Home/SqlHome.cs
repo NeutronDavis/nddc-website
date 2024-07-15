@@ -205,16 +205,21 @@ namespace NddcWebsiteLibrary.Data.Home
 		//Live Event
 		public MyLiveEventModel GetLiveEvent()
 		{
-			DateTime endDate = db.LoadData<DateTime, dynamic>("select top 1 EndDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+			MyLiveEventModel myEvent = db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate, LiveEventLink, BannerImage, ShowOnHomePage from LiveEvents Where ShowOnHomePage = 1 Order By StartDate DESC, Id DESC", new { }, connectionStringName, false).SingleOrDefault();
 
-			DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+   //         DateTime endDate = db.LoadData<DateTime, dynamic>("select top 1 EndDate from LiveEvents Order By STartDate DESC", new { }, connectionStringName, false).SingleOrDefault();
+
+			//DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By StartDate DESC", new { }, connectionStringName, false).SingleOrDefault();
 
 			DateTime currDate = DateTime.Now;
-
-			if (currDate <= endDate)
+			if (myEvent != null)
 			{
-				return db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate, LiveEventLink from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
-			}
+                if (currDate <= myEvent.EndDate && myEvent.ShowOnHomePage == true)
+                {
+                    return myEvent;
+                }
+            }
+			
 
 			return null;
 		}
@@ -222,7 +227,7 @@ namespace NddcWebsiteLibrary.Data.Home
 		public bool GoLive()
 		{
 
-			DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+			DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By EndDate DESC", new { }, connectionStringName, false).SingleOrDefault();
 
 			double dateDiff = (startDate - DateTime.Now).TotalDays;
 

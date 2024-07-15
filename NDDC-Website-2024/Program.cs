@@ -1,5 +1,6 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using NDDC_Website_2024.Validators;
 using NddcWebsiteLibrary.Data.CloudStorage;
 using NddcWebsiteLibrary.Data.Home;
 using NddcWebsiteLibrary.Data.IReport;
@@ -13,7 +14,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddFluentValidationAutoValidation();
-builder.Services.AddTransient<IValidator<MyIReportModel>, IReportValidator>();
+builder.Services.AddTransient<IValidator<MyIReportModel>, EyeReportValidator>();
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
 builder.Services.AddTransient<IHomeData, SqlHome>();
 builder.Services.AddTransient<IProjectsData, SqlProjects>();

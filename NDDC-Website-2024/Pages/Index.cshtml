@@ -46,7 +46,7 @@
 @if (Model.LiveEvent != null)
 {
 	<!--Live Events Section-->
-	@if(Model.IsEventLive =false)
+	@if(Model.IsEventLive == false)
 	{
 		<section class="" style="background-color:#4b8d9c;">
 			<div class="container-xxl mt-0" style="">
@@ -65,15 +65,15 @@
 						<div class="mayor-box" style=" padding-right: 1rem;">
 							<div class="section-title-box m-4">
 								<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
-									NDDC LIVE EVENT - Jul 9
+									NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd")
 								</div><!-- section-tagline -->
 								<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
-									The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
+									@Model.LiveEvent.Title
 								</h2>
-								<p class="text-light">There cursus massa at urnaaculis estie. Sed aliquamellus vitae ultrs condmentum leo massa mollis estiegittis miristum nulla sed medy fringilla vitae.</p>
+								<p class="text-light">@Model.LiveEvent.Summary</p>
 								<div class="d-flex pt-4">
-									<a href="service-details.html" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
-									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=NDDC+Niger+Delta+Submit&details=More+help+see:+https://support.google.com/calendar/thread/81344786&dates=20240710T160000/20240713T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+									<a href="#" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 								</div>
 							</div><!--section-title-box-->
 							<!--mayor-icon-box-->
@@ -81,7 +81,7 @@
 						</div><!--mayor-box-->
 					</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
 						<div class="">
-							<img src="https://d1z885rebbc6q3.cloudfront.net/News/qgck5rnr.png" alt="img-138" class="mw-100" height="600">
+							<img src="@Model._containerUrl@Model.LiveEvent.BannerImage" alt="img-138"  class="mw-100" height="600">
 						</div><!--mayor-img-->
 					</div>
 

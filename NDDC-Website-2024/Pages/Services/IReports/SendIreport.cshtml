@@ -17,6 +17,10 @@
             <row class="d-flex justify-content-center">
                 <div class="col-lg-8">
                     <form class="contact-form" method="post" enctype="multipart/form-data">
+                        @if (Model.Upload1 == null)
+                        {
+                            <p>You must upload ast least one picture</p>
+                        }
                         <div class="row row-gutter-10">
                             <div class="col-12 col-lg-12">
                                 <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Tell Us What You Want To Report On (In the Comment section kindly indicate detailed description of the Cntractor Name, the exect loctaion of the Project and a brief description of the situation as witnessed.)</label>
@@ -105,3 +109,4 @@
         </div>
     </div>
 </section>
+
