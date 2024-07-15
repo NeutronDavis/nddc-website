@@ -203,6 +203,21 @@ namespace NddcWebsiteLibrary.Data.Home
 		}
 
 		//Live Event
+		public MyLiveEventModel GetLiveEventDetails(int Id)
+		{
+			MyLiveEventModel myEvent = db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate, LiveEventLink, BannerImage, ShowOnHomePage, Details, TrailerVideo from LiveEvents Where Id = @id", new { id = Id }, connectionStringName, false).SingleOrDefault();
+
+			
+
+
+			return myEvent;
+		}
+		public List<MyLiveEventModel> GetAllEvents()
+		{
+			return db.LoadData<MyLiveEventModel, dynamic>("Select Top 20 Id, Title, Theme, Summary, StartDate, EndDate, BannerImage from LiveEvents", new { }, connectionStringName, false).ToList();
+		}
+
+
 		public MyLiveEventModel GetLiveEvent()
 		{
 			MyLiveEventModel myEvent = db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate, LiveEventLink, BannerImage, ShowOnHomePage from LiveEvents Where ShowOnHomePage = 1 Order By StartDate DESC, Id DESC", new { }, connectionStringName, false).SingleOrDefault();
