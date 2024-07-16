@@ -72,7 +72,7 @@
 								</h2>
 								<p class="text-light">@Model.LiveEvent.Summary</p>
 								<div class="d-flex pt-4">
-									<a href="#" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="/Media/LiveEvent/EventDetails" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
 									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 								</div>
 							</div><!--section-title-box-->
@@ -109,7 +109,7 @@
 								</h2>
 								<p class="text-light">@Model.LiveEvent.Summary</p>
 								<div class="d-flex pt-4">
-									<a href="#" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="EventDetails" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
 									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 								</div>
 							</div><!--section-title-box-->

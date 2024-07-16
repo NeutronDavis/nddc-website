@@ -32,7 +32,7 @@
 								</h2>
 								<p class="text-light">@Model.LiveEvent.Summary</p>
 								<div class="d-flex pt-4">
-									<a href="#" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="EventDetails" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
 									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 								</div>
 							</div><!--section-title-box-->
@@ -68,7 +68,7 @@
 								</h2>
 								<p class="text-light">@Model.LiveEvent.Summary</p>
 								<div class="d-flex pt-4">
-									<a href="#" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
+									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="EventDetails" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
 									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 								</div>
 							</div><!--section-title-box-->
@@ -100,45 +100,26 @@
 	<div class="container">
 		<h1>Recent Events</h1>
 		<div class="row row-gutter-30">
-			<div class="col-lg-6 col-xl-4">
-				<div class="causes-card">
+				@foreach (var p in Model.AllEvents)
+			{
+				<div class="col-lg-6 col-xl-4">
+					<div class="causes-card">
 					<div class="">
-						<img src="/assets/image/bg/core-values.jpg" class="img-fluid" alt="img-117">
+							<img src="@Model._containerUrl@p.BannerImage" class="img-fluid" alt="img-117">
 					</div><!--  -->
 					<div class="causes-content p-2">
 						<!-- causes-card-funding -->
-						<h4> <a href="/Media/LiveEvents/EventDetails">Event Title</a> </h4>
-						<p>Event Summary</p>
-						<a href="/Media/LiveEvents/EventDetails" class="btn btn-primary">View Event</a>
+							<div class="">
+								<p>Date : @p.StartDate.ToString("dd/MM/yy") - @p.EndDate.ToString("dd/MM/yy")</p>
+
+							</div>
+							<h4> <a asp-route-Id="@p.Id" asp-page="EventDetails">@p.Title</a> </h4>
+						
+							<a asp-route-Id="@p.Id" asp-page="EventDetails" class="btn btn-primary">View Event</a>
 					</div><!-- causes-content -->
 				</div><!-- causes-card -->
 			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="causes-card">
-					<div class="">
-						<img src="/assets/image/bg/core-values.jpg" class="img-fluid" alt="img-117">
-					</div><!--  -->
-					<div class="causes-content p-2">
-						<!-- causes-card-funding -->
-						<h4> <a href="/Media/LiveEvents/EventDetails">Event Title</a> </h4>
-						<p>Event Summary</p>
-						<a href="/Media/LiveEvents/EventDetails" class="btn btn-primary">View Event</a>
-					</div><!-- causes-content -->
-				</div><!-- causes-card -->
-			</div>
-			<div class="col-lg-6 col-xl-4">
-				<div class="causes-card">
-					<div class="">
-						<img src="/assets/image/bg/core-values.jpg" class="img-fluid" alt="img-117">
-					</div><!--  -->
-					<div class="causes-content p-2">
-						<!-- causes-card-funding -->
-						<h4> <a href="/Media/LiveEvents/EventDetails">Event Title</a> </h4>
-						<p>Event Summary</p>
-						<a href="/Media/LiveEvents/EventDetails" class="btn btn-primary">View Event</a>
-					</div><!-- causes-content -->
-				</div><!-- causes-card -->
-			</div>
+			}
 		</div>
 	</div>
 </section>

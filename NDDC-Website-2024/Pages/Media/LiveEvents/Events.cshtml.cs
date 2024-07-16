@@ -12,6 +12,7 @@ namespace NDDC_Website_2024.Pages.Media.LiveEvents
 		public bool IsEventLive { get; set; }
 		public DateTime CountDownDate { get; set; }
 		public MyLiveEventModel LiveEvent { get; set; }
+        public List<MyLiveEventModel> AllEvents { get; set; }
         public EventsModel(IHomeData homeDb, IConfiguration configuration)
         {
 			this.homeDb = homeDb;
@@ -27,6 +28,7 @@ namespace NDDC_Website_2024.Pages.Media.LiveEvents
 			}
 
 			IsEventLive = homeDb.GoLive();
+			AllEvents = homeDb.GetAllEvents();
 		}
     }
 }
