@@ -2,6 +2,11 @@
 @model NDDC_Website_2024.Pages.Services.IReports.SendIreportModel
 @{
 }
+
+<div id="pageloader">
+    <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." />
+</div>
+
 <nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
         <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
             <li class="breadcrumb-item">
@@ -16,10 +21,10 @@
             <h1 class="section-title text-center">Send iReport</h1>
             <row class="d-flex justify-content-center">
                 <div class="col-lg-8">
-                    <form class="contact-form" method="post" enctype="multipart/form-data">
+                    <form class="contact-form" id="form" method="post" enctype="multipart/form-data">
                         @if (Model.Upload1 == null)
                         {
-                            <p>You must upload ast least one picture</p>
+                            <p>You must upload at least one picture</p>
                         }
                         <div class="row row-gutter-10">
                             <div class="col-12 col-lg-12">
@@ -110,3 +115,13 @@
     </div>
 </section>
 
+
+@section Scripts {
+<script>
+        $(document).ready(function () {
+            $("#form").on("submit", function () {
+                $("#pageloader").fadeIn();
+            });
+        });
+</script>
+}
