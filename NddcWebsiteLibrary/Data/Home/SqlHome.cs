@@ -220,21 +220,28 @@ namespace NddcWebsiteLibrary.Data.Home
 
 		public MyLiveEventModel GetLiveEvent()
 		{
-			MyLiveEventModel myEvent = db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, EndDate, LiveEventLink, BannerImage, ShowOnHomePage from LiveEvents Where ShowOnHomePage = 1 Order By StartDate DESC, Id DESC", new { }, connectionStringName, false).SingleOrDefault();
+			MyLiveEventModel myEvent = db.LoadData<MyLiveEventModel, dynamic>("Select Top 1 Id, Title, Theme, Summary, StartDate, StartTime, EndDate, EndTime, LiveEventLink, BannerImage, ShowOnHomePage from LiveEvents Where ShowOnHomePage = 1 Order By StartDate DESC, Id DESC", new { }, connectionStringName, false).SingleOrDefault();
 
    //         DateTime endDate = db.LoadData<DateTime, dynamic>("select top 1 EndDate from LiveEvents Order By STartDate DESC", new { }, connectionStringName, false).SingleOrDefault();
 
 			//DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By StartDate DESC", new { }, connectionStringName, false).SingleOrDefault();
 
-			DateTime currDate = DateTime.Now;
+			DateTime currDate = DateTime.Now.Date;
+
 			if (myEvent != null)
 			{
-                if (currDate <= myEvent.EndDate && myEvent.ShowOnHomePage == true)
-                {
-                    return myEvent;
-                }
-            }
-			
+				if (currDate <= myEvent.EndDate.Date && myEvent.ShowOnHomePage == true)
+				{
+					if (currDate.TimeOfDay <= myEvent.EndTime.TimeOfDay)
+					{
+                        return myEvent;
+                    }
+					
+				}
+			}
+
+
+			//return null;
 
 			return null;
 		}
@@ -264,10 +271,12 @@ namespace NddcWebsiteLibrary.Data.Home
 		{
 
 			DateTime startDate = db.LoadData<DateTime, dynamic>("select top 1 StartDate from LiveEvents Order By EndDate DESC", new { }, connectionStringName, false).SingleOrDefault();
+            DateTime startTime = db.LoadData<DateTime, dynamic>("select top 1 StartTime from LiveEvents Order By EndDate DESC", new { }, connectionStringName, false).SingleOrDefault();
 
-			double dateDiff = (startDate - DateTime.Now).TotalDays;
+            double dateDiff = (startDate - DateTime.Now).TotalDays;
+			double timeDiff = (startTime - DateTime.Now).TotalHours;
 
-			if (dateDiff <= 0)
+			if (dateDiff <= 0 && timeDiff <= 0)
 			{
 				return true;
 			}
