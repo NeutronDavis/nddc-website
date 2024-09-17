@@ -64,16 +64,33 @@
 					<div class="col-lg-5" style=" background-color:var(--thm-black);">
 						<div class="mayor-box" style=" padding-right: 1rem;">
 							<div class="section-title-box m-4">
-								<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
-									NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd")
-								</div><!-- section-tagline -->
+								@if (Model.LiveEvent.StartDate.ToString("dd") == Model.LiveEvent.EndDate.ToString("dd"))
+								{
+									<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+
+										@* NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd") *@
+										NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd")
+									</div>
+
+									<!-- section-tagline -->
+								}
+								else
+								{
+									<div class="lead pb-4 fw-bold" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+
+										@* NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") *@
+										NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd")
+									</div>
+
+									<!-- section-tagline -->
+								}
 								<h2 class="section-title mb-4 text-light" style="font-size: 40px;">
 									@Model.LiveEvent.Title
 								</h2>
 								<p class="text-light">@Model.LiveEvent.Summary</p>
 								<div class="d-flex pt-4">
 									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="/Media/LiveEvent/EventDetails" class="btn btn-primary px-3 py-2 me-3" style="">Learn More</a>
-									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T080000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success px-3 py-2 text-light fw-bold rounded-0"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
 								</div>
 							</div><!--section-title-box-->
 							<!--mayor-icon-box-->
