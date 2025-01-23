@@ -14,9 +14,9 @@ namespace NddcWebsiteLibrary.Model.Home
         public string Summary { get; set; }
         public string Details { get; set; }
         public DateTime StartDate { get; set; } = DateTime.Now;
-        public TimeOnly StartTime { get; set; } 
+        public DateTime StartTime { get; set; } 
         public DateTime EndDate { get; set; } = DateTime.Now.AddDays(1);
-        public TimeOnly EndTime { get; set; }
+        public DateTime EndTime { get; set; }
         public string BannerImage { get; set; }
         public string TrailerVideo { get; set; }
         public string LiveEventLink { get; set; }

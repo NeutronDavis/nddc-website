@@ -46,7 +46,7 @@ namespace NDDC_Website_2024.Pages
             LiveEvent = homeDb.GetLiveEvent();
             if (LiveEvent != null)
             {
-				CountDownDate = new DateTime(LiveEvent.StartDate.Year, LiveEvent.StartDate.Month, LiveEvent.StartDate.Day, 0, 00, 00);
+				CountDownDate = new DateTime(LiveEvent.StartDate.Year, LiveEvent.StartDate.Month, LiveEvent.StartDate.Day, LiveEvent.StartTime.Hour, LiveEvent.StartTime.Minute, 00);
 			}
             
             IsEventLive = homeDb.GoLive();
