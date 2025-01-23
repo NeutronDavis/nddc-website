@@ -202,14 +202,16 @@
 									<li><a href="/WhoWeAre/Vision">Our Mission and Vision  </a></li>
 									<li><a href="/WhoWeAre/MasterPlan">Our Master Plan</a></li>
 									<li><a href="/WhoWeAre/Board">Our Board</a></li>
+									<li><a href="">Our Directors</a></li>
 									@* <li><a href="/WhoWeAre/ManagementStaff">Our Management Staff</a></li> *@
 								</ul><!-- list-unstyled -->
 							</li><!-- has-dropdown -->
 							<li class="has-dropdown">
 								<a href="#">What We Do</a>
 								<ul class="list-unstyled">
-									<li><a href="/WhatWeDo/Projects">Transformational Projects</a></li>
+									<li><a href="/Services/ProjectDatabase/index">Transformational Projects</a></li>
 									<li><a href="/WhatWeDo/Programs">Impactful Programs</a></li>
+									<li><a href="/WhatWeDo/Projects">Partnerships</a></li>
 								</ul><!-- list-unstyled -->
 							</li><!-- has-dropdown -->
 							<li class="has-dropdown">
@@ -239,7 +241,6 @@
 									<li><a href="/Services/Jobs">Scolarships</a></li>
 									<li><a href="/Services/OnlineForms">Online Forms</a></li>
 									<li><a href="/Services/Tenders">Adverts</a></li>
-									<li><a href="/ServiceGate/index">Service Gate</a></li>
 									<li><a href="/Services/IReports/index">I-reports</a></li>
 									@* <li><a href="/Media/Sights">Sights And Icons</a></li> *@
 								</ul><!-- list-unstyled -->
@@ -307,12 +308,10 @@
 							<div class="footer-widget-explore">
 								<h4 class="footer-widget-title">Explore</h4>
 								<ul class="list-unstyled">
-									<li><a href="department-details.html">Our Mission and Vision</a></li>
-									<li><a href="service-details.html">Our People</a></li>
-									<li><a href="event-details.html">Our Master Plan</a></li>
-									<li><a href="team-details.html">News and Updates</a></li>
-									<li><a href="contact.html">Our Publications</a></li>
-									<li><a href="contact.html">Sights and Icons</a></li>
+									<li><a href="/WhoWeAre/Vision">Our Mission and Vision</a></li>
+									<li><a href="/WhoWeAre/Board">Our Board</a></li>
+									<li><a href="/WhoWeAre/MasterPlan">Our Master Plan</a></li>
+									<li><a href="/News/News">News</a></li>
 								</ul><!-- list-unstyled -->
 							</div><!-- footer-widget-explore -->
 						</div><!--footer-widget-->
@@ -323,10 +322,10 @@
 								<h4 class="footer-widget-title">Digital Services</h4>
 								<ul class="list-unstyled">
 									<li><a href="/Services/ProjectDatabase/index">NDDC Projects Database</a></li>
-									<li><a href="department-details.html">NDDC Project Hope</a></li>
+									<li><a href="/Media/LiveEvents/Events">NDDC Live</a></li>
 									<li><a href="/Services/Jobs">Scholarships</a></li>
 									<li><a href="/Services/Tenders">Tenders and Adverts</a></li>
-									<li><a href="department-details.html">Servicom</a></li>
+									<li><a href="/ServiceGate/index">Service Gate</a></li>
 									<li><a href="/Services/IReports/index">i-Reports</a></li>
 								</ul><!-- list-unstyled -->
 							</div><!-- footer-widget-department -->
@@ -357,7 +356,7 @@
 		</div><!--footer-inner-->
 		<div class="bottom-footer">
 			<div class="conatiner">
-				<p>© Copyright 2023 Niger Delta Development Commisson</p>
+				<p>© Copyright <span id="year"></span> Niger Delta Development Commisson</p>
 			</div><!-- container -->
 		</div><!--bottom-footer-->
 	</section>
@@ -509,7 +508,9 @@
 
 	<script src="assets/js/theme.js"></script>
 	<script src="/js/LineChart.js"></script>
-
+	<script>
+		document.getElementById("year").innerHTML = new Date().getFullYear();
+	</script>
 	<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js"></script>
 
 	<!-- Light Gallery -->
