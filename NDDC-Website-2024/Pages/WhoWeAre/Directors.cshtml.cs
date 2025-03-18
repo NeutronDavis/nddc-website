@@ -8,11 +8,13 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
     public class DirectorsModel : PageModel
     {
         private readonly NDDCWebsiteContext context;
+        public readonly string _containerUrl;
         public List<Director> MyDirectors { get; set; }
 
-        public DirectorsModel(NDDCWebsiteContext context)
+        public DirectorsModel(NDDCWebsiteContext context, IConfiguration configuration)
         {
             this.context = context;
+            _containerUrl = configuration.GetConnectionString("AWSContainerUrl");
         }
         public void OnGet()
         {
