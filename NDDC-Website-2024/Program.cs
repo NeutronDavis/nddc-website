@@ -1,5 +1,7 @@
+using EFCore_Lib.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using NDDC_Website_2024.Validators;
 using NddcWebsiteLibrary.Data.CloudStorage;
 using NddcWebsiteLibrary.Data.Home;
@@ -20,6 +22,10 @@ builder.Services.AddTransient<IHomeData, SqlHome>();
 builder.Services.AddTransient<IProjectsData, SqlProjects>();
 builder.Services.AddTransient<IReportData, SqlIReport>();
 builder.Services.AddTransient<ICloudStorage, AWSCloudStorage>();
+builder.Services.AddDbContext<NDDCWebsiteContext>(options =>
+    options
+    .UseSqlServer(builder.Configuration.GetConnectionString("SqlDb"))
+    );
 
 var app = builder.Build();
 
