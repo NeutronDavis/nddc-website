@@ -1,3 +1,4 @@
+using EFCore_Lib.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NddcWebsiteLibrary.Data.Home;
@@ -6,16 +7,16 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
 {
     public class DirectorsModel : PageModel
     {
-        private readonly IHomeData homedb;
-        public readonly string _containerUrl;
+        private readonly NDDCWebsiteContext context;
+        public List<Director> MyDirectors { get; set; }
 
-        public DirectorsModel(IHomeData homedb, IConfiguration configuration)
+        public DirectorsModel(NDDCWebsiteContext context)
         {
-            this.homedb = homedb;
-            _containerUrl = configuration.GetConnectionString("AWSContainerUrl");
+            this.context = context;
         }
         public void OnGet()
         {
+            MyDirectors = context.Directors.ToList();
         }
     }
 }

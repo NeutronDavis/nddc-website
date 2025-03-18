@@ -1,0 +1,56 @@
+﻿@page
+@model NDDC_Website_2024.Pages.WhoWeAre.DirectorsModel
+@{
+}
+<section class="header-img" style="background-image: url(/assets/image/bg/directors3.jpg);background-position-y: bottom;">
+	<div class="container">
+		<div class="page-breadcrumbs">
+			<ul class="list-unstyled">
+				<li><a href="index.html">Home</a></li>
+				<li>Who we are</li>
+			</ul><!-- list-unstyled -->
+		</div><!-- page-breadcrumbs -->
+		<div class="page-banner-title">
+			<h3>Our Directors</h3>
+		</div><!-- page-banner-title -->
+	</div><!-- container -->
+</section><!--page-banner-->
+<section class="team-section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-12 col-md-12 col-lg-6 col-xl-6 ">
+				<div class="team-inner">
+					<div class="section-title-box text-center">
+						<h2 class="section-title fs-3">All Directors</h2>
+					</div><!-- section-title-box -->
+				</div><!--team-inner-->
+			</div><!--col-12 col-md-12 col-lg-6 col-xl-6-->
+		</div><!-- row -->
+
+		<div class="row row-gutter-y-30">
+			 @foreach (var p in Model.MyDirectors)
+			{
+				<div class="col-12 col-md-6 col-xl-3">
+				<div class="team-card">
+					<div class="team-card-img">
+						<img src="/assets/image/portfolio/director-rivers-state.jpg" class="img-fluid" alt="img-78">
+						<div class="team-card-icon">
+						</div><!-- team-card-icon -->
+					</div><!-- team-card-img -->
+					<div class="team-card-content">
+						<h4 style="height: 3rem;">
+							<a href="#">@p.DirectorName</a>
+						</h4>
+						<p style="height: 4rem;">@p.Position</p>
+						<a class="btn btn-primary">Know more</a>
+					</div><!-- team-card-content -->
+				</div>
+			</div>
+			}
+
+			
+			
+
+		</div><!-- row -->
+	</div>
+</section><!--team-section-->
