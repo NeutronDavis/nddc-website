@@ -18,7 +18,7 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
         }
         public void OnGet()
         {
-            MyDirectors = context.Directors.ToList();
+            MyDirectors = context.Directors.OrderByDescending(p => p.PositionCount).ToList();
         }
     }
 }
