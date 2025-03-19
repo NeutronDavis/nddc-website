@@ -1,4 +1,51 @@
-﻿@page
+﻿@page "{Id:int?}"
 @model NDDC_Website_2024.Pages.WhoWeAre.DirectorDetailsModel
 @{
 }
+<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
+	<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+		<li class="breadcrumb-item">
+			<a href="/News/News" style="font-size: smaller;color: #003b49;">Our Board</a>
+		</li>
+		<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Board Details</li>
+	</ol><!-- list-unstyled -->
+</nav>
+
+<section class="testimonial-two-section">
+	<div class="testimonial-two-inner" style="background-image: url(/assets/image/bg/board-bg.png);">
+		<div class="container">
+			<div class="row">
+				<div class="col-12 col-lg-6 col-xl-6">
+					<div class="testimonial-two-content">
+						<div class="section-title-box">
+							<div class="section-tagline">
+								@Model.DirectorDetails.Position
+							</div><!-- section-tagline -->
+							<h2 class="section-title">@Model.DirectorDetails.DirectorName</h2>
+							@* <h4 class="fw-normal">Chiedu Ebie: The Technocrat and Beacon of the Niger Delta Region</h4> *@
+						</div><!--section-title-box-->
+					</div><!--testimonial-two-content-->
+					<!--testimonial-author-thumb-->
+				</div><!--col-lg-4-->
+				<!-- col-lg-5 -->
+				<div class="col-lg-6">
+					<div class="testimonial-two-img">
+						<img src="@Model._containerUrl@Model.DirectorDetails.ImageUrl" width="300" alt="img-51">
+					</div><!-- testimonial-two-img -->
+				</div><!--col-lg-3-->
+
+			</div><!-- row -->
+
+		</div><!-- container -->
+	</div><!-- testimonial-two-inner -->
+	<div class="col-12 p-5 mt-5 justify-content-center d-flex">
+		<div class="col-8 text-dark d-block">
+			<p class="text-dark lh-lg">
+				@Html.Raw(@Model.DirectorDetails.Details)
+			</p>
+
+		</div>
+
+	</div>
+
+</section>
