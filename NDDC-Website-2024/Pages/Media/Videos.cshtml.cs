@@ -15,7 +15,7 @@ namespace NDDC_Website_2024.Pages.Media
 		}
         public void OnGet()
         {
-			Videos = homeDb.DisplayVideos();
+			Videos = homeDb.DisplayAllVideos();
 		}
     }
 }
