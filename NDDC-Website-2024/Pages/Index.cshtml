@@ -1,4 +1,4 @@
-﻿@page
+@page
 @using System.Web
 @using System.Text.RegularExpressions
 @model IndexModel
@@ -583,8 +583,12 @@ else if (Model.LiveEvent == null)
 			display: flex !important;
 			flex-direction: column !important;
 			justify-content: center !important;
+			align-items: flex-start !important;
 			height: 100vh !important;
 			padding-bottom: 100px !important; /* Offset for nav height */
+		}
+		.slider-content .btn {
+			width: fit-content !important;
 		}
 		.item {
 			height: 100vh !important;
