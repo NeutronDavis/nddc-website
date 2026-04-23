@@ -4728,8 +4728,6 @@ a.search-toggler{
 .team-card-img img{
 	height: 210px;
 	width: 210px;
-	object-fit: cover;
-	object-position: top;
 	padding: 10px 10px;
 	background-color: var(--thm-white);
 	border-radius: 50%;
