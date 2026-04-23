@@ -200,6 +200,31 @@ a{
 .row-gutter-y-60 {
 	--bs-gutter-y: 60px;
 }
+
+/* Image Utilities */
+.img-cover {
+	object-fit: cover !important;
+}
+.img-contain {
+	object-fit: contain !important;
+}
+.img-top {
+	object-position: top !important;
+}
+.aspect-ratio-16-9 {
+	aspect-ratio: 16 / 9;
+}
+.aspect-ratio-4-3 {
+	aspect-ratio: 4 / 3;
+}
+.aspect-ratio-1-1 {
+	aspect-ratio: 1 / 1;
+}
+.image-sharp {
+	image-rendering: -webkit-optimize-contrast;
+	image-rendering: crisp-edges;
+	-ms-interpolation-mode: bicubic;
+}
 .row-gutter-y-80 {
 	--bs-gutter-y: 80px;
 }
@@ -2694,9 +2719,16 @@ a.search-toggler{
 .service-two-imgbox{
 	background-color: var(--thm-white);	
 	position: relative;
+	height: 280px;
+	overflow: hidden;
+}
+.service-two-image {
+	height: 100%;
 }
 .service-two-image img{
 	width: 100%;
+	height: 100%;
+	object-fit: cover;
 }
 .service-two-image a{
 	position: absolute;
@@ -3313,6 +3345,8 @@ a.search-toggler{
 }
 .portfolio-card img{
   width: 100%;
+  height: 300px;
+  object-fit: cover;
 }
 .portfolio-card-meta{
 	position: absolute;
@@ -4694,6 +4728,8 @@ a.search-toggler{
 .team-card-img img{
 	height: 210px;
 	width: 210px;
+	object-fit: cover;
+	object-position: top;
 	padding: 10px 10px;
 	background-color: var(--thm-white);
 	border-radius: 50%;

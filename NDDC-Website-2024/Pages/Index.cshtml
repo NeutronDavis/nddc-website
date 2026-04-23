@@ -1,4 +1,4 @@
-﻿@page
+@page
 @using System.Web
 @using System.Text.RegularExpressions
 @model IndexModel
@@ -98,7 +98,7 @@
 						</div><!--mayor-box-->
 					</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
 						<div class="">
-							<img src="@Model._containerUrl@Model.LiveEvent.BannerImage" alt="img-138" style="width: -webkit-fill-available;" class="mw-100" height="600">
+							<img src="@Model._containerUrl@Model.LiveEvent.BannerImage" alt="Banner Image" class="mw-100 w-100 img-cover" style="height: 600px;">
 						</div><!--mayor-img-->
 					</div>
 
@@ -157,7 +157,7 @@
 					<div class="service-two-card">
 						<div class="service-two-imgbox">
 							<div class="service-two-image">
-								<img src="/assets/image/services/about-1.jpg" class="img-fluid" alt="img-28" width="375" height="288">
+								<img src="/assets/image/services/about-1.jpg" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Mission Image">
 								<a href="service-details.html"></a>
 							</div><!-- service-two-image -->
 						</div><!-- service-two-imgbox -->
@@ -175,7 +175,7 @@
 					<div class="service-two-card">
 						<div class="service-two-imgbox">
 							<div class="service-two-image">
-								<img src="assets/image/services/service-5.png" class="img-fluid" alt="img-29">
+								<img src="assets/image/services/service-5.png" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Vision Image">
 								<a href="service-details.html"></a>
 							</div><!-- service-two-image -->
 						</div><!-- service-two-imgbox -->
@@ -215,18 +215,18 @@
 					<div class="about-two-image">
 						<div id="imageHolder" class="">
 							<div class="imageHolderDiv">
-								<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
-								<img src="/assets/image/gallery/MD.png" alt="MD- Samuel Ogbuku">
-								<img src="/assets/image/gallery/EDFA.png" alt="EDFA- Boma Iyaye">
-								<img src="/assets/image/gallery/EDP.png" alt="EDP- Victor Etim Antai">
-								<img src="/assets/image/gallery/EDCS.png" alt="EDCS- Ifedayo Abegunde">
+								<img src="/assets/image/gallery/Chairman.png" style="object-fit: cover; object-position: top;" alt="Chairman- Chiedu Ebie">
+								<img src="/assets/image/gallery/MD.png" style="object-fit: cover; object-position: top;" alt="MD- Samuel Ogbuku">
+								<img src="/assets/image/gallery/EDFA.png" style="object-fit: cover; object-position: top;" alt="Executive Director, Finance and Administration (EDFA)- Boma Iyaye">
+								<img src="/assets/image/gallery/EDP.png" style="object-fit: cover; object-position: top;" alt="Executive Director, Projects (EDP)- Victor Etim Antai">
+								<img src="/assets/image/gallery/EDCS.png" style="object-fit: cover; object-position: top;" alt="Executive Director of Corporate Services (EDCS)- Ifedayo Abegunde">
 							</div>
 						</div>
 					</div><!--about-two-image-->
 				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
 				<div class="col-lg-12 col-xl-6 col-xxl-6">
 					<div class="d-flex position-relative pb-4" href="/WhatWeDo/Scholarship">
-						<img src="/assets/image/NDDC-Scholarship11.jpg" class="img-fluid mw-100 h-100" alt="img-2">
+						<img src="/assets/image/NDDC-Scholarship11.jpg" class="img-fluid mw-100 w-100" style="height: 400px !important; object-fit: cover !important; object-position: top !important;" alt="Scholarship Image">
 @* 						<a href="/WhatWeDo/Scholarship" class="btn btn-primary p-1 p-lg-3 p-xxl-4 mb-lg-5" style="position: absolute;right: 3rem;bottom: .5rem;padding: 1vh;">Learn More</a>
  						<a href="/WhatWeDo/Scholarship" class="btn btn-primary rounded ms-3 px-3 ms-lg-5 p-1 p-lg-3 p-xxl-4 mb-1 mb-lg-5" style="position: absolute;bottom: 1.5rem;padding: 1vh;">Learn More</a>
 *@
@@ -279,7 +279,7 @@
 {
 <!--Prominent News Section-->
 
-	<section class="cta-one" style="background: url(@Model._containerUrl@Model.CriticalUpdate.ImageUrl) #003b4980;background-position: center;background-blend-mode: multiply;background-size: cover;background-repeat: no-repeat;">
+	<section class="cta-one" style="background: url(@Model._containerUrl@Model.CriticalUpdate.ImageUrl) #003b4980;background-position: top center !important;background-blend-mode: multiply !important;background-size: cover !important;background-repeat: no-repeat !important;">
 		<div class="cta-one-inner">
 			<div class="container">
 				<div class="row">
@@ -330,7 +330,7 @@
 					<div class="service-two-card">
 						<div class="service-two-imgbox">
 							<div class="service-two-image">
-								<img src="/assets/image/services/about-1.jpg" class="img-fluid" alt="img-28" width="375" height="288">
+								<img src="/assets/image/services/about-1.jpg" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Mission Image">
 								<a href="service-details.html"></a>
 							</div><!-- service-two-image -->
 						</div><!-- service-two-imgbox -->
@@ -348,7 +348,7 @@
 					<div class="service-two-card">
 						<div class="service-two-imgbox">
 							<div class="service-two-image">
-								<img src="assets/image/services/service-5.png" class="img-fluid" alt="img-29">
+								<img src="assets/image/services/service-5.png" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Vision Image">
 								<a href="service-details.html"></a>
 							</div><!-- service-two-image -->
 						</div><!-- service-two-imgbox -->
@@ -390,11 +390,11 @@
 					<div class="about-two-image">
 						<div id="imageHolder" class="">
 							<div class="imageHolderDiv">
-								<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
-								<img src="/assets/image/gallery/MD.png" alt="MD- Samuel Ogbuku">
-								<img src="/assets/image/gallery/EDFA.png" alt="EDFA- Boma Iyaye">
-								<img src="/assets/image/gallery/EDP.png" alt="EDP- Victor Etim Antai">
-								<img src="/assets/image/gallery/EDCS.png" alt="EDCS- Ifedayo Abegunde">
+								<img src="/assets/image/gallery/Chairman.png" style="object-fit: cover; object-position: top;" alt="Chairman- Chiedu Ebie">
+								<img src="/assets/image/gallery/MD.png" style="object-fit: cover; object-position: top;" alt="MD- Samuel Ogbuku">
+								<img src="/assets/image/gallery/EDFA.png" style="object-fit: cover; object-position: top;" alt="Executive Director, Finance and Administration (EDFA)- Boma Iyaye">
+								<img src="/assets/image/gallery/EDP.png" style="object-fit: cover; object-position: top;" alt="Executive Director, Projects (EDP)- Victor Etim Antai">
+								<img src="/assets/image/gallery/EDCS.png" style="object-fit: cover; object-position: top;" alt="Executive Director of Corporate Services (EDCS)- Ifedayo Abegunde">
 							</div>
 						</div>
 					</div><!--about-two-image-->
@@ -569,6 +569,27 @@ else if (Model.LiveEvent == null)
 	</section>
 	<!--Splide Slider Section--> *@
 	<!-- Redo for Website Carousel -->
+	<style>
+		.splide__slide {
+			height: 100vh !important;
+		}
+		.item-splide-bg {
+			height: 100vh !important;
+			min-height: 100vh !important;
+			background-size: cover !important;
+			background-position: center center !important;
+		}
+		.slider-content {
+			display: flex !important;
+			flex-direction: column !important;
+			justify-content: center !important;
+			height: 100vh !important;
+			padding-bottom: 100px !important; /* Offset for nav height */
+		}
+		.item {
+			height: 100vh !important;
+		}
+	</style>
 	<!--Splide Slider Section-->
 	<section class="splide" aria-labelledby="carousel-heading">
 		<div class="splide__track">
@@ -756,7 +777,7 @@ else if (Model.LiveEvent == null)
 				<div class="col-lg-6">
 					<div class="about-image">
 						<div class="about-image-inner img-one">
-							<img src="assets/image/gallery/about-1.png" class="img-fluid mw-100 h-100" alt="img-2">
+							<img src="assets/image/gallery/about-1.png" class="img-fluid w-100" style="height: 400px !important; object-fit: cover !important;" alt="About Image 1">
 							<div class="about-caption-image">
 								<div class="about-two-service-video">
 									<a href="https://www.youtube.com/watch?v=8I02WAUjkyM" class="video-popup">
@@ -767,7 +788,7 @@ else if (Model.LiveEvent == null)
 						</div><!--about-image-inner img-one-->
 						<div class="about-image-inner img-two">
 							<img src="assets/image/shapes/about-3.jpg" class="floated-image" alt="img-3">
-							<img src="assets/image/gallery/about-2.png" class="img-fluid mw-100 h-100" alt="img-4">
+							<img src="assets/image/gallery/about-2.png" class="img-fluid w-100" style="height: 300px !important; object-fit: cover !important;" alt="About Image 2">
 						</div><!--about-image-inner img-two-->
 					</div><!--about-image-->
 				</div><!--col-lg-6-->
@@ -793,7 +814,7 @@ else if (Model.LiveEvent == null)
     <!--Welcome Section-->
 
 	<div class="d-flex position-relative pb-4" href="/WhatWeDo/Scholarship">
-        <img src="/assets/image/NDDC-Scholarship11.jpg" class="img-fluid mw-100 h-100" alt="img-2">
+        <img src="/assets/image/NDDC-Scholarship11.jpg" class="img-fluid mw-100 w-100" style="height: 400px !important; object-fit: cover !important; object-position: top !important;" alt="Scholarship Image">
         @* 		<a href="/WhatWeDo/Scholarship" class="btn btn-primary p-1 p-lg-3 p-xxl-4 mb-lg-5" style="position: absolute;right: 3rem;bottom: .5rem;padding: 1vh;">Read More</a>
 		<a href="/WhatWeDo/Scholarship" class="btn btn-primary rounded ms-3 px-3 ms-lg-5 p-1 p-lg-3 p-xxl-4 mb-1 mb-lg-5" style="position: absolute;bottom: 1.5rem;padding: 1vh;">Learn More</a>
     *@
@@ -820,7 +841,7 @@ else if (Model.LiveEvent == null)
 				<div class="col-lg-4">
 					<div class="blog-card">
 						<div class="blog-card-image">
-							<img src="@Model._containerUrl@item.ImageUrl" width="600" height="200" class="mw-100" alt="img-22">
+							<img src="@Model._containerUrl@item.ImageUrl" class="mw-100 w-100" style="height: 250px !important; object-fit: cover !important; object-position: top !important;" alt="News Point Image">
 							<a href="news-details.html"></a>
 						</div><!-- blog-card-image -->
 						<div class="blog-card-date">
@@ -1099,7 +1120,7 @@ else if (Model.LiveEvent == null)
 							<div class="item">
 								<div class="portfolio-card">
 									<img src="@Model._containerUrl@item.ImageUrl" 
-									class="img-fluid" alt="img-9">
+									class="img-fluid w-100" style="aspect-ratio: 1/1 !important; object-fit: cover !important;" alt="Photo Speak Image">
 									<div class="portfolio-card-meta">
 										<div style="font-size: 16px;color: var(--thm-black); font-weight: 800;" class="portfolio-card-text">
 											<div>@item.Location</div>
@@ -1195,7 +1216,7 @@ else if (Model.LiveEvent == null)
 					<div class="event-content-box">
 						<div class="section-text">
 							<p>
-								The Niger Delta Development Commission is Governed by seaseoned experts from accross the region that help navigate the affairs of the Commission.
+								The Niger Delta Development Commission is Governed by seasoned experts from across the region that help navigate the affairs of the Commission.
 							</p>
 						</div><!-- section-text -->
 					</div><!--event-content-box-->
@@ -1228,7 +1249,7 @@ else if (Model.LiveEvent == null)
 						 
 						<div class="team-card-content">
 							<h4><a href="/WhoWeAre/BoardDetails/7">Mr. Victor Antai</a></h4>
-							<p>EDP</p>
+							<p>Executive Director, Projects (EDP)</p>
 						</div><!-- team-card-content -->
 					</div>
 					<div class="team-card">
@@ -1238,7 +1259,7 @@ else if (Model.LiveEvent == null)
 						 
 						<div class="team-card-content">
 							<h4><a href="/WhoWeAre/BoardDetails/9">Mr. Ifedayo Abegunde</a></h4>
-							<p>EDCS</p>
+							<p>Executive Director of Corporate Services (EDCS)</p>
 						</div><!-- team-card-content -->
 					</div>
 						<div class="team-card">
@@ -1247,7 +1268,7 @@ else if (Model.LiveEvent == null)
 								</div><!-- team-card-icon -->
 							<div class="team-card-content">
 								<h4><a href="/WhoWeAre/BoardDetails/8">Mr. Boma Iyaye</a></h4>
-								<p>EDFA</p>
+								<p>Executive Director, Finance and Administration (EDFA)</p>
 							</div><!-- team-card-content -->
 						</div>
 					</div>
@@ -1322,7 +1343,7 @@ else if (Model.LiveEvent == null)
 				<div class="col-lg-4">
 					<div class="blog-card">
 						<div class="blog-card-image">
-							<img src="@Model._containerUrl@item.ImageUrl" width="350" height="300" class="img-fluid mw-100 h-100" alt="img-22">
+							<img src="@Model._containerUrl@item.ImageUrl" class="mw-100 w-100" style="height: 250px !important; object-fit: cover !important; object-position: top !important;" alt="News Point Image">
 							<a href="news-details.html"></a>
 						</div><!-- blog-card-image -->
 						<div class="blog-card-date">
@@ -1331,7 +1352,7 @@ else if (Model.LiveEvent == null)
 						<div class="blog-card-content">
 							<div class="blog-card-meta">
 								<span class="author">
-									By: <a href="news-details.html">Cooperate Affairs Dept.</a>
+									By: <a href="news-details.html">Corporate Affairs Dept.</a>
 								</span><!-- author -->
 								@* <span class="comment">
 									<a href="news-details.html">02 Comments</a>
@@ -1412,7 +1433,7 @@ else if (Model.LiveEvent == null)
 					<div class="section-tagline">Government Service</div><!-- section-tagline -->
 					<h2 class="section-title text-white">Explore our Online<br> Project Database <br> &amp; Resources</h2>
 					<div class="section-text">
-						<p>Get current updates on our Projects and Programs cut accross the Nine States of the Niger Delta Region, gain deep insights and analysis of developmental trends within the region and the impact of our Projects and Programs on our people along with developmental projections</p>
+						<p>Get current updates on our Projects and Programs cut across the Nine States of the Niger Delta Region, gain deep insights and analysis of developmental trends within the region and the impact of our Projects and Programs on our people along with developmental projections</p>
 					</div><!-- section-text -->
 
 					<div class="department-search-section">
@@ -1724,7 +1745,7 @@ else if (Model.LiveEvent == null)
 			{
 				<div class="splide__slide" style="width: 239.5px; margin-right: 20px;">
 					<img src="@Model._containerUrl@item.ImageUrl"
-						 class="img-fluid pe-3" alt="img-9">
+						 class="img-fluid w-100 aspect-ratio-1-1 img-cover pe-3" alt="Photo Speak Image">
 					<div class="portfolio-card-meta">
 						<div class="portfolio-card-text"><a href="portfolio-details.html">@item.Location</a></div>
 						<div class="portfolio-card-title"><a href="portfolio-details.html">@item.Title</a></div>

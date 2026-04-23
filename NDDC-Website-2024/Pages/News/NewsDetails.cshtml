@@ -1,4 +1,4 @@
-﻿@page "{nid:int?}"
+@page "{nid:int?}"
 @using System.Web
 @using System.Text.RegularExpressions
 @model NDDC_Website_2024.Pages.News.NewsDetailsModel
@@ -57,7 +57,7 @@
 			<div class="col-lg-8">
 				<div class="news-details-box-image">
 					<div class="news-details-box-image-inner">
-						<img src="@Model._containerUrl@Model.NewsDetails.ImageUrl" class="img-fluid" alt="img-193">
+						<img src="@Model._containerUrl@Model.NewsDetails.ImageUrl" class="img-fluid w-100" style="max-height: 600px; object-fit: cover; object-position: top;" alt="News Detail Image">
 						<a href="news-details.html" class="news-details-box-date">@Model.NewsDetails.PublishDate.ToString("dd - MMM")</a>
 					</div><!-- news-details-box-image-inner -->
 				</div><!-- news-details-box-image -->
@@ -119,7 +119,7 @@
 					{
 						<div class="col-lg-4 col-md-4">
 							<div class="portfolio-card">
-								<img src="@Model._containerUrl@item.ImageUrl" class="img-fluid" alt="img-97" height="557" width="500">
+								<img src="@Model._containerUrl@item.ImageUrl" class="img-fluid w-100 h-100 img-cover" alt="Gallery Image">
 
 							</div><!--portfolio-card-->
 						</div>

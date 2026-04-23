@@ -1,4 +1,4 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Media.PhotoAlbumModel
 @{
 }
@@ -36,7 +36,7 @@
 					{
 				<div class="col-lg-4 col-md-4">
 					<div class="portfolio-card">
-						<img src="@Model._containerUrl@item.ImageUrl" class="img-fluid" alt="img-97">
+						<img src="@Model._containerUrl@item.ImageUrl" class="img-fluid w-100" style="height: 300px !important; object-fit: cover !important;" alt="Gallery Image">
 						<div class="portfolio-card-meta">
 							<div style="font-size: 16px;color: var(--thm-black); font-weight: 800;" class="portfolio-card-text"><div>@item.Location</div></div>
 							<div class="portfolio-card-title"><div>@item.Title</div></div>

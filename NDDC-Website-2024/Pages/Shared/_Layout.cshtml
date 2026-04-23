@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -188,7 +188,7 @@
 			<div class="main-menu-inner">
 				<div class="main-menu-left">
 					<div class="main-menu-logo">
-						<a href="/index"><img src="~/assets/image/NDDC_Logo_.png" alt="img-1" width="200"></a>
+						<a href="/index"><img src="~/assets/image/NDDC_Logo_.png" alt="img-1" width="160"></a>
 					</div><!-- main-menu-logo -->
 					<div class="navigation">
 						<ul class="main-menu-list list-unstyled">
@@ -272,12 +272,29 @@
 					</div><!-- main-menu-right-button -->*@
 
 					<div class=" main-menu-right-button me-xl-5">
-						<a href="https://25anniversary.nddc.gov.ng/"><img src="/assets/image/nddc-link-2.png" alt="img-1" width="190" height="55"></a>
+						<a href="https://25anniversary.nddc.gov.ng/"><img src="/assets/image/nddc-link-2.png" alt="img-1" width="150" height="45"></a>
 @* 						<a href="/Media/LiveEvents/Events"><img src="/assets/image/NDDC-Live-Logo.jpg" alt="img-1" width="150"></a>
  *@					</div><!-- main-menu-logo -->
 				</div><!-- main-menu-right -->
 			</div><!-- main-menu-inner -->
 		</div><!-- main-menu -->
+		<style>
+			.main-menu-logo {
+				min-width: 180px !important;
+				padding: 20px 15px !important;
+			}
+			.navigation {
+				padding-left: 20px !important;
+				padding-right: 10px !important;
+			}
+			.main-menu-list > li > a {
+				padding: 30px 10px !important;
+				font-size: 14px !important;
+			}
+			.main-menu-inner {
+				padding-right: 10px !important;
+			}
+		</style>
 	</header>
 	<div class="page-wrapper">
 		@RenderBody()
