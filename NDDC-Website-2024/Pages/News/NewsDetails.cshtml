@@ -1,4 +1,4 @@
-@page "{nid:int?}"
+﻿@page "{nid:int?}"
 @using System.Web
 @using System.Text.RegularExpressions
 @model NDDC_Website_2024.Pages.News.NewsDetailsModel
@@ -9,7 +9,7 @@
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v19.0" nonce="ijI1VuoW"></script>
 
 <nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+		<ol class="breadcrumb bg-dark list-unstyled justify-content-end border-bottom p-2 pe-5" style="--bs-bg-opacity: .1;">
 			<li class="breadcrumb-item">
 				<a href="/News/News" style="font-size: smaller;color: #003b49;">News</a>
 			</li>
@@ -80,6 +80,9 @@
 				
 				<div class="news-details-content-box">
 					<h4>@Model.NewsDetails.Subject</h4>
+					<div class="fw-semibold pb-3">
+						@Html.Raw(Model.NewsDetails.Summary)
+					</div>
 					<div class="pb-3">
 						@Html.Raw(Model.NewsDetails.Details)
 					</div>
