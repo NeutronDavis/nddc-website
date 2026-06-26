@@ -23,7 +23,9 @@ steps:
 
 - script: |
     mkdir -p ~/.ssh
-    echo "$(HETZNER_SSH_KEY)" > ~/.ssh/hetzner_key
+    cat > ~/.ssh/hetzner_key << 'EOF'
+$(HETZNER_SSH_KEY)
+EOF
     chmod 600 ~/.ssh/hetzner_key
     ssh-keyscan -H $(HETZNER_HOST) >> ~/.ssh/known_hosts
 
