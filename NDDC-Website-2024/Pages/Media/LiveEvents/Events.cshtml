@@ -173,7 +173,7 @@
 				<div class="col-lg-6">
 					<a class="causes-card" asp-route-Id="@p.Id" asp-page="EventDetails" style="position: relative;">
 					<div class="">
-							<img src="@Model._containerUrl@p.BannerImage" class="img-fluid" alt="img-117" style="aspect-ratio: 2;">
+							<img src="@Model._containerUrl@p.BannerImage" class="img-fluid" alt="@p.Title" loading="lazy" style="aspect-ratio: 2;">
 					</div><!--  -->
 					<div class="causes-content p-3">
 						<!-- causes-card-funding -->
