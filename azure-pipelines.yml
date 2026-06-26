@@ -21,11 +21,14 @@ steps:
     dotnet publish $(projectPath) -c Release --no-build -o $(Build.ArtifactStagingDirectory)/publish
   displayName: Build and publish
 
+- task: DownloadSecureFile@1
+  name: hetznerKey
+  inputs:
+    secureFile: hetzner_deploy_key
+
 - script: |
     mkdir -p ~/.ssh
-    cat > ~/.ssh/hetzner_key << 'EOF'
-$(HETZNER_SSH_KEY)
-EOF
+    cp "$(hetznerKey.secureFilePath)" ~/.ssh/hetzner_key
     chmod 600 ~/.ssh/hetzner_key
     ssh-keyscan -H $(HETZNER_HOST) >> ~/.ssh/known_hosts
 
