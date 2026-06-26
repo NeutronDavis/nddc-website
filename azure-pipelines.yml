@@ -1,5 +1,5 @@
 trigger:
-- main
+- master
 
 pool:
   vmImage: ubuntu-latest
@@ -34,8 +34,18 @@ steps:
     scp -i ~/.ssh/hetzner_key -r $(Build.ArtifactStagingDirectory)/publish/* $(HETZNER_USER)@$(HETZNER_HOST):/srv/apps/$(appName)/releases/$RELEASE/
 
     ssh -i ~/.ssh/hetzner_key $(HETZNER_USER)@$(HETZNER_HOST) "
+      PREVIOUS=\$(readlink -f /srv/apps/$(appName)/current || true) &&
       ln -sfn /srv/apps/$(appName)/releases/$RELEASE /srv/apps/$(appName)/current &&
       sudo systemctl restart $(serviceName) &&
-      sudo systemctl status $(serviceName) --no-pager
+      sleep 5 &&
+      if curl -fsS http://127.0.0.1:5001 > /dev/null; then
+        echo 'Deployment successful';
+        sudo systemctl status $(serviceName) --no-pager;
+      else
+        echo 'Health check failed. Rolling back...';
+        ln -sfn \$PREVIOUS /srv/apps/$(appName)/current;
+        sudo systemctl restart $(serviceName);
+        exit 1;
+      fi
     "
   displayName: Deploy to Hetzner
