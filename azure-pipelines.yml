@@ -49,7 +49,6 @@ steps:
       sleep 15 &&
       if curl -fsS http://127.0.0.1:$(appPort) > /dev/null; then
         echo 'Deployment successful';
-        sudo systemctl status $(serviceName) --no-pager;
       else
         echo 'Health check failed. Rolling back...';
         ln -sfn \$PREVIOUS /srv/apps/$(appName)/current;
