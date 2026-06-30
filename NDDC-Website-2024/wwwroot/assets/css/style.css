@@ -8199,6 +8199,37 @@ h1 {
 	font-size: 1.5rem;
 }
 
+/* ── Announcement banner header ─────────────────────────────────────── */
+.nd-announce-banner {
+	background: linear-gradient(135deg, #003b49 0%, #026DB5 100%);
+	color: #fff;
+	padding: 3rem 2rem 2.5rem;
+	border-radius: 0.5rem;
+	text-align: center;
+	margin-bottom: 0;
+}
+.nd-announce-icon {
+	font-size: 2.5rem;
+	margin-bottom: 0.85rem;
+	color: rgba(255, 255, 255, 0.6);
+}
+.nd-announce-tagline {
+	font-size: 0.75rem;
+	font-weight: 700;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--thm-primary);
+	margin-bottom: 0.85rem;
+}
+.nd-announce-title {
+	font-size: clamp(1.3rem, 3vw, 2rem);
+	font-weight: 700;
+	color: #fff;
+	line-height: 1.35;
+	margin: 0;
+}
+
+
 /* ── Team card equal-height grid + hover lift ────────────────────────── */
 .team-section .row > [class*="col-"],
 .team-section .d-flex > [class*="col-"] {

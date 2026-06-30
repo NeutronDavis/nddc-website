@@ -1,41 +1,100 @@
-﻿@page "{Id:int?}"
+@page "{Id:int?}"
+@using System.Text.RegularExpressions
 @model NDDC_Website_2024.Pages.News.AnnouncementDetailsModel
 @{
+    var _ndRawUrl  = $"{Request.Scheme}://{Request.Host}/News/AnnouncementDetails/{Model.Details.Id}";
+    var _ndUrl     = Uri.EscapeDataString(_ndRawUrl);
+    var _ndTitle   = Uri.EscapeDataString(Model.Details.Title ?? "");
+    var _plainText = Regex.Replace(Model.Details.Details ?? "", "<[^>]+>", " ");
+    var _readMins  = Math.Max(1, Regex.Matches(_plainText, @"\w+").Count / 200);
 }
 
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-	<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-		<li class="breadcrumb-item">
-			<a asp-page="Announcements" style="font-size: smaller;color: #003b49;">Announcements</a>
-		</li>
-		<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Announcement Details</li>
-	</ol><!-- list-unstyled -->
+<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+    <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
+        <li class="breadcrumb-item">
+            <a asp-page="Announcements" style="font-size: smaller; color: #003b49;">Announcements</a>
+        </li>
+        <li class="breadcrumb-item" style="font-size: smaller; color: #003b49;">Announcement Details</li>
+    </ol>
 </nav>
 
-<section class="news-details-section pt-0">
-	<div class="container">
-		<div class="row justify-content-center">
-				<div class="col-lg-10">
-					<div class="news-details-meta-box">
-						<div class="news-details-meta-box-inner">
-							<span class="author">
-								Announced on:<a href="news-details.html">@Model.Details.StartDate.ToString("dd/MM/yy")</a>
-							</span><!-- author -->
-						</div><!-- news-details-meta-box-inner -->
-					</div><!-- news-details-meta-box -->
-					<div class="news-details-content-box">
-					<h3>@Model.Details.Title</h3>
-					<p>@Html.Raw(Model.Details.Details)</p>
-					</div><!-- /.news-details-content-box -->
-					<div class="news-details-share-box">
-						<div class="news-details-inner justify-content-end">
-							<div class="news-details-list">
-								<!-- news-details-list-title -->
-							</div><!--news-details-list-->
-							<!-- news-details-list -->
-						</div><!-- news-details-inner -->
-					</div>
-				</div>
-		</div><!-- row -->
-	</div><!-- container -->
+<section class="news-details-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+                <!-- ── Banner header (no image — use gradient) ─────── -->
+                <div class="nd-announce-banner">
+                    <div class="nd-announce-icon">
+                        <i class="fa-solid fa-bullhorn"></i>
+                    </div>
+                    <div class="nd-announce-tagline">Public Announcement</div>
+                    <h2 class="nd-announce-title">@Model.Details.Title</h2>
+                </div>
+
+                <!-- ── Meta strip ────────────────────────────────────── -->
+                <div class="nd-meta-strip">
+                    <span><i class="fa-regular fa-calendar"></i> @Model.Details.StartDate.ToString("dd MMMM yyyy")</span>
+                    <span><i class="fa-regular fa-clock"></i> @_readMins min read</span>
+                    <a href="/News/Announcements" class="ms-auto nd-back-link">
+                        <i class="fa-solid fa-arrow-left me-1"></i>Back to Announcements
+                    </a>
+                </div>
+
+                <!-- ── Article body ──────────────────────────────────── -->
+                <div class="nd-article-body">
+                    <div class="nd-details">
+                        @Html.Raw(Model.Details.Details)
+                    </div>
+                </div>
+
+                <!-- ── Share strip ───────────────────────────────────── -->
+                <div class="nd-share-strip">
+                    <span class="nd-share-label">
+                        <i class="fa-solid fa-share-nodes me-1"></i>Share
+                    </span>
+                    <a href="https://twitter.com/intent/tweet?url=@_ndUrl&amp;text=@_ndTitle"
+                       target="_blank" rel="noopener"
+                       class="nd-share-btn nd-share-btn--twitter">
+                        <i class="fa-brands fa-x-twitter"></i> Twitter
+                    </a>
+                    <a href="https://www.facebook.com/sharer/sharer.php?u=@_ndUrl"
+                       target="_blank" rel="noopener"
+                       class="nd-share-btn nd-share-btn--facebook">
+                        <i class="fa-brands fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=@_ndUrl"
+                       target="_blank" rel="noopener"
+                       class="nd-share-btn nd-share-btn--linkedin">
+                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://wa.me/?text=@_ndTitle%20@_ndUrl"
+                       target="_blank" rel="noopener"
+                       class="nd-share-btn nd-share-btn--whatsapp">
+                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
+                    </a>
+                    <button type="button"
+                            class="nd-share-btn nd-share-btn--copy nd-copy-btn"
+                            data-url="@_ndRawUrl">
+                        <i class="fa-regular fa-copy"></i> Copy Link
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
 </section>
+
+<script>
+(function () {
+    var btn = document.querySelector('.nd-copy-btn');
+    if (!btn) return;
+    btn.addEventListener('click', function () {
+        navigator.clipboard.writeText(btn.dataset.url).then(function () {
+            var orig = btn.innerHTML;
+            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
+            setTimeout(function () { btn.innerHTML = orig; }, 2000);
+        });
+    });
+}());
+</script>
