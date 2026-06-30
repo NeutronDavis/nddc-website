@@ -8019,6 +8019,186 @@ h1 {
 	font-variant-numeric: tabular-nums;
 }
 
+/* ── News Details page ───────────────────────────────────────────────── */
+.nd-hero-wrap {
+	position: relative;
+	overflow: hidden;
+	border-radius: 0.5rem;
+	margin-bottom: 0;
+	background: #e8e8e8;
+}
+.nd-hero-wrap img {
+	display: block;
+	width: 100%;
+	max-height: 500px;
+	object-fit: cover;
+	object-position: top;
+}
+.nd-hero-gradient {
+	position: absolute;
+	inset: auto 0 0 0;
+	height: 65%;
+	background: linear-gradient(to top, rgba(0, 0, 0, 0.78) 0%, transparent 100%);
+	pointer-events: none;
+}
+.nd-hero-title {
+	position: absolute;
+	bottom: 3rem;
+	left: 1.5rem;
+	right: 1.5rem;
+	color: #fff;
+	font-size: clamp(1.1rem, 2.5vw, 1.65rem);
+	font-weight: 700;
+	line-height: 1.35;
+	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.5);
+	margin: 0;
+}
+.nd-date-badge {
+	position: absolute;
+	bottom: 1rem;
+	left: 1.5rem;
+	background: var(--thm-primary);
+	color: #fff;
+	font-size: 0.78rem;
+	font-weight: 600;
+	padding: 0.3rem 0.75rem;
+	border-radius: 2rem;
+	letter-spacing: 0.03em;
+}
+.nd-meta-strip {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 1.25rem;
+	padding: 0.85rem 0;
+	border-bottom: 1px solid var(--thm-border);
+	margin-bottom: 1.75rem;
+	font-size: 0.875rem;
+	color: #666;
+}
+.nd-meta-strip i {
+	color: var(--thm-primary);
+	margin-right: 0.35rem;
+}
+.nd-back-link {
+	font-size: 0.85rem;
+	font-weight: 600;
+	color: var(--thm-primary);
+	text-decoration: none;
+	transition: opacity 200ms ease;
+}
+.nd-back-link:hover {
+	opacity: 0.75;
+	color: var(--thm-primary);
+}
+.nd-article-body {
+	margin-bottom: 0.5rem;
+}
+.nd-summary {
+	font-size: 1.05rem;
+	font-weight: 600;
+	line-height: 1.75;
+	color: #333;
+	border-left: 4px solid var(--thm-primary);
+	padding-left: 1.1rem;
+	margin-bottom: 1.75rem;
+}
+.nd-details {
+	font-size: 1rem;
+	line-height: 1.85;
+	color: #444;
+}
+.nd-details p {
+	margin-bottom: 1.2rem;
+}
+.nd-details img {
+	max-width: 100%;
+	border-radius: 0.375rem;
+	margin: 1rem 0;
+}
+.nd-share-strip {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 0.55rem;
+	padding: 1.1rem 0;
+	border-top: 1px solid var(--thm-border);
+	border-bottom: 1px solid var(--thm-border);
+	margin: 2rem 0 1.75rem;
+}
+.nd-share-label {
+	font-size: 0.85rem;
+	font-weight: 700;
+	color: #555;
+	margin-right: 0.25rem;
+}
+.nd-share-btn {
+	display: inline-flex;
+	align-items: center;
+	gap: 0.4rem;
+	padding: 0.38rem 0.85rem;
+	border-radius: 2rem;
+	font-size: 0.78rem;
+	font-weight: 600;
+	color: #fff;
+	text-decoration: none;
+	border: none;
+	cursor: pointer;
+	transition: opacity 200ms ease, transform 200ms ease;
+	line-height: 1.4;
+}
+.nd-share-btn:hover {
+	opacity: 0.85;
+	transform: translateY(-2px);
+	color: #fff;
+}
+.nd-share-btn--twitter   { background: #1d9bf0; }
+.nd-share-btn--facebook  { background: #1877f2; }
+.nd-share-btn--linkedin  { background: #0a66c2; }
+.nd-share-btn--whatsapp  { background: #25d366; }
+.nd-share-btn--instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.nd-share-btn--copy      { background: #555; }
+.nd-gallery-heading {
+	font-size: 1.25rem;
+	font-weight: 700;
+	margin-top: 2rem;
+	margin-bottom: 1rem;
+	padding-top: 0.5rem;
+	border-top: 1px solid var(--thm-border);
+}
+.nd-gallery-item {
+	position: relative;
+	overflow: hidden;
+	border-radius: 0.375rem;
+}
+.nd-gallery-item img {
+	display: block;
+	height: 180px;
+	width: 100%;
+	object-fit: cover;
+	transition: transform 400ms ease;
+}
+.nd-gallery-item:hover img {
+	transform: scale(1.07);
+}
+.nd-gallery-overlay {
+	position: absolute;
+	inset: 0;
+	background: rgba(0, 0, 0, 0.38);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	opacity: 0;
+	transition: opacity 300ms ease;
+}
+.nd-gallery-item:hover .nd-gallery-overlay {
+	opacity: 1;
+}
+.nd-gallery-overlay i {
+	color: #fff;
+	font-size: 1.5rem;
+}
+
 /* ── Team card equal-height grid + hover lift ────────────────────────── */
 .team-section .row > [class*="col-"],
 .team-section .d-flex > [class*="col-"] {
