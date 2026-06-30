@@ -12,14 +12,9 @@
 
 <section class="cta-three-section mt-5">
 	<div class="container">
-		<div id="carouselExampleCaptions" class="carousel slide">
-		  <div class="carousel-indicators">
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-			<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-		  </div>
+		<div id="carouselProgramSlides" class="carousel slide" data-bs-ride="carousel">
 		  <div class="carousel-inner">
-				@{ int _pgsi = 0; }
+				@{ int _pgsi = 0; var _programCount = Model.ProgramImageSlide.Count(); }
 				@foreach (var item in Model.ProgramImageSlide)
 				{
 					<div class="carousel-item @(_pgsi == 0 ? "active" : "")">
@@ -39,14 +34,30 @@
 					_pgsi++;
 				}
 		  </div>
-		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselProgramSlides" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Previous</span>
 		  </button>
-		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+		  <button class="carousel-control-next" type="button" data-bs-target="#carouselProgramSlides" data-bs-slide="next">
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Next</span>
 		  </button>
+		</div>
+		<div class="carousel-bottom-bar">
+			<div class="d-flex gap-2">
+				@{ int _pgi = 0; }
+				@foreach (var item in Model.ProgramImageSlide)
+				{
+					<button class="carousel-dot @(_pgi == 0 ? "carousel-dot--active" : "")"
+							data-bs-target="#carouselProgramSlides"
+							data-bs-slide-to="@_pgi"
+							aria-label="Slide @(_pgi + 1)"></button>
+					_pgi++;
+				}
+			</div>
+			<span class="carousel-slide-label"
+				  data-carousel-label="carouselProgramSlides"
+				  data-carousel-total="@_programCount">1 / @_programCount</span>
 		</div>
 	</div>
 </section>

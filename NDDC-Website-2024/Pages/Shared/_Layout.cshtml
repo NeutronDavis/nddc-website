@@ -577,6 +577,19 @@
 				img.addEventListener('error', function () { reveal(img); });
 			}
 		});
+
+		// Carousel bottom bar — sync dots and slide counter
+		document.querySelectorAll('.carousel').forEach(function (car) {
+			car.addEventListener('slide.bs.carousel', function (e) {
+				var id = car.id;
+				var idx = e.to;
+				document.querySelectorAll('.carousel-dot[data-bs-target="#' + id + '"]').forEach(function (dot, i) {
+					dot.classList.toggle('carousel-dot--active', i === idx);
+				});
+				var lbl = document.querySelector('[data-carousel-label="' + id + '"]');
+				if (lbl) lbl.textContent = (idx + 1) + ' / ' + lbl.dataset.carouselTotal;
+			});
+		});
 	}());
 	</script>
 	<script src="/assets/js/LineChart.js"></script>

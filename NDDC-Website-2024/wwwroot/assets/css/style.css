@@ -7983,6 +7983,42 @@ h1 {
 	opacity: 1;
 }
 
+/* ── Carousel bottom indicator bar ──────────────────────────────────── */
+.carousel-bottom-bar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	padding: 0.75rem 1rem;
+	background: #fff;
+	border-top: 1px solid #eee;
+}
+
+.carousel-dot {
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	background: #ccc;
+	border: none;
+	padding: 0;
+	cursor: pointer;
+	transition: background 300ms ease, transform 300ms ease;
+}
+
+.carousel-dot.carousel-dot--active,
+.carousel-dot:hover {
+	background: var(--thm-primary);
+	transform: scale(1.3);
+}
+
+.carousel-slide-label {
+	font-size: 0.85rem;
+	color: #888;
+	min-width: 3rem;
+	text-align: center;
+	font-variant-numeric: tabular-nums;
+}
+
 /* ── Team card equal-height grid + hover lift ────────────────────────── */
 .team-section .row > [class*="col-"],
 .team-section .d-flex > [class*="col-"] {

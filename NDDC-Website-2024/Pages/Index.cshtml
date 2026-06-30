@@ -842,11 +842,11 @@ else if (Model.LiveEvent == null)
 				<div class="col-lg-4">
 					<div class="blog-card">
 						<div class="blog-card-image">
-							<img src="@Model._containerUrl@item.ImageUrl" class="mw-100 w-100" style="height: 250px !important; object-fit: cover !important; object-position: top !important;" alt="News Point Image" loading="lazy">
-							<a href="news-details.html"></a>
+							<img src="@Model._containerUrl@item.ImageUrl" class="mw-100 w-100" style="height: 250px !important; object-fit: cover !important; object-position: top !important;" alt="@item.Subject" loading="lazy">
+							<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID"></a>
 						</div><!-- blog-card-image -->
 						<div class="blog-card-date">
-							<a href="news-details.html">@item.PublishDate.ToString("dd/MM/yy")</a>
+							<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID">@item.PublishDate.ToString("dd/MM/yy")</a>
 						</div><!-- blog-card-date -->
 						<div class="blog-card-content">
 							<div class="blog-card-meta">
@@ -1346,22 +1346,19 @@ else if (Model.LiveEvent == null)
 				<div class="col-lg-4">
 					<div class="blog-card">
 						<div class="blog-card-image">
-							<img src="@Model._containerUrl@item.ImageUrl" class="mw-100 w-100" style="height: 250px !important; object-fit: cover !important; object-position: top !important;" alt="News Point Image" loading="lazy">
-							<a href="news-details.html"></a>
+							<img src="@Model._containerUrl@item.ImageUrl" class="mw-100 w-100" style="height: 250px !important; object-fit: cover !important; object-position: top !important;" alt="@item.Subject" loading="lazy">
+							<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID"></a>
 						</div><!-- blog-card-image -->
 						<div class="blog-card-date">
-							<a href="news-details.html">28SEP</a>
+							<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID">@item.PublishDate.ToString("dd MMM")</a>
 						</div><!-- blog-card-date -->
 						<div class="blog-card-content">
 							<div class="blog-card-meta">
 								<span class="author">
-									By: <a href="news-details.html">Corporate Affairs Dept.</a>
+									By: <a href="#">Corporate Affairs Dept.</a>
 								</span><!-- author -->
-								@* <span class="comment">
-									<a href="news-details.html">02 Comments</a>
-								</span> <!-- comment -->@*
 							</div><!-- blog-card-meta -->
-							<h4><a href="news-details.html">@item.Subject</a></h4>
+							<h4><a asp-page="/News/NewsDetails" asp-route-nid="@item.NID">@item.Subject</a></h4>
 							<p>@item.Summary</p>
 						</div><!-- blog-card-content -->
 					</div><!-- blog-card -->
