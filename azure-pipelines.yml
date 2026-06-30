@@ -8,6 +8,7 @@ variables:
   appName: nddc-website
   serviceName: nddc-website
   projectPath: NDDC-Website-2024/NDDC-Website-2024.csproj
+  appPort: 5001
 
 steps:
 - task: UseDotNet@2
@@ -21,28 +22,33 @@ steps:
     dotnet publish $(projectPath) -c Release --no-build -o $(Build.ArtifactStagingDirectory)/publish
   displayName: Build and publish
 
+- task: DownloadSecureFile@1
+  name: hetznerKey
+  inputs:
+    secureFile: hetzner_deploy_key
+
 - script: |
     mkdir -p ~/.ssh
-    cat > ~/.ssh/hetzner_key << 'EOF'
-$(HETZNER_SSH_KEY)
-EOF
+    cp "$(hetznerKey.secureFilePath)" ~/.ssh/hetzner_key
     chmod 600 ~/.ssh/hetzner_key
     ssh-keyscan -H $(HETZNER_HOST) >> ~/.ssh/known_hosts
 
     RELEASE=$(date +%Y%m%d%H%M%S)
 
-    ssh -i ~/.ssh/hetzner_key $(HETZNER_USER)@$(HETZNER_HOST) "mkdir -p /srv/apps/$(appName)/releases/$RELEASE"
+    ssh -i ~/.ssh/hetzner_key $(HETZNER_USER)@$(HETZNER_HOST) "
+      mkdir -p /srv/apps/$(appName)/releases/$RELEASE
+    "
 
     scp -i ~/.ssh/hetzner_key -r $(Build.ArtifactStagingDirectory)/publish/* $(HETZNER_USER)@$(HETZNER_HOST):/srv/apps/$(appName)/releases/$RELEASE/
 
     ssh -i ~/.ssh/hetzner_key $(HETZNER_USER)@$(HETZNER_HOST) "
       PREVIOUS=\$(readlink -f /srv/apps/$(appName)/current || true) &&
+      chmod -R 755 /srv/apps/$(appName)/releases/$RELEASE &&
       ln -sfn /srv/apps/$(appName)/releases/$RELEASE /srv/apps/$(appName)/current &&
       sudo systemctl restart $(serviceName) &&
-      sleep 5 &&
-      if curl -fsS http://127.0.0.1:5001 > /dev/null; then
+      sleep 15 &&
+      if curl -fsS http://127.0.0.1:$(appPort) > /dev/null; then
         echo 'Deployment successful';
-        sudo systemctl status $(serviceName) --no-pager;
       else
         echo 'Health check failed. Rolling back...';
         ln -sfn \$PREVIOUS /srv/apps/$(appName)/current;
