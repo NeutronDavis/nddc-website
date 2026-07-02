@@ -12,10 +12,11 @@ namespace NDDC_Website_2024.Pages.News
 		public PublicationsModel(IHomeData homeDb)
         {
 			this.homeDb = homeDb;
-
+			Publications = new List<MyPublicationsModel>();
 		}
         public void OnGet()
         {
+			Publications = homeDb.ViewAllPublications() ?? new List<MyPublicationsModel>();
         }
     }
 }

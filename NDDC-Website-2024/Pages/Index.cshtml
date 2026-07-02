@@ -783,7 +783,7 @@ else if (Model.LiveEvent == null)
 							<img src="assets/image/gallery/about-1.png" class="img-fluid w-100" style="height: 400px !important; object-fit: cover !important;" alt="About Image 1">
 							<div class="about-caption-image">
 								<div class="about-two-service-video">
-									<a href="https://www.youtube.com/watch?v=8I02WAUjkyM" class="video-popup">
+									<a href="https://www.youtube.com/@@nddconline/featured" class="video-popup" target="_blank" rel="noopener noreferrer">
 										<i class="fa fa-play"></i>
 									</a><!-- video-popup -->
 								</div>
@@ -1447,7 +1447,7 @@ else if (Model.LiveEvent == null)
 			<div class="col-lg-5">
 				<div class="service-card">
 					<div class="service-card-video">
-						<a href="https://www.youtube.com/watch?v=4lHS8DacJkw" class="video-popup">
+						<a href="https://www.youtube.com/@@nddconline/featured" class="video-popup" target="_blank" rel="noopener noreferrer">
 							<i class="fa fa-play"></i>
 						</a><!-- video-popup -->
 					</div><!-- service-card-video -->
@@ -1638,6 +1638,8 @@ else if (Model.LiveEvent == null)
 <!-- Gallery Section -->
 
 <!-- Video Section -->
+@if (Model.Videos.Any() && Model.MainVideo != null)
+{
 <section class="mayor-section">
 	<div class="container">
 		<div class="section-title-box text-center">
@@ -1649,7 +1651,7 @@ else if (Model.LiveEvent == null)
 				<div class="">
 					@foreach (var item in Model.Videos)
 					{
-						@if (@item.YoutubeUrl != Model.MainVideo.YoutubeUrl)
+						@if (item.YoutubeUrl != Model.MainVideo.YoutubeUrl)
 						{
 							<div class="row align-items-center mb-2">
 								<div class="col-12 pe-0 text-center">
@@ -1686,6 +1688,7 @@ else if (Model.LiveEvent == null)
 		</div>
 	</div>
 </section>
+}
 <!-- Video Section -->
 
 <section class="cta-five-section">

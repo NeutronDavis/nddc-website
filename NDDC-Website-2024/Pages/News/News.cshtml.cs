@@ -19,10 +19,11 @@ namespace NDDC_Website_2024.Pages
         {
             this.homeDb = homeDb;
 			_containerUrl = config.GetConnectionString("AWSContainerUrl");
+			NewsList = new List<MyNewsModel>();
 		}
         public void OnGet()
         {
-            NewsList = homeDb.AllNews();
+            NewsList = homeDb.AllNews() ?? new List<MyNewsModel>();
             LatestNews = homeDb.GetLatestNews();
         }
     }

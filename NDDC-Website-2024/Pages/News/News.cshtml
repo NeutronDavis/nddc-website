@@ -29,9 +29,10 @@
 			@* <div class="section-tagline">News</div> *@
 			<h2 class="section-title">News</h2>
         </div>
-		<div class="d-flex justify-content-center">
-            <div class="col-lg-10">
-				
+		@if (Model.LatestNews != null)
+		{
+			<div class="d-flex justify-content-center">
+				<div class="col-lg-10">
 					<div class="blog-card">
 						<div class="blog-card-image m-0">
 						<img src="@Model._containerUrl@Model.LatestNews.ImageUrl" class="w-100" style="height: 450px !important; object-fit: cover !important; object-position: top !important;" alt="Latest News">
@@ -44,8 +45,9 @@
 							</div>
 						</div><!-- blog-card-content -->
 					</div><!-- blog-card -->
-			</div><!-- col-lg-6 col-xl-4 -->
-		</div>
+				</div><!-- col-lg-6 col-xl-4 -->
+			</div>
+		}
 		
 		<div class="d-flex justify-content-center">
 			@* <div class="col-lg-4">

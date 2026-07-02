@@ -16,13 +16,12 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
         {
 			this.homeDb = homeDb;
 			_containerUrl = configuration.GetConnectionString("AWSContainerUrl");
+			BoardMembers = new List<MyExecMngtModel>();
 		}
         public void OnGet()
         {
-           
 		    ChairmanItem = homeDb.GetChairmanSingle();
-            
-            BoardMembers = homeDb.GetAllBoardMembers();
+            BoardMembers = homeDb.GetAllBoardMembers() ?? new List<MyExecMngtModel>();
         }
     }
 }

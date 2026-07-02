@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NddcWebsiteLibrary.Data.Home;
 using NddcWebsiteLibrary.Model.Home;
@@ -27,21 +27,28 @@ namespace NDDC_Website_2024.Pages
         {
             this.homeDb = homeDb;
 			_containerUrl = configuration.GetConnectionString("AWSContainerUrl");
+
+            // Initialise lists to empty so Razor foreach never receives null
+            NewsSlide    = new List<MyNewsModel>();
+            NewsList     = new List<MyNewsModel>();
+            Photos       = new List<MyPhotoSpeakModel>();
+            Videos       = new List<MyVideoModel>();
+            Testimonials = new List<MyTestimonialModel>();
 		}
 
         public void OnGet()
         {
-            NewsSlide = homeDb.DisplaySlides();
-            NewsList = homeDb.ListHomePageNews();
-            Photos = homeDb.DisplayPhotos();
+            NewsSlide                = homeDb.DisplaySlides()           ?? new List<MyNewsModel>();
+            NewsList                 = homeDb.ListHomePageNews()         ?? new List<MyNewsModel>();
+            Photos                   = homeDb.DisplayPhotos()            ?? new List<MyPhotoSpeakModel>();
             PhysicalInfraUpdatePhoto = homeDb.GetImageByUpdateCategory("Physical");
-            SocialInfraUpdatePhoto = homeDb.GetImageByUpdateCategory("Social");
-            PartnershipsPhoto = homeDb.GetImageByUpdateCategory("Partnerships");
-            MainVideo = homeDb.DisplayMainVideo();
-            Videos = homeDb.DisplayVideos();
-            Announcement = homeDb.GetAnnouncement();
-            CriticalUpdate = homeDb.GetCriticalNewsUpdate();
-            Testimonials = homeDb.ViewTestimonials();
+            SocialInfraUpdatePhoto   = homeDb.GetImageByUpdateCategory("Social");
+            PartnershipsPhoto        = homeDb.GetImageByUpdateCategory("Partnerships");
+            MainVideo                = homeDb.DisplayMainVideo();
+            Videos                   = homeDb.DisplayVideos()            ?? new List<MyVideoModel>();
+            Announcement             = homeDb.GetAnnouncement();
+            CriticalUpdate           = homeDb.GetCriticalNewsUpdate();
+            Testimonials             = homeDb.ViewTestimonials()         ?? new List<MyTestimonialModel>();
             //CountDownDate = new DateTime(2024, 7, 10, 07, 00, 00);
             LiveEvent = homeDb.GetLiveEvent();
             if (LiveEvent != null)

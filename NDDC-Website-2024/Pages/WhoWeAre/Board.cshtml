@@ -98,29 +98,32 @@
 					</div><!--team-box-->
 				</div><!--col-12 col-md-12 col-lg-6 col-xl-6--> *@
 			</div><!-- row -->
-			<div class=" d-flex justify-content-center row mb-4">
-				<div class="col-12 col-md-6 col-xl-3">
-						<div class="team-card">
-							<div class="team-card-img">
-								<img src="@Model._containerUrl@Model.ChairmanItem.ImageUrl" style="height: 210px !important; width: 210px !important; object-fit: cover !important; object-position: top !important; border-radius: 50% !important;" alt="Chairman">
-								<div class="team-card-icon">
-									@* <a href="#" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-									<a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
-									<a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a> *@
-								</div><!-- team-card-icon -->
-							</div><!-- team-card-img -->
-							<div class="team-card-content">
-								<h4><a href="#">@Model.ChairmanItem.ExecName</a></h4>
-						<p>@Model.ChairmanItem.Position</p>
-								<a asp-page="BoardDetails" asp-route-EMID="@Model.ChairmanItem.EMID" class="btn btn-primary">Know more</a>
-							</div><!-- team-card-content -->
-					</div>
+			@if (Model.ChairmanItem != null)
+			{
+				<div class=" d-flex justify-content-center row mb-4">
+					<div class="col-12 col-md-6 col-xl-3">
+							<div class="team-card">
+								<div class="team-card-img">
+									<img src="@Model._containerUrl@Model.ChairmanItem.ImageUrl" style="height: 210px !important; width: 210px !important; object-fit: cover !important; object-position: top !important; border-radius: 50% !important;" alt="Chairman">
+									<div class="team-card-icon">
+										@* <a href="#" class="pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+										<a href="#" class="twitter"><i class="fa-brands fa-twitter"></i></a>
+										<a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a> *@
+									</div><!-- team-card-icon -->
+								</div><!-- team-card-img -->
+								<div class="team-card-content">
+									<h4><a href="#">@Model.ChairmanItem.ExecName</a></h4>
+							<p>@Model.ChairmanItem.Position</p>
+									<a asp-page="BoardDetails" asp-route-EMID="@Model.ChairmanItem.EMID" class="btn btn-primary">Know more</a>
+								</div><!-- team-card-content -->
+						</div>
 					</div><!--col-12 col-md-6 col-xl-3-->
-			</div>
+				</div>
+			}
 			<div class="row row-gutter-y-30">
 				@foreach (var p in Model.BoardMembers)
 				{
-					@if (p.ImageUrl != Model.ChairmanItem.ImageUrl)
+					@if (Model.ChairmanItem == null || p.ImageUrl != Model.ChairmanItem.ImageUrl)
 					{
 						<div class="col-12 col-md-6 col-xl-3">
 							<div class="team-card">
