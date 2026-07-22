@@ -1,0 +1,992 @@
+@page
+@using System.Web
+@using System.Text.RegularExpressions
+@model Index1Model
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" id="click" style="display:none;">
+	Launch modal
+</button>
+
+@{
+	// Function to strip HTML tags from a string
+	string StripHtml(string input)
+	{
+		return Regex.Replace(input, "<.*?>", string.Empty);
+	}
+}
+<!-- Modal -->
+@if (Model.Announcement != null)
+{
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h1 class="modal-title fs-5 text-success" id="exampleModalLabel">Public Announcement</h1>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<div class="card" style="border: 0;">
+						<div class="card-body">
+							<h5 class="card-title">@Model.Announcement.Title</h5>
+							<p class="card-text">@Html.Raw(Model.Announcement.Details)</p>
+							<a href="#" class="text-success pt-3">Learn more</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+}
+
+
+@if (Model.LiveEvent != null)
+{
+	<!--Live Events Section-->
+	@if(Model.IsEventLive == false)
+	{
+		<section class="" style="background-color:#003b4952;">
+			<div class="container-xxl mt-0" style="">
+				<div class="row">
+					<div class="col-lg-12 d-flex text-light justify-content-between align-items-center flex-wrap px-5 py-3" style="background-color: #026DB5;">
+						<p class="text-light fs-4 fw-bold mb-0">This event will be starting in:</p>
+						<div><span class="lead fs-4 fw-bold days pe-2"> </span><span class="lead fs-4 fw-bold pe-2">days</span></div>
+						<div><span class="lead fs-4 fw-bold hours pe-2"> </span><span class="lead fs-4 fw-bold pe-2">hours</span></div>
+						<div><span class="lead fs-4 fw-bold minutes pe-2"> </span><span class="lead fs-4 fw-bold pe-2">minutes</span></div>
+						<div><span class="lead fs-4 fw-bold seconds pe-2"> </span><span class="lead fs-4 fw-bold pe-2">seconds</span></div>
+
+
+
+					</div>
+					<div class="col-lg-5" style=" background-color:var(--thm-black);">
+						<div class="mayor-box" style=" padding-right: 1rem;">
+							<div class="section-title-box m-4">
+								@if (Model.LiveEvent.StartDate.ToString("dd") == Model.LiveEvent.EndDate.ToString("dd"))
+								{
+									<div class="lead fw-bold pb-4" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+
+										@* NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd") *@
+										NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd")
+									</div>
+
+									<!-- section-tagline -->
+								}
+								else
+								{
+									<div class="lead fw-bold pb-4" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+
+										@* NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") *@
+										NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd")
+									</div>
+
+									<!-- section-tagline -->
+								}
+								<h2 class="section-title text-light mb-4" style="font-size: 40px;">
+									@Model.LiveEvent.Title
+								</h2>
+								<p class="text-light">@Model.LiveEvent.Summary</p>
+								<div class="d-flex pt-4">
+									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="/Media/LiveEvent/EventDetails" class="btn btn-primary me-3 px-3 py-2" style="">Learn More</a>
+									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T080000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success text-light fw-bold rounded-0 px-3 py-2"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+								</div>
+							</div><!--section-title-box-->
+							<!--mayor-icon-box-->
+							<!-- ul -->
+						</div><!--mayor-box-->
+					</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
+						<div class="">
+							<img src="@Model._containerUrl@Model.LiveEvent.BannerImage" alt="Banner Image" class="mw-100 w-100 img-cover" style="height: 600px;">
+						</div><!--mayor-img-->
+					</div>
+
+
+					<!--col-lg-6"-->
+				</div><!-- row -->
+
+			</div><!-- container -->
+		</section>
+	}
+	else
+	{
+		<section class="" style="background-color:#003b4952;">
+			<div class="container-xxl mt-0" style="">
+				<div class="row">
+					
+					<div class="col-lg-5" style=" background-color:var(--thm-black);">
+						<div class="mayor-box" style=" padding-right: 1rem;">
+							<div class="section-title-box m-4">
+								<div class="lead fw-bold pb-4" style="  color: var(--thm-primary); text-transform: uppercase; letter-spacing: 1px;">
+									NDDC LIVE EVENT | @Model.LiveEvent.StartDate.ToString("MMMM") @Model.LiveEvent.StartDate.ToString("dd") - @Model.LiveEvent.EndDate.ToString("dd")
+								</div><!-- section-tagline -->
+								<h2 class="section-title text-light mb-4" style="font-size: 40px;">
+									@Model.LiveEvent.Title
+								</h2>
+								<p class="text-light">@Model.LiveEvent.Summary</p>
+								<div class="d-flex pt-4">
+									<a asp-route-Id="@Model.LiveEvent.Id" asp-page="EventDetails" class="btn btn-primary me-3 px-3 py-2" style="">Learn More</a>
+									<a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=@Model.LiveEvent.Title&details=More+help+visit:+https://nddc.gov.ng&dates=@Model.LiveEvent.StartDate.ToString("yyyyMMdd")T160000/@Model.LiveEvent.EndDate.ToString("yyyyMMdd")T170000&ctz=Nigeria" target="_blank" class="btn btn-success text-light fw-bold rounded-0 px-3 py-2"> <i class="fa-solid fa-calendar-days pe-2"></i>Calender</a>
+								</div>
+							</div><!--section-title-box-->
+							<!--mayor-icon-box-->
+							<!-- ul -->
+						</div><!--mayor-box-->
+					</div><div class="col-lg-7" style=" --bs-gutter-x: 0;">
+						<div class="">
+
+							<iframe  style="width: -webkit-fill-available;" width="700" height="500" src="https://www.youtube.com/embed/@Model.LiveEvent.LiveEventLink" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+						</div><!--mayor-img-->
+					</div>
+
+
+					<!--col-lg-6"-->
+				</div><!-- row -->
+
+			</div><!-- container -->
+		</section>
+		
+	}
+
+
+	<section class="">
+		<div class="container">
+			<div class="row row-gutter-y-40">
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="/assets/image/services/about-1.jpg" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Mission Image">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Mission</h4>
+							<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
+							<a href="/WhoWeAre/Vision">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="assets/image/services/service-5.png" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Vision Image">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Vision</h4>
+							<p>
+								To accelerate the Niger Delta's transition to a prosperous, stable and peaceful region.
+							</p>
+							<a href="/WhoWeAre/Vision">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-link-box">
+						<h4 class="section-title">Digital <br>Services</h4>
+						<ul class="my-4 py-2">
+							<li><a href="/Services/ProjectDatabase/index">Project Database<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Jobs">Empowerment Programs <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Tenders">Tenders & Adverts<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/OnlineForms">Online Forms<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/ServiceGate/index">Service Gate <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/IReports/index">iReports<i class="fa-solid fa-chevron-right"></i></a></li>
+						</ul><!-- ul -->
+					</div><!--service-link-box-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+
+	<section class="about-two-section">
+		<div class="container">
+				<div class="row justify-content-between row-gutter-y-60">
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-image">
+						<div id="imageHolder" class="">
+							<div class="imageHolderDiv">
+							<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
+								<img src="/assets/image/gallery/MD.png" alt="Managing Director- Samuel Ogbuku">
+								<img src="/assets/image/gallery/EDFA.png" alt="Executive Director, Finance and Administration (EDFA)- Boma Iyaye">
+								<img src="/assets/image/gallery/EDP.png" alt="Executive Director, Projects (EDP)- Victor Etim Antai">
+								<img src="/assets/image/gallery/EDCS.png" alt="Executive Director of Corporate Services (EDCS)- Ifedayo Abegunde">	
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-inner pt-0">
+						<h2 class="section-title">Welcome to The Niger Delta Development Commission</h2><!-- section-title -->
+						<div class="about-two-text">
+							<div class="about-two-text-inner-one">
+								<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
+							</div><!-- about-two-text-inner-one -->
+							<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
+						</div><!--about-two-text-->
+						<div class="about-two-author-content">
+							<a href="/WhoWeAre/Vision" class="text-success font-semibold hover:text-blue-700">
+								LEARN MORE →
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!--Live Events Section-->
+}
+
+
+
+
+@* <section class="cta-three">
+	<div class="cta-three-inner" style="background-image: url(/assets/image/bg/slider-two-bg-2.png)">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 p-5">
+					<div class="cta-three-content p-5 text-center">
+						<div class="slider-tagline-two">City Goverment Online Services</div>
+						<h1 class="section-title">Good Governance <br> Part of the Democracy</h1>
+						<a href="index-2.html" class="btn btn-primary">Discover More</a>
+					</div><!-- cta-three-content -->
+				</div><!-- col-lg-12 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</div><!--cta-three-inner-->
+</section> *@
+
+@if (Model.CriticalUpdate != null && Model.LiveEvent == null)
+{
+<!--Prominent News Section-->
+
+	<section class="cta-one" style="background: url(@Model._containerUrl@Model.CriticalUpdate.ImageUrl) #003b4980;background-position: center;background-blend-mode: multiply;background-size: cover;background-repeat: no-repeat;">
+		<div class="cta-one-inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="cta-one-content text-center">
+							<div class="" style="color: #ffd300;">Critical News Update</div>
+							<h1 class="section-title fs-1 text-white">@Model.CriticalUpdate.Subject</h1>
+							<a asp-page="/WhatWeDo/Scholarship" class="btn btn-primary">Learn More</a>
+						</div><!-- cta-one-content -->
+					</div><!-- col-lg-12 -->
+				</div><!-- row -->
+			</div><!-- container -->
+		</div><!--cta-one-inner-->
+	</section>
+
+
+	@* <section class="main-slider main-slider-two">
+		<div class="main-slider-two-swiper owl-carousel owl-theme owl-loaded owl-drag">
+			<!--item-->
+			<!--item-->
+			<div class="owl-stage-outer">
+				<div class="owl-stage">
+					<div class="owl-item" style="width: 2260px;">
+						<div class="item">
+							<div class="item-slider-bg" style="background-image: url(@Model._containerUrl@Model.CriticalUpdate.ImageUrl)"></div>
+							<div class="container">
+								<div class="row">
+									<div class="col-12 col-md-12 col-lg-12">
+										<div class="slider-content-two text-center">
+											<div class="slider-tagline-two" style="color: #ffd300;">Critical News Update</div>
+											<h1 class="section-title fs-1">@Model.CriticalUpdate.Subject</h1>
+											<a asp-page="/News/NewsDetails" asp-route-Id="@Model.CriticalUpdate.Id" class="btn btn-primary">Learn More</a>
+										</div><!-- slider-content-two -->
+									</div><!-- col-12 col-md-12 col-lg-12 -->
+								</div><!-- row -->
+							</div><!-- container -->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div><!-- main-slider-two-swiper -->
+	</section> *@
+
+	<section class="service-two-section d-none d-md-block">
+		<div class="container">
+			<div class="row row-gutter-y-40">
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="/assets/image/services/about-1.jpg" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Mission Image">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Mission</h4>
+							<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
+							<a href="/WhoWeAre/Vision">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-two-card">
+						<div class="service-two-imgbox">
+							<div class="service-two-image">
+								<img src="assets/image/services/service-5.png" class="img-fluid w-100" style="height: 280px !important; object-fit: cover !important;" alt="Vision Image">
+								<a href="service-details.html"></a>
+							</div><!-- service-two-image -->
+						</div><!-- service-two-imgbox -->
+						<div class="service-two-card-content">
+							<h4>Vision</h4>
+							<p>
+								To accelerate the Niger Delta's transition to a prosperous, stable and peaceful region.
+							</p>
+							<a href="/WhoWeAre/Vision">
+								<i class="fa-solid fa-arrow-right-long"></i>
+								<span>Read More</span>
+							</a>
+						</div><!--service-two-card-content-->
+					</div><!--service-two-card-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+				<div class="col-12 col-lg-4 col-xl-4">
+					<div class="service-link-box">
+						<h4 class="section-title">Digital <br>Services</h4>
+						<ul class="my-4 py-2">
+							<li><a href="/Services/ProjectDatabase/index">Project Database<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Jobs">Empowerment Programs <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/Tenders">Tenders & Adverts<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/OnlineForms">Online Forms<i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/ServiceGate/index">Service Gate <i class="fa-solid fa-chevron-right"></i></a></li>
+							<li><a href="/Services/IReports/index">iReports<i class="fa-solid fa-chevron-right"></i></a></li>
+						</ul><!-- ul -->
+					</div><!--service-link-box-->
+				</div><!--col-12 col-lg-4 col-xl-4-->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section>
+	@* <div class="d-block d-lg-none p-5 text-center">
+		<a href="https://25anniversary.nddc.gov.ng/"><img b-ii0mdbbmlf="" src="/assets/image/nddc-link-2.png" alt="img-1" width="190" height="55"></a>
+	</div>
+	 *@<section class="about-two-section">
+		<div class="container">
+			 <div class="row justify-content-between row-gutter-y-60">
+ 				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-image">
+						<div id="imageHolder" class="">
+							<div class="imageHolderDiv">
+								<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
+								<img src="/assets/image/gallery/MD.png" alt="MD- Samuel Ogbuku">
+								<img src="/assets/image/gallery/EDFA.png" alt="Executive Director, Finance and Administration (EDFA)- Boma Iyaye">
+								<img src="/assets/image/gallery/EDP.png"  alt="Executive Director, Projects (EDP)- Victor Etim Antai">
+								<img src="/assets/image/gallery/EDCS.png" alt="Executive Director of Corporate Services (EDCS)- Ifedayo Abegunde">
+							</div>
+						</div>
+					</div><!--about-two-image-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					
+					<div class="about-two-inner pt-0">
+						<h2 class="section-title">Welcome to The Niger Delta Development Commission</h2><!-- section-title -->
+						<div class="about-two-text">
+							<div class="about-two-text-inner-one">
+								<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
+							</div><!-- about-two-text-inner-one -->
+							<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
+						</div><!--about-two-text-->
+						<div class="about-two-author-content">
+							<a href="/WhoWeAre/Vision" class="text-success font-semibold hover:text-blue-700">
+								LEARN MORE →
+							</a>
+						</div><!-- about-two-author-content -->
+					</div><!--about-two-inner-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+			</div><!-- row --> 
+		</div><!-- container -->
+	</section>
+
+
+	@* <section class="about-two-section">
+		<div class="container">
+			<div class="row justify-content-between row-gutter-y-60">
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-image">
+						<div class="about-two-image-inner img-one">
+							<img src="/assets/image/gallery/about-1.png" alt="img-30">
+							<img src="/assets/image/shapes/about-3.jpg" class="floated-image" alt="img-31">
+						</div><!-- about-two-image-inner -->
+						<div class="about-two-image-inner img-two">
+							<img src="/assets/image/shapes/shape-1.png" alt="img-32" class="mayor-image">
+							<img src="/assets/image/gallery/about-2.png" alt="img-33">
+						</div><!-- about-two-image-inner img-two -->
+						<div class="about-two-service-video">
+							<a href="https://www.youtube.com/watch?v=rzfmZC3kg3M" class="video-popup">
+								<i class="fa fa-play"></i>
+							</a><!-- video-popup -->
+						</div><!-- about-two-service-video -->
+					</div><!--about-two-image-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+				<div class="col-lg-12 col-xl-6 col-xxl-6">
+					<div class="about-two-inner">
+						<div class="section-tagline">Our introductions</div><!-- section-tagline -->
+						<h2 class="section-title">Welcome to Niger Delta Development Commission</h2><!-- section-title -->
+						<div class="row row-gutter-y-20">
+							<div class="col-xl-6 col-lg-12 col-md-6">
+								<div class="about-two-content">
+									<i class="fa-solid fa-circle-check"></i><h4 class="about-two-title">Human Resources</h4>
+								</div><!-- about-two-content -->
+							</div><!-- col-xl-6 col-lg-12 col-md-6 -->
+							<div class="col-xl-6 col-lg-12 col-md-6">
+								<div class="about-two-content">
+									<i class="fa-solid fa-circle-check"></i><h4 class="about-two-title">Economic Data</h4>
+								</div><!-- about-two-content -->
+							</div><!-- col-xl-6 col-lg-12 col-md-6 -->
+						</div><!--row-->
+						<div class="about-two-text">
+							<div class="about-two-text-inner-one">
+								<p class="lead">"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."</p><!-- lead -->
+							</div><!-- about-two-text-inner-one -->
+							<p>Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.</p>
+						</div><!--about-two-text-->
+						<div class="about-two-author-content">
+							<div class="about-two-author-content-box">
+								<div class="about-two-author-content-icon">
+									<i class="fa-solid fa-phone-flip"></i>
+								</div><!-- about-two-author-content-icon -->
+								<div class="about-two-author-content-contact">
+									<h5>NDDC Office</h5>
+									<a href="tel:+92-9800-6869">+92 (9800) 6869</a>
+								</div><!-- about-two-author-content-contact -->
+							</div><!--about-two-author-content-box-->
+							<div class="about-two-author-content-socials">
+								<a href="#"><i class="fa-brands fa-twitter"></i></a>
+								<a href="#"><i class="fa-brands fa-facebook"></i></a>
+								<a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+								<a href="#"><i class="fa-brands fa-instagram"></i></a>
+							</div><!-- about-two-author-content-socials -->
+						</div><!-- about-two-author-content -->
+					</div><!--about-two-inner-->
+				</div><!-- col-lg-12 col-xl-6 col-xxl-6 -->
+			</div><!-- row -->
+		</div><!-- container -->
+	</section> *@
+	<!--Prominent News Section End-->
+}
+else if (Model.LiveEvent == null)
+{
+	<!-- Hero Section -->
+	<section class="hero-slider-section">
+		<div class="hero-splide splide">
+			<div class="splide__track">
+				<div class="splide__list">
+					@foreach (var item in Model.NewsSlide)
+					{
+						<div class="splide__slide hero-slide" style="background-image: url(@Model._containerUrl@item.ImageUrl)">
+							<div class="hero-overlay">
+								<div class="container">
+									<div class="row">
+										<div class="col-lg-8">
+											<div class="hero-content">
+												<div class="hero-subtitle">Niger Delta Development Commission</div>
+												<h1 class="hero-title animate__animated animate__fadeInUp">@item.Subject</h1>
+												<p class="hero-desc animate__animated animate__fadeInUp">@item.ShortSummary</p>
+												<a href="/Services/ProjectDatabase/index" class="btn btn-portal animate__animated animate__fadeInUp">Services Portal</a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Overlapping Shortcuts Section -->
+	<section class="shortcuts-section d-none d-lg-block">
+		<div class="container">
+			<div class="row shortcuts-row justify-content-center">
+				<div class="col-lg-2">
+					<a href="/WhoWeAre/Vision" class="shortcut-card">
+						<div class="shortcut-card-icon">
+							<i class="fa-solid fa-flag"></i>
+						</div>
+						<h5>Our Mission</h5>
+					</a>
+				</div>
+				<div class="col-lg-2">
+					<a href="/WhoWeAre/Board" class="shortcut-card">
+						<div class="shortcut-card-icon">
+							<i class="fa-solid fa-user-tie"></i>
+						</div>
+						<h5>Our Leadership</h5>
+					</a>
+				</div>
+				<div class="col-lg-2">
+					<a href="/Services/ProjectDatabase/index" class="shortcut-card">
+						<div class="shortcut-card-icon">
+							<i class="fa-solid fa-diagram-project"></i>
+						</div>
+						<h5>Projects</h5>
+					</a>
+				</div>
+				<div class="col-lg-2">
+					<a href="/Services/OnlineForms" class="shortcut-card">
+						<div class="shortcut-card-icon">
+							<i class="fa-solid fa-file-invoice"></i>
+						</div>
+						<h5>Online Forms</h5>
+					</a>
+				</div>
+				<div class="col-lg-2">
+					<a href="/Services/Tenders" class="shortcut-card">
+						<div class="shortcut-card-icon">
+							<i class="fa-solid fa-gavel"></i>
+						</div>
+						<h5>Tenders</h5>
+					</a>
+				</div>
+				<div class="col-lg-2">
+					<a href="/Services/Jobs" class="shortcut-card">
+						<div class="shortcut-card-icon">
+							<i class="fa-solid fa-handshake-angle"></i>
+						</div>
+						<h5>Empowerment</h5>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Welcome Section -->
+	<section class="welcome-section">
+		<div class="container">
+			<div class="row align-items-center justify-content-between">
+				<div class="col-lg-5 mb-5 mb-lg-0">
+					<div class="welcome-img-wrapper">
+						<img src="/assets/image/gallery/about-1.png" alt="NDDC Headquarters Building">
+					</div>
+				</div>
+				<div class="col-lg-6 ps-lg-5">
+					<div class="welcome-subtitle">Welcome to Niger Delta Development Commission</div>
+					<h2 class="welcome-title">Empowering Communities, Building the Future.</h2>
+					<div class="welcome-desc-lead">
+						"To offer a lasting solution to the socio-economic difficulties of the Niger Delta region."
+					</div>
+					<div class="welcome-desc-body">
+						Explore our website to unveil our steadfast dedication to fostering sustainable development, empowering communities, and catalyzing positive transformation across the Niger Delta region. From bolstering infrastructure to advancing social welfare initiatives, we are steadfastly committed to creating opportunities and enhancing livelihoods. We invite you to embark on this journey with us towards a future brimming with prosperity and progress.
+					</div>
+					<a href="/WhoWeAre/Vision" class="welcome-learnmore">
+						LEARN MORE <i class="fa-solid fa-arrow-right-long"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+}
+
+<!-- News Point Section -->
+<section class="news-section">
+	<div class="container">
+		<div class="text-center mb-5">
+			<div class="welcome-subtitle">Updates From Our Programs and Activities</div>
+			<h2 class="welcome-title text-dark">News Point</h2>
+		</div>
+		<div class="row g-4">
+			@foreach (var item in Model.NewsList)
+			{
+				<div class="col-lg-4 col-md-6">
+					<div class="news-card">
+						<div class="news-card-img">
+							<img src="@Model._containerUrl@item.ImageUrl" alt="@item.Subject" loading="lazy">
+							<div class="news-badge">News</div>
+						</div>
+						<div class="news-card-content">
+							<div class="news-card-meta">
+								<i class="fa-solid fa-user-pen"></i> By Corporate Affairs Dept.
+								<span class="mx-1">|</span>
+								<i class="fa-solid fa-calendar-days"></i> @item.PublishDate.ToString("dd/MM/yy")
+							</div>
+							<h4 class="news-card-title">
+								<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID" class="text-decoration-none text-dark">@item.Subject</a>
+							</h4>
+							<p class="news-card-desc">@item.ShortSummary</p>
+							<a asp-page="/News/NewsDetails" asp-route-nid="@item.NID" class="news-card-link">
+								Read More <i class="fa-solid fa-arrow-right-long"></i>
+							</a>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
+</section>
+
+<!-- Core Focus Section -->
+<section class="core-focus-section">
+	<div class="container">
+		<h2 class="welcome-title text-center text-white mb-5">Core Focus of the Niger Delta Development Commission</h2>
+		<div class="row align-items-center">
+			<div class="col-lg-6 pe-lg-5">
+				<ul class="core-checklist">
+					<li class="core-checklist-item">
+						<i class="fa-solid fa-circle-check"></i>
+						<span>Enhancing infrastructure in the Niger Delta.</span>
+					</li>
+					<li class="core-checklist-item">
+						<i class="fa-solid fa-circle-check"></i>
+						<span>Improving healthcare access for our people.</span>
+					</li>
+					<li class="core-checklist-item">
+						<i class="fa-solid fa-circle-check"></i>
+						<span>Empowering communities through education, skills and jobs.</span>
+					</li>
+					<li class="core-checklist-item">
+						<i class="fa-solid fa-circle-check"></i>
+						<span>Sustainable environmental management of our environment and resources.</span>
+					</li>
+					<li class="core-checklist-item">
+						<i class="fa-solid fa-circle-check"></i>
+						<span>Facilitating agricultural development and supporting agro allied industries.</span>
+					</li>
+					<li class="core-checklist-item">
+						<i class="fa-solid fa-circle-check"></i>
+						<span>Fostering social welfare programs for all our people.</span>
+					</li>
+				</ul>
+			</div>
+			<div class="col-lg-6 ps-lg-5">
+				<div class="focus-card">
+					<h4><i class="fa-solid fa-eye"></i> Vision</h4>
+					<p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
+				</div>
+				<div class="focus-card">
+					<h4><i class="fa-solid fa-bullseye"></i> Mission</h4>
+					<p>To facilitate the rapid and sustainable development of the Niger Delta into a region that is economically prosperous, socially stable, ecologically regenerative, and politically peaceful.</p>
+				</div>
+				<div class="focus-card">
+					<h4><i class="fa-solid fa-heart"></i> Core Values</h4>
+					<p>Patriotism, Passion, Professionalism, Integrity, Creativity and Team Spirit</p>
+				</div>
+			</div>
+		</div>
+		<div class="text-center mt-5">
+			<a href="/WhoWeAre/Vision" class="btn btn-portal">Discover More</a>
+		</div>
+	</div>
+</section>
+
+<!-- Photo Speak Section -->
+<section class="photospeak-section">
+	<div class="container">
+		<div class="text-center mb-5">
+			<div class="welcome-subtitle">Recent Photos of Our Activities</div>
+			<h2 class="welcome-title text-dark">Photo Speak</h2>
+		</div>
+		<div class="photospeak-carousel-container">
+			<div id="image-carousel" class="splide">
+				<div class="splide__track">
+					<div class="splide__list">
+						@foreach (var item in Model.Photos)
+						{
+							<div class="splide__slide photospeak-slide">
+								<div class="photospeak-card">
+									<img src="@Model._containerUrl@item.ImageUrl" alt="@item.Title" class="img-fluid">
+								</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+			<div class="photospeak-nav-btns">
+				<div class="photospeak-nav-btn prev-btn"><i class="fa-solid fa-chevron-left"></i></div>
+				<div class="photospeak-nav-btn next-btn"><i class="fa-solid fa-chevron-right"></i></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-section">
+	<div class="container">
+		<div class="text-center mb-5">
+			<div class="welcome-subtitle">Testimonials</div>
+			<h2 class="welcome-title text-dark">What Our People Are Saying</h2>
+		</div>
+		<div class="testimonial-card">
+			<i class="fa-solid fa-quote-left quote-icon"></i>
+			<div id="testimonial-carousel" class="splide">
+				<div class="splide__track">
+					<div class="splide__list">
+						@foreach (var p in Model.Testimonials)
+						{
+							<div class="splide__slide">
+								<div class="testimonial-text">
+									"@p.Testimonial"
+								</div>
+								<div class="testimonial-author">@p.TestimonialBy</div>
+								<div class="testimonial-title">@p.Occupation</div>
+							</div>
+						}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Executive Management Section -->
+<section class="execs-section">
+	<div class="container">
+		<div class="row align-items-center mb-5">
+			<div class="col-lg-6">
+				<h2 class="welcome-title text-dark mb-0">Our Executives And Management Staff</h2>
+			</div>
+			<div class="col-lg-6">
+				<p class="text-muted mb-0">
+					The Niger Delta Development Commission is governed by seasoned experts from across the region that help navigate the affairs of the Commission.
+				</p>
+			</div>
+		</div>
+
+		<!-- Chairman (Leader) Card -->
+		<div class="row mb-5 justify-content-center">
+			<div class="col-lg-4 col-md-6">
+				<div class="exec-card leader">
+					<div class="exec-img-box">
+						<img src="assets/image/team/team-GB-Chair.png" alt="Mr. Chiedu Ebie">
+					</div>
+					<a href="/WhoWeAre/BoardDetails/11" class="exec-name">Mr. Chiedu Ebie</a>
+					<p class="exec-title">Chairman</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Grid of 4 Executive Cards -->
+		<div class="row g-4 justify-content-center">
+			<div class="col-lg-3 col-md-6">
+				<div class="exec-card">
+					<div class="exec-img-box">
+						<img src="assets/image/team/team-GB-MD.png" alt="Dr. Samuel Ogbuku">
+					</div>
+					<a href="/WhoWeAre/BoardDetails/1" class="exec-name">Dr. Samuel Ogbuku</a>
+					<p class="exec-title">Managing Director</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="exec-card">
+					<div class="exec-img-box">
+						<img src="assets/image/team/team-GB-EDP.png" alt="Mr. Victor Antai">
+					</div>
+					<a href="/WhoWeAre/BoardDetails/7" class="exec-name">Mr. Victor Antai</a>
+					<p class="exec-title">Executive Director, Projects (EDP)</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="exec-card">
+					<div class="exec-img-box">
+						<img src="assets/image/team/team-GB-EDCS.png" alt="Mr. Ifedayo Abegunde">
+					</div>
+					<a href="/WhoWeAre/BoardDetails/9" class="exec-name">Mr. Ifedayo Abegunde</a>
+					<p class="exec-title">Executive Director of Corporate Services (EDCS)</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="exec-card">
+					<div class="exec-img-box">
+						<img src="assets/image/team/team-GB-EDFA.png" alt="Mr. Boma Iyaye">
+					</div>
+					<a href="/WhoWeAre/BoardDetails/8" class="exec-name">Mr. Boma Iyaye</a>
+					<p class="exec-title">Executive Director, Finance and Administration (EDFA)</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="text-center mt-5">
+			<a href="/WhoWeAre/Board" class="btn btn-portal">View More</a>
+		</div>
+	</div>
+</section>
+
+<!-- Project Database Section -->
+<section class="db-section">
+	<div class="container">
+		<div class="row align-items-center justify-content-between">
+			<div class="col-lg-6 mb-5 mb-lg-0">
+				<div class="db-subtitle">Government Service</div>
+				<h2 class="db-title">Explore our Online<br>Project Database &amp; Resources</h2>
+				<p class="db-desc">
+					Get current updates on our Projects and Programs cut across the Nine States of the Niger Delta Region, gain deep insights and analysis of developmental trends within the region and the impact of our Projects and Programs on our people along with developmental projections.
+				</p>
+				<a href="/Services/ProjectDatabase/index" class="btn btn-portal">Search Project Database</a>
+			</div>
+			<div class="col-lg-5">
+				<div class="db-stats-card">
+					<div class="db-stats-header">
+						<div class="db-stats-icon">
+							<i class="fa-solid fa-chart-line"></i>
+						</div>
+						<div class="db-stats-title">
+							<h6>Projects Delivered</h6>
+							<h3>57,358 +</h3>
+						</div>
+					</div>
+					<div class="db-chart">
+						<div class="db-chart-bar fill-1"></div>
+						<div class="db-chart-bar fill-2"></div>
+						<div class="db-chart-bar fill-3"></div>
+						<div class="db-chart-bar fill-4"></div>
+						<div class="db-chart-bar fill-5"></div>
+						<div class="db-chart-bar fill-6"></div>
+						<div class="db-chart-bar fill-7"></div>
+					</div>
+					<a href="/Services/ProjectDatabase/index" class="btn-discover">Discover More</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Statistics Green Bar -->
+<section class="stats-bar">
+	<div class="container">
+		<div class="row g-4">
+			<div class="col-lg-3 col-md-6">
+				<div class="stat-box">
+					<div class="stat-box-icon"><i class="fa-solid fa-person-running"></i></div>
+					<h3>20k+</h3>
+					<p>Projects Delivered<br>Since 2015 in All Regions.</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="stat-box">
+					<div class="stat-box-icon"><i class="fa-solid fa-road"></i></div>
+					<h3>60%</h3>
+					<p>Capital Projects<br>Covering Roads, Electricity and Water Supply.</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="stat-box">
+					<div class="stat-box-icon"><i class="fa-solid fa-seedling"></i></div>
+					<h3>26%</h3>
+					<p>Private &amp; Domestic<br>Garden Land</p>
+				</div>
+			</div>
+			<div class="col-lg-3 col-md-6">
+				<div class="stat-box">
+					<div class="stat-box-icon"><i class="fa-solid fa-house-chimney"></i></div>
+					<h3>3,000+</h3>
+					<p>Rural Projects<br>Including Electrification and Water Projects</p>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+	<script>
+		// Set the date we're counting down to
+		var countDownDate = new Date("@Model.CountDownDate.ToString("yyyy-MM-ddTHH:mm:ss")").getTime();
+
+		// Update the count down every 1 second
+		var x = setInterval(function () {
+
+			// Get todays date and time
+			var now = new Date().getTime();
+
+			// Find the distance between now and the count down date
+			var distance = countDownDate - now;
+
+			// Time calculations for days, hours, minutes and seconds
+			var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+			var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+			var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+			var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+			if (document.querySelector(".days")) {
+				document.querySelector(".days").innerHTML = days;
+			}
+			if (document.querySelector(".hours")) {
+				document.querySelector(".hours").innerHTML = hours;
+			}
+			if (document.querySelector(".minutes")) {
+				document.querySelector(".minutes").innerHTML = minutes;
+			}
+			if (document.querySelector(".seconds")) {
+				document.querySelector(".seconds").innerHTML = seconds;
+			}
+
+			// If the count down is finished, write some text
+			if (distance < 0) {
+				clearInterval(x);
+				if (document.getElementById("demo")) {
+					document.getElementById("demo").innerHTML = "EXPIRED";
+				}
+			}
+		}, 1000);
+	</script>
+	<script>
+		document.addEventListener('DOMContentLoaded', function () {
+			// 1. Hero Slider
+			var heroSplide = new Splide('.hero-splide', {
+				type: 'loop',
+				perPage: 1,
+				autoplay: true,
+				interval: 5000,
+				pauseOnHover: false,
+				pauseOnFocus: false,
+				arrows: false,
+				pagination: true
+			});
+			heroSplide.mount();
+
+			// 2. Photo Speak Carousel
+			var photoSplide = new Splide('#image-carousel', {
+				type: 'loop',
+				autoplay: true,
+				interval: 4000,
+				pauseOnHover: false,
+				pauseOnFocus: false,
+				perPage: 3,
+				arrows: false,
+				pagination: false,
+				gap: '20px',
+				breakpoints: {
+					992: { perPage: 2 },
+					576: { perPage: 1 }
+				}
+			});
+			photoSplide.mount();
+
+			// Map custom navigation arrows for Photo Speak
+			if (document.querySelector('.prev-btn')) {
+				document.querySelector('.prev-btn').addEventListener('click', function() {
+					photoSplide.go('<');
+				});
+			}
+			if (document.querySelector('.next-btn')) {
+				document.querySelector('.next-btn').addEventListener('click', function() {
+					photoSplide.go('>');
+				});
+			}
+
+			// 3. Testimonials Carousel
+			var testimonialSplide = new Splide('#testimonial-carousel', {
+				type: 'loop',
+				perPage: 1,
+				autoplay: true,
+				interval: 6000,
+				arrows: false,
+				pagination: true
+			});
+			testimonialSplide.mount();
+		});
+	</script>
+}

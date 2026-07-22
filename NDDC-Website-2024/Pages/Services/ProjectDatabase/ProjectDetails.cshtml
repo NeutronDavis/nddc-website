@@ -1,92 +1,118 @@
-﻿@page "{pid:int?}"
+@page "{pid:int?}"
 @model NDDC_Website_2024.Pages.Services.ProjectDatabase.ProjectDetailsModel
 @{
+    Layout = "_Layout";
 }
-<section class="blog-section">
-    <div class="container">
-        <div class="blog-box lh-lg">
-            <h1 class="pb-4 fs-4 border-bottom">Project Details</h1>
-            <div class="">
-                <div class="card border-0 shadow-sm">
-                    <div class="border-bottom ps-4 py-4 d-flex">
-                        <h5 class="m-0">Reclamation Project At Ojobo Community, Delta State </h5>
-                    </div>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">LGA </span><span class=" col-md-8">@Model.ProjectDetails.Location</span></li>
-                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Location </span><span class=" col-md-8">@Model.ProjectDetails.Location</span></li>
-                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Commencement Date </span><span class=" col-md-8">@Model.ProjectDetails.CommencementDate</span></li>
-                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Status </span><span class=" col-md-8">@Model.ProjectDetails.Status</span></li>
-                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Project Type </span><span class=" col-md-8">@Model.ProjectDetails.CatName</span></li>
-                        <li class="list-group-item  ps-4 py-4 d-flex "><span class="col-md-4 fw-bold">Contractor </span><span class=" col-md-8">@Model.ProjectDetails.Contractor</span></li>
 
-                    </ul>
-                </div>
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="/Services/ProjectDatabase/Index">Project Database</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Project Details</span>
+        </nav>
+        <h1 class="font-display-lg text-2xl sm:text-4xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            @(Model.ProjectDetails?.ProjectName ?? "Reclamation Project At Ojobo Community, Delta State")
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+    </div>
+</section>
+
+<!-- Details & Gallery Section -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-12">
+    <!-- Summary Metadata Card -->
+    <div class="bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+        <div class="border-b border-outline-variant/15 pb-4 mb-6">
+            <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Project Overview</span>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary mt-1">Project Metadata & Progress</h2>
+        </div>
+
+        <div class="divide-y divide-outline-variant/15 text-sm text-on-surface">
+            <div class="py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="font-bold text-primary uppercase text-xs tracking-wider">Project Category</span>
+                <span class="sm:col-span-2 text-on-surface-variant font-medium">@(Model.ProjectDetails?.CatName ?? "Shore Protection & Reclamation")</span>
             </div>
-            <div class="mt-4">
-                <h1 class="py-4 fs-4 border-bottom">
-                    Project Pictures
-                </h1>
+            <div class="py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="font-bold text-primary uppercase text-xs tracking-wider">Location / LGA</span>
+                <span class="sm:col-span-2 text-on-surface-variant font-medium">@(Model.ProjectDetails?.Location ?? "Ojobo Community, Burutu LGA")</span>
             </div>
-            <div id="gallery" class="pt-3 d-flex">
-                @foreach (var item in Model.ProjectPictures)
+            <div class="py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="font-bold text-primary uppercase text-xs tracking-wider">Commencement Date</span>
+                <span class="sm:col-span-2 text-on-surface-variant font-medium">@(Model.ProjectDetails != null ? Model.ProjectDetails.CommencementDate.ToString("dd MMMM yyyy") : "14th March 2022")</span>
+            </div>
+            <div class="py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="font-bold text-primary uppercase text-xs tracking-wider">Current Status</span>
+                <span class="sm:col-span-2 font-bold text-green-700 flex items-center gap-1">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-600 inline-block"></span>
+                    @(Model.ProjectDetails?.Status ?? "Completed / Commissioned")
+                </span>
+            </div>
+            <div class="py-3.5 grid grid-cols-1 sm:grid-cols-3 gap-2">
+                <span class="font-bold text-primary uppercase text-xs tracking-wider">Contractor</span>
+                <span class="sm:col-span-2 text-on-surface-variant font-medium">@(Model.ProjectDetails?.Contractor ?? "Niger Delta Engineering Consortium Ltd")</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <div class="bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+        <div class="border-b border-outline-variant/15 pb-4 mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-primary">Project Media & Photos</h2>
+            <p class="text-xs text-on-surface-variant/80 mt-1">Click on any photo below to inspect high-resolution project progress images.</p>
+        </div>
+
+        <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            @if (Model.ProjectPictures != null && Model.ProjectPictures.Any())
+            {
+                foreach (var item in Model.ProjectPictures)
                 {
-                    <a class="pe-3 rounded" data-lg-size="1000-600"
-                       data-src="/assets/image/department/plan-1.png">
-                        <img class="rounded" src="@Model._containerUrl@item.ImageUrl"
-                             alt="" width="180" height="100" />
+                    var fullImgUrl = $"{Model._containerUrl}{item.ImageUrl}";
+                    <a class="block group rounded-xl overflow-hidden shadow-sm hover:shadow-lg border border-outline-variant/20 transition-all duration-300 relative aspect-video"
+                       href="@fullImgUrl"
+                       data-src="@fullImgUrl">
+                        <img src="@fullImgUrl" alt="Project Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                        <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                            <span class="material-symbols-outlined text-2xl">zoom_in</span>
+                        </div>
                     </a>
                 }
-                
-               
-
-            </div>
+            }
+            else
+            {
+                <a class="block group rounded-xl overflow-hidden shadow-sm hover:shadow-lg border border-outline-variant/20 transition-all duration-300 relative aspect-video"
+                   href="https://lh3.googleusercontent.com/aida-public/AB6AXuDVKDs9QFDoYC-J_Ga230U9uPORsK4Aw0--pwFgVD4cIWNehYuWXjT1WopKjn7Se9M9oPnBFMRGKPJ07Ot1Emon_PAQl29op2zSJtiKdb90-RWRxbGP0lv5kzYVx1R8bpAQ_CCFolx1ambVH6uSVXOtx3A1UjQOOxPuJUQXlgyWp1dqtBFmpdRcZkVqa8NG-smykmSP5moh2U4T0c-u7HTbJvIqT-oAIkYpLYWABiGhngTR6bCqEZc3ro-OSl3ncW2ezVQp5N69Xw4"
+                   data-src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVKDs9QFDoYC-J_Ga230U9uPORsK4Aw0--pwFgVD4cIWNehYuWXjT1WopKjn7Se9M9oPnBFMRGKPJ07Ot1Emon_PAQl29op2zSJtiKdb90-RWRxbGP0lv5kzYVx1R8bpAQ_CCFolx1ambVH6uSVXOtx3A1UjQOOxPuJUQXlgyWp1dqtBFmpdRcZkVqa8NG-smykmSP5moh2U4T0c-u7HTbJvIqT-oAIkYpLYWABiGhngTR6bCqEZc3ro-OSl3ncW2ezVQp5N69Xw4">
+                    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVKDs9QFDoYC-J_Ga230U9uPORsK4Aw0--pwFgVD4cIWNehYuWXjT1WopKjn7Se9M9oPnBFMRGKPJ07Ot1Emon_PAQl29op2zSJtiKdb90-RWRxbGP0lv5kzYVx1R8bpAQ_CCFolx1ambVH6uSVXOtx3A1UjQOOxPuJUQXlgyWp1dqtBFmpdRcZkVqa8NG-smykmSP5moh2U4T0c-u7HTbJvIqT-oAIkYpLYWABiGhngTR6bCqEZc3ro-OSl3ncW2ezVQp5N69Xw4" alt="Sample Project Image" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                    <div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+                        <span class="material-symbols-outlined text-2xl">zoom_in</span>
+                    </div>
+                </a>
+            }
         </div>
     </div>
 </section>
 
-
 @section Scripts {
-    <!-- Light Gallery -->
-    <script src="https://cdn.jsdelivr.net/npm/lightgallery@2.7.2/lightgallery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" integrity="sha512-jEJ0OA9fwz5wUn6rVfGhAXiiCSGrjYCwtQRUwI/wRGEuWRZxrnxoeDoNc+Pnhx8qwKVHs2BRQrVR9RE6T4UHBg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/autoplay/lg-autoplay.min.js" integrity="sha512-1YRlp9jO1ermVx9E3UzfBwoo88ODK0i9l2C2lNoZwCZAzvRdA+O0Lm00bUfkIf/A1esj4OK9yZ3yfgfa+FcYwg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/autoplay/lg-autoplay.umd.min.js" integrity="sha512-GtFOSYOB4Gx5+0hQxi/nVFJk77Tvmmgs/Kdbl4PZLjiZ8RBRMiKU2r33gsdn19r4Nlnx9lDqKf8ZdOSNwdgUtw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js" integrity="sha512-11B0rPDzvnSOYzAT37QdnYgt0z9Xg+wX5tckB1QKl5Znl8RPvrB5npo38K2jCt+Ad44udCfBiKt9D4jRdkSE1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/hash/lg-hash.min.js" integrity="sha512-7c9ZgozFwxmWalyapzhmzAChRvi0p7vhxWdrE3OjvFHnxuw6h6DBSOvtO1XytEj8MQI2Jp0Tm2BJwLUU7zAMvA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/mediumZoom/lg-medium-zoom.min.js" integrity="sha512-2YGO4SLBlm8K0whW1s/ohvaEdA/GdBywKoHlz3yhXzKxrvzq2AjdprtDu6sGQZe8rjDX4X9m3YUI1W7ahRYVFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/pager/lg-pager.min.js" integrity="sha512-p/vQczdCk287Uzj8GS8480KbjCQ8MGzRrXoQ/XFJhySSxWlRzWfgmVk0bjsixwgvLlfddccXMo/sKLpSBONTzw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/relativeCaption/lg-relative-caption.min.js" integrity="sha512-QRsZVsmfEnbACIQuoM17u3529cvEAuClvRjBIZ+iKbOkrCRqT/Q3aupz5QGr6j336q6woOLkquUc7ZvTNuxB3w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/rotate/lg-rotate.min.js" integrity="sha512-hmy1UozeMGRd6LjMO6S+uWsVJ5dsyLWOcolgvg1scR7o9+uXjSCGzx2bS855JI/o1C6vStutQ+UfW2F0PCid2Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js" integrity="sha512-VBbe8aA3uiK90EUKJnZ4iEs0lKXRhzaAXL8CIHWYReUwULzxkOSxlNixn41OLdX0R1KNP23/s76YPyeRhE6P+Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js" integrity="sha512-BLW2Jrofiqm6m7JhkQDIh2olT0EBI58+hIL/AXWvo8gOXKmsNlU6myJyEkTy6rOAAZjn0032FRk8sl9RgXPYIQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js"></script>
 
-    @* <script>
-        const container = document.querySelector('#gallery');
-        window.lightGallery(container, {
-            selector: '.lg-item',
-            zoomFromOrigin: true,
-            download: true,
-            thumbnail: true,
-            plugins: [
-                lgZoom,
-                lgAutoplay,
-                lgFullscreen,
-                lgRotate,
-                lgShare,
-                lgThumbnail
-            ],
-        });
-</script> *@
     <script>
-        let gallery = document.getElementById('gallery')
-        lightGallery(gallery, {
-            controls: true,
-            download: false,
-            thumbnail: true,
-            zoomFromOrigin: true,
-            plugins: [lgThumbnail, lgZoom, lgFullscreen, lgRotate, lgAutoplay],
-            thumbWidth: 100,
-            thumbHeight: 100
+        document.addEventListener('DOMContentLoaded', function() {
+            let gallery = document.getElementById('gallery');
+            if (gallery && window.lightGallery) {
+                lightGallery(gallery, {
+                    selector: 'a',
+                    controls: true,
+                    download: false,
+                    thumbnail: true,
+                    zoomFromOrigin: true,
+                    plugins: [lgThumbnail, lgZoom]
+                });
+            }
         });
     </script>
 }

@@ -1,256 +1,211 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.WhoWeAre.VisionModel
 @{
+	Layout = "_Layout";
 }
 
-<section class="header-img" style="background-image: url(/assets/image/bg/about-3.jpg);">
-    <div class="container">
-		<div class="page-breadcrumbs">
-			<ul class="list-unstyled">
-				<li><a href="/index">Home</a></li>
-				<li>Who We Are</li>
-			</ul><!-- list-unstyled -->
-		</div><!-- page-breadcrumbs -->
-		<div class="page-banner-title">
-			<h3>Who We Are</h3>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->			
-</section>
-<section class="mayor-section py-5">
-    <div class="container-fluid container-xxl">
-        <div class="row px-lg-5">
-            <div class="col-md-4 slide-left">
-                <h3 class="p-3 shadow">Mission</h3>
-                <div class="card border-0">
-                    <img src="/assets/image/bg/mision.png" height="270" class="card-img-top shadow-sm" alt="...">
-                    <div class="card-body mt-3 p-5 shadow-sm">
-                        @* #003b4912; *@
-                        <p class="card-text text-dark values">To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <h3 class="p-3 shadow">Vision</h3>
-                <div class="card border-0">
-                    <img src="/assets/image/bg/mission-1.png" height="270" class="card-img-top shadow-sm" alt="...">
-                    <div class="card-body mt-3 p-5 shadow-sm">
-                        <p class="card-text text-dark values">To facilitate the rapid and sustainable development of the Niger Delta into a region that is economically prosperous, socially stable, ecologically regenerative and politically peaceful.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 slide-right">
-                <h3 class="p-3 shadow">Values</h3>
-                <div class="card border-0">
-                    <img src="/assets/image/bg/core-values.jpg" height="270" class="card-img-top shadow-sm" alt="...">
-                    <div class="card-body mt-3 p-5 shadow-sm">
-                        <p class="card-text text-dark values">Patriotism, Passion, Professionalism, Integrity, Creativity and Team Spirit</p>
-                    </div>
-                </div>
-            </div>
+<style>
+	.hero-gradient {
+		background: linear-gradient(to right, rgba(0, 50, 45, 0.92), rgba(0, 50, 45, 0.4));
+	}
+	.bento-card-hover {
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+	.bento-card-hover:hover {
+		transform: translateY(-8px);
+		box-shadow: 0px 20px 40px rgba(0, 75, 68, 0.08);
+	}
 
-            @* <div class="col-lg-6">
-            <div class="mayor-box">
-            <div class="section-title-box">
-            <div class="section-tagline">The Journey</div><!-- section-tagline -->
-            <h3 class="section-title">Who We Are</h3>
-            </div><!--section-title-box-->
-            <div class="mayor-icon-box align-items-center">
-            <div class="mayor-icon">
-            <i class="flaticon-parthenon"></i>
-            </div><!-- mayor-icon -->
-            <h3 class="mayor-icon-title">NDDC's Mission And Vision</h3>
-            </div><!--mayor-icon-box-->
-            <ul class="list-unstyled list-style-one">
-            <li class="align-items-baseline">
-            <i class="fa-solid fa-circle-check"></i>
-            <p>To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
-            </li><!-- li -->
-            <li class="align-items-baseline">
-            <i class="fa-solid fa-circle-check "></i>
-            <p>To facilitate the rapid and sustainable development of the Niger Delta into a region that is economically prosperous, socially stable, ecologically regenerative and and politically peaceful.</p>
-            </li><!-- li -->
-            @*<li>
-            <i class="fa-solid fa-circle-check"></i>
-            <p>If you are going to use a passage</p>
-            </li><!-- li -->
-            </ul><!-- ul -->
-            </><!--mayor-box-->
-            </div><!-- col-lg-6 -->
-            <div class="col-lg-6">
-            <div class="mayor-img">
-            <img src="~/assets/image/shapes/shape-1.png" class="floated-image-one" alt="img-137">
-            <img src="~/assets/image/bg/mission-2.png" alt="img-138">
-            @*<div class="mayor-name">
-            <h6>Construction Of Amaogoke - Ezeoke Nsu-Nzerim Ikpe-Isiokwe Road</h6>
-            </div><!-- mayor-name -->
-            </div><!--mayor-img-->
-            </div><!--col-lg-6"--> *@
-        </div><!-- row -->
-    </div><!-- container -->
-</section>
-@* <section class="mayor-section pt-5">
-    <div class="container">
-        <div class="row">
-            <div class=" d-flex grid gap-5">
-                <div class="col-md-6">
-                    <img src="/assets/image/bg/name-1.png" style="width: 300px;" height="400" class="card-img-top p-0 text-start" alt="..." />
-                </div>
-                <div class="col-md-6 align-self-center">
-                    <p class="fw-semibold text-success">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-                </div>
-            </div>
+	/* Scroll & Page Entrance Animations */
+	.reveal-init {
+		opacity: 0;
+		transform: translateY(40px);
+		transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+		will-change: transform, opacity;
+	}
 
-			<div class=" d-flex grid gap-5 rounded-5" style="background-color: azure; margin-bottom: 2rem;">
-                <div class="col-md-6 ps-3 align-self-center">
-                    <p class="fw-semibold text-success">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <img src="/assets/image/bg/name-2.png" style="width: 300px;" height="400" class="card-img-top p-0" alt="..." />
-                </div>
-            </div>
+	.reveal-active {
+		opacity: 1 !important;
+		transform: translateY(0) !important;
+	}
 
-            <div class=" d-flex grid gap-5">
-                <div class="col-md-6">
-                    <img src="/assets/image/bg/name-3.png" style="width: 300px;" height="400" class="card-img-top p-0 text-start" alt="..." />
-                </div>
-                <div class="col-md-6 align-self-center">
-                    <p class="fw-semibold text-success">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-                </div>
-            </div>
+	.reveal-left {
+		transform: translateX(-50px);
+	}
+	.reveal-left.reveal-active {
+		transform: translateX(0) !important;
+	}
 
-			<div class=" d-flex grid gap-5 rounded-5" style="background-color: azure; margin-top: 2rem;">
-                <div class="col-md-6 ps-3 align-self-center">
-                    <p class="fw-semibold text-success">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-                </div>
-                <div class="col-md-6 text-end">
-                    <img src="/assets/image/bg/name-4.png" style="width: 300px;" height="400" class="card-img-top p-0" alt="..." />
-                </div>
-            </div>
-        </div>
-    </div>
-</section> *@
+	.reveal-right {
+		transform: translateX(50px);
+	}
+	.reveal-right.reveal-active {
+		transform: translateX(0) !important;
+	}
 
-<section class="mayor-section pt-5">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-7 px-5 pt-4 pb-3 p-lg-5 shadow-sm" style="background-color: azure">
-                <h3 class="text-success">Sustainable Development</h3>
-				<p class="fw-semibold text-success text-opacity-75">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-            </div>
-			<div class="col-md-5 px-0 animate__animated animate__backInRight">
-				<img src="/assets/image/bg/mission-2.png" height="370" class="card-img-top p-0" alt="...">
+	/* Stagger Delays */
+	.delay-100 { transition-delay: 100ms; }
+	.delay-200 { transition-delay: 200ms; }
+	.delay-300 { transition-delay: 300ms; }
+</style>
+
+<!-- Hero Section -->
+<header class="relative h-[60vh] min-h-[500px] flex items-center overflow-hidden mt-20">
+	<img class="absolute inset-0 w-full h-full object-cover" alt="NDDC Corporate Office Glass Building" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_Y25pg8hoUUR4K1VptAZT1fqZ5wKcaTAXPmUmrVecX2I-_ycisAFDuemvQP1_UX_Rl6W_eSvKKjb9Rnr4Q9NEbyDtOiXG0x4cnZK7GxT21C_ovESzyo6dLPquwbgQMIQv-W1SO8ByZmiSJrGK-ECJFw1JdN_K1Q7_WyWJAibtQGYqWe6bzaqijb3XT4ToRrQc5btCIXhms1iqvyyBRLJQckZbGk2PVIZHcQicJ5voEd2WEcvx6p5NKEoAqVACHATZG0uzmKX6DxU">
+	<div class="absolute inset-0 hero-gradient"></div>
+	<div class="relative max-w-container-max mx-auto px-6 md:px-gutter w-full hero-content reveal-init">
+		<h1 class="font-display-lg text-3xl md:text-5xl lg:text-display-lg text-on-primary max-w-2xl leading-tight text-white font-bold animate-title" style="text-align: start">
+			Our Mandate, Our People, Our Delta
+		</h1>
+		<p class="mt-4 md:mt-6 text-on-primary/80 font-body-lg text-sm md:text-body-lg max-w-xl text-white/90">
+			The NDDC is committed to facilitating the rapid, even and sustainable development of the Niger Delta into a region that is economically prosperous.
+		</p>
+	</div>
+</header>
+
+<!-- Mission, Vision, Values Grid -->
+<section class="py-section-gap-lg max-w-container-max mx-auto px-gutter">
+	<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+		<!-- Mission Card -->
+		<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm bento-card-hover group reveal-scroll reveal-init">
+			<div class="h-64 relative overflow-hidden">
+				<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Children gathering around fresh water pump" src="/assets/image/bg/mision.png">
 			</div>
-        </div>
-		<div class="row">
-			<div class="col-md-7 px-0 animate__animated animate__backInLeft">
-				<img src="/assets/image/bg/project.png" height="370" class="card-img-top p-0" alt="...">
-            </div>
-			<div class="col-md-5 px-5 pt-4 pb-3 p-lg-5 shadow-sm" style="background-color: azure">
-				<h3 class="text-success">Project Management</h3>
-				<p class="fw-semibold text-success text-opacity-75">Quality Management that provides methodical planning with agile execution, empowering teams to deliver high-quality outcomes while maximizing efficiency and minimizing disruptions.</p>
-            </div>
-        </div>
+			<div class="p-8 text-left">
+				<div class="flex items-center gap-3 mb-4">
+					<span class="material-symbols-outlined text-secondary text-[32px]">flag</span>
+					<h3 class="font-headline-md text-headline-md text-primary font-bold">Mission</h3>
+				</div>
+				<p class="text-on-surface-variant font-body-md text-body-md leading-relaxed">
+					To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.
+				</p>
+			</div>
+		</div>
+		<!-- Vision Card -->
+		<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm bento-card-hover group reveal-scroll reveal-init delay-100">
+			<div class="h-64 relative overflow-hidden">
+				<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Sustainable clean energy wind turbines and solar panels" src="/assets/image/bg/mission-1.png">
+			</div>
+			<div class="p-8 text-left">
+				<div class="flex items-center gap-3 mb-4">
+					<span class="material-symbols-outlined text-secondary text-[32px]">visibility</span>
+					<h3 class="font-headline-md text-headline-md text-primary font-bold">Vision</h3>
+				</div>
+				<p class="text-on-surface-variant font-body-md text-body-md leading-relaxed">
+					To facilitate the rapid and sustainable development of the Niger Delta into a region that is economically prosperous, socially stable, ecologically regenerative and politically peaceful.
+				</p>
+			</div>
+		</div>
+		<!-- Values Card -->
+		<div class="bg-surface-container-lowest border border-outline-variant/20 rounded-xl overflow-hidden shadow-sm bento-card-hover group reveal-scroll reveal-init delay-200">
+			<div class="h-64 relative overflow-hidden">
+				<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Corporate engineering supervisor inspecting blueprint" src="/assets/image/bg/core-values.jpg">
+			</div>
+			<div class="p-8 text-left">
+				<div class="flex items-center gap-3 mb-4">
+					<span class="material-symbols-outlined text-secondary text-[32px]">verified_user</span>
+					<h3 class="font-headline-md text-headline-md text-primary font-bold">Values</h3>
+				</div>
+				<p class="text-on-surface-variant font-body-md text-body-md leading-relaxed">
+					Patriotism, Passion, Professionalism, Integrity, Creativity and Team Spirit.
+				</p>
+			</div>
+		</div>
 	</div>
 </section>
 
-@* <section class="mayor-section pt-5">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <img src="/assets/image/bg/Mission-bg.png" height="530" class="card-img-top p-0" alt="...">
-            </div>
-			<div class="col-md-1 align-self-end">
-				<nav id="navbar-example2" class="navbar px-3 mb-3 ">
-					<ul class="nav nav-pills">
-						<li class="nav-item">
-							<a class="nav-link" href="#scrollspyHeading1"><i class="fa-solid fa-circle text-danger"></i></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#scrollspyHeading2"><i class="fa-solid fa-circle text-warning"></i></a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#scrollspyHeading3"><i class="fa-solid fa-circle text-success"></i></a>
-						</li>
-					</ul>
-				</nav>
-            </div>
-			<div class="col-md-7">  
-				<div data-bs-spy="scroll" data-bs-target="#navbar-example2" data-bs-root-margin="0px 0px -40%" data-bs-smooth-scroll="true" class="scrollspy-example p-3 rounded-2" tabindex="0">
-				  <h3 id="scrollspyHeading1">We Stop and Think</h3>
-					<p class="fw-semibold text-secondary">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-				  <h3 id="scrollspyHeading2">We Pause and Reflect</h3>
-					<p class="fw-semibold text-secondary">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
-				  <h3 id="scrollspyHeading3">We Move Straight Ahead with Our Goals</h3>
-					<p class="fw-semibold text-secondary">Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.</p>
+<!-- Sustainable Development Section -->
+<section class="py-section-gap-lg bg-surface-container-low overflow-hidden">
+	<div class="max-w-container-max mx-auto px-gutter">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+			<div class="order-2 lg:order-1 text-left reveal-scroll reveal-init reveal-left">
+				<div class="inline-flex items-center px-4 py-1.5 bg-secondary/10 text-secondary rounded-full font-label-sm text-label-sm mb-6">
+					Environmental Stewardship
+				</div>
+				<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Sustainable Development</h2>
+				<p class="text-on-surface-variant font-body-lg text-body-lg leading-relaxed mb-8">
+					Creating a future where the delta's natural resources are preserved for future generations, while also improving the quality of life for its residents. This will require commitment, collaboration, and innovative solutions that the NDDC is willing and ready to achieve.
+				</p>
+			</div>
+			<div class="order-1 lg:order-2 reveal-scroll reveal-init reveal-right">
+				<div class="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3]">
+					<img class="w-full h-full object-cover" alt="Environmental worker planting mangrove seedling" src="/assets/image/bg/mission-2.png">
+					<div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl"></div>
 				</div>
 			</div>
-        </div>
-    </div>
-	
-</section> *@
+		</div>
+	</div>
+</section>
 
-
-
-
-	@* <section class="causes-section">
-		<div class="container">
-			<div class="row row-gutter-30">
-				<div class="section-title-box">
-					<div class="section-tagline">The Solution</div><!-- section-tagline -->
-					<h1 class="">Aligning our vision with projects</h1>
-				</div><!--section-title-box-->
-				<div class="col-lg-6 col-xl-4">
-					<div class="causes-card ">
-						<div class="vision-card-imgbox">
-							<img src="~/assets/image/causes/solution-1.png" class="img-fluid" alt="img-117">
-						</div><!-- vision-card-imgbox -->
-						<div class="causes-content p-4">
-							<h4 class="mt-1"> <a href="cause-details.html">Renovation Of Staff Quarters And Access Road At Cps Port Harcourt, Rivers State</a> </h4>
-							<p>Buildings Sector</p>
-							<a href="cause-details.html" class="btn btn-primary mt-0">Details</a>
-						</div><!-- causes-content -->
-					</div><!-- causes-card -->
-				</div><!-- col-lg-6 col-xl-4 -->
-				<div class="col-lg-6 col-xl-4">
-					<div class="causes-card ">
-						<div class="vision-card-imgbox">
-							<img src="~/assets/image/causes/solution-2.png" class="img-fluid" alt="img-118">
-						</div><!-- vision-card-imgbox -->
-						<div class="causes-content p-4">
-							<h4 class="mt-1"> <a href="cause-details.html">Dredging/Desilting Of Obano-Okposha Oguta Lake Waterway (Lot 2), Imo State</a> </h4>
-							<p>Dredging Sector</p>
-							<a href="cause-details.html" class="btn btn-primary mt-0">Details</a>
-						</div><!-- causes-content -->
-					</div><!-- causes-card -->
-				</div><!-- col-lg-6 col-xl-4 -->
-				<div class="col-lg-6 col-xl-4">
-					<div class="causes-card ">
-						<div class="vision-card-imgbox">
-							<img src="~/assets/image/causes/solution-3.png" class="img-fluid" alt="img-119">
-						</div><!-- vision-card-imgbox -->
-						<div class="causes-content p-4">
-							<h4 class="mt-1"> <a href="cause-details.html">Extension Of 3 Spans Of 132Kv Line And 2 X 30Mva 132/133Kv Transmission Substation At Oghara, Delta State</a> </h4>
-							<p>Electricity Sector</p>
-							<a href="cause-details.html" class="btn btn-primary mt-0">Details</a>
-						</div><!-- causes-content -->
-					</div><!-- causes-card -->
-				</div><!-- col-lg-6 col-xl-4 -->
-				
-				
-			</div><!-- row -->
-			@*<div class="row">
-				<div class="col-lg-12">
-					<div class="blog-pagination-outer">
-						<div class="blog-pagination">
-								<a class="prev page-numbers" href="#"><b><i class="fa-solid fa-chevron-left"></i></b></a>
-								<span class="page-numbers current"><b>01</b></span>
-								<a class="page-numbers" href="#"><b>02</b></a>
-								<a class="page-numbers" href="#"><b>03</b></a>
-								<a class="page-numbers" href="#"><b>04</b></a>
-								<a class="next page-numbers" href="#"><b><i class="fa-solid fa-chevron-right"></i></b></a>
+<!-- Project Management Section -->
+<section class="py-section-gap-lg overflow-hidden">
+	<div class="max-w-container-max mx-auto px-gutter">
+		<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+			<div class="relative rounded-2xl overflow-hidden shadow-xl aspect-[4/3] reveal-scroll reveal-init reveal-left">
+				<img class="w-full h-full object-cover" alt="Engineering team reviewing plans in field office" src="/assets/image/bg/project.png">
+				<div class="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-2xl"></div>
+			</div>
+			<div class="text-left reveal-scroll reveal-init reveal-right">
+				<div class="inline-flex items-center px-4 py-1.5 bg-secondary/10 text-secondary rounded-full font-label-sm text-label-sm mb-6">
+					Governance &amp; Excellence
+				</div>
+				<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Project Management</h2>
+				<p class="text-on-surface-variant font-body-lg text-body-lg leading-relaxed mb-8">
+					Quality Management that provides methodical planning with agile execution, empowering teams to deliver high-quality outcomes while maximizing efficiency and minimizing disruptions in regional development.
+				</p>
+				<ul class="space-y-4">
+					<li class="flex items-start gap-3">
+						<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+						<div>
+							<h4 class="font-bold text-primary">Strategic Master Plan</h4>
+							<p class="text-on-surface-variant text-body-md text-sm">Adherence to long-term regional development frameworks.</p>
 						</div>
-					</div>
-				</div>	
-			</div>	
-		</div><!-- container -->
-	</section> *@
+					</li>
+					<li class="flex items-start gap-3">
+						<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+						<div>
+							<h4 class="font-bold text-primary">Budget Transparency</h4>
+							<p class="text-on-surface-variant text-body-md text-sm">Rigorous oversight and financial accountability for every project.</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+
+@section Scripts {
+	<script>
+		document.addEventListener("DOMContentLoaded", function () {
+			// 1. Page Entrance Load Animation (Hero Banner Content)
+			setTimeout(() => {
+				const heroContent = document.querySelector('.hero-content');
+				if (heroContent) {
+					heroContent.classList.add('reveal-active');
+				}
+			}, 150);
+
+			// 2. Scroll Reveal Intersection Observer (Grid and Content blocks)
+			const scrollElements = document.querySelectorAll('.reveal-scroll');
+			
+			const observerOptions = {
+				root: null,
+				rootMargin: '0px 0px -60px 0px',
+				threshold: 0.15
+			};
+
+			const scrollObserver = new IntersectionObserver((entries, observer) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						entry.target.classList.add('reveal-active');
+						observer.unobserve(entry.target); // stop observing once animated
+					}
+				});
+			}, observerOptions);
+
+			scrollElements.forEach(element => {
+				scrollObserver.observe(element);
+			});
+		});
+	</script>
+}

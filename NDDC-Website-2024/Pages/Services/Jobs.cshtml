@@ -1,100 +1,101 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Services.JobsModel
 @{
+    Layout = "_Layout";
 }
-<section class="announce mb-5">
-		<div class="container">
-			<div class="page-breadcrumbs">
-				<ul class="list-unstyled">
-					<li><a href="/index">Home</a></li>
-					<li>Empowerment Programs</li>
-				</ul><!-- list-unstyled -->
-			</div><!-- page-breadcrumbs -->
-			<div class="page-banner-title">
-            <h3 class="fs-1">Empowerment Programs</h3>
-			</div><!-- page-banner-title -->
-		</div><!-- container -->			
+
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-on-surface-variant">Services</span>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Empowerment Programs</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            Empowerment Programs & Opportunities
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+    </div>
 </section>
 
-@* <section class="service-one-section">
-    <div class="container">
-		<div class="section-title-box text-center">
-			<div class="section-tagline"></div>
-            <h1 class="mb-5">Empowerment Programs</h1>
-		</div>
-		<div class="row row-gutter-30">
-			<div class="row row-gutter-30 table-responsive ">
-				<table class="table table-hover table-lg">
-                  <thead class="table-light">
+<!-- Content Section -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+        <div class="border-b border-outline-variant/15 pb-6 mb-8 text-left">
+            <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Regional Growth</span>
+            <h2 class="text-2xl font-bold text-primary">Active Empowerment Initiatives</h2>
+            <p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Explore skill acquisition, entrepreneurship programs, and capacity building schemes for Niger Delta youth.</p>
+        </div>
+
+        <div class="overflow-x-auto rounded-xl border border-outline-variant/20">
+            <table class="w-full text-left text-sm">
+                <thead class="bg-surface-container text-primary uppercase text-xs font-bold border-b border-outline-variant/20">
                     <tr>
-                      <th scope="col">S/N</th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Skill</th>
-                      <th scope="col">Program</th>
-                      <th scope="col">Status</th>
+                        <th scope="col" class="px-6 py-4">S/N</th>
+                        <th scope="col" class="px-6 py-4">Program Name</th>
+                        <th scope="col" class="px-6 py-4">Target Sector / Skill</th>
+                        <th scope="col" class="px-6 py-4">Status</th>
+                        <th scope="col" class="px-6 py-4 text-right">Action</th>
                     </tr>
-                  </thead>
-                  <tbody class="table-group-divider">
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/15 text-on-surface">
+                    <tr class="hover:bg-surface-container-low transition-colors">
+                        <td class="px-6 py-4 font-bold text-primary">1</td>
+                        <td class="px-6 py-4 font-semibold text-primary">Youth Technical Skill Acquisition</td>
+                        <td class="px-6 py-4 text-on-surface-variant">Engineering & Fabrication</td>
+                        <td class="px-6 py-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full inline-block">Active / Ongoing</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="/WhatWeDo/Scholarship" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow inline-flex items-center gap-1">
+                                Apply / Enroll <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </td>
                     </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
+                    <tr class="hover:bg-surface-container-low transition-colors">
+                        <td class="px-6 py-4 font-bold text-primary">2</td>
+                        <td class="px-6 py-4 font-semibold text-primary">Agricultural Entrepreneurship Scheme</td>
+                        <td class="px-6 py-4 text-on-surface-variant">Agribusiness & Aquaculture</td>
+                        <td class="px-6 py-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full inline-block">Active / Ongoing</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="/WhatWeDo/Scholarship" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow inline-flex items-center gap-1">
+                                Apply / Enroll <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </td>
                     </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
+                    <tr class="hover:bg-surface-container-low transition-colors">
+                        <td class="px-6 py-4 font-bold text-primary">3</td>
+                        <td class="px-6 py-4 font-semibold text-primary">Project HOPE Youth Registry</td>
+                        <td class="px-6 py-4 text-on-surface-variant">Digital Economy & Artisanal Skills</td>
+                        <td class="px-6 py-4">
+                            <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full inline-block">Open Registration</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="https://projecthope.nddc.gov.ng" target="_blank" class="bg-primary hover:bg-primary/90 text-white font-bold text-xs px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow inline-flex items-center gap-1">
+                                Register Portal <span class="material-symbols-outlined text-xs">open_in_new</span>
+                            </a>
+                        </td>
                     </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
+                    <tr class="hover:bg-surface-container-low transition-colors">
+                        <td class="px-6 py-4 font-bold text-primary">4</td>
+                        <td class="px-6 py-4 font-semibold text-primary">Overseas Post-Graduate Scholarship</td>
+                        <td class="px-6 py-4 text-on-surface-variant">STEM & Medical Sciences</td>
+                        <td class="px-6 py-4">
+                            <span class="bg-amber-100 text-amber-800 text-xs font-bold px-3 py-1 rounded-full inline-block">Annual Cycle</span>
+                        </td>
+                        <td class="px-6 py-4 text-right">
+                            <a href="/WhatWeDo/Scholarship" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-5 py-2.5 rounded-full transition-all shadow-sm hover:shadow inline-flex items-center gap-1">
+                                Read Guidelines <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </td>
                     </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
-                    </tr>
-                    <tr>
-                      <th scope="row">1</th>
-                      <td>Mark</td>
-                      <td>Engineering</td>
-                      <td>Program</td>
-                      <td class="d-flex justify-content-between" >Ongoing <button class="btn btn-primary p-2 ms-5 rounded">Enroll</button></td>
-                    </tr>
-                  </tbody>
-                </table>
-            </div>
+                </tbody>
+            </table>
         </div>
     </div>
-</section> *@
-
+</section>

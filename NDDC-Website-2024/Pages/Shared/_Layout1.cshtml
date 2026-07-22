@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>NDDC - Official Website</title>
+
+	<meta name="description" content="To facilitate the rapid & sustainable development of the Niger Delta into a region that is economically prosperous.">
+
+	<meta property="og:url" content="https://nddc.gov.ng">
+	<link rel="canonical" href="https://nddc.gov.ng">
+	<meta property="og:title" content="NDDC - Official Website">
+	<meta property="og:description" content="The Official Website of the NDDC">
+	<meta property="og:image" content="/assets/image/NDDC.jpeg">
+	<meta property="og:image:alt" content="NDDC Headquarters">
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="website">
+	<meta name="twitter:card" content="summary_large_image">
+	<!-- google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Genos:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+	<!-- plugins css -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link href="https://fonts.cdnfonts.com/css/reey" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.css" integrity="sha512-pJrGHWDVOeiy4UkMtHu0fpD8oLLssFcaW0fsVXUkA1/jDLopa554Z1AZo5SKtekHnnmyat0ipiP0snKDrt0GNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" type="text/css" href="~/assets/vendor/flaticon/css/flaticon_towngov.css">
+    <link rel="stylesheet" href="assets/vendor/youtube-popup/youtube-popup.css">
+    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css" integrity="sha512-nUqPe0+ak577sKSMThGcKJauRI7ENhKC2FQAOOmdyCYSrUh0GnwLsZNYqwilpMmplN+3nO3zso8CWUgu33BDag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/css/splide.min.css" integrity="sha512-KhFXpe+VJEu5HYbJyKQs9VvwGB+jQepqb4ZnlhUF/jQGxYJcjdxOTf6cr445hOc791FFLs18DKVpfrQnONOB1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" integrity="sha512-eMxdaSf5XW3ZW1wZCrWItO2jZ7A9FhuZfjVdztr7ZsKNOmt6TUMTQgfpNoVRyfPE5S9BC0A4suXzsGSrAOWcoQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- favicons Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/image/favicon/favicon.ico">
+	<link rel="icon" type="image/png" sizes="32x32" href="assets/image/favicon/favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/image/favicon/favicon-16x16.png">
+    <link rel="manifest" href="assets/image/favicons/site.webmanifest">
+	
+</head>
+@* <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - NDDC_Website_2024</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/NDDC_Website_2024.styles.css" asp-append-version="true" />
+</head> *@
+<body>
+	<a href="#main-content" class="visually-hidden-focusable position-absolute top-0 start-0 p-2 bg-primary text-white" style="z-index:9999">Skip to main content</a>
+    @* <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-page="/Index">NDDC_Website_2024</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header> *@
+	@inject NddcWebsiteLibrary.Data.Home.IHomeData HomeDb
+	<header class="header">
+		@* <div class="topbar">
+			<div class="topbar-inner justify-content-center bg-secondary">
+				<div class="topbar-left bg-secondary">
+					<div class="topbar-info text-white">
+						<ul>
+							<li>
+								<div class="topbar-text-div fw-bold">
+									<span>Breaking News</span>
+								</div><!-- topbar-text -->
+							</li><!-- li -->
+							<li>
+							<div class="topbar-text-div">	
+							<span class="fs-4 fw-lighter">|</span>
+							</div>
+							</li>
+							<li>
+								
+							</li><!-- li -->
+						</ul><!-- ul -->
+					</div><!--topbar-info-->F
+				</div><!-- topbar-left -->
+				</div>
+				<div class="topbar-inner">
+				
+			</div><!-- topbar-inner -->
+		</div><!--topbar--> *@
+		@await Component.InvokeAsync("BreakingNews")
+		<div class="topbar">
+			<div class="topbar-inner">
+				<div class="topbar-left">
+					<div class="topbar-socials">
+                        <a onclick="myYoutube()"><i class="fa-brands fa-youtube text-white"></i></a>
+                        <a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+						<a onclick="myTiktok()"><i class="fa-brands  fa-tiktok text-white"></i></a>
+						<a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+						<a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+						<a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+					</div><!--topbar-socials-->
+
+					<div class="topbar-info">
+						<ul>
+							<li>
+								<div class="topbar-text-div fw-bold">
+									<span>Latest News</span>
+								</div><!-- topbar-text -->
+							</li><!-- li -->
+							<li>
+							<div class="topbar-text-div">	
+							<span class="fs-4 fw-lighter">|</span>
+							</div>
+							</li>
+							<li>
+								<div class="topbar-text-div">
+									@* <a href="index.html">NDDC Inaugurates Aquaculture Centre in Abia, Advances...</a> *@
+									@await Component.InvokeAsync("LatestNews")
+								</div><!-- topbar-text -->
+							</li><!-- li -->
+						</ul><!-- ul -->
+					</div><!--topbar-info-->
+				</div><!-- topbar-left -->
+				<div class="topbar-left">
+					<div class="topbar-info">
+						<ul>
+							<li>
+								<div class="topbar-icon">
+									<i class="fa-solid fa-envelope"></i>
+								</div><!-- topbar-icon -->
+								<div class="topbar-text">
+									<a href="mailto:needhelp@company.com">info@nddc.gov.ng</a>
+								</div><!-- topbar-text -->
+							</li><!-- li -->
+							<li>
+								<div class="topbar-icon">
+									<i class="fa-solid fa-clock"></i>
+								</div><!-- topbar-icon -->
+								<div class="topbar-text">
+									<span>Open Hours: Mon - Fri 8.00 am - 5.00 pm</span>
+								</div><!-- topbar-text -->
+							</li><!-- li -->
+						</ul><!-- ul -->
+					</div><!--topbar-info-->
+					@*<ul>
+						<li><a href="department-details.html">About Us</a></li>
+						<li><a href="departments.html">Government</a></li>
+						<li><a href="contact.html">Complaints</a></li>
+					</ul><!-- ul -->*@
+				</div><!--topbar-right-->
+			</div><!-- topbar-inner -->
+		</div><!--topbar-->
+		<div class="main-menu sticky-header">
+			<div class="main-menu-inner">
+				<div class="main-menu-left">
+					<div class="main-menu-logo">
+						<a href="/index"><img src="~/assets/image/NDDCNewLogo.jpg" alt="img-1" width="160"></a>
+					</div><!-- main-menu-logo -->
+					<div class="navigation">
+						<ul class="main-menu-list list-unstyled">
+							<li class="active">
+								<a href="/index">Home</a>
+								@* <ul class="list-unstyled">
+									<li><a href="index.html">Home 1</a></li>
+									<li><a href="index-2.html">Home 2</a></li>
+								</ul> *@<!-- list-unstyled -->
+							</li><!-- has-dropdown -->
+							<li class="has-dropdown">
+								<a href="#">Who We Are</a>
+								<ul class="list-unstyled">
+									<li><a href="/WhoWeAre/Vision">Our Mission and Vision  </a></li>
+									<li><a href="/WhoWeAre/MasterPlan">Our Master Plan</a></li>
+									<li><a href="/WhoWeAre/Board">Our Board</a></li>
+									<li><a href="/WhoWeAre/Directors">Our Directors</a></li>
+									@* <li><a href="/WhoWeAre/ManagementStaff">Our Management Staff</a></li> *@
+								</ul><!-- list-unstyled -->
+							</li><!-- has-dropdown -->
+							<li class="has-dropdown">
+								<a href="#">What We Do</a>
+								<ul class="list-unstyled">
+									<li><a href="/Services/ProjectDatabase/index">Transformational Projects</a></li>
+									<li><a href="/WhatWeDo/Scholarship">Scholarships</a></li>
+									@* <li><a href="/WhatWeDo/Programs">Impactful Programs</a></li>
+									<li><a href="/WhatWeDo/Projects">Partnerships</a></li> *@
+								</ul><!-- list-unstyled -->
+							</li><!-- has-dropdown -->
+							<li class="has-dropdown">
+								<a href="#">News</a>
+								<ul class="list-unstyled">
+									<li><a href="/News/News">All News</a></li>
+									@* <li><a href="~/News/Updates">Updates</a></li> *@
+									@* <li><a href="/News/Publications">Publications</a></li> *@
+									<li><a href="/News/Announcements">Announcements</a></li>
+								</ul><!-- list-unstyled -->
+							</li><!-- has-dropdown -->
+							<li class="has-dropdown">
+								<a href="#">Media</a>
+								<ul class="list-unstyled">
+									<li><a href="/Media/PhotoAlbum">Photo Album</a></li>
+									<li><a href="/Media/Videos">Videos</a></li>
+									@* <li><a href="/Media/Sights">Sights And Icons</a></li> *@
+								</ul><!-- list-unstyled -->
+							</li><!-- has-dropdown -->
+							
+							<li class="has-dropdown">
+								<a href="#">e-Services</a>
+								<ul class="list-unstyled">
+									<li><a href="/ServiceGate/index">Service Gate</a></li>
+									<li><a href="/Media/Videos">Videos</a></li>
+									<li><a href="/Services/ProjectDatabase/index">Project Database</a></li>
+									<li><a href="/Services/Jobs">Scholarships</a></li>
+									<li><a href="/Services/OnlineForms">Online Forms</a></li>
+									<li><a href="/Services/Tenders">Adverts</a></li>
+									<li><a href="/Services/IReports/index">I-reports</a></li>
+									@* <li><a href="/Media/Sights">Sights And Icons</a></li> *@
+								</ul><!-- list-unstyled -->
+							</li><!-- has-dropdown -->
+							
+							<li>
+								
+							</li><!-- li -->
+						</ul><!-- main-menu-list -->
+					</div><!-- navigation -->
+				</div><!-- main-menu-left -->
+				<div class="main-menu-right">
+					<div class="mobile-menu-button mobile-nav-toggler">
+						<span></span>
+						<span></span>
+						<span></span>
+					</div><!-- mobile-menu-button -->
+					@*<div class="search-box">
+						<a href="#" class="search-toggler">
+							<i class="flaticon-search-interface-symbol"></i>
+						</a><!-- search-toggler -->
+					</div><!-- search-box -->*@
+					@*<div class="main-menu-right-button">
+						<a href="contact.html" class="btn btn-primary">SERVICOM</a>
+					</div><!-- main-menu-right-button -->*@
+
+					<div class=" main-menu-right-button me-xl-5">
+						<!-- <a href="https://25anniversary.nddc.gov.ng/"><img src="/assets/image/nddc-link-2.png" alt="img-1" width="150" height="45"></a> -->
+@* 						<a href="/Media/LiveEvents/Events"><img src="/assets/image/NDDC-Live-Logo.jpg" alt="img-1" width="150"></a>
+ *@					</div><!-- main-menu-logo -->
+				</div><!-- main-menu-right -->
+			</div><!-- main-menu-inner -->
+		</div><!-- main-menu -->
+		<style>
+			.main-menu-logo {
+				min-width: 180px !important;
+				padding: 20px 15px !important;
+			}
+			.navigation {
+				padding-left: 20px !important;
+				padding-right: 10px !important;
+			}
+			.main-menu-list > li > a {
+				padding: 30px 10px !important;
+				font-size: 14px !important;
+			}
+			.main-menu-inner {
+				padding-right: 10px !important;
+			}
+		</style>
+	</header>
+	<div id="main-content" class="page-wrapper">
+		@RenderBody()
+		
+	</div>
+   @*  <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div> *@
+
+	<section class="footer">
+		<div class="footer-inner">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
+						<div class="footer-widget">
+							<a href="/index"><img src="/assets/image/nddclogo.png" alt="NDDC Logo" height="65"></a>
+							<div class="footer-widget-text mt-3">
+								<p class="fs-6 fw-bold text-white mb-4">VISION: “To offer a lasting solution to the socio-economic difficulties of the Niger Delta region.”</p>
+							</div>
+							<div class="footer-widget-socials mt-4 justify-content-center justify-content-md-start">
+								<a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter text-white"></i></a>
+								<a onclick="myYoutube()" style="cursor: pointer;"><i class="fa-brands fa-youtube text-white"></i></a>
+								<a onclick="myTiktok()" style="cursor: pointer;"><i class="fa-brands fa-tiktok text-white"></i></a>
+								<a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook text-white"></i></a>
+								<a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin text-white"></i></a>
+								<a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram text-white"></i></a>
+							</div>
+						</div>
+					</div><!--col-lg-3-->
+
+					<div class="col-lg-2 col-md-6 mb-4">
+						<div class="footer-widget">
+							<h4 class="footer-widget-title">Quick Links</h4>
+							<ul class="list-unstyled footer-widget-explore p-0 m-0">
+								<li><a href="/WhoWeAre/Vision">Mission & Vision</a></li>
+								<li><a href="/WhoWeAre/Board">Our Board</a></li>
+								<li><a href="/WhoWeAre/MasterPlan">Master Plan</a></li>
+								<li><a href="/News/News">Latest News</a></li>
+							</ul>
+						</div>
+					</div><!--col-lg-2-->
+
+					<div class="col-lg-3 col-md-6 mb-4">
+						<div class="footer-widget">
+							<h4 class="footer-widget-title">Digital Services</h4>
+							<ul class="list-unstyled footer-widget-department p-0 m-0">
+								<li><a href="/Services/ProjectDatabase/index">Projects Database</a></li>
+								<li><a href="/Media/LiveEvents/Events">NDDC Live</a></li>
+								<li><a href="/Services/Tenders">Tenders & Adverts</a></li>
+								<li><a href="/ServiceGate/index">Service Gate</a></li>
+								<li><a href="/Services/IReports/index">i-Reports</a></li>
+							</ul>
+						</div>
+					</div><!--col-lg-3-->
+
+					<div class="col-lg-4 col-md-6 mb-4">
+						<div class="footer-widget">
+							<h4 class="footer-widget-title">Get In Touch</h4>
+							<div class="footer-widget-contact-list mb-3">
+								<i class="fa-solid fa-map-marker-alt mt-1"></i>
+								<div class="footer-widget-contact-item">
+									<a href="#" class="text-white fw-bold">CORPORATE HEADQUARTERS</a>
+									<p class="text-white-50 small mb-0">Plot C5/C6, Eastern By-Pass, Marine Base, Port Harcourt, Rivers State.</p>
+								</div>
+							</div>
+							<div class="footer-widget-contact-list mb-3">
+								<i class="fa-solid fa-envelope mt-1"></i>
+								<div class="footer-widget-contact-item">
+									<a href="mailto:info@nddc.gov.ng">info@nddc.gov.ng</a>
+								</div>
+							</div>
+							<div class="footer-widget-contact-list mb-3">
+								<i class="fa-solid fa-phone mt-1"></i>
+								<div class="footer-widget-contact-item">
+									<a href="tel:+2347071060050">+2347071060050</a>
+								</div>
+							</div>
+						</div>
+					</div><!--col-lg-4-->
+				</div><!-- row -->
+
+				<hr class="border-secondary opacity-25 my-5">
+
+				<div class="row">
+					<div class="col-12 mb-4">
+						<h4 class="footer-widget-title mb-4">Our State Offices</h4>
+					</div>
+					
+					<div class="col-md-4 mb-4">
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">ABIA STATE</h6>
+							<p class="text-white-50 small mb-0">Okeikpe Road, Opposite Anglican School. Ukwa-West, Abia State.</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">AKWA IBOM STATE</h6>
+							<p class="text-white-50 small mb-0">D14, Ewet Housing Estate, Uyo. Akwa Ibom State.</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">BAYELSA STATE</h6>
+							<p class="text-white-50 small mb-0">Isaac Boro Expressway, Opolo-Epie, Yenagoa, Bayelsa State.</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">ABUJA LIAISON OFFICE</h6>
+							<p class="text-white-50 small mb-0">No 11 Kubani River Crescent, Off Nile Street, Maitama, FCT, Abuja.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">DELTA STATE</h6>
+							<p class="text-white-50 small mb-0">105A Rt.Hon. Sheriff Oborevwori Way, Warri (Beside Delta Board of Internal Revenue).</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">EDO STATE</h6>
+							<p class="text-white-50 small mb-0">No. 144 Murtala Muhammed Highway, Opp DVD Oil, Benin City, Edo State.</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">IMO STATE</h6>
+							<p class="text-white-50 small mb-0">Plot 11 Port Harcourt Road, Owerri, Imo State.</p>
+						</div>
+					</div>
+
+					<div class="col-md-4 mb-4">
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">ONDO STATE</h6>
+							<p class="text-white-50 small mb-0">Plot II GRA, Okitipupa Road, Igbokoda, Ondo State.</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">RIVERS STATE</h6>
+							<p class="text-white-50 small mb-0">125 Olu-Obasanjo Road, GRA, Port Harcourt, Rivers State.</p>
+						</div>
+						<div class="mb-4">
+							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">CROSS RIVER STATE</h6>
+							<p class="text-white-50 small mb-0">Lily Complex, No 105, Murtala Mohammed Highway, Calabar.</p>
+						</div>
+					</div>
+				</div><!-- row (State Offices) -->
+			</div><!-- container -->
+		</div><!--footer-inner-->
+		<div class="bottom-footer">
+			<div class="container">
+				<p>© Copyright <span id="year"></span> Niger Delta Development Commission</p>
+			</div><!-- container -->
+		</div><!--bottom-footer-->
+	</section>
+    @* <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - NDDC_Website_2024 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer> *@
+
+	<div class="mobile-nav-wrapper">
+		<div class="mobile-nav-overlay mobile-nav-toggler"></div><!-- mobile-nav-overlay -->
+		<div class="mobile-nav-content">
+			<a href="#" class="mobile-nav-close mobile-nav-toggler">
+				<span></span>
+				<span></span>
+			</a><!-- mobile-nav-close -->
+			@* <div class="logo-box">
+				<a href="index.html"><img src="assets/image/logo-light.png" width="160" height="40" alt="26"></a>
+			</div> *@<!-- logo-box -->
+			<div class="mobile-nav-container">
+				<ul class="main-menu-list list-unstyled">
+					<li>
+						<a href="/index">Home</a>
+					</li>
+					<li class="has-dropdown">
+						<a href="#">Who We Are<button><i class="fa-solid fa-chevron-right"></i></button></a>
+						<ul class="list-unstyled">
+							<li><a href="/WhoWeAre/Vision">Our Mission and Vision</a></li>
+							<li><a href="/WhoWeAre/MasterPlan">Our Master Plan</a></li>
+							<li><a href="/WhoWeAre/Board">Our Board</a></li>
+							<li><a href="/WhoWeAre/Directors">Our Directors</a></li>
+						</ul>
+					</li>
+					<li class="has-dropdown">
+						<a href="#">What We Do<button><i class="fa-solid fa-chevron-right"></i></button></a>
+						<ul class="list-unstyled">
+							<li><a href="/Services/ProjectDatabase/index">Transformational Projects</a></li>
+							<li><a href="/WhatWeDo/Scholarship">Scholarships</a></li>
+						</ul>
+					</li>
+					<li class="has-dropdown">
+						<a href="#">News<button><i class="fa-solid fa-chevron-right"></i></button></a>
+						<ul class="list-unstyled">
+							<li><a href="/News/News">All News</a></li>
+							<li><a href="/News/Announcements">Announcements</a></li>
+						</ul>
+					</li>
+					<li class="has-dropdown">
+						<a href="#">Media<button><i class="fa-solid fa-chevron-right"></i></button></a>
+						<ul class="list-unstyled">
+							<li><a href="/Media/PhotoAlbum">Photo Album</a></li>
+							<li><a href="/Media/Videos">Videos</a></li>
+						</ul>
+					</li>
+					<li class="has-dropdown">
+						<a href="#">e-Services<button><i class="fa-solid fa-chevron-right"></i></button></a>
+						<ul class="list-unstyled">
+							<li><a href="/ServiceGate/index">Service Gate</a></li>
+							<li><a href="/Services/ProjectDatabase/index">Project Database</a></li>
+							<li><a href="/Services/OnlineForms">Online Forms</a></li>
+							<li><a href="/Services/Tenders">Adverts</a></li>
+							<li><a href="/Services/IReports/index">i-Reports</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="/Contact">Contact</a>
+					</li>
+				</ul>
+			</div><!-- mobile-nav-container -->
+			<ul class="mobile-nav-contact list-unstyled">
+				<li>
+					<i class="fa-solid fa-phone"></i>
+					<a href="tel:+2347071060050">+2347071060050</a>
+				</li><!-- li -->
+				<li>
+					<i class="fa-solid fa-envelope"></i>
+					<a href="mailto:info@nddc.gov.ng">info@nddc.gov.ng</a>
+				</li><!-- li -->
+				<li>
+					<i class="fa-solid fa-map-marker-alt"></i>
+					Eastern Bypass Marine Base <br> Port Harcourt. Rivers State
+				</li><!-- li -->
+			</ul><!-- mobile-nav-contact -->
+			<ul class="mobile-nav-social list-unstyled">
+				<li>
+					<a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+				</li>
+				<li><a onclick="myYoutube()"><i class="fa-brands fa-youtube text-white"></i></a></li>
+				<li><a onclick="myTiktok()"><i class="fa-brands fa-tiktok text-white"></i></a></li>
+				<li><a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+				<li><a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
+				<li><a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+			</ul><!-- mobile-nav-social -->
+		</div><!-- mobile-nav-content -->
+	</div>
+
+	<div class="search-popup">
+		<div class="search-popup-overlay search-toggler"></div><!-- search-popup-overlay -->
+		<div class="search-popup-content">
+			<form action="#">
+				<label for="search" class="sr-only">search here</label><!-- sr-only -->
+				<input type="text" id="search" placeholder="Search Here...">
+				<button type="submit" aria-label="search submit" class="search-btn">
+					<span><i class="flaticon-search-interface-symbol"></i></span>
+				</button><!-- search-btn -->
+			</form><!-- form -->
+		</div><!-- search-popup-content -->
+	</div>
+
+	@*<a href="#" class="scroll-to-top scroll-to-target" data-target="html" style=""><i class="fa-solid fa-arrow-up"></i></a>
+*@	
+	<button class="btn bot-button text-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-robot align-self-center me-2"></i>NDDC Chat Bot</button>
+
+	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+		<div class="offcanvas-header">
+			<h5 class="offcanvas-title" id="offcanvasRightLabel"> NDDC ChatBot</h5>
+			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+			</div>
+			<div class="offcanvas-body">
+			<iframe src="https://web.powerva.microsoft.com/environments/Default-f2b10c06-4bd1-4c9c-b500-f2541e79aa92/bots/cr7c8_nddcAi/webchat?_version_=2" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+			</div>
+	</div>
+
+
+
+	@await RenderSectionAsync("Scripts", required: false)
+
+	<script src="https://cdn.lordicon.com/lordicon.js" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.js" integrity="sha512-k2o1KZdvUi59PUXirfThShW9Gdwtk+jVYum6t7RmyCNAVyF9ozijFpvLEWmpgqkHuqSWpflsLf5+PEW6Lxy/wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="assets/vendor/youtube-popup/youtube-popup.jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js" integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" integrity="sha512-j+F4W//4Pu39at5I8HC8q2l1BNz4OF3ju39HyWeqKQagW6ww3ZF9gFcu8rzUbyTDY7gEo/vqqzGte0UPpo65QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="/assets/js/theme.js"></script>
+	<script>
+	(function () {
+		function reveal(img) {
+			img.classList.add('img-loaded');
+			var wrap = img.parentElement;
+			if (wrap && wrap.classList.contains('img-shimmer-wrap')) {
+				wrap.style.animation = 'none';
+				wrap.style.background = 'transparent';
+			}
+		}
+		document.querySelectorAll('.img-fade').forEach(function (img) {
+			if (img.complete && img.naturalWidth > 0) {
+				reveal(img);
+			} else {
+				img.addEventListener('load',  function () { reveal(img); });
+				img.addEventListener('error', function () { reveal(img); });
+			}
+		});
+
+		// Carousel bottom bar — sync dots and slide counter
+		document.querySelectorAll('.carousel').forEach(function (car) {
+			car.addEventListener('slide.bs.carousel', function (e) {
+				var id = car.id;
+				var idx = e.to;
+				document.querySelectorAll('.carousel-dot[data-bs-target="#' + id + '"]').forEach(function (dot, i) {
+					dot.classList.toggle('carousel-dot--active', i === idx);
+				});
+				var lbl = document.querySelector('[data-carousel-label="' + id + '"]');
+				if (lbl) lbl.textContent = (idx + 1) + ' / ' + lbl.dataset.carouselTotal;
+			});
+		});
+	}());
+	</script>
+	<script src="/assets/js/LineChart.js"></script>
+	<script src="/assets/js/JavaScript.js"></script>
+	<script>
+		document.getElementById("year").innerHTML = new Date().getFullYear();
+	</script>
+	<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js" defer></script>
+
+	<!-- Light Gallery -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" integrity="sha512-jEJ0OA9fwz5wUn6rVfGhAXiiCSGrjYCwtQRUwI/wRGEuWRZxrnxoeDoNc+Pnhx8qwKVHs2BRQrVR9RE6T4UHBg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/autoplay/lg-autoplay.min.js" integrity="sha512-1YRlp9jO1ermVx9E3UzfBwoo88ODK0i9l2C2lNoZwCZAzvRdA+O0Lm00bUfkIf/A1esj4OK9yZ3yfgfa+FcYwg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js" integrity="sha512-11B0rPDzvnSOYzAT37QdnYgt0z9Xg+wX5tckB1QKl5Znl8RPvrB5npo38K2jCt+Ad44udCfBiKt9D4jRdkSE1A==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/hash/lg-hash.min.js" integrity="sha512-7c9ZgozFwxmWalyapzhmzAChRvi0p7vhxWdrE3OjvFHnxuw6h6DBSOvtO1XytEj8MQI2Jp0Tm2BJwLUU7zAMvA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js" integrity="sha512-VBbe8aA3uiK90EUKJnZ4iEs0lKXRhzaAXL8CIHWYReUwULzxkOSxlNixn41OLdX0R1KNP23/s76YPyeRhE6P+Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js" integrity="sha512-BLW2Jrofiqm6m7JhkQDIh2olT0EBI58+hIL/AXWvo8gOXKmsNlU6myJyEkTy6rOAAZjn0032FRk8sl9RgXPYIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<script>
+		window.onload = () => {
+			const modalEl = document.getElementById('exampleModal');
+			const modalBtn = document.querySelector('[data-bs-target="#exampleModal"]');
+			if (modalEl && modalBtn) modalBtn.click();
+		}
+	</script>
+
+</body>
+</html>

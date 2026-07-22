@@ -1,58 +1,88 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.News.AnnouncementsModel
 @{
+    Layout = "_Layout";
 }
-@* @{
-	// Function to strip HTML tags from a string
-	string StripHtml(string input)
-	{
-		return Regex.Replace(input, "<.*?>", string.Empty);
-	}
-} *@
-<section class="announce mb-5">
-	<div class="container">
-		<div class="page-breadcrumbs">
-			<ul class="list-unstyled">
-				<li><a>News</a></li>
-				<li>Announcements</li>
-			</ul><!-- list-unstyled -->
-		</div><!-- page-breadcrumbs -->
-		<div class="page-banner-title">
-			<h3 class="fs-1">Latest Announcements</h3>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->
-</section><!--page-banner-->
 
-<section class="news-details-section pt-0">
-	<div class="container">
-		<div class="row justify-content-center">
-			@foreach (var item in Model.Announcements)
+<style>
+    .announcement-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .announcement-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 24px -10px rgba(0, 75, 68, 0.08);
+    }
+</style>
+
+<!-- Hero Section -->
+<header class="bg-primary-container relative overflow-hidden py-16 md:py-24 text-left">
+    <!-- Subtle pattern background -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: radial-gradient(circle at 2px 2px, #ffffff 1px, transparent 0); background-size: 24px 24px;"></div>
+    <div class="max-w-container-max mx-auto px-gutter relative z-10">
+        <nav class="flex items-center gap-2 mb-4 font-label-sm text-label-sm text-on-primary-container/60">
+            <a class="hover:text-white transition-colors" href="/News/News">News</a>
+            <span class="material-symbols-outlined text-[18px] text-on-primary-container/40">chevron_right</span>
+            <span class="text-white">Announcements</span>
+        </nav>
+        <h1 class="font-display-lg text-display-lg text-white max-w-2xl leading-tight font-bold" style="text-align: start;">Latest Announcements</h1>
+        <p class="mt-4 text-on-primary-container/80 font-body-lg text-body-lg max-w-xl">
+            Stay updated with the latest news, project developments, and official notices from the Niger Delta Development Commission.
+        </p>
+    </div>
+</header>
+
+<!-- Content Section -->
+<main class="py-section-gap-lg max-w-container-max mx-auto px-gutter text-left">
+    <div class="grid grid-cols-1 gap-12 max-w-4xl mx-auto">
+        @if (Model.Announcements != null && Model.Announcements.Any())
+        {
+            @foreach (var item in Model.Announcements)
             {
-			<div class="col-lg-10">
-				<div class="news-details-meta-box">
-					<div class="news-details-meta-box-inner">
-						<span class="author">
-								Announced on:<a href="news-details.html">@item.StartDate.ToString("dd/MM/yy")</a>
-						</span><!-- author -->
-					</div><!-- news-details-meta-box-inner -->
-				</div><!-- news-details-meta-box -->
-					<div class="news-details-content-box" style="max-height: 11rem; overflow: hidden;">
-					<h3 class="">@item.Title</h3>
-						<p>@Html.Raw(@item.Details)</p>
-				</div><!-- /.news-details-content-box -->
-				<div class="news-details-share-box">
-					<div class="news-details-inner justify-content-end">
-						<div class="news-details-list">
-							<!-- news-details-list-title -->
-							<div class="news-details-list-button">
-									<a asp-route-Id="@item.Id" asp-page="AnnouncementDetails" class="btn btn-primary">More Information</a>
-							</div><!-- news-details-list-button -->
-						</div><!--news-details-list-->
-						<!-- news-details-list -->
-					</div><!-- news-details-inner -->
-				</div>
-			</div> 
-			}
-		</div><!-- row -->
-	</div><!-- container -->
-</section>
+                bool isDisclaimer = item.Title.Contains("DISCLAIMER", StringComparison.OrdinalIgnoreCase);
+                string category = isDisclaimer ? "OFFICIAL DISCLAIMER" : "COMMISSION ANNOUNCEMENT";
+                string iconName = isDisclaimer ? "warning" : "campaign";
+                string badgeClass = isDisclaimer ? "text-error bg-error-container/20" : "text-secondary bg-secondary-container/20";
+                
+                <!-- Announcement Card -->
+                <article class="announcement-card bg-surface p-8 md:p-10 rounded-xl border border-outline-variant/30 flex flex-col items-start shadow-sm">
+                    <div class="flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full @badgeClass">
+                        <span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">@iconName</span>
+                        <span class="font-label-sm text-label-sm font-semibold">Announced on: @item.StartDate.ToString("dd/MM/yyyy")</span>
+                    </div>
+                    <h2 class="font-headline-md text-headline-md text-primary mb-4 leading-snug font-bold">@item.Title</h2>
+                    <h3 class="font-label-sm text-label-sm text-outline tracking-wider uppercase mb-3 font-semibold">@category</h3>
+                    <div class="text-on-surface-variant font-body-md text-body-md mb-8 leading-relaxed line-clamp-3">
+                        @Html.Raw(item.Details)
+                    </div>
+                    <a asp-route-Id="@item.Id" asp-page="AnnouncementDetails" class="bg-secondary text-white px-8 py-3 rounded-lg font-label-sm text-label-sm hover:bg-on-secondary-container transition-all self-end flex items-center gap-2 group shadow-sm font-semibold">
+                        More Information
+                        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                </article>
+            }
+        }
+        else
+        {
+            <div class="p-12 text-center bg-surface-container rounded-xl border border-outline-variant/20">
+                <span class="material-symbols-outlined text-4xl text-outline mb-2">campaign</span>
+                <p class="text-on-surface-variant font-body-lg font-semibold">No announcements available at this time.</p>
+            </div>
+        }
+    </div>
+
+    <!-- Pagination -->
+    @if (Model.Announcements != null && Model.Announcements.Any())
+    {
+        <div class="mt-section-gap-sm flex justify-center items-center gap-4">
+            <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button class="w-12 h-12 flex items-center justify-center rounded-lg bg-secondary text-white font-bold">1</button>
+            <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors">2</button>
+            <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors">3</button>
+            <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/30 text-primary hover:bg-surface-container-high transition-colors">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+        </div>
+    }
+</main>

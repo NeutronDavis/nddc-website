@@ -1,258 +1,103 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Services.ProjectDatabase.StateDetailsModel
 @{
+    Layout = "_Layout";
 }
-<section class="page-banner">
-	<div class="container">
-        <div class="page-breadcrumbs">
-            <ul class="list-unstyled">
-                <li><a>Project Database</a></li>
-                <li>State Details</li>
-            </ul><!-- list-unstyled -->
-        </div>
-        <div class="page-banner-title text-center">
-			<h3>Bayelsa</h3>
-            <h2 class="text-white">4,344 projects</h2>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->
-</section>
 
-
-<section class="department-details-section pb-0">
-    <div class="container">
-        <div class="row  d-flex align-items-center justify-content-center">
-            <div class="input-group pb-5">
-                <input type="text" class="form-control bg-light" placeholder="Search projects in Bayelsa">
-                <div class="input-group-append" style=" display: contents; ">
-                    <button class="btn btn-primary" type="button">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="/Services/ProjectDatabase/Index">Project Database</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">State Projects</span>
+        </nav>
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+            <div>
+                <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+                    Bayelsa State Projects
+                </h1>
+                <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-3 rounded-full"></div>
             </div>
-            <div class="">
-                <div id="chart"></div>
-            </div>
-            </div>
-            </div>
-            </section>
-
-
-<section class="service-one-section pt-5">
-    <div class="container">
-        <div class="row row-gutter-30">
-            <div class="col-lg-3">
-                <div class="team-card">
-                    <!-- team-card-img -->
-                    <div class="team-card-content">
-                        <p class="fs-4">
-                            Buildings
-                        </p>
-                        <h4><a href="service-details.html"> <span class="fs-3">139</span> Projects</a></h4>
-                        
-                    </div><!-- team-card-content -->
-                </div>
-            </div><!--col-lg-6 col-xl-4-->
-            <div class="col-lg-3">
-                <div class="team-card">
-                    <!-- team-card-img -->
-                    <div class="team-card-content">
-                        <p class="fs-4">
-                            Canalization
-                        </p>
-                        <h4><a href="service-details.html"> <span class="fs-3">420</span> Projects</a></h4>
-                        
-                    </div><!-- service-one-card-content -->
-                </div><!--service-one-card-->
-            </div><!--col-lg-6 col-xl-4-->
-            <div class="col-lg-3">
-                <div class="team-card">
-                    <!-- team-card-img -->
-                    <div class="team-card-content">
-                        <p class="fs-4">
-                            Consultancy
-                        </p>
-                        <h4><a href="service-details.html" ><span class="fs-3">106</span> Projects</a></h4>
-                        
-                    </div><!-- service-one-card-content -->
-                </div><!--service-one-card-->
-            </div><!--col-lg-6 col-xl-4-->
-            <div class="col-lg-3">
-                <div class="team-card">
-                    <!-- team-card-img -->
-                    <div class="team-card-content">
-                        <p class="fs-4">
-                            Consultancy
-                        </p>
-                        <h4>
-                            <a href="service-details.html"> <span class ="fs-3">202</span> Projects</a>
-                            
-                        </h4>
-                        
-                    </div><!-- service-one-card-content -->
-                </div><!--service-one-card-->
-            </div><!--col-lg-6 col-xl-4-->
-
-        </div><!-- row -->
-    </div><!-- container -->
-</section>
-
-@* <section class="blog-section">
-    <div class="container">
-        <div class="blog-box">
-            <h4 class="section-title text-center">List Of Projects</h4>
-
-            <div class="container table-responsive py-5">
-                
-                    <table class="table table-bordered table-hover ">
-                        <thead class="table-primary">
-                            <tr>
-                                <th scope="col">S/N</th>
-                                <th scope="col">Project Title</th>
-                                <th scope="col">Project Type</th>
-                                <th scope="col">Status</th>
-                            </tr>
-                        </thead>
-
-                        <tbody class="table-striped-columns">
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Recent Project</td>
-                                <td>Rivers</td>
-                                <td>Road</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Recent Project</td>
-                                <td>Abia</td>
-                                <td>Road</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Recent Project</td>
-                                <td>Bayelsa</td>
-                                <td>Road</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Recent Project</td>
-                                <td>Bayelsa</td>
-                                <td>Road</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Recent Project</td>
-                                <td>Bayelsa</td>
-                                <td>Road</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Recent Project</td>
-                                <td>Bayelsa</td>
-                                <td>Road</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
-                                <td>Recent Project</td>
-                                <td>Bayelsa</td>
-                                <td>Road</td>
-                            </tr>
-                        </tbody>
-                </table>
-            </div>
+            <span class="bg-secondary/10 text-secondary font-extrabold text-sm sm:text-base px-5 py-2.5 rounded-full border border-secondary/20 shadow-sm">
+                4,344 Executed Projects
+            </span>
         </div>
     </div>
+</section>
 
-</section> *@
+<!-- Search & Analytics Section -->
+<section class="py-8 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-8">
+    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-outline-variant/20 shadow-md text-left space-y-6">
+        <div class="max-w-2xl">
+            <label for="stateSearchInput" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Search Projects in Bayelsa State</label>
+            <div class="flex items-center gap-2">
+                <input type="text" id="stateSearchInput" placeholder="Enter community, LGA, or project title..." class="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                <button type="button" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-md flex-shrink-0 inline-flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">search</span> Search
+                </button>
+            </div>
+        </div>
 
+        <div>
+            <h3 class="text-lg font-bold text-primary mb-4">Sector Distribution</h3>
+            <div id="chart" class="w-full min-h-[300px]"></div>
+        </div>
+    </div>
+</section>
 
-<script type="text/javascript">
+<!-- Sector Cards Grid -->
+<section class="pb-16 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="text-left mb-6">
+        <h3 class="text-xl font-bold text-primary">Key Sector Breakdown</h3>
+    </div>
 
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Buildings & Facilities</span>
+            <h4 class="text-3xl font-extrabold text-secondary">139 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
+            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        </div>
 
-    var options = {
-        series: [
-            {
-                data: [
-                    {
-                        x: '2008',
-                        y: [2800, 4500]
-                    },
-                    {
-                        x: '2009',
-                        y: [3200, 4100]
-                    },
-                    {
-                        x: '2010',
-                        y: [2950, 7800]
-                    },
-                    {
-                        x: '2011',
-                        y: [3000, 4600]
-                    },
-                    {
-                        x: '2012',
-                        y: [3500, 4100]
-                    },
-                    {
-                        x: '2013',
-                        y: [4500, 6500]
-                    },
-                    {
-                        x: '2014',
-                        y: [4100, 5600]
-                    }
-                ]
-            }
-        ],
-        chart: {
-            height: 350,
-            type: 'rangeBar',
-            zoom: {
-                enabled: false
-            }
-        },
-        plotOptions: {
-            bar: {
-                isDumbbell: true,
-                columnWidth: 3,
-                dumbbellColors: [['#008FFB', '#00E396']]
-            }
-        },
-        legend: {
-            show: true,
-            showForSingleSeries: true,
-            position: 'top',
-            horizontalAlign: 'left',
-            customLegendItems: ['Product A', 'Product B']
-        },
-        fill: {
-            type: 'gradient',
-            gradient: {
-                type: 'vertical',
-                gradientToColors: ['#00E396'],
-                inverseColors: true,
-                stops: [0, 100]
-            }
-        },
-        grid: {
-            xaxis: {
-                lines: {
-                    show: true
-                }
-            },
-            yaxis: {
-                lines: {
-                    show: false
-                }
-            }
-        },
-        xaxis: {
-            tickPlacement: 'on'
-        }
-    };
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Canalization & Dredging</span>
+            <h4 class="text-3xl font-extrabold text-secondary">420 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
+            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        </div>
 
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Technical Consultancy</span>
+            <h4 class="text-3xl font-extrabold text-secondary">106 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
+            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        </div>
 
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
+            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Electrification & Utilities</span>
+            <h4 class="text-3xl font-extrabold text-secondary">202 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
+            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        </div>
+    </div>
+</section>
 
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() {
+            var options = {
+                series: [139, 420, 106, 202, 3477],
+                labels: ['Buildings', 'Canalization', 'Consultancy', 'Electrification', 'Others'],
+                chart: {
+                    type: 'donut',
+                    height: 300
+                },
+                colors: ['#15803d', '#2563eb', '#d97706', '#9333ea', '#64748b'],
+                legend: { position: 'bottom' }
+            };
 
-</script>
+            var chart = new ApexCharts(document.querySelector("#chart"), options);
+            chart.render();
+        });
+    </script>
+}

@@ -1,620 +1,716 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="light" lang="en">
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Niger Delta Development Commission</title>
 
-    <title>NDDC - Official Website</title>
+    <!-- Tailwind CSS and custom config -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            important: true,
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-container": "#7ebab0",
+                        "surface-container-high": "#eef4f1",
+                        "outline": "#707977",
+                        "tertiary-container": "#204943",
+                        "surface-variant": "#f4f7f5",
+                        "inverse-on-surface": "#fafcfb",
+                        "surface-container-highest": "#ebf1ee",
+                        "surface-container-low": "#fafcfb",
+                        "error": "#ba1a1a",
+                        "on-secondary-fixed": "#00210c",
+                        "tertiary-fixed-dim": "#a4cfc7",
+                        "background": "#ffffff",
+                        "primary-fixed-dim": "#95d2c8",
+                        "on-tertiary-fixed-variant": "#254e48",
+                        "primary-container": "#004b44",
+                        "secondary-container": "#6afe9c",
+                        "on-tertiary-container": "#8db7b0",
+                        "error-container": "#ffdad6",
+                        "primary": "#00322d",
+                        "on-primary": "#ffffff",
+                        "secondary": "#006d37",
+                        "secondary-fixed-dim": "#4ae183",
+                        "on-secondary": "#ffffff",
+                        "primary-fixed": "#b1eee4",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-tertiary-fixed": "#00201c",
+                        "surface-dim": "#ebf0ee",
+                        "on-primary-fixed-variant": "#095049",
+                        "on-secondary-container": "#00743a",
+                        "surface-bright": "#ffffff",
+                        "on-surface-variant": "#3f4947",
+                        "tertiary-fixed": "#c0ebe3",
+                        "surface-tint": "#2b6860",
+                        "on-tertiary": "#ffffff",
+                        "on-surface": "#121d1c",
+                        "on-error-container": "#93000a",
+                        "inverse-surface": "#1d2b29",
+                        "surface-container-lowest": "#ffffff",
+                        "secondary-fixed": "#6afe9c",
+                        "surface": "#ffffff",
+                        "on-error": "#ffffff",
+                        "on-background": "#121d1c",
+                        "surface-container": "#f1f6f4",
+                        "tertiary": "#04322d",
+                        "on-primary-fixed": "#00201c",
+                        "inverse-primary": "#95d2c8",
+                        "outline-variant": "#bfc9c6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "margin-mobile": "20px",
+                        "stack-gap": "16px",
+                        "gutter": "32px",
+                        "section-gap-lg": "120px",
+                        "container-max": "1280px",
+                        "section-gap-sm": "64px"
+                    },
+                    "maxWidth": {
+                        "container-max": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Plus Jakarta Sans"],
+                        "label-sm": ["Inter"],
+                        "display-lg": ["Plus Jakarta Sans"],
+                        "headline-lg-mobile": ["Plus Jakarta Sans"],
+                        "headline-lg": ["Plus Jakarta Sans"],
+                        "body-md": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-lg": [
+                            "18px",
+                            {
+                                "lineHeight": "28px",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-md": [
+                            "24px",
+                            {
+                                "lineHeight": "32px",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "label-sm": [
+                            "14px",
+                            {
+                                "lineHeight": "20px",
+                                "letterSpacing": "0.05em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "display-lg": [
+                            "64px",
+                            {
+                                "lineHeight": "72px",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "headline-lg-mobile": [
+                            "32px",
+                            {
+                                "lineHeight": "40px",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "headline-lg": [
+                            "40px",
+                            {
+                                "lineHeight": "48px",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "700"
+                            }
+                        ],
+                        "body-md": [
+                            "16px",
+                            {
+                                "lineHeight": "24px",
+                                "fontWeight": "400"
+                            }
+                        ]
+                    }
+                },
+            },
+        }
+    </script>
 
-	<meta name="description" content="To facilitate the rapid & sustainable development of the Niger Delta into a region that is economically prosperous.">
-
-	<meta property="og:url" content="https://nddc.gov.ng">
-	<link rel="canonical" href="https://nddc.gov.ng">
-	<meta property="og:title" content="NDDC - Official Website">
-	<meta property="og:description" content="The Official Website of the NDDC">
-	<meta property="og:image" content="/assets/image/NDDC.jpeg">
-	<meta property="og:image:alt" content="NDDC Headquarters">
-	<meta property="og:locale" content="en_US">
-	<meta property="og:type" content="website">
-	<meta name="twitter:card" content="summary_large_image">
-	<!-- google font -->
+    <!-- Original Style sheets & libraries for Footer / bootstrap elements -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Genos:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
-	<!-- plugins css -->
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link href="https://fonts.cdnfonts.com/css/reey" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.css" integrity="sha512-pJrGHWDVOeiy4UkMtHu0fpD8oLLssFcaW0fsVXUkA1/jDLopa554Z1AZo5SKtekHnnmyat0ipiP0snKDrt0GNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" type="text/css" href="~/assets/vendor/flaticon/css/flaticon_towngov.css">
-    <link rel="stylesheet" href="assets/vendor/youtube-popup/youtube-popup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Genos:ital,wght@0,100..900;1,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" integrity="sha512-c42qTSw/wPZ3/5LBzD+Bw5f7bSF2oxou6wEb+I/lqeaKV5FDIfMvvRp772y4jcJLKuGUOpbJMdg/BTl50fJYAw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.css" integrity="sha512-pJrGHWDVOeiy4UkMtHu0fpD8oLLssFcaW0fsVXUkA1/jDLopa554Z1AZo5SKtekHnnmyat0ipiP0snKDrt0GNg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/css/lightgallery-bundle.min.css" integrity="sha512-nUqPe0+ak577sKSMThGcKJauRI7ENhKC2FQAOOmdyCYSrUh0GnwLsZNYqwilpMmplN+3nO3zso8CWUgu33BDag==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/css/splide.min.css" integrity="sha512-KhFXpe+VJEu5HYbJyKQs9VvwGB+jQepqb4ZnlhUF/jQGxYJcjdxOTf6cr445hOc791FFLs18DKVpfrQnONOB1g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css" integrity="sha512-eMxdaSf5XW3ZW1wZCrWItO2jZ7A9FhuZfjVdztr7ZsKNOmt6TUMTQgfpNoVRyfPE5S9BC0A4suXzsGSrAOWcoQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/site.css" asp-append-version="true">
+    
+    <style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        /* Topbar height variable — used to offset the fixed nav and body wrapper */
+        :root {
+            --topbar-h: 42px;
+        }
 
-    <!-- favicons Icons -->
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/image/favicon/favicon.ico">
-	<link rel="icon" type="image/png" sizes="32x32" href="assets/image/favicon/favicon.ico">
-    <link rel="icon" type="image/png" sizes="16x16" href="assets/image/favicon/favicon-16x16.png">
-    <link rel="manifest" href="assets/image/favicons/site.webmanifest">
-	
+        /* Fix top margin for body when fixed header is active */
+        /* On desktop: topbar (42px) + nav (80px) = 122px */
+        .page-wrapper-fixed-nav {
+            margin-top: calc(5rem + var(--topbar-h));
+        }
+        /* On mobile: topbar is hidden by style.css, only the nav (80px) remains */
+        @@media (max-width: 1199px) {
+            .page-wrapper-fixed-nav { margin-top: 5rem; }
+            .nav-main-bar { top: 0 !important; }
+        }
+
+        /* Force standard links to not inherit blue colors from bootstrap default */
+        a {
+            color: inherit;
+            text-decoration: none !important;
+        }
+        
+        /* Specific overrides for color collisions between Tailwind and Bootstrap */
+        .text-primary {
+            color: #00322d !important;
+        }
+        .bg-primary {
+            background-color: #00322d !important;
+        }
+        .text-secondary {
+            color: #006d37 !important;
+        }
+        .bg-secondary {
+            background-color: #006d37 !important;
+        }
+        .text-on-primary {
+            color: #ffffff !important;
+        }
+        .text-on-secondary {
+            color: #ffffff !important;
+        }
+        .text-on-surface-variant {
+            color: #3f4947 !important;
+        }
+        
+        /* Footer Links Specific Override */
+        .footer a {
+            color: rgba(255, 255, 255, 0.8) !important;
+            text-decoration: none !important;
+        }
+        .footer a:hover {
+            color: #6afe9c !important;
+        }
+        .footer-widget-socials a {
+            color: #ffffff !important;
+        }
+        .bottom-footer {
+            padding: 15px 0 !important;
+        }
+    </style>
 </head>
-@* <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - NDDC_Website_2024</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/NDDC_Website_2024.styles.css" asp-append-version="true" />
-</head> *@
-<body>
-	<a href="#main-content" class="visually-hidden-focusable position-absolute top-0 start-0 p-2 bg-primary text-white" style="z-index:9999">Skip to main content</a>
-    @* <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">NDDC_Website_2024</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+<body class="antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+
+    <!-- Topbar: social icons + latest news ticker + contact info -->
+    <div class="topbar fixed top-0 left-0 w-full z-[60]">
+        <div class="topbar-inner">
+            <div class="topbar-left">
+                <div class="topbar-socials">
+                    <a onclick="myYoutube()" style="cursor:pointer"><i class="fa-brands fa-youtube text-white"></i></a>
+                    <a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a onclick="myTiktok()" style="cursor:pointer"><i class="fa-brands fa-tiktok text-white"></i></a>
+                    <a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                </div><!--topbar-socials-->
+
+                <div class="topbar-info">
+                    <ul>
+                        <li>
+                            <div class="topbar-text-div fw-bold">
+                                <span>Latest News</span>
+                            </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Privacy">Privacy</a>
+                        <li>
+                            <div class="topbar-text-div">
+                                <span class="fs-4 fw-lighter">|</span>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="topbar-text-div">
+                                @await Component.InvokeAsync("LatestNews")
+                            </div>
                         </li>
                     </ul>
+                </div><!--topbar-info-->
+            </div><!-- topbar-left -->
+
+            <div class="topbar-left">
+                <div class="topbar-info">
+                    <ul>
+                        <li>
+                            <div class="topbar-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div class="topbar-text">
+                                <a href="mailto:info@nddc.gov.ng">info@nddc.gov.ng</a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="topbar-icon">
+                                <i class="fa-solid fa-clock"></i>
+                            </div>
+                            <div class="topbar-text">
+                                <span>Open Hours: Mon - Fri 8.00 am - 5.00 pm</span>
+                            </div>
+                        </li>
+                    </ul>
+                </div><!--topbar-info-->
+            </div><!--topbar-right-->
+        </div><!-- topbar-inner -->
+    </div><!--topbar-->
+
+    <!-- TopNavBar (Tailwind Visual Design + Dropdowns) -->
+    <nav class="nav-main-bar fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/30 shadow-sm h-20" style="top: var(--topbar-h)">
+        <div class="max-w-container-max mx-auto px-gutter flex justify-between items-center h-full">
+            <div class="flex items-center gap-4">
+                <a href="/index">
+                    <img src="/assets/image/nddclogo.png" alt="NDDC Logo" class="h-12 w-auto object-contain">
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation Links -->
+            <div class="hidden md:flex items-center gap-8 h-full">
+                <a id="nav-home" class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="/index">Home</a>
+                
+                <!-- Who We Are Dropdown -->
+                <div class="relative group h-full flex items-center">
+                    <button id="nav-who-we-are" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                        Who We Are <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                    </button>
+                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                        <a href="/WhoWeAre/Vision" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Mission and Vision</a>
+                        <a href="/WhoWeAre/MasterPlan" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Master Plan</a>
+                        <a href="/WhoWeAre/Board" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Board</a>
+                        <a href="/WhoWeAre/Directors" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Directors</a>
+                    </div>
+                </div>
+                
+                <!-- What We Do Dropdown -->
+                <div class="relative group h-full flex items-center">
+                    <button id="nav-what-we-do" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                        What We Do <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                    </button>
+                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                        <a href="/Services/ProjectDatabase/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Transformational Projects</a>
+                        <a href="/WhatWeDo/Scholarship" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Scholarships</a>
+                    </div>
+                </div>
+                
+                <!-- News Dropdown -->
+                <div class="relative group h-full flex items-center">
+                    <button id="nav-news" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                        News <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                    </button>
+                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                        <a href="/News/News" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">All News</a>
+                        <a href="/News/Announcements" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Announcements</a>
+                    </div>
+                </div>
+                
+                <!-- Media Dropdown -->
+                <div class="relative group h-full flex items-center">
+                    <button id="nav-media" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                        Media <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                    </button>
+                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                        <a href="/Media/PhotoAlbum" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Photo Album</a>
+                        <a href="/Media/Videos" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Videos</a>
+                    </div>
+                </div>
+                
+                <!-- e-Services Dropdown -->
+                <div class="relative group h-full flex items-center">
+                    <button id="nav-e-services" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                        e-Services <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
+                    </button>
+                    <div class="absolute top-[80%] right-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                        <a href="/ServiceGate/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Service Gate</a>
+                        <a href="/Media/Videos" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Videos</a>
+                        <a href="/Services/ProjectDatabase/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Project Database</a>
+                        <a href="/Services/Jobs" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Scholarships</a>
+                        <a href="/Services/OnlineForms" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Online Forms</a>
+                        <a href="/Services/Tenders" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Adverts</a>
+                        <a href="/Services/IReports/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">i-Reports</a>
+                    </div>
                 </div>
             </div>
-        </nav>
-    </header> *@
-	@inject NddcWebsiteLibrary.Data.Home.IHomeData HomeDb
-	<header class="header">
-		@* <div class="topbar">
-			<div class="topbar-inner justify-content-center bg-secondary">
-				<div class="topbar-left bg-secondary">
-					<div class="topbar-info text-white">
-						<ul>
-							<li>
-								<div class="topbar-text-div fw-bold">
-									<span>Breaking News</span>
-								</div><!-- topbar-text -->
-							</li><!-- li -->
-							<li>
-							<div class="topbar-text-div">	
-							<span class="fs-4 fw-lighter">|</span>
-							</div>
-							</li>
-							<li>
-								
-							</li><!-- li -->
-						</ul><!-- ul -->
-					</div><!--topbar-info-->F
-				</div><!-- topbar-left -->
-				</div>
-				<div class="topbar-inner">
-				
-			</div><!-- topbar-inner -->
-		</div><!--topbar--> *@
-		@await Component.InvokeAsync("BreakingNews")
-		<div class="topbar">
-			<div class="topbar-inner">
-				<div class="topbar-left">
-					<div class="topbar-socials">
-                        <a onclick="myYoutube()"><i class="fa-brands fa-youtube text-white"></i></a>
-                        <a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-						<a onclick="myTiktok()"><i class="fa-brands  fa-tiktok text-white"></i></a>
-						<a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook"></i></a>
-						<a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-						<a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-					</div><!--topbar-socials-->
-
-					<div class="topbar-info">
-						<ul>
-							<li>
-								<div class="topbar-text-div fw-bold">
-									<span>Latest News</span>
-								</div><!-- topbar-text -->
-							</li><!-- li -->
-							<li>
-							<div class="topbar-text-div">	
-							<span class="fs-4 fw-lighter">|</span>
-							</div>
-							</li>
-							<li>
-								<div class="topbar-text-div">
-									@* <a href="index.html">NDDC Inaugurates Aquaculture Centre in Abia, Advances...</a> *@
-									@await Component.InvokeAsync("LatestNews")
-								</div><!-- topbar-text -->
-							</li><!-- li -->
-						</ul><!-- ul -->
-					</div><!--topbar-info-->
-				</div><!-- topbar-left -->
-				<div class="topbar-left">
-					<div class="topbar-info">
-						<ul>
-							<li>
-								<div class="topbar-icon">
-									<i class="fa-solid fa-envelope"></i>
-								</div><!-- topbar-icon -->
-								<div class="topbar-text">
-									<a href="mailto:needhelp@company.com">info@nddc.gov.ng</a>
-								</div><!-- topbar-text -->
-							</li><!-- li -->
-							<li>
-								<div class="topbar-icon">
-									<i class="fa-solid fa-clock"></i>
-								</div><!-- topbar-icon -->
-								<div class="topbar-text">
-									<span>Open Hours: Mon - Fri 8.00 am - 5.00 pm</span>
-								</div><!-- topbar-text -->
-							</li><!-- li -->
-						</ul><!-- ul -->
-					</div><!--topbar-info-->
-					@*<ul>
-						<li><a href="department-details.html">About Us</a></li>
-						<li><a href="departments.html">Government</a></li>
-						<li><a href="contact.html">Complaints</a></li>
-					</ul><!-- ul -->*@
-				</div><!--topbar-right-->
-			</div><!-- topbar-inner -->
-		</div><!--topbar-->
-		<div class="main-menu sticky-header">
-			<div class="main-menu-inner">
-				<div class="main-menu-left">
-					<div class="main-menu-logo">
-						<a href="/index"><img src="~/assets/image/NDDCNewLogo.jpg" alt="img-1" width="160"></a>
-					</div><!-- main-menu-logo -->
-					<div class="navigation">
-						<ul class="main-menu-list list-unstyled">
-							<li class="active">
-								<a href="/index">Home</a>
-								@* <ul class="list-unstyled">
-									<li><a href="index.html">Home 1</a></li>
-									<li><a href="index-2.html">Home 2</a></li>
-								</ul> *@<!-- list-unstyled -->
-							</li><!-- has-dropdown -->
-							<li class="has-dropdown">
-								<a href="#">Who We Are</a>
-								<ul class="list-unstyled">
-									<li><a href="/WhoWeAre/Vision">Our Mission and Vision  </a></li>
-									<li><a href="/WhoWeAre/MasterPlan">Our Master Plan</a></li>
-									<li><a href="/WhoWeAre/Board">Our Board</a></li>
-									<li><a href="/WhoWeAre/Directors">Our Directors</a></li>
-									@* <li><a href="/WhoWeAre/ManagementStaff">Our Management Staff</a></li> *@
-								</ul><!-- list-unstyled -->
-							</li><!-- has-dropdown -->
-							<li class="has-dropdown">
-								<a href="#">What We Do</a>
-								<ul class="list-unstyled">
-									<li><a href="/Services/ProjectDatabase/index">Transformational Projects</a></li>
-									<li><a href="/WhatWeDo/Scholarship">Scholarships</a></li>
-									@* <li><a href="/WhatWeDo/Programs">Impactful Programs</a></li>
-									<li><a href="/WhatWeDo/Projects">Partnerships</a></li> *@
-								</ul><!-- list-unstyled -->
-							</li><!-- has-dropdown -->
-							<li class="has-dropdown">
-								<a href="#">News</a>
-								<ul class="list-unstyled">
-									<li><a href="/News/News">All News</a></li>
-									@* <li><a href="~/News/Updates">Updates</a></li> *@
-									@* <li><a href="/News/Publications">Publications</a></li> *@
-									<li><a href="/News/Announcements">Announcements</a></li>
-								</ul><!-- list-unstyled -->
-							</li><!-- has-dropdown -->
-							<li class="has-dropdown">
-								<a href="#">Media</a>
-								<ul class="list-unstyled">
-									<li><a href="/Media/PhotoAlbum">Photo Album</a></li>
-									<li><a href="/Media/Videos">Videos</a></li>
-									@* <li><a href="/Media/Sights">Sights And Icons</a></li> *@
-								</ul><!-- list-unstyled -->
-							</li><!-- has-dropdown -->
-							
-							<li class="has-dropdown">
-								<a href="#">e-Services</a>
-								<ul class="list-unstyled">
-									<li><a href="/ServiceGate/index">Service Gate</a></li>
-									<li><a href="/Media/Videos">Videos</a></li>
-									<li><a href="/Services/ProjectDatabase/index">Project Database</a></li>
-									<li><a href="/Services/Jobs">Scholarships</a></li>
-									<li><a href="/Services/OnlineForms">Online Forms</a></li>
-									<li><a href="/Services/Tenders">Adverts</a></li>
-									<li><a href="/Services/IReports/index">I-reports</a></li>
-									@* <li><a href="/Media/Sights">Sights And Icons</a></li> *@
-								</ul><!-- list-unstyled -->
-							</li><!-- has-dropdown -->
-							
-							<li>
-								
-							</li><!-- li -->
-						</ul><!-- main-menu-list -->
-					</div><!-- navigation -->
-				</div><!-- main-menu-left -->
-				<div class="main-menu-right">
-					<div class="mobile-menu-button mobile-nav-toggler">
-						<span></span>
-						<span></span>
-						<span></span>
-					</div><!-- mobile-menu-button -->
-					@*<div class="search-box">
-						<a href="#" class="search-toggler">
-							<i class="flaticon-search-interface-symbol"></i>
-						</a><!-- search-toggler -->
-					</div><!-- search-box -->*@
-					@*<div class="main-menu-right-button">
-						<a href="contact.html" class="btn btn-primary">SERVICOM</a>
-					</div><!-- main-menu-right-button -->*@
-
-					<div class=" main-menu-right-button me-xl-5">
-						<!-- <a href="https://25anniversary.nddc.gov.ng/"><img src="/assets/image/nddc-link-2.png" alt="img-1" width="150" height="45"></a> -->
-@* 						<a href="/Media/LiveEvents/Events"><img src="/assets/image/NDDC-Live-Logo.jpg" alt="img-1" width="150"></a>
- *@					</div><!-- main-menu-logo -->
-				</div><!-- main-menu-right -->
-			</div><!-- main-menu-inner -->
-		</div><!-- main-menu -->
-		<style>
-			.main-menu-logo {
-				min-width: 180px !important;
-				padding: 20px 15px !important;
-			}
-			.navigation {
-				padding-left: 20px !important;
-				padding-right: 10px !important;
-			}
-			.main-menu-list > li > a {
-				padding: 30px 10px !important;
-				font-size: 14px !important;
-			}
-			.main-menu-inner {
-				padding-right: 10px !important;
-			}
-		</style>
-	</header>
-	<div id="main-content" class="page-wrapper">
-		@RenderBody()
-		
-	</div>
-   @*  <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div> *@
-
-	<section class="footer">
-		<div class="footer-inner">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-3 col-md-6 mb-4 text-center text-md-start">
-						<div class="footer-widget">
-							<a href="/index"><img src="/assets/image/nddclogo.png" alt="NDDC Logo" height="65"></a>
-							<div class="footer-widget-text mt-3">
-								<p class="fs-6 fw-bold text-white mb-4">VISION: “To offer a lasting solution to the socio-economic difficulties of the Niger Delta region.”</p>
-							</div>
-							<div class="footer-widget-socials mt-4 justify-content-center justify-content-md-start">
-								<a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter text-white"></i></a>
-								<a onclick="myYoutube()" style="cursor: pointer;"><i class="fa-brands fa-youtube text-white"></i></a>
-								<a onclick="myTiktok()" style="cursor: pointer;"><i class="fa-brands fa-tiktok text-white"></i></a>
-								<a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook text-white"></i></a>
-								<a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin text-white"></i></a>
-								<a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram text-white"></i></a>
-							</div>
-						</div>
-					</div><!--col-lg-3-->
-
-					<div class="col-lg-2 col-md-6 mb-4">
-						<div class="footer-widget">
-							<h4 class="footer-widget-title">Quick Links</h4>
-							<ul class="list-unstyled footer-widget-explore p-0 m-0">
-								<li><a href="/WhoWeAre/Vision">Mission & Vision</a></li>
-								<li><a href="/WhoWeAre/Board">Our Board</a></li>
-								<li><a href="/WhoWeAre/MasterPlan">Master Plan</a></li>
-								<li><a href="/News/News">Latest News</a></li>
-							</ul>
-						</div>
-					</div><!--col-lg-2-->
-
-					<div class="col-lg-3 col-md-6 mb-4">
-						<div class="footer-widget">
-							<h4 class="footer-widget-title">Digital Services</h4>
-							<ul class="list-unstyled footer-widget-department p-0 m-0">
-								<li><a href="/Services/ProjectDatabase/index">Projects Database</a></li>
-								<li><a href="/Media/LiveEvents/Events">NDDC Live</a></li>
-								<li><a href="/Services/Tenders">Tenders & Adverts</a></li>
-								<li><a href="/ServiceGate/index">Service Gate</a></li>
-								<li><a href="/Services/IReports/index">i-Reports</a></li>
-							</ul>
-						</div>
-					</div><!--col-lg-3-->
-
-					<div class="col-lg-4 col-md-6 mb-4">
-						<div class="footer-widget">
-							<h4 class="footer-widget-title">Get In Touch</h4>
-							<div class="footer-widget-contact-list mb-3">
-								<i class="fa-solid fa-map-marker-alt mt-1"></i>
-								<div class="footer-widget-contact-item">
-									<a href="#" class="text-white fw-bold">CORPORATE HEADQUARTERS</a>
-									<p class="text-white-50 small mb-0">Plot C5/C6, Eastern By-Pass, Marine Base, Port Harcourt, Rivers State.</p>
-								</div>
-							</div>
-							<div class="footer-widget-contact-list mb-3">
-								<i class="fa-solid fa-envelope mt-1"></i>
-								<div class="footer-widget-contact-item">
-									<a href="mailto:info@nddc.gov.ng">info@nddc.gov.ng</a>
-								</div>
-							</div>
-							<div class="footer-widget-contact-list mb-3">
-								<i class="fa-solid fa-phone mt-1"></i>
-								<div class="footer-widget-contact-item">
-									<a href="tel:+2347071060050">+2347071060050</a>
-								</div>
-							</div>
-						</div>
-					</div><!--col-lg-4-->
-				</div><!-- row -->
-
-				<hr class="border-secondary opacity-25 my-5">
-
-				<div class="row">
-					<div class="col-12 mb-4">
-						<h4 class="footer-widget-title mb-4">Our State Offices</h4>
-					</div>
-					
-					<div class="col-md-4 mb-4">
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">ABIA STATE</h6>
-							<p class="text-white-50 small mb-0">Okeikpe Road, Opposite Anglican School. Ukwa-West, Abia State.</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">AKWA IBOM STATE</h6>
-							<p class="text-white-50 small mb-0">D14, Ewet Housing Estate, Uyo. Akwa Ibom State.</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">BAYELSA STATE</h6>
-							<p class="text-white-50 small mb-0">Isaac Boro Expressway, Opolo-Epie, Yenagoa, Bayelsa State.</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">ABUJA LIAISON OFFICE</h6>
-							<p class="text-white-50 small mb-0">No 11 Kubani River Crescent, Off Nile Street, Maitama, FCT, Abuja.</p>
-						</div>
-					</div>
-
-					<div class="col-md-4 mb-4">
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">DELTA STATE</h6>
-							<p class="text-white-50 small mb-0">105A Rt.Hon. Sheriff Oborevwori Way, Warri (Beside Delta Board of Internal Revenue).</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">EDO STATE</h6>
-							<p class="text-white-50 small mb-0">No. 144 Murtala Muhammed Highway, Opp DVD Oil, Benin City, Edo State.</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">IMO STATE</h6>
-							<p class="text-white-50 small mb-0">Plot 11 Port Harcourt Road, Owerri, Imo State.</p>
-						</div>
-					</div>
-
-					<div class="col-md-4 mb-4">
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">ONDO STATE</h6>
-							<p class="text-white-50 small mb-0">Plot II GRA, Okitipupa Road, Igbokoda, Ondo State.</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">RIVERS STATE</h6>
-							<p class="text-white-50 small mb-0">125 Olu-Obasanjo Road, GRA, Port Harcourt, Rivers State.</p>
-						</div>
-						<div class="mb-4">
-							<h6 class="text-white fw-bold border-start border-primary border-3 ps-2 mb-2">CROSS RIVER STATE</h6>
-							<p class="text-white-50 small mb-0">Lily Complex, No 105, Murtala Mohammed Highway, Calabar.</p>
-						</div>
-					</div>
-				</div><!-- row (State Offices) -->
-			</div><!-- container -->
-		</div><!--footer-inner-->
-		<div class="bottom-footer">
-			<div class="container">
-				<p>© Copyright <span id="year"></span> Niger Delta Development Commission</p>
-			</div><!-- container -->
-		</div><!--bottom-footer-->
-	</section>
-    @* <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2023 - NDDC_Website_2024 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            
+            <div class="flex items-center gap-4">
+                <!-- <a href="/Contact" class="bg-primary hover:bg-primary-container text-on-primary text-sm px-6 py-2.5 rounded-full font-semibold transition-all">Contact Us</a> -->
+                
+                <!-- Mobile Navigation Menu Toggle Button -->
+                <button id="mobile-menu-toggle" class="block md:hidden text-on-surface-variant hover:text-primary focus:outline-none" aria-label="Toggle Menu">
+                    <span class="material-symbols-outlined text-3xl select-none">menu</span>
+                </button>
+            </div>
         </div>
-    </footer> *@
+    </nav>
 
-	<div class="mobile-nav-wrapper">
-		<div class="mobile-nav-overlay mobile-nav-toggler"></div><!-- mobile-nav-overlay -->
-		<div class="mobile-nav-content">
-			<a href="#" class="mobile-nav-close mobile-nav-toggler">
-				<span></span>
-				<span></span>
-			</a><!-- mobile-nav-close -->
-			@* <div class="logo-box">
-				<a href="index.html"><img src="assets/image/logo-light.png" width="160" height="40" alt="26"></a>
-			</div> *@<!-- logo-box -->
-			<div class="mobile-nav-container">
-				<ul class="main-menu-list list-unstyled">
-					<li>
-						<a href="/index">Home</a>
-					</li>
-					<li class="has-dropdown">
-						<a href="#">Who We Are<button><i class="fa-solid fa-chevron-right"></i></button></a>
-						<ul class="list-unstyled">
-							<li><a href="/WhoWeAre/Vision">Our Mission and Vision</a></li>
-							<li><a href="/WhoWeAre/MasterPlan">Our Master Plan</a></li>
-							<li><a href="/WhoWeAre/Board">Our Board</a></li>
-							<li><a href="/WhoWeAre/Directors">Our Directors</a></li>
-						</ul>
-					</li>
-					<li class="has-dropdown">
-						<a href="#">What We Do<button><i class="fa-solid fa-chevron-right"></i></button></a>
-						<ul class="list-unstyled">
-							<li><a href="/Services/ProjectDatabase/index">Transformational Projects</a></li>
-							<li><a href="/WhatWeDo/Scholarship">Scholarships</a></li>
-						</ul>
-					</li>
-					<li class="has-dropdown">
-						<a href="#">News<button><i class="fa-solid fa-chevron-right"></i></button></a>
-						<ul class="list-unstyled">
-							<li><a href="/News/News">All News</a></li>
-							<li><a href="/News/Announcements">Announcements</a></li>
-						</ul>
-					</li>
-					<li class="has-dropdown">
-						<a href="#">Media<button><i class="fa-solid fa-chevron-right"></i></button></a>
-						<ul class="list-unstyled">
-							<li><a href="/Media/PhotoAlbum">Photo Album</a></li>
-							<li><a href="/Media/Videos">Videos</a></li>
-						</ul>
-					</li>
-					<li class="has-dropdown">
-						<a href="#">e-Services<button><i class="fa-solid fa-chevron-right"></i></button></a>
-						<ul class="list-unstyled">
-							<li><a href="/ServiceGate/index">Service Gate</a></li>
-							<li><a href="/Services/ProjectDatabase/index">Project Database</a></li>
-							<li><a href="/Services/OnlineForms">Online Forms</a></li>
-							<li><a href="/Services/Tenders">Adverts</a></li>
-							<li><a href="/Services/IReports/index">i-Reports</a></li>
-						</ul>
-					</li>
-					<li>
-						<a href="/Contact">Contact</a>
-					</li>
-				</ul>
-			</div><!-- mobile-nav-container -->
-			<ul class="mobile-nav-contact list-unstyled">
-				<li>
-					<i class="fa-solid fa-phone"></i>
-					<a href="tel:+2347071060050">+2347071060050</a>
-				</li><!-- li -->
-				<li>
-					<i class="fa-solid fa-envelope"></i>
-					<a href="mailto:info@nddc.gov.ng">info@nddc.gov.ng</a>
-				</li><!-- li -->
-				<li>
-					<i class="fa-solid fa-map-marker-alt"></i>
-					Eastern Bypass Marine Base <br> Port Harcourt. Rivers State
-				</li><!-- li -->
-			</ul><!-- mobile-nav-contact -->
-			<ul class="mobile-nav-social list-unstyled">
-				<li>
-					<a href="https://x.com/NDDCOnline" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
-				</li>
-				<li><a onclick="myYoutube()"><i class="fa-brands fa-youtube text-white"></i></a></li>
-				<li><a onclick="myTiktok()"><i class="fa-brands fa-tiktok text-white"></i></a></li>
-				<li><a href="https://web.facebook.com/OfficialNDDC" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
-				<li><a href="https://www.linkedin.com/company/officialnddc/" target="_blank"><i class="fa-brands fa-linkedin"></i></a></li>
-				<li><a href="https://www.instagram.com/nddc_online/" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
-			</ul><!-- mobile-nav-social -->
-		</div><!-- mobile-nav-content -->
-	</div>
+    <!-- Mobile Navigation Drawer Overlay & Content -->
+    <div id="mobile-nav-drawer" class="fixed inset-0 z-[200] opacity-0 invisible transition-all duration-300">
+        <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" id="mobile-drawer-overlay"></div>
+        <div class="absolute top-0 right-0 w-[80%] max-w-[400px] h-full bg-white shadow-2xl flex flex-col transition-transform duration-300 transform translate-x-full" id="mobile-drawer-content">
+            <div class="flex justify-between items-center px-6 py-4 border-b border-outline-variant/30">
+                <img src="~/assets/image/nddclogo.png" alt="NDDC Logo" class="h-10 w-auto object-contain">
+                <button id="mobile-menu-close" class="text-on-surface-variant hover:text-primary focus:outline-none">
+                    <span class="material-symbols-outlined text-3xl select-none">close</span>
+                </button>
+            </div>
+            
+            <!-- Links List inside Mobile Drawer -->
+            <div class="flex-1 overflow-y-auto px-6 py-6 space-y-4">
+                <a class="block font-semibold text-lg text-secondary border-b border-outline-variant/20 pb-2" href="/index">Home</a>
+                
+                <!-- Who We Are Section -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-lg text-on-surface-variant hover:text-primary py-2 border-b border-outline-variant/20 focus:outline-none mobile-accordion-trigger" data-target="mobile-who-we-are">
+                        Who We Are <span class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                    <div id="mobile-who-we-are" class="hidden pl-4 py-2 space-y-2">
+                        <a href="/WhoWeAre/Vision" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Our Mission and Vision</a>
+                        <a href="/WhoWeAre/MasterPlan" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Our Master Plan</a>
+                        <a href="/WhoWeAre/Board" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Our Board</a>
+                        <a href="/WhoWeAre/Directors" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Our Directors</a>
+                    </div>
+                </div>
+                
+                <!-- What We Do Section -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-lg text-on-surface-variant hover:text-primary py-2 border-b border-outline-variant/20 focus:outline-none mobile-accordion-trigger" data-target="mobile-what-we-do">
+                        What We Do <span class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                    <div id="mobile-what-we-do" class="hidden pl-4 py-2 space-y-2">
+                        <a href="/Services/ProjectDatabase/index" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Transformational Projects</a>
+                        <a href="/WhatWeDo/Scholarship" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Scholarships</a>
+                    </div>
+                </div>
+                
+                <!-- News Section -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-lg text-on-surface-variant hover:text-primary py-2 border-b border-outline-variant/20 focus:outline-none mobile-accordion-trigger" data-target="mobile-news">
+                        News <span class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                    <div id="mobile-news" class="hidden pl-4 py-2 space-y-2">
+                        <a href="/News/News" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">All News</a>
+                        <a href="/News/Announcements" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Announcements</a>
+                    </div>
+                </div>
+                
+                <!-- Media Section -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-lg text-on-surface-variant hover:text-primary py-2 border-b border-outline-variant/20 focus:outline-none mobile-accordion-trigger" data-target="mobile-media">
+                        Media <span class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                    <div id="mobile-media" class="hidden pl-4 py-2 space-y-2">
+                        <a href="/Media/PhotoAlbum" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Photo Album</a>
+                        <a href="/Media/Videos" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Videos</a>
+                    </div>
+                </div>
+                
+                <!-- e-Services Section -->
+                <div>
+                    <button class="w-full flex justify-between items-center font-semibold text-lg text-on-surface-variant hover:text-primary py-2 border-b border-outline-variant/20 focus:outline-none mobile-accordion-trigger" data-target="mobile-e-services">
+                        e-Services <span class="material-symbols-outlined transition-transform duration-200">expand_more</span>
+                    </button>
+                    <div id="mobile-e-services" class="hidden pl-4 py-2 space-y-2">
+                        <a href="/ServiceGate/index" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Service Gate</a>
+                        <a href="/Media/Videos" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Videos</a>
+                        <a href="/Services/ProjectDatabase/index" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Project Database</a>
+                        <a href="/Services/Jobs" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Scholarships</a>
+                        <a href="/Services/OnlineForms" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Online Forms</a>
+                        <a href="/Services/Tenders" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">Adverts</a>
+                        <a href="/Services/IReports/index" class="block py-1.5 text-on-surface-variant/80 hover:text-primary">i-Reports</a>
+                    </div>
+                </div>
+                
+                <!-- <a class="block font-semibold text-lg text-on-surface-variant hover:text-primary py-2 border-b border-outline-variant/20" href="/Contact">Contact</a> -->
+            </div> 
+            
+            <div class="p-6 bg-surface-container-low border-t border-outline-variant/30 space-y-4">
+                <a href="tel:+2347071060050" class="flex items-center text-sm text-on-surface-variant hover:text-primary font-semibold">
+                    <span class="material-symbols-outlined text-[18px] mr-2">phone</span>
+                    +2347071060050
+                </a>
+                <a href="mailto:info@nddc.gov.ng" class="flex items-center text-sm text-on-surface-variant hover:text-primary font-semibold">
+                    <span class="material-symbols-outlined text-[18px] mr-2">mail</span>
+                    info@nddc.gov.ng
+                </a>
+            </div>
+        </div>
+    </div>
 
-	<div class="search-popup">
-		<div class="search-popup-overlay search-toggler"></div><!-- search-popup-overlay -->
-		<div class="search-popup-content">
-			<form action="#">
-				<label for="search" class="sr-only">search here</label><!-- sr-only -->
-				<input type="text" id="search" placeholder="Search Here...">
-				<button type="submit" aria-label="search submit" class="search-btn">
-					<span><i class="flaticon-search-interface-symbol"></i></span>
-				</button><!-- search-btn -->
-			</form><!-- form -->
-		</div><!-- search-popup-content -->
-	</div>
+    <!-- Main Content Body -->
+    <div class="page-wrapper-fixed-nav">
+        @RenderBody()
+    </div>
 
-	@*<a href="#" class="scroll-to-top scroll-to-target" data-target="html" style=""><i class="fa-solid fa-arrow-up"></i></a>
-*@	
-	<button class="btn bot-button text-center" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><i class="fa-solid fa-robot align-self-center me-2"></i>NDDC Chat Bot</button>
+    <!-- Modernized Footer Section -->
+    <footer class="bg-[#002824] text-white pt-16 pb-8 border-t border-outline-variant/10 text-left">
+        <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+            <!-- Main Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 mb-12">
+                <!-- Column 1: Brand & Socials -->
+                <div class="lg:col-span-4 space-y-4">
+                    <a href="/index" class="inline-block">
+                        <img src="/assets/image/nddclogo.png" alt="NDDC Logo" class="h-10 md:h-11 w-auto object-contain  ">
+                    </a>
+                    <p class="text-sm font-semibold text-white/90 leading-relaxed italic max-w-sm">
+                        VISION: “To offer a lasting solution to the socio-economic difficulties of the Niger Delta region.”
+                    </p>
+                    <div class="flex items-center gap-3 pt-2">
+                        <a href="https://x.com/NDDCOnline" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:scale-105 transition-all" title="X / Twitter">
+                            <i class="fa-brands fa-x-twitter text-sm"></i>
+                        </a>
+                        <a onclick="myYoutube()" style="cursor: pointer;" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:scale-105 transition-all" title="YouTube">
+                            <i class="fa-brands fa-youtube text-sm"></i>
+                        </a>
+                        <a onclick="myTiktok()" style="cursor: pointer;" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:scale-105 transition-all" title="TikTok">
+                            <i class="fa-brands fa-tiktok text-sm"></i>
+                        </a>
+                        <a href="https://web.facebook.com/OfficialNDDC" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:scale-105 transition-all" title="Facebook">
+                            <i class="fa-brands fa-facebook-f text-sm"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/company/officialnddc/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:scale-105 transition-all" title="LinkedIn">
+                            <i class="fa-brands fa-linkedin-in text-sm"></i>
+                        </a>
+                        <a href="https://www.instagram.com/nddc_online/" target="_blank" rel="noopener" class="w-9 h-9 rounded-full bg-white/10 flex items-center justify-center text-white hover:bg-secondary hover:scale-105 transition-all" title="Instagram">
+                            <i class="fa-brands fa-instagram text-sm"></i>
+                        </a>
+                    </div>
+                </div>
 
-	<div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-		<div class="offcanvas-header">
-			<h5 class="offcanvas-title" id="offcanvasRightLabel"> NDDC ChatBot</h5>
-			<button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-			</div>
-			<div class="offcanvas-body">
-			<iframe src="https://web.powerva.microsoft.com/environments/Default-f2b10c06-4bd1-4c9c-b500-f2541e79aa92/bots/cr7c8_nddcAi/webchat?_version_=2" frameborder="0" style="width: 100%; height: 100%;"></iframe>
-			</div>
-	</div>
+                <!-- Column 2: Quick Links -->
+                <div class="lg:col-span-2 space-y-4">
+                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Quick Links</h4>
+                    <ul class="space-y-2.5 text-sm text-white/75 font-medium">
+                        <li><a href="/WhoWeAre/Vision" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Mission & Vision</a></li>
+                        <li><a href="/WhoWeAre/Board" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Our Board</a></li>
+                        <li><a href="/WhoWeAre/MasterPlan" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Master Plan</a></li>
+                        <li><a href="/News/News" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Latest News</a></li>
+                    </ul>
+                </div>
 
+                <!-- Column 3: Digital Services -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Digital Services</h4>
+                    <ul class="space-y-2.5 text-sm text-white/75 font-medium">
+                        <li><a href="/Services/ProjectDatabase/index" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Projects Database</a></li>
+                        <li><a href="/Media/LiveEvents/Events" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">NDDC Live</a></li>
+                        <li><a href="/Services/Tenders" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Tenders & Adverts</a></li>
+                        <li><a href="/ServiceGate/index" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">Service Gate</a></li>
+                        <li><a href="/Services/IReports/index" class="hover:text-secondary-fixed hover:translate-x-1 transition-all inline-block">i-Reports</a></li>
+                    </ul>
+                </div>
 
+                <!-- Column 4: Get In Touch -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-base font-bold text-white uppercase tracking-wider">Get In Touch</h4>
+                    <div class="space-y-3 text-sm text-white/80">
+                        <div class="flex items-start gap-3">
+                            <i class="fa-solid fa-map-marker-alt text-secondary-fixed mt-1"></i>
+                            <div>
+                                <strong class="text-white block font-semibold mb-0.5">CORPORATE HEADQUARTERS</strong>
+                                <p class="text-white/70 text-xs leading-relaxed">Plot C5/C6, Eastern By-Pass, Marine Base, Port Harcourt, Rivers State.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-envelope text-secondary-fixed"></i>
+                            <a href="mailto:info@nddc.gov.ng" class="hover:text-secondary-fixed transition-colors">info@nddc.gov.ng</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-phone text-secondary-fixed"></i>
+                            <a href="tel:+2347071060050" class="hover:text-secondary-fixed transition-colors">+2347071060050</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-	@await RenderSectionAsync("Scripts", required: false)
+            <!-- Divider -->
+            <div class="border-t border-white/10 my-8"></div>
 
-	<script src="https://cdn.lordicon.com/lordicon.js" defer></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.js" integrity="sha512-k2o1KZdvUi59PUXirfThShW9Gdwtk+jVYum6t7RmyCNAVyF9ozijFpvLEWmpgqkHuqSWpflsLf5+PEW6Lxy/wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" integrity="sha512-CEiA+78TpP9KAIPzqBvxUv8hy41jyI3f2uHi7DGp/Y/Ka973qgSdybNegWFciqh6GrN2UePx2KkflnQUbUhNIA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Counter-Up/1.0.0/jquery.counterup.min.js" integrity="sha512-d8F1J2kyiRowBB/8/pAWsqUl0wSEOkG5KATkVV4slfblq9VRQ6MyDZVxWl2tWd+mPhuCbpTB4M7uU/x9FlgQ9Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="assets/vendor/youtube-popup/youtube-popup.jquery.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/splidejs/4.1.4/js/splide.min.js" integrity="sha512-4TcjHXQMLM7Y6eqfiasrsnRCc8D/unDeY1UGKGgfwyLUCTsHYMxF7/UHayjItKQKIoP6TTQ6AMamb9w2GMAvNg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/min/tiny-slider.js" integrity="sha512-j+F4W//4Pu39at5I8HC8q2l1BNz4OF3ju39HyWeqKQagW6ww3ZF9gFcu8rzUbyTDY7gEo/vqqzGte0UPpo65QQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-	<script src="/assets/js/theme.js"></script>
-	<script>
-	(function () {
-		function reveal(img) {
-			img.classList.add('img-loaded');
-			var wrap = img.parentElement;
-			if (wrap && wrap.classList.contains('img-shimmer-wrap')) {
-				wrap.style.animation = 'none';
-				wrap.style.background = 'transparent';
-			}
-		}
-		document.querySelectorAll('.img-fade').forEach(function (img) {
-			if (img.complete && img.naturalWidth > 0) {
-				reveal(img);
-			} else {
-				img.addEventListener('load',  function () { reveal(img); });
-				img.addEventListener('error', function () { reveal(img); });
-			}
-		});
+            <!-- State Offices Sub-Footer Section -->
+            <div class="space-y-6">
+                <h4 class="text-sm font-bold text-white uppercase tracking-widest">Our State Offices</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 text-xs text-white/70">
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">ABIA STATE</h6>
+                        <p class="leading-relaxed">Okeikpe Road, Opposite Anglican School. Ukwa-West, Abia State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">AKWA IBOM STATE</h6>
+                        <p class="leading-relaxed">D14, Ewet Housing Estate, Uyo. Akwa Ibom State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">BAYELSA STATE</h6>
+                        <p class="leading-relaxed">Isaac Boro Expressway, Opolo-Epie, Yenagoa, Bayelsa State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">ABUJA LIAISON OFFICE</h6>
+                        <p class="leading-relaxed">No 11 Kubani River Crescent, Off Nile Street, Maitama, FCT, Abuja.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">DELTA STATE</h6>
+                        <p class="leading-relaxed">105A Rt.Hon. Sheriff Oborevwori Way, Warri (Beside Delta Board of Internal Revenue).</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">EDO STATE</h6>
+                        <p class="leading-relaxed">No. 144 Murtala Muhammed Highway, Opp DVD Oil, Benin City, Edo State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">IMO STATE</h6>
+                        <p class="leading-relaxed">Plot 11 Port Harcourt Road, Owerri, Imo State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">ONDO STATE</h6>
+                        <p class="leading-relaxed">Plot II GRA, Okitipupa Road, Igbokoda, Ondo State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">RIVERS STATE</h6>
+                        <p class="leading-relaxed">125 Olu-Obasanjo Road, GRA, Port Harcourt, Rivers State.</p>
+                    </div>
+                    <div class="border-l-2 border-secondary pl-3.5 space-y-1">
+                        <h6 class="text-white font-bold tracking-wider uppercase">CROSS RIVERS STATE</h6>
+                        <p class="leading-relaxed">Lily Complex, No 105, Murtala Mohammed Highway, Calabar.</p>
+                    </div>
+                </div>
+            </div>
 
-		// Carousel bottom bar — sync dots and slide counter
-		document.querySelectorAll('.carousel').forEach(function (car) {
-			car.addEventListener('slide.bs.carousel', function (e) {
-				var id = car.id;
-				var idx = e.to;
-				document.querySelectorAll('.carousel-dot[data-bs-target="#' + id + '"]').forEach(function (dot, i) {
-					dot.classList.toggle('carousel-dot--active', i === idx);
-				});
-				var lbl = document.querySelector('[data-carousel-label="' + id + '"]');
-				if (lbl) lbl.textContent = (idx + 1) + ' / ' + lbl.dataset.carouselTotal;
-			});
-		});
-	}());
-	</script>
-	<script src="/assets/js/LineChart.js"></script>
-	<script src="/assets/js/JavaScript.js"></script>
-	<script>
-		document.getElementById("year").innerHTML = new Date().getFullYear();
-	</script>
-	<script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.5.1/dist/simpleParallax.min.js" defer></script>
+            <!-- Bottom Copyright Bar -->
+            <div class="mt-12 pt-6 border-t border-white/10 text-center text-xs text-white/50">
+                <p>© Copyright <span id="year"></span> Niger Delta Development Commission. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
 
-	<!-- Light Gallery -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/lightgallery.min.js" integrity="sha512-jEJ0OA9fwz5wUn6rVfGhAXiiCSGrjYCwtQRUwI/wRGEuWRZxrnxoeDoNc+Pnhx8qwKVHs2BRQrVR9RE6T4UHBg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/autoplay/lg-autoplay.min.js" integrity="sha512-1YRlp9jO1ermVx9E3UzfBwoo88ODK0i9l2C2lNoZwCZAzvRdA+O0Lm00bUfkIf/A1esj4OK9yZ3yfgfa+FcYwg==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/fullscreen/lg-fullscreen.min.js" integrity="sha512-11B0rPDzvnSOYzAT37QdnYgt0z9Xg+wX5tckB1QKl5Znl8RPvrB5npo38K2jCt+Ad44udCfBiKt9D4jRdkSE1A==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/hash/lg-hash.min.js" integrity="sha512-7c9ZgozFwxmWalyapzhmzAChRvi0p7vhxWdrE3OjvFHnxuw6h6DBSOvtO1XytEj8MQI2Jp0Tm2BJwLUU7zAMvA==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/thumbnail/lg-thumbnail.min.js" integrity="sha512-VBbe8aA3uiK90EUKJnZ4iEs0lKXRhzaAXL8CIHWYReUwULzxkOSxlNixn41OLdX0R1KNP23/s76YPyeRhE6P+Q==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.7.2/plugins/zoom/lg-zoom.min.js" integrity="sha512-BLW2Jrofiqm6m7JhkQDIh2olT0EBI58+hIL/AXWvo8gOXKmsNlU6myJyEkTy6rOAAZjn0032FRk8sl9RgXPYIQ==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
+    <!-- Essential Layout Scripts -->
+    <script src="https://cdn.lordicon.com/lordicon.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.4/swiper-bundle.min.js" integrity="sha512-k2o1KZdvUi59PUXirfThShW9Gdwtk+jVYum6t7RmyCNAVyF9ozijFpvLEWmpgqkHuqSWpflsLf5+PEW6Lxy/wA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        // Set current year in footer
+        document.getElementById("year").innerHTML = new Date().getFullYear();
 
-	<script src="https://cdn.jsdelivr.net/npm/apexcharts" defer></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js" integrity="sha512-L0Shl7nXXzIlBSUUPpxrokqq4ojqgZFQczTYlGjzONGTDAcLremjwaWv5A+EDLnxhQzY5xUZPWLOLqYRkY0Cbw==" crossorigin="anonymous" referrerpolicy="no-referrer" defer></script>
-	<script>
-		window.onload = () => {
-			const modal = document.querySelector('[data-bs-target="#exampleModal"]');
-			if (modal) modal.click();
-		}
-	</script>
+        // Active nav indicator — highlights the correct top-level nav item based on the current URL
+        (function () {
+            const path = window.location.pathname.toLowerCase();
 
+            // Map of nav button IDs to the URL prefixes that should activate them
+            const navMap = [
+                { id: 'nav-home',        prefixes: ['/index', '/'] },
+                { id: 'nav-who-we-are', prefixes: ['/whoweare'] },
+                { id: 'nav-what-we-do', prefixes: ['/whatwedo', '/services/projectdatabase'] },
+                { id: 'nav-news',       prefixes: ['/news'] },
+                { id: 'nav-media',      prefixes: ['/media'] },
+                { id: 'nav-e-services', prefixes: ['/servicegate', '/services', '/ireports'] },
+            ];
+
+            const activeClasses    = ['text-secondary', 'font-semibold'];
+            const inactiveClasses  = ['text-on-surface-variant'];
+
+            navMap.forEach(function (entry) {
+                const el = document.getElementById(entry.id);
+                if (!el) return;
+
+                const isActive = entry.prefixes.some(function (prefix) {
+                    // Exact match for home ("/" or "/index"), prefix match for everything else
+                    if (prefix === '/') return path === '/' || path === '/index';
+                    return path === prefix || path.startsWith(prefix + '/') || path.startsWith(prefix + '?');
+                });
+
+                if (isActive) {
+                    el.classList.remove(...inactiveClasses);
+                    el.classList.add(...activeClasses);
+                } else {
+                    el.classList.remove(...activeClasses);
+                    el.classList.add(...inactiveClasses);
+                }
+            });
+        })();
+
+        // Footer external links helper
+        function myYoutube() { window.open("https://www.youtube.com/channel/UCfT-eH7-e1o-tV3P25yC83w"); }
+        function myTiktok() { window.open("https://www.tiktok.com/@@nddc_online"); }
+
+        // Mobile drawer navigation triggers
+        document.addEventListener('DOMContentLoaded', () => {
+            const toggleBtn = document.getElementById('mobile-menu-toggle');
+            const closeBtn = document.getElementById('mobile-menu-close');
+            const drawer = document.getElementById('mobile-nav-drawer');
+            const overlay = document.getElementById('mobile-drawer-overlay');
+            const content = document.getElementById('mobile-drawer-content');
+
+            function openDrawer() {
+                drawer.classList.remove('invisible', 'opacity-0');
+                drawer.classList.add('visible', 'opacity-100');
+                content.classList.remove('translate-x-full');
+                content.classList.add('translate-x-0');
+            }
+
+            function closeDrawer() {
+                drawer.classList.remove('visible', 'opacity-100');
+                drawer.classList.add('invisible', 'opacity-0');
+                content.classList.remove('translate-x-0');
+                content.classList.add('translate-x-full');
+            }
+
+            if (toggleBtn && closeBtn && drawer && overlay && content) {
+                toggleBtn.addEventListener('click', openDrawer);
+                closeBtn.addEventListener('click', closeDrawer);
+                overlay.addEventListener('click', closeDrawer);
+            }
+
+            // Accordion menus in mobile menu drawer
+            document.querySelectorAll('.mobile-accordion-trigger').forEach(trigger => {
+                trigger.addEventListener('click', () => {
+                    const targetId = trigger.getAttribute('data-target');
+                    const targetEl = document.getElementById(targetId);
+                    const icon = trigger.querySelector('.material-symbols-outlined');
+                    if (targetEl) {
+                        targetEl.classList.toggle('hidden');
+                        if (icon) {
+                            icon.classList.toggle('rotate-180');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

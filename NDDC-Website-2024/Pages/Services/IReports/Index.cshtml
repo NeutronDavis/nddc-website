@@ -1,184 +1,80 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Services.IReports.IndexModel
 @{
+    Layout = "_Layout";
 }
-<section class="announce mb-5">
-	<div class="container">
-		<div class="page-breadcrumbs">
-			<ul class="list-unstyled">
-				<li><a href="/index">Services</a></li>
-				<li>iReports</li>
-			</ul><!-- list-unstyled -->
-		</div><!-- page-breadcrumbs -->
-		<div class="page-banner-title">
-			<h3>iReport (Power)</h3>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->
+
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="/Services/OnlineForms">Services</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">iReports (POWER)</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            iReport System (POWER)
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+    </div>
 </section>
 
+<!-- System Overview Section -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-8">
+    <div class="bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 mb-8 border-b border-outline-variant/15 pb-6">
+            <div class="space-y-2 max-w-3xl">
+                <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Early Warning System</span>
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary">Project Operations Warning and Early Response</h2>
+                <p class="text-on-surface-variant text-sm sm:text-base leading-relaxed">
+                    The iReport system is an adaptable mechanism tailored to effectively prevent and mitigate project delivery failures, delays, or incidents across the Niger Delta region.
+                </p>
+            </div>
+            <a href="/Services/IReports/SendIreport" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg flex-shrink-0 inline-flex items-center gap-2">
+                Send Report <span class="material-symbols-outlined text-sm">campaign</span>
+            </a>
+        </div>
 
-<section class="blog-section">
-	<div class="container">
-		<div class="blog-box lh-lg">
-			<h1 class="mb-5 fs-2">What is iReport (Power)</h1>
-			<h5 class="text-dark fw-normal pb-4">
-				The iReport (Power - Project Operations Warning and Early Response) System is an adaptable mechanism tailored
-				to effectively prevent and mitigate various project delivery failures and incidents that can prevent projects from
-				reaching their desired and required objectives of the NDDC.
-			</h5>
-			<h5 class="text-dark fw-normal">The iReport  system aims at enhancing project capabilities in the following areas:</h5>
-			<ul class="lh-lg">
-				<li class="text-dark fw-normal"><span class="text-dark fw-bold">Monitoring and Reporting:</span> <br /> Efficiently identify and transmit potential risks in ongoing projects.</li>
-				<li class="text-dark fw-normal"> <span class="text-dark fw-bold">Incident Management and Verification:</span> <br /> Prioritize and Validate Information from Field monitors.</li>
-				<li class="text-dark fw-normal"> <span class="text-dark fw-bold">Co-ordinated Response:</span> <br /> Facilitate multi-stakeholder preventive actions and instant responses.</li>
-				<li class="text-dark fw-normal"> <span class="text-dark fw-bold">Data Analysis And Reporting:</span> <br /> Assessing data trends for analysis and reporting.</li>
-			</ul>
-			<div class="cta-five-button">
-				<a href="/Services/IReports/SendIreport" class="btn btn-primary align-items-center justify-content-center">Send <i class="fa-solid fa-info rounded p-2 mx-2 bg-success"></i> Report</a>
-			</div>
-		</div>
-	</div>
+        <!-- Pillars Grid -->
+        <h3 class="text-lg font-bold text-primary mb-4">Key Capabilities & Objectives</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- Pillar 1 -->
+            <div class="bg-surface-container rounded-xl p-5 border border-outline-variant/20">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-xl">insights</span>
+                </div>
+                <h4 class="font-bold text-primary text-base mb-1">Monitoring & Reporting</h4>
+                <p class="text-xs text-on-surface-variant/80 leading-relaxed">Efficiently identify and transmit potential risks in ongoing projects across all 9 Niger Delta states.</p>
+            </div>
+
+            <!-- Pillar 2 -->
+            <div class="bg-surface-container rounded-xl p-5 border border-outline-variant/20">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-xl">verified</span>
+                </div>
+                <h4 class="font-bold text-primary text-base mb-1">Incident Verification</h4>
+                <p class="text-xs text-on-surface-variant/80 leading-relaxed">Prioritize, validate, and verify field reports received from citizen monitors and inspectors.</p>
+            </div>
+
+            <!-- Pillar 3 -->
+            <div class="bg-surface-container rounded-xl p-5 border border-outline-variant/20">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-xl">groups</span>
+                </div>
+                <h4 class="font-bold text-primary text-base mb-1">Coordinated Response</h4>
+                <p class="text-xs text-on-surface-variant/80 leading-relaxed">Facilitate multi-stakeholder preventive actions and rapid executive intervention.</p>
+            </div>
+
+            <!-- Pillar 4 -->
+            <div class="bg-surface-container rounded-xl p-5 border border-outline-variant/20">
+                <div class="w-10 h-10 rounded-lg bg-primary/10 text-primary flex items-center justify-center mb-3">
+                    <span class="material-symbols-outlined text-xl">analytics</span>
+                </div>
+                <h4 class="font-bold text-primary text-base mb-1">Data Analysis</h4>
+                <p class="text-xs text-on-surface-variant/80 leading-relaxed">Assess data trends for strategic decision-making and public transparency reporting.</p>
+            </div>
+        </div>
+    </div>
 </section>
-
-@* <section class="service-one-section">
-	<div class="container">
-		<h1 class="mb-5 fs-3">Recent iReports</h1>
-		<div class="row row-gutter-30">
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="card border-0">
-				<div class="card-body bg-light rounded-4 p-3">
-					<div class="d-flex position-relative align-items-center justify-content-between">
-						<div class="d-flex position-relative">
-							<div>
-								<p class="mb-0">Report Type: NDDC Ongoing Project</p>
-								<p class="">Tolofari Dagogo • Rivers State</p>
-								<h5 class="mt-0">
-									<a a="" class="text-reset">
-										The NDDC Managing Director/CEO, Inspected the Rivers State ICT Center.
-									</a>
-								</h5>
-								
-								<a class="text-success" href="/Home/NewsPhotoGallery/AllNewsPhotos/50">Read more</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			
-
-		</div><!-- row -->
-	</div><!-- container -->
-</section> *@

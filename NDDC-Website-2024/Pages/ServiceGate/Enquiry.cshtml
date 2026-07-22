@@ -1,81 +1,107 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.ServiceGate.EnquiryModel
 @{
+	Layout = "_Layout";
 }
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-        <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-            <li class="breadcrumb-item">
-                <a style="font-size: smaller;color: #003b49;">
-                    Service Gate
-                </a>
-            </li>
-            <li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Enquiry</li>
-        </ol><!-- list-unstyled -->
-</nav>
-<section class="blog-section">
-    <div class="container">
-        <div class="blog-box lh-lg">
-            <h1 class="section-title text-center">Enquiry</h1>
-            <row class="d-flex justify-content-center">
-                <div class="col-lg-8  d-flex justify-content-center">
-                    <script src="https://desk.zoho.com/portal/api/feedbackwidget/967872000000273001?orgId=848286334&displayType=iframe"></script>
-                    <iframe id="zsfeedbackFrame" width="890" height="570" name="zsfeedbackFrame" scrolling="no" allowtransparency="false" frameborder="0" border="0" src="https://desk.zoho.com/support/fbw?formType=AdvancedWebForm&fbwId=edbsn9792075318d0dcdd1f378355b708d42a474c626c36455b230e7fed6d5b2070e3&xnQsjsdp=edbsnaa1e3984235c4fda7f327b6be827fe65&mode=showNewWidget&displayType=iframe"></iframe>
 
-                    @* <form action="assets/inc/sendemail.php" class="contact-form  contact-form-validated" method="post" novalidate="novalidate">
-                        <div class="row row-gutter-10">
-                            <div class="col-12 col-lg-12">
-                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Enquiry Type</label>
-                                <div class="input-group form-floating mb-3 d-flex align-items-center">
-                                    <select class="form-select input-text" value="0" aria-label="Select the subject of your Enquiry">
-                                        <option value="0">Select an Option</option>
-                                        <option value="1">NDDC Projects and Programs</option>
-                                        <option value="2">NDDC Overseas Scholarship</option>
-                                        <option value="4">Universities and Colleges</option>
-                                        <option value="5">NDDC Employees Inquiries</option>
-                                        <option value="6">NDDC Training and Empowerment</option>
-                                        <option value="7">NDDC Project Hope</option>
-                                        <option value="3">General Inquiries</option>
-                                    </select>
+<!-- Hero / Breadcrumb Section -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+	<div class="max-w-container-max mx-auto text-left">
+		<nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+			<a class="hover:text-primary transition-colors" href="/">Home</a>
+			<span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+			<a class="hover:text-primary transition-colors" href="/ServiceGate/Index">Service Gate</a>
+			<span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+			<span class="text-primary font-semibold">Citizens Enquiry</span>
+		</nav>
+		<h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+			Submit an Enquiry
+		</h1>
+		<div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+	</div>
+</section>
 
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Your Location</label>
-                                <div class="input-group form-floating mb-3 d-flex align-items-center">
-                                    <select class="form-select input-text" aria-label="Select the subject of your Enquiry">
-                                        <option value="0">Select an Option</option>
-                                        <option value="1">Nigeria</option>
-                                        <option value="2">United Kingdom</option>
-                                        <option value="3">United States</option>
-                                        <option value="4">UAE</option>
-                                        <option value="5">South Africa</option>
-                                        <option value="6">Ghana</option>
-                                        <option value="7">Other</option>
-                                    </select>
+<!-- Main Enquiry Section -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-12">
+	<!-- Responsive Zoho Desk Widget Wrapper -->
+	<div class="w-full max-w-4xl mx-auto bg-white rounded-2xl p-4 sm:p-6 border border-outline-variant/20 shadow-md text-center overflow-hidden">
+		<div class="mb-6 text-left">
+			<h3 class="text-xl sm:text-2xl font-bold text-primary">SERVICOM Live Desk</h3>
+			<p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Submit your enquiry directly to our active support portal below.</p>
+		</div>
 
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <input type="text" id="name" class="input-text" placeholder="Your name" name="name" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="email" id="email" class="input-text" placeholder="Email address" name="email" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="text" id="phone" class="input-text" placeholder="Phone number" name="phone" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
+		<div class="w-full overflow-x-auto min-h-[580px] rounded-xl bg-surface-container-low flex justify-center items-center">
+			<script src="https://desk.zoho.com/portal/api/feedbackwidget/967872000000273001?orgId=848286334&displayType=iframe"></script>
+			<iframe id="zsfeedbackFrame" class="w-full min-h-[570px] border-0 rounded-xl" name="zsfeedbackFrame" scrolling="no" allowtransparency="false" frameborder="0" border="0" src="https://desk.zoho.com/support/fbw?formType=AdvancedWebForm&fbwId=edbsn9792075318d0dcdd1f378355b708d42a474c626c36455b230e7fed6d5b2070e3&xnQsjsdp=edbsnaa1e3984235c4fda7f327b6be827fe65&mode=showNewWidget&displayType=iframe"></iframe>
+		</div>
+	</div>
 
-                            <div class="col-12 col-lg-12">
-                                <textarea name="message" placeholder="Message" class="input-text" aria-required="true"></textarea>
-                            </div><!-- col-12 col-lg-12 -->
-                            <div class="col-12 col-lg-12 d-flex justify-content-center">
-                                <button class="btn btn-primary">Send a Message</button>
-                            </div><!-- col-12 col-lg-12 -->
-                        </div><!-- row -->
-                    </form><!-- contact-form --> *@
-                </div><!-- col-lg-8 -->
-            </row>
+	<!-- Secondary / Fallback Form Container -->
+	<div class="max-w-3xl mx-auto bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+		<div class="border-b border-outline-variant/15 pb-6 mb-8 text-left">
+			<span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Direct Message</span>
+			<h3 class="text-2xl font-bold text-primary">Direct Enquiry Form</h3>
+			<p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Alternatively, complete this form and our support officers will get back to you via email or phone.</p>
+		</div>
 
-        </div>
-    </div>
+		<form method="post" class="space-y-6">
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<label for="enquiryType" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Enquiry Category *</label>
+					<select id="enquiryType" name="enquiryType" required class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white">
+						<option value="">Select Category</option>
+						<option value="1">NDDC Projects & Programs</option>
+						<option value="2">NDDC Overseas Scholarship</option>
+						<option value="4">Universities and Colleges</option>
+						<option value="5">NDDC Employees Inquiries</option>
+						<option value="6">NDDC Training and Empowerment</option>
+						<option value="7">NDDC Project Hope</option>
+						<option value="3">General Inquiries</option>
+					</select>
+				</div>
+
+				<div>
+					<label for="userLocation" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Your Location *</label>
+					<select id="userLocation" name="userLocation" required class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white">
+						<option value="">Select Location</option>
+						<option value="1">Nigeria</option>
+						<option value="2">United Kingdom</option>
+						<option value="3">United States</option>
+						<option value="4">UAE</option>
+						<option value="5">South Africa</option>
+						<option value="6">Ghana</option>
+						<option value="7">Other Country</option>
+					</select>
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<label for="name" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Your Full Name *</label>
+					<input type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+				</div>
+
+				<div>
+					<label for="email" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Email Address *</label>
+					<input type="email" id="email" name="email" required placeholder="example@domain.com" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+				</div>
+			</div>
+
+			<div>
+				<label for="phone" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Phone Number</label>
+				<input type="tel" id="phone" name="phone" placeholder="+234..." class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+			</div>
+
+			<div>
+				<label for="message" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Enquiry Details / Message *</label>
+				<textarea id="message" name="message" rows="5" required placeholder="Please provide details about your enquiry..." class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none resize-y"></textarea>
+			</div>
+
+			<div class="pt-2 text-center">
+				<button type="submit" class="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-10 py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
+					Submit Enquiry <span class="material-symbols-outlined text-sm">send</span>
+				</button>
+			</div>
+		</form>
+	</div>
 </section>

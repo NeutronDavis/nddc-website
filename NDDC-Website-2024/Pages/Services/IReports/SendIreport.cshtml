@@ -1,127 +1,130 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Services.IReports.SendIreportModel
 @{
+    Layout = "_Layout";
 }
 
-<div id="pageloader">
-    <img src="http://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="processing..." />
-</div>
-
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-        <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-            <li class="breadcrumb-item">
-                <a style="font-size: smaller;color: #003b49;">IReports</a>
-            </li>
-        <li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Send Ireport</li>
-        </ol><!-- list-unstyled -->
-</nav>
-<section class="blog-section">
-    <div class="container">
-        <div class="blog-box lh-lg">
-            <h1 class="section-title text-center">Send iReport</h1>
-            <row class="d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <form class="contact-form" id="form" method="post" enctype="multipart/form-data">
-                        @if (Model.Upload1 == null)
-                        {
-                            <p>You must upload at least one picture</p>
-                        }
-                        <div class="row row-gutter-10">
-                            <div class="col-12 col-lg-12">
-                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Tell Us What You Want To Report On (In the Comment section kindly indicate detailed description of the Cntractor Name, the exect loctaion of the Project and a brief description of the situation as witnessed.)</label>
-                                <div class="input-group form-floating mb-3 d-flex align-items-center">
-                                    <select asp-for="@Model.Ireport.Type" class="form-select input-text" aria-label="Select what you want to report on">
-                                        <option value="">Select Report Type</option>
-                                        <option value="Ongoing Project">NDDC Ongoing Project</option>
-                                        <option value="Abandoned Project">NDDC Abandoned Project</option>
-                                        <option value="Project Quality">Poor Project Quality</option>
-                                        <option value="Incompetent Contractor">Incompetent Contractor</option>
-                                        <option value="NDDC Program">NDDC Program</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                    <span class="text-danger" asp-validation-for="@Model.Ireport.Type"></span>
-                                </div>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <input type="text" class="input-text" asp-for="@Model.Ireport.Title" placeholder="Enter Report Title" aria-required="true">
-                                <span class="text-danger" asp-validation-for="@Model.Ireport.Title"></span>
-                            </div>
-                            <div class="col-12 col-lg-6">
-                                <input type="text" asp-for="@Model.Ireport.Name" class="input-text" placeholder="Your name" aria-required="true">
-                                <span class="text-danger" asp-validation-for="@Model.Ireport.Name"></span>
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="email" asp-for="@Model.Ireport.Email" class="input-text" placeholder="Email address" aria-required="true">
-                                <span class="text-danger" asp-validation-for="@Model.Ireport.Email"></span>
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="text" asp-for="@Model.Ireport.Phone" class="input-text" placeholder="Phone number" aria-required="true">
-                                <span class="text-danger" asp-validation-for="@Model.Ireport.Phone"></span>
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <div class="input-group form-floating mb-3 d-flex align-items-center">
-                                    <select asp-for="@Model.Ireport.State" class="form-select input-text" aria-label="Select your state">
-                                        <option value="">Select Your State</option>
-                                        <option value="Abia State">Abia</option>
-                                        <option value="AkwaIbom State">Akwa Ibom</option>
-                                        <option value="Bayelsa State">Bayelsa</option>
-                                        <option value="CrossRivers State">Cross Rivers</option>
-                                        <option value="Delta State">Delta</option>
-                                        <option value="Edo State">Edo</option>
-                                        <option value="Imo State">Imo</option>
-                                        <option value="Ondo State">Ondo</option>
-                                        <option value="Rivers State">Rivers</option>
-                                    </select>
-                                    <span class="text-danger" asp-validation-for="@Model.Ireport.State"></span>
-                                </div>
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-12">
-                                <input type="text" class="input-text" asp-for="@Model.Ireport.Location" placeholder="Enter the Location of the Project" aria-required="true">
-                                <span class="text-danger" asp-validation-for="@Model.Ireport.Location"></span>
-                            </div>
-                            <div class="col-12 col-lg-12">
-                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Upload Photos</label>
-                                <div class="input-text form-floating mb-3 d-flex align-items-center">
-                                    <input type="file" class="" asp-for="Upload1" placeholder="Upload Photos" aria-required="true">
-                                </div>
-                                <div class="input-text form-floating mb-3 d-flex align-items-center">
-                                    <input type="file" asp-for="Upload2" class="" placeholder="Upload Photos" aria-required="true">
-                                </div>
-                                <div class="input-text form-floating mb-3 d-flex align-items-center">
-                                    <input type="file" asp-for="Upload3" class="" placeholder="Upload Photos" aria-required="true">
-                                </div>
-                                <div class="input-text form-floating mb-3 d-flex align-items-center">
-                                    <input type="file" asp-for="Upload4" class="" placeholder="Upload Photos" aria-required="true">
-                                </div>
-                            </div>
-                            @* <div class="col-12 col-lg-12">
-                                <label for="floatingInput" class="fs-6 ps-4 pb-2 text-dark">Upload Video</label>
-                                <div class="input-text form-floating mb-3 d-flex align-items-center">
-                                    <input type="file" id="Videos" class="" placeholder="Upload Videos" name="Videos" aria-required="true">
-                                </div>
-                            </div> *@
-                            <div class="col-12 col-lg-12">
-                                <textarea asp-for="@Model.Ireport.Comment" placeholder="Enter Your Comment" class="input-text" aria-required="true"></textarea>
-                            </div><!-- col-12 col-lg-12 -->
-                            <div class="col-12 col-lg-12 d-flex justify-content-center">
-                                <button class="btn btn-primary" type="submit">Send Report</button>
-                            </div><!-- col-12 col-lg-12 -->
-                        </div><!-- row -->
-                    </form><!-- contact-form -->
-                </div><!-- col-lg-8 -->
-            </row>
-
-        </div>
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="/Services/IReports/Index">iReports</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Send iReport</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            Submit a Field iReport
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
     </div>
 </section>
 
+<!-- Form Container Section -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="max-w-3xl mx-auto bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+        <div class="border-b border-outline-variant/15 pb-6 mb-8 text-left">
+            <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block mb-2">Project Warning System</span>
+            <h2 class="text-2xl font-bold text-primary">Report an Issue or Field Observation</h2>
+            <p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">In the comments section below, kindly indicate a detailed description of contractor names, exact location, and brief description of the situation.</p>
+        </div>
 
-@section Scripts {
-<script>
-        $(document).ready(function () {
-            $("#form").on("submit", function () {
-                $("#pageloader").fadeIn();
-            });
-        });
-</script>
-}
+        <form class="space-y-6" id="form" method="post" enctype="multipart/form-data">
+            @if (Model.Upload1 == null)
+            {
+                <div class="bg-amber-50 border border-amber-200 text-amber-800 text-xs font-semibold px-4 py-3 rounded-xl flex items-center gap-2 mb-4">
+                    <i class="fa-solid fa-circle-info text-amber-600 text-sm"></i>
+                    <span>Please upload at least one photo evidencing the project status or concern.</span>
+                </div>
+            }
+
+            <div>
+                <label for="Ireport_Type" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Report Category / Type *</label>
+                <select asp-for="@Model.Ireport.Type" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white">
+                    <option value="">Select Report Type</option>
+                    <option value="Ongoing Project">NDDC Ongoing Project</option>
+                    <option value="Abandoned Project">NDDC Abandoned Project</option>
+                    <option value="Project Quality">Poor Project Quality</option>
+                    <option value="Incompetent Contractor">Incompetent Contractor</option>
+                    <option value="NDDC Program">NDDC Program</option>
+                    <option value="Other">Other Observation</option>
+                </select>
+                <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Type"></span>
+            </div>
+
+            <div>
+                <label for="Ireport_Title" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Report Title *</label>
+                <input type="text" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none" asp-for="@Model.Ireport.Title" placeholder="Enter Report Title">
+                <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Title"></span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label for="Ireport_Name" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Your Full Name *</label>
+                    <input type="text" asp-for="@Model.Ireport.Name" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none" placeholder="John Doe">
+                    <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Name"></span>
+                </div>
+
+                <div>
+                    <label for="Ireport_Email" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Email Address *</label>
+                    <input type="email" asp-for="@Model.Ireport.Email" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none" placeholder="example@domain.com">
+                    <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Email"></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                    <label for="Ireport_Phone" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Phone Number *</label>
+                    <input type="tel" asp-for="@Model.Ireport.Phone" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none" placeholder="+234...">
+                    <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Phone"></span>
+                </div>
+
+                <div>
+                    <label for="Ireport_State" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Project State *</label>
+                    <select asp-for="@Model.Ireport.State" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white">
+                        <option value="">Select Your State</option>
+                        <option value="Abia State">Abia State</option>
+                        <option value="AkwaIbom State">Akwa Ibom State</option>
+                        <option value="Bayelsa State">Bayelsa State</option>
+                        <option value="CrossRivers State">Cross River State</option>
+                        <option value="Delta State">Delta State</option>
+                        <option value="Edo State">Edo State</option>
+                        <option value="Imo State">Imo State</option>
+                        <option value="Ondo State">Ondo State</option>
+                        <option value="Rivers State">Rivers State</option>
+                    </select>
+                    <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.State"></span>
+                </div>
+            </div>
+
+            <div>
+                <label for="Ireport_Location" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Project Community / Location *</label>
+                <input type="text" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none" asp-for="@Model.Ireport.Location" placeholder="e.g. Ojobo Community, Burutu LGA">
+                <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Location"></span>
+            </div>
+
+            <div>
+                <label class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Upload Evidence Photos (Up to 4 Files)</label>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <input type="file" asp-for="Upload1" class="w-full px-3 py-2 text-xs rounded-lg border border-outline-variant/30 bg-surface-container" />
+                    <input type="file" asp-for="Upload2" class="w-full px-3 py-2 text-xs rounded-lg border border-outline-variant/30 bg-surface-container" />
+                    <input type="file" asp-for="Upload3" class="w-full px-3 py-2 text-xs rounded-lg border border-outline-variant/30 bg-surface-container" />
+                    <input type="file" asp-for="Upload4" class="w-full px-3 py-2 text-xs rounded-lg border border-outline-variant/30 bg-surface-container" />
+                </div>
+            </div>
+
+            <div>
+                <label for="Ireport_Comment" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Detailed Observations & Contractor Info *</label>
+                <textarea asp-for="@Model.Ireport.Comment" rows="5" placeholder="Enter detailed comments, contractor details, and current project situation..." class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none resize-y"></textarea>
+                <span class="text-xs text-red-600 font-semibold" asp-validation-for="@Model.Ireport.Comment"></span>
+            </div>
+
+            <div class="pt-2 text-center">
+                <button type="submit" class="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-10 py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
+                    Send Report <span class="material-symbols-outlined text-sm">campaign</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</section>

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NDDC_Website_2024.Pages.WhoWeAre
 {
-    public class MasterPlanModel : PageModel
+    public class Vision1Model : PageModel
     {
         public void OnGet()
         {

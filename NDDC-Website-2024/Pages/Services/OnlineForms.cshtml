@@ -1,84 +1,135 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Services.OnlineFormsModel
 @{
+    Layout = "_Layout";
 }
-<section class="announce mb-5">
-		<div class="container">
-			<div class="page-breadcrumbs">
-				<ul class="list-unstyled">
-					<li><a href="/index">Home</a></li>
-					<li>Online Forms</li>
-				</ul><!-- list-unstyled -->
-			</div><!-- page-breadcrumbs -->
-			<div class="page-banner-title">
-			<h3 class="fs-1">Online Forms</h3>
-			</div><!-- page-banner-title -->
-		</div><!-- container -->			
+
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-on-surface-variant">Services</span>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Online Forms & Documents</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            Online Service Forms & Downloads
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+    </div>
 </section>
-<section class="service-one-section">
-	<div class="container">
-		<div class="section-title-box text-center">
-			<div class="section-tagline"></div>
-			<h1 class="mb-5">All Forms</h1>
-		</div>
-		<!-- section-title-box -->
 
-		@* <div class="row row-gutter-30">
-			<div class="col-lg-6 col-xl-4">
-				<div class="service-one-card">
-					<div class="service-one-card-content">
-						<h4><a href="service-details.html"> Building Partnerships for Regional Development</a></h4>
-						<p>News Letter</p>
-						<a href="cause-details.html" class="btn btn-primary">Download Now</a>
-					</div><!-- service-one-card-content -->
-				</div><!--service-one-card-->
-			</div><!--col-lg-6 col-xl-4-->
-			<div class="col-lg-6 col-xl-4">
-				<div class="service-one-card">
-					<div class="service-one-card-content">
-						<h4><a href="service-details.html">A New Dawn Is Here</a></h4>
-						<p>News Letter</p>
-						<a href="cause-details.html" class="btn btn-primary">Download Now</a>
-					</div><!-- service-one-card-content -->
-				</div><!--service-one-card-->
-			</div><!--col-lg-6 col-xl-4-->
-			<div class="col-lg-6 col-xl-4">
-				<div class="service-one-card">
-					<div class="service-one-card-content">
-						<h4><a href="service-details.html">New Thinking. New Frontiers. New Partnerships</a></h4>
-						<p>News Letter</p>
-						<a href="cause-details.html" class="btn btn-primary">Download Now</a>
-					</div><!-- service-one-card-content -->
-				</div><!--service-one-card-->
-			</div><!--col-lg-6 col-xl-4-->
-			<div class="col-lg-6 col-xl-4">
-				<div class="service-one-card">
-					<div class="service-one-card-content">
-						<h4><a href="service-details.html"> Building Partnerships for Regional Development</a></h4>
-						<p>News Letter</p>
-						<a href="cause-details.html" class="btn btn-primary">Download Now</a>
-					</div><!-- service-one-card-content -->
-				</div><!--service-one-card-->
-			</div><!--col-lg-6 col-xl-4-->
-			<div class="col-lg-6 col-xl-4">
-				<div class="service-one-card">
-					<div class="service-one-card-content">
-						<h4><a href="service-details.html">A New Dawn Is Here</a></h4>
-						<p>News Letter</p>
-						<a href="cause-details.html" class="btn btn-primary">Download Now</a>
-					</div><!-- service-one-card-content -->
-				</div><!--service-one-card-->
-			</div><!--col-lg-6 col-xl-4-->
-			<div class="col-lg-6 col-xl-4">
-				<div class="service-one-card">
-					<div class="service-one-card-content">
-						<h4><a href="service-details.html">New Thinking. New Frontiers. New Partnerships</a></h4>
-						<p>News Letter</p>
-						<a href="cause-details.html" class="btn btn-primary">Download Now</a>
-					</div><!-- service-one-card-content -->
-				</div><!--service-one-card-->
-			</div><!--col-lg-6 col-xl-4-->
+<!-- Main Forms Grid Section -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="text-left mb-8">
+        <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Downloads Portal</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mt-2">Download Public & Contractor Forms</h2>
+        <p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Access official NDDC registration forms, guidelines, newsletters, and service requests.</p>
+    </div>
 
-		</div><!-- row --> *@
-	</div><!-- container -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Form Item 1 -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
+            <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
+                    <i class="fa-regular fa-file-pdf text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-primary leading-snug">Contractor Registration & Pre-qualification Form</h3>
+                <p class="text-xs text-on-surface-variant/80">Official application document for corporate vendor registration with NDDC.</p>
+            </div>
+            <div class="pt-6 border-t border-outline-variant/15 mt-4 flex items-center justify-between">
+                <span class="text-xs text-on-surface-variant/60 font-semibold uppercase">PDF • 2.4 MB</span>
+                <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all inline-flex items-center gap-1">
+                    Download <span class="material-symbols-outlined text-xs">download</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Item 2 -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
+            <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
+                    <i class="fa-regular fa-file-pdf text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-primary leading-snug">Post-Graduate Scholarship Application Guidelines</h3>
+                <p class="text-xs text-on-surface-variant/80">Complete information handbook and requirement verification form.</p>
+            </div>
+            <div class="pt-6 border-t border-outline-variant/15 mt-4 flex items-center justify-between">
+                <span class="text-xs text-on-surface-variant/60 font-semibold uppercase">PDF • 1.8 MB</span>
+                <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all inline-flex items-center gap-1">
+                    Download <span class="material-symbols-outlined text-xs">download</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Item 3 -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
+            <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center font-bold">
+                    <i class="fa-regular fa-file-word text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-primary leading-snug">NDDC Partnering & Stakeholder Proposal Template</h3>
+                <p class="text-xs text-on-surface-variant/80">Standardized proposal template for regional development partners.</p>
+            </div>
+            <div class="pt-6 border-t border-outline-variant/15 mt-4 flex items-center justify-between">
+                <span class="text-xs text-on-surface-variant/60 font-semibold uppercase">DOCX • 520 KB</span>
+                <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all inline-flex items-center gap-1">
+                    Download <span class="material-symbols-outlined text-xs">download</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Item 4 -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
+            <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
+                    <i class="fa-regular fa-file-pdf text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-primary leading-snug">Building Partnerships for Regional Development</h3>
+                <p class="text-xs text-on-surface-variant/80">Official quarterly newsletter and strategic roadmap publication.</p>
+            </div>
+            <div class="pt-6 border-t border-outline-variant/15 mt-4 flex items-center justify-between">
+                <span class="text-xs text-on-surface-variant/60 font-semibold uppercase">PDF • 4.1 MB</span>
+                <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all inline-flex items-center gap-1">
+                    Download <span class="material-symbols-outlined text-xs">download</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Item 5 -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
+            <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-red-100 text-red-600 flex items-center justify-center font-bold">
+                    <i class="fa-regular fa-file-pdf text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-primary leading-snug">A New Dawn Is Here - Transformed Service Delivery</h3>
+                <p class="text-xs text-on-surface-variant/80">Comprehensive report detailing NDDC's SERVICOM commitment.</p>
+            </div>
+            <div class="pt-6 border-t border-outline-variant/15 mt-4 flex items-center justify-between">
+                <span class="text-xs text-on-surface-variant/60 font-semibold uppercase">PDF • 3.2 MB</span>
+                <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all inline-flex items-center gap-1">
+                    Download <span class="material-symbols-outlined text-xs">download</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Form Item 6 -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
+            <div class="space-y-3">
+                <div class="w-10 h-10 rounded-xl bg-green-100 text-green-700 flex items-center justify-center font-bold">
+                    <i class="fa-solid fa-file-contract text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-primary leading-snug">Visitor Entry & Authorization Form (VMS)</h3>
+                <p class="text-xs text-on-surface-variant/80">Manual offline gate entry authorization form for visitors.</p>
+            </div>
+            <div class="pt-6 border-t border-outline-variant/15 mt-4 flex items-center justify-between">
+                <span class="text-xs text-on-surface-variant/60 font-semibold uppercase">PDF • 850 KB</span>
+                <a href="/Services/BookVisit" class="bg-primary hover:bg-primary/90 text-white font-bold text-xs px-4 py-2 rounded-full transition-all inline-flex items-center gap-1">
+                    Online Portal <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
 </section>

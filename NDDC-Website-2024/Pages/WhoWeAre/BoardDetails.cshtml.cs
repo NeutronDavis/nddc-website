@@ -9,16 +9,20 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
     {
         public MyExecMngtModel BoardDetails { get; set; }
         private readonly IHomeData homeDb;
-		private readonly IConfiguration config;
-		public readonly string _containerUrl;
-		public BoardDetailsModel(IHomeData homeDb, IConfiguration config)
+        public readonly string _containerUrl;
+        
+        public BoardDetailsModel(IHomeData homeDb, IConfiguration config)
         {
-			this.homeDb = homeDb;
-			_containerUrl = config.GetConnectionString("AWSContainerUrl");
-		}
+            this.homeDb = homeDb;
+            _containerUrl = config.GetConnectionString("AWSContainerUrl");
+        }
+
         public void OnGet(int? EMID)
         {
-            BoardDetails = homeDb.ViewExecMngtDetails(EMID.Value);
+            if (EMID.HasValue)
+            {
+                BoardDetails = homeDb.ViewExecMngtDetails(EMID.Value);
+            }
         }
     }
 }

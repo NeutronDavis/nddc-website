@@ -4,24 +4,21 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace NDDC_Website_2024.Pages.WhoWeAre
 {
-    public class DirectorDetailsModel : PageModel
+    public class DirectorDetails1Model : PageModel
     {
         private readonly NDDCWebsiteContext context;
-        public Director DirectorDetails { get; set; }
-        public readonly string _containerUrl;
+        public Director DirectorDetails{ get; set; }
 
-        public DirectorDetailsModel(NDDCWebsiteContext context, IConfiguration config)
+        public readonly string _containerUrl;
+        public DirectorDetails1Model(NDDCWebsiteContext context, IConfiguration config)
         {
             this.context = context;
+
             _containerUrl = config.GetConnectionString("AWSContainerUrl");
         }
-
         public void OnGet(int? Id)
         {
-            if (Id.HasValue)
-            {
-                DirectorDetails = context.Directors.FirstOrDefault(a => a.Id == Id);
-            }
+            DirectorDetails = context.Directors.Where(a => a.Id == Id).FirstOrDefault();
         }
     }
 }

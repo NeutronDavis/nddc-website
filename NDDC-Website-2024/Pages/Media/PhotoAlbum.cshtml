@@ -1,65 +1,187 @@
 @page
 @model NDDC_Website_2024.Pages.Media.PhotoAlbumModel
 @{
+    Layout = "_Layout";
 }
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-			<li class="breadcrumb-item">
-				<a style="font-size: smaller;color: #003b49;">Media</a>
-			</li>
-			<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Photo Album</li>
-		</ol><!-- list-unstyled -->
-</nav>
-@* <section class="page-banner mb-5">
-	<div class="container">
-		<div class="page-breadcrumbs">
-			<ul class="list-unstyled">
-				<li><a href="index.html">Home</a></li>
-				<li>Photo Album</li>
-			</ul><!-- list-unstyled -->
-		</div><!-- page-breadcrumbs -->
-		<div class="page-banner-title">
-			<h3>Photo Album</h3>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->			
-</section><!--page-banner-->
- *@
 
-<div class="portfolio-section">
-		<div class="container">
-		<div class="section-title-box text-center">
-			<div class="section-tagline">Photo Album</div>
-			<h2 class="section-title">All Photos</h2>
-		</div>
-			<div class="row row-gutter-30">
-				@foreach (var item in Model.Photos)
-					{
-				<div class="col-lg-4 col-md-4">
-					<div class="portfolio-card">
-						<img src="@Model._containerUrl@item.ImageUrl" class="img-fluid w-100" style="height: 300px !important; object-fit: cover !important;" alt="@item.Title" loading="lazy">
-						<div class="portfolio-card-meta">
-							<div style="font-size: 16px;color: var(--thm-black); font-weight: 800;" class="portfolio-card-text"><div>@item.Location</div></div>
-							<div class="portfolio-card-title"><div>@item.Title</div></div>
-						</div><!-- portfolio-card-meta -->
-					</div><!--portfolio-card-->
-				</div><!-- col-lg-4 col-md-4 -->
-					}
-			</div><!-- row -->
-			<div class="row">
-				
-				<div class="col-lg-12">
-					<div class="blog-pagination-outer">
-						<div class="blog-pagination">
-								<a class="prev page-numbers" href="#"><b><i class="fa-solid fa-chevron-left"></i></b></a>
-								<span class="page-numbers current"><b>01</b></span>
-								<a class="page-numbers" href="#"><b>02</b></a>
-								<a class="page-numbers" href="#"><b>03</b></a>
-								<a class="page-numbers" href="#"><b>04</b></a>
-								<a class="next page-numbers" href="#"><b><i class="fa-solid fa-chevron-right"></i></b></a>
-						</div>
-					</div>
-				</div>
-				
-			</div>					
-		</div><!--container-->	
-	</div>
+<style>
+    .bento-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .bento-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 75, 68, 0.08), 0 10px 10px -5px rgba(0, 75, 68, 0.04);
+    }
+    .bento-image {
+        transition: transform 0.5s ease;
+    }
+    .bento-card:hover .bento-image {
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="pt-section-gap-sm pb-stack-gap text-center">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <span class="inline-block bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-label-sm font-label-sm mb-4 uppercase tracking-wider font-semibold">
+            Photo Album
+        </span>
+        <h1 class="font-display-lg text-headline-lg text-primary mb-2 font-bold">All Photos</h1>
+        <div class="w-20 h-1 bg-secondary mx-auto mb-8"></div>
+        <p class="max-w-2xl mx-auto text-on-surface-variant font-body-lg text-body-lg">
+            Capturing moments of progress, community development, and sustainable impact across the Niger Delta region.
+        </p>
+    </div>
+</section>
+
+<!-- Gallery Grid Section -->
+<section class="pb-section-gap-lg text-left">
+    <div class="max-w-container-max mx-auto px-gutter">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            @if (Model.Photos != null && Model.Photos.Any())
+            {
+                @foreach (var item in Model.Photos)
+                {
+                    <!-- Gallery Item -->
+                    <div class="bento-card group relative overflow-hidden rounded-xl border border-outline-variant/20 bg-white shadow-sm cursor-pointer">
+                        <div class="aspect-[4/3] overflow-hidden">
+                            <img class="bento-image w-full h-full object-cover ring-1 ring-inset ring-black/10" alt="@item.Title" src="@Model._containerUrl@item.ImageUrl" loading="lazy">
+                        </div>
+                        <div class="p-6">
+                            <p class="text-secondary font-label-sm text-label-sm mb-1 uppercase font-semibold">@item.Location</p>
+                            <h3 class="font-headline-md text-headline-md text-primary truncate font-bold">@item.Title</h3>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-span-full p-12 text-center bg-surface-container rounded-xl border border-outline-variant/20">
+                    <span class="material-symbols-outlined text-4xl text-outline mb-2">image</span>
+                    <p class="text-on-surface-variant font-body-lg font-semibold">No photos available in the album at this time.</p>
+                </div>
+            }
+        </div>
+        
+        <!-- Pagination -->
+        @if (Model.Photos != null && Model.Photos.Any())
+        {
+            <div class="mt-section-gap-sm flex justify-center items-center gap-4">
+                <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/40 hover:bg-surface-container-low transition-all text-primary">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <button class="w-12 h-12 flex items-center justify-center rounded-lg bg-secondary text-white font-bold transition-all shadow-sm">01</button>
+                    <button class="w-12 h-12 flex items-center justify-center rounded-lg hover:bg-surface-container-low transition-all text-on-surface-variant font-medium">02</button>
+                    <button class="w-12 h-12 flex items-center justify-center rounded-lg hover:bg-surface-container-low transition-all text-on-surface-variant font-medium">03</button>
+                    <button class="w-12 h-12 flex items-center justify-center rounded-lg hover:bg-surface-container-low transition-all text-on-surface-variant font-medium">04</button>
+                </div>
+                <button class="w-12 h-12 flex items-center justify-center rounded-lg border border-outline-variant/40 hover:bg-surface-container-low transition-all text-primary">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Lightbox Modal Overlay -->
+<div id="imageLightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex flex-col items-center justify-center hidden opacity-0 transition-all duration-300" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+    <!-- Close Button -->
+    <button id="closeLightboxBtn" class="absolute top-6 right-6 text-white/75 hover:text-white transition-colors p-2 focus:outline-none" aria-label="Close Preview">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+
+    <!-- Modal Content Wrap -->
+    <div class="relative max-w-[90vw] max-h-[85vh] flex flex-col items-center justify-center select-none">
+        <img id="lightboxImage" class="max-w-full max-h-[70vh] object-contain rounded-lg shadow-2xl border border-white/10 transform scale-95 transition-transform duration-300" src="" alt="">
+        <!-- Caption Info -->
+        <div class="text-center mt-6 max-w-2xl px-4">
+            <span id="lightboxLocation" class="text-secondary-fixed font-semibold uppercase tracking-widest text-xs"></span>
+            <h4 id="lightboxTitle" class="text-white font-headline-md text-lg md:text-xl font-bold mt-1 leading-tight"></h4>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const lightbox = document.getElementById("imageLightbox");
+            const lightboxImg = document.getElementById("lightboxImage");
+            const lightboxLoc = document.getElementById("lightboxLocation");
+            const lightboxTitle = document.getElementById("lightboxTitle");
+            const closeBtn = document.getElementById("closeLightboxBtn");
+            const cards = document.querySelectorAll(".bento-card");
+
+            function openLightbox(imgSrc, imgAlt, locationText, titleText) {
+                if (!lightbox) return;
+                
+                lightboxImg.src = imgSrc;
+                lightboxImg.alt = imgAlt;
+                lightboxLoc.textContent = locationText;
+                lightboxTitle.textContent = titleText;
+
+                // Show container
+                lightbox.classList.remove("hidden");
+                // Allow layout to compute before fading in
+                requestAnimationFrame(() => {
+                    lightbox.classList.add("opacity-100");
+                    lightboxImg.classList.remove("scale-95");
+                    lightboxImg.classList.add("scale-100");
+                });
+            }
+
+            function closeLightbox() {
+                if (!lightbox) return;
+
+                lightbox.classList.remove("opacity-100");
+                lightboxImg.classList.remove("scale-100");
+                lightboxImg.classList.add("scale-95");
+
+                // Hide container after animation completes
+                setTimeout(() => {
+                    lightbox.classList.add("hidden");
+                    lightboxImg.src = "";
+                }, 300);
+            }
+
+            // Click card triggers preview
+            cards.forEach(card => {
+                card.addEventListener("click", () => {
+                    const img = card.querySelector("img");
+                    const loc = card.querySelector(".text-secondary");
+                    const title = card.querySelector("h3");
+
+                    if (img) {
+                        openLightbox(
+                            img.src,
+                            img.alt || "",
+                            loc ? loc.textContent : "",
+                            title ? title.textContent : ""
+                        );
+                    }
+                });
+            });
+
+            // Close button trigger
+            if (closeBtn) {
+                closeBtn.addEventListener("click", closeLightbox);
+            }
+
+            // Click outside content area trigger
+            if (lightbox) {
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox || e.target.closest("#closeLightboxBtn")) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            // Escape key trigger
+            document.addEventListener("keyup", (e) => {
+                if (e.key === "Escape" && lightbox && !lightbox.classList.contains("hidden")) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+}

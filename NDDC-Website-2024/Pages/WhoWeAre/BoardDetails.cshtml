@@ -1,83 +1,129 @@
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @page "{EMID:int?}"
+@page
 @model NDDC_Website_2024.Pages.WhoWeAre.BoardDetailsModel
 @{
+    Layout = "_Layout";
 }
 
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-	<ol class="breadcrumb bg-dark list-unstyled justify-content-end border-bottom p-2 pe-5" style="--bs-bg-opacity: .1;">
-		<li class="breadcrumb-item">
-			<a href="/News/News" style="font-size: smaller;color: #003b49;">Our Board</a>
-		</li>
-		<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Board Details (Updated)</li>
-	</ol><!-- list-unstyled -->
-</nav>
-
 <style>
-	#boardMemberImg {
-		width: 450px !important;
-		height: 450px !important;
-		max-width: 100% !important;
-		aspect-ratio: 1/1 !important;
-		object-fit: cover !important;
-		object-position: top center !important;
-		border-radius: 50% !important;
-		display: block !important;
-		margin-left: auto !important;
-	}
-	@@media (max-width: 991px) {
-		#boardMemberImg {
-			width: 300px !important;
-			height: 300px !important;
-			margin: 0 auto !important;
-		}
-	}
+    .profile-shadow {
+        box-shadow: 0px 4px 20px rgba(0, 75, 68, 0.05);
+    }
 </style>
 
-<section class="testimonial-two-section">
-	<div class="testimonial-two-inner" style="background-image: url(/assets/image/bg/board-bg.png);">
-		<div class="container">
-			<div class="row">
-				<div class="col-12 col-lg-6 col-xl-6">
-					<div class="testimonial-two-content">
-						<div class="section-title-box">
-							<div class="section-tagline">
-								@Model.BoardDetails.Position
-							</div><!-- section-tagline -->
-							<h2 class="section-title">@Model.BoardDetails.ExecName</h2>
-							@* <h4 class="fw-normal">Chiedu Ebie: The Technocrat and Beacon of the Niger Delta Region</h4> *@
-						</div><!--section-title-box-->
-					</div><!--testimonial-two-content-->
-					<!--testimonial-author-thumb-->
-				</div><!--col-lg-4-->
-				<!-- col-lg-5 -->
-				<div class="col-lg-6">
-					<div class="testimonial-two-img" style="display: block !important;">
-						<div id="boardMemberCircle" style="width: 450px !important; height: 450px !important; max-width: 100% !important; aspect-ratio: 1/1 !important; border-radius: 50% !important; overflow: hidden !important; margin-left: auto !important; position: relative !important; border: 5px solid white !important; box-shadow: 0 10px 30px rgba(0,0,0,0.1) !important;">
-							<img src="@Model._containerUrl@Model.BoardDetails.ImageUrl" style="width: 100% !important; height: 100% !important; object-fit: cover !important; object-position: top center !important; display: block !important;" alt="Board Member Details">
-						</div>
-					</div><!-- testimonial-two-img -->
-				</div><!--col-lg-3-->
-				
-			</div><!-- row -->
+<!-- Breadcrumbs -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-8">
+    <nav class="flex items-center gap-2 text-on-surface-variant font-label-sm">
+        <a class="hover:text-primary transition-colors" href="/">Home</a>
+        <span class="material-symbols-outlined text-[16px] text-on-surface-variant/50">chevron_right</span>
+        <a class="hover:text-primary transition-colors" href="/WhoWeAre/Board">Our Board</a>
+        <span class="material-symbols-outlined text-[16px] text-on-surface-variant/50">chevron_right</span>
+        <span class="text-primary font-bold">Board Details</span>
+    </nav>
+</section>
 
-		</div><!-- container -->
-	</div><!-- testimonial-two-inner -->
-	<div class="col-12 justify-content-center d-flex mt-5 p-5">
-		<div class="col-8 text-dark d-block">
-			<p class="text-dark lh-lg">
-				@Html.Raw(@Model.BoardDetails.Details)
-			</p>
-            <div class="team-details-title-one pt-3">
-                <span>Follow on Socials</span>
-            </div>
-            <div class="team-details-socials">
-				<a href="@Model.BoardDetails.Twitter"><i class="fa-brands fa-twitter"></i></a>
-				<a href="@Model.BoardDetails.Facebook"><i class="fa-brands fa-facebook"></i></a>
-				<a href="@Model.BoardDetails.Instagram"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-
-		</div>
-
+<!-- Hero Section -->
+<section class="relative overflow-hidden pt-8 pb-section-gap-sm">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter flex flex-col md:flex-row items-center gap-12 lg:gap-24">
+        <!-- Portrait with Brand Seal Background -->
+        <div class="relative w-full md:w-1/2 flex justify-center lg:justify-start">
+            @* <div class="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square opacity-10">
+                <img alt="NDDC Seal" class="w-full h-full object-contain filter grayscale brightness-0" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDo3GCcMFLDV5zP9Mwtlvp0rYVkI01i8BcCiHy8WfiyViTCKjZFezUJSoLxlsTS_T54oihIlttZPngEhd3-GOXcQyXjnM6YBY9434Gv4XkCXjO1r1dh2LhTBm31yZplVMRyjzoMzOYJWbkO-Yz-pQKavsbQkfBojuz6v8FNWwV8tBzHRVKwyzCjcxXtQ5agwMnU6gVqJRaK3epZocHsBsdCOBiSDnLZuFTMniTXkgp2C2cyJZ3VieCaVtHUPKnZApHq9970lUStKn0">
+            </div> *@
+            @if (Model.BoardDetails != null)
+            {
+                <div class="relative p-2 rounded-full border-4 border-primary/10">
+                    <div class="rounded-full overflow-hidden w-64 h-64 md:w-80 md:h-80 lg:w-[420px] lg:h-[420px] bg-surface-container profile-shadow">
+                        <img class="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-700 object-top" alt="@Model.BoardDetails.ExecName" src="@Model._containerUrl@Model.BoardDetails.ImageUrl">
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <!-- Identity Information -->
+        <div class="w-full md:w-1/2 space-y-6 text-left">
+            @if (Model.BoardDetails != null)
+            {
+                <div class="space-y-1">
+                    <p class="text-secondary font-label-sm uppercase tracking-widest flex items-center gap-2 font-semibold">
+                        <span class="w-8 h-[2px] bg-secondary"></span>
+                        @Model.BoardDetails.Position
+                    </p>
+                    <h1 class="font-headline-lg text-headline-lg lg:text-display-lg text-primary font-bold leading-tight">@Model.BoardDetails.ExecName</h1>
+                </div>
+            }
+        </div>
     </div>
-	
+</section>
+
+<!-- Biography Content Section -->
+<section class="bg-surface-container-lowest py-section-gap-lg">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 lg:grid-cols-12 gap-16">
+        <!-- Main Bio Content -->
+        <div class="lg:col-span-8 space-y-12 text-left">
+            @if (Model.BoardDetails != null)
+            {
+                <div class="space-y-6">
+                    <h2 class="font-headline-md text-headline-md text-primary flex items-center gap-3 font-bold">
+                        Professional Biography
+                        <span class="h-[1px] flex-1 bg-outline-variant/30"></span>
+                    </h2>
+                    <div class="space-y-6 text-on-surface-variant leading-loose font-body-md text-body-md">
+                        @Html.Raw(Model.BoardDetails.Details)
+                    </div>
+                </div>
+            }
+        </div>
+        
+        <!-- Sidebar / Quick Info -->
+        <aside class="lg:col-span-4 space-y-8 text-left">
+            <div class="bg-primary text-on-primary p-8 rounded-2xl space-y-6 shadow-xl">
+                <h4 class="font-headline-md text-headline-md font-bold">Key Focus Areas</h4>
+                <ul class="space-y-4">
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed">cloud_sync</span>
+                        <span>Digital Transformation</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed">construction</span>
+                        <span>Infrastructure Design</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed">energy_savings_leaf</span>
+                        <span>Energy Sustainability</span>
+                    </li>
+                    <li class="flex items-center gap-3">
+                        <span class="material-symbols-outlined text-secondary-fixed">security</span>
+                        <span>Information Security</span>
+                    </li>
+                </ul>
+                
+                @if (Model.BoardDetails != null && (!string.IsNullOrEmpty(Model.BoardDetails.Twitter) || !string.IsNullOrEmpty(Model.BoardDetails.Facebook) || !string.IsNullOrEmpty(Model.BoardDetails.Instagram)))
+                {
+                    <div class="pt-6 border-t border-on-primary/10">
+                        <h5 class="text-on-primary font-bold font-headline-md text-lg mb-4">Follow on Socials</h5>
+                        <div class="flex gap-4">
+                            @if (!string.IsNullOrEmpty(Model.BoardDetails.Twitter))
+                            {
+                                <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all" href="@Model.BoardDetails.Twitter">
+                                    <span class="material-symbols-outlined text-sm">public</span>
+                                </a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.BoardDetails.Facebook))
+                            {
+                                <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all" href="@Model.BoardDetails.Facebook">
+                                    <span class="material-symbols-outlined text-sm">share</span>
+                                </a>
+                            }
+                            @if (!string.IsNullOrEmpty(Model.BoardDetails.Instagram))
+                            {
+                                <a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-secondary-fixed hover:text-on-secondary-fixed transition-all" href="@Model.BoardDetails.Instagram">
+                                    <span class="material-symbols-outlined text-sm">group</span>
+                                </a>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+        </aside>
+    </div>
 </section>

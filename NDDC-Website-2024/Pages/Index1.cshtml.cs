@@ -5,7 +5,7 @@ using NddcWebsiteLibrary.Model.Home;
 
 namespace NDDC_Website_2024.Pages
 {
-    public class IndexModel : PageModel
+    public class Index1Model : PageModel
     {
         private readonly IHomeData homeDb;
         public List<MyNewsModel> NewsSlide { get; set; }
@@ -23,10 +23,7 @@ namespace NDDC_Website_2024.Pages
         public DateTime CountDownDate { get; set; }
         public MyLiveEventModel LiveEvent { get; set; }
         public bool IsEventLive { get; set; }
-        public MyExecMngtModel ChairmanItem { get; set; }
-        public List<MyExecMngtModel> BoardMembers { get; set; }
-
-        public IndexModel(IHomeData homeDb, IConfiguration configuration)
+        public Index1Model(IHomeData homeDb, IConfiguration configuration)
         {
             this.homeDb = homeDb;
 			_containerUrl = configuration.GetConnectionString("AWSContainerUrl");
@@ -37,26 +34,12 @@ namespace NDDC_Website_2024.Pages
             Photos       = new List<MyPhotoSpeakModel>();
             Videos       = new List<MyVideoModel>();
             Testimonials = new List<MyTestimonialModel>();
-            BoardMembers = new List<MyExecMngtModel>();
 		}
 
         public void OnGet()
         {
-            var slidesFromDb = homeDb.DisplaySlides() ?? new List<MyNewsModel>();
-            var defaultSlide = new MyNewsModel
-            {
-                Id = 0,
-                NID = 0,
-                Type = "Niger Delta Development Commission",
-                Subject = "Empowering Communities, Building the Future.",
-                Summary = "Advancing social welfare initiatives and bolstering infrastructure to create lasting positive transformation across the Niger Delta region.",
-                ImageUrl = "https://lh3.googleusercontent.com/aida-public/AB6AXuDVKDs9QFDoYC-J_Ga230U9uPORsK4Aw0--pwFgVD4cIWNehYuWXjT1WopKjn7Se9M9oPnBFMRGKPJ07Ot1Emon_PAQl29op2zSJtiKdb90-RWRxbGP0lv5kzYVx1R8bpAQ_CCFolx1ambVH6uSVXOtx3A1UjQOOxPuJUQXlgyWp1dqtBFmpdRcZkVqa8NG-smykmSP5moh2U4T0c-u7HTbJvIqT-oAIkYpLYWABiGhngTR6bCqEZc3ro-OSl3ncW2ezVQp5N69Xw4"
-            };
-
-            NewsSlide = new List<MyNewsModel> { defaultSlide };
-            NewsSlide.AddRange(slidesFromDb);
-
-            NewsList                 = homeDb.ListHomePageNews()         ?? new List<MyNewsModel>();
+            NewsSlide                = homeDb.DisplaySlides()           ?? new List<MyNewsModel>();
+            NewsList                 = homeDb.ListHomePageNews()?.Take(3).ToList() ?? new List<MyNewsModel>();
             Photos                   = homeDb.DisplayPhotos()            ?? new List<MyPhotoSpeakModel>();
             PhysicalInfraUpdatePhoto = homeDb.GetImageByUpdateCategory("Physical");
             SocialInfraUpdatePhoto   = homeDb.GetImageByUpdateCategory("Social");
@@ -66,13 +49,13 @@ namespace NDDC_Website_2024.Pages
             Announcement             = homeDb.GetAnnouncement();
             CriticalUpdate           = homeDb.GetCriticalNewsUpdate();
             Testimonials             = homeDb.ViewTestimonials()         ?? new List<MyTestimonialModel>();
-            ChairmanItem             = homeDb.GetChairmanSingle();
-            BoardMembers             = homeDb.GetAllBoardMembers()       ?? new List<MyExecMngtModel>();
+            //CountDownDate = new DateTime(2024, 7, 10, 07, 00, 00);
             LiveEvent = homeDb.GetLiveEvent();
             if (LiveEvent != null)
             {
 				CountDownDate = new DateTime(LiveEvent.StartDate.Year, LiveEvent.StartDate.Month, LiveEvent.StartDate.Day, LiveEvent.StartTime.Hour, LiveEvent.StartTime.Minute, 00);
 			}
+            
             IsEventLive = homeDb.GoLive();
 		}
     }

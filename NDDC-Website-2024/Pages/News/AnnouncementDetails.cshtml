@@ -2,99 +2,112 @@
 @using System.Text.RegularExpressions
 @model NDDC_Website_2024.Pages.News.AnnouncementDetailsModel
 @{
+    Layout = "_Layout";
     var _ndRawUrl  = $"{Request.Scheme}://{Request.Host}/News/AnnouncementDetails/{Model.Details.Id}";
     var _ndUrl     = Uri.EscapeDataString(_ndRawUrl);
     var _ndTitle   = Uri.EscapeDataString(Model.Details.Title ?? "");
     var _plainText = Regex.Replace(Model.Details.Details ?? "", "<[^>]+>", " ");
     var _readMins  = Math.Max(1, Regex.Matches(_plainText, @"\w+").Count / 200);
+
+    bool isDisclaimer = Model.Details.Title.Contains("DISCLAIMER", StringComparison.OrdinalIgnoreCase);
+    string category = isDisclaimer ? "OFFICIAL DISCLAIMER" : "COMMISSION ANNOUNCEMENT";
+    string badgeClass = isDisclaimer ? "text-error bg-error-container/20" : "text-secondary bg-secondary-container/20";
+    string borderClass = isDisclaimer ? "border-error" : "border-secondary";
 }
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-        <li class="breadcrumb-item">
-            <a asp-page="Announcements" style="font-size: smaller; color: #003b49;">Announcements</a>
-        </li>
-        <li class="breadcrumb-item" style="font-size: smaller; color: #003b49;">Announcement Details</li>
-    </ol>
+<style>
+    .breadcrumb-separator::after {
+        content: 'chevron_right';
+        font-family: 'Material Symbols Outlined';
+        font-size: 16px;
+        margin: 0 8px;
+        color: #717977;
+        vertical-align: middle;
+    }
+</style>
+
+<!-- Breadcrumbs -->
+<nav class="max-w-container-max mx-auto px-margin-mobile md:px-gutter py-6 flex items-center text-label-sm font-label-sm text-outline text-left">
+    <a class="hover:text-primary transition-colors font-semibold" href="/">Home</a>
+    <span class="breadcrumb-separator"></span>
+    <a class="hover:text-primary transition-colors font-semibold" href="/News/Announcements">News &amp; Announcements</a>
+    <span class="breadcrumb-separator"></span>
+    <span class="text-on-surface-variant truncate max-w-[200px] md:max-w-none font-semibold">@Model.Details.Title</span>
 </nav>
 
-<section class="news-details-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-
-                <!-- ── Banner header (no image — use gradient) ─────── -->
-                <div class="nd-announce-banner">
-                    <div class="nd-announce-icon">
-                        <i class="fa-solid fa-bullhorn"></i>
-                    </div>
-                    <div class="nd-announce-tagline">Public Announcement</div>
-                    <h2 class="nd-announce-title">@Model.Details.Title</h2>
-                </div>
-
-                <!-- ── Meta strip ────────────────────────────────────── -->
-                <div class="nd-meta-strip">
-                    <span><i class="fa-regular fa-calendar"></i> @Model.Details.StartDate.ToString("dd MMMM yyyy")</span>
-                    <span><i class="fa-regular fa-clock"></i> @_readMins min read</span>
-                    <a href="/News/Announcements" class="ms-auto nd-back-link">
-                        <i class="fa-solid fa-arrow-left me-1"></i>Back to Announcements
-                    </a>
-                </div>
-
-                <!-- ── Article body ──────────────────────────────────── -->
-                <div class="nd-article-body">
-                    <div class="nd-details">
-                        @Html.Raw(Model.Details.Details)
-                    </div>
-                </div>
-
-                <!-- ── Share strip ───────────────────────────────────── -->
-                <div class="nd-share-strip">
-                    <span class="nd-share-label">
-                        <i class="fa-solid fa-share-nodes me-1"></i>Share
-                    </span>
-                    <a href="https://twitter.com/intent/tweet?url=@_ndUrl&amp;text=@_ndTitle"
-                       target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--twitter">
-                        <i class="fa-brands fa-x-twitter"></i> Twitter
-                    </a>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u=@_ndUrl"
-                       target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--facebook">
-                        <i class="fa-brands fa-facebook"></i> Facebook
-                    </a>
-                    <a href="https://www.linkedin.com/sharing/share-offsite/?url=@_ndUrl"
-                       target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--linkedin">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
-                    </a>
-                    <a href="https://wa.me/?text=@_ndTitle%20@_ndUrl"
-                       target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <button type="button"
-                            class="nd-share-btn nd-share-btn--copy nd-copy-btn"
-                            data-url="@_ndRawUrl">
-                        <i class="fa-regular fa-copy"></i> Copy Link
-                    </button>
-                </div>
-
+<!-- Announcement Article Section -->
+<section class="max-w-container-max mx-auto px-margin-mobile md:px-gutter my-12 text-left">
+    <div class="max-w-4xl mx-auto bg-surface-container-lowest rounded-xl p-8 md:p-16 border border-outline-variant/10 shadow-sm relative overflow-hidden">
+        <!-- Atmospheric Background Accent -->
+        <div class="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+        
+        <!-- Date Badge -->
+        <div class="flex items-center gap-2 mb-8">
+            <span class="material-symbols-outlined text-secondary text-[20px]" style="font-variation-settings: 'FILL' 1;">calendar_today</span>
+            <span class="text-label-sm font-label-sm @badgeClass px-3 py-1 rounded-full uppercase tracking-wider font-semibold">Announced on: @Model.Details.StartDate.ToString("dd/MM/yyyy")</span>
+        </div>
+        
+        <!-- Title -->
+        <h1 class="font-display-lg text-headline-lg-mobile md:text-headline-lg text-primary-container leading-tight mb-10 border-l-8 @borderClass pl-6 font-bold">
+            @Model.Details.Title
+        </h1>
+        
+        <!-- Content Body -->
+        <div class="prose prose-lg max-w-none font-body-lg text-body-lg text-on-surface-variant leading-relaxed flex flex-col gap-6">
+            @Html.Raw(Model.Details.Details)
+        </div>
+        
+        <!-- Signature Section -->
+        <div class="mt-16 pt-10 border-t border-outline-variant/30">
+            <div class="flex flex-col gap-1">
+                <p class="font-headline-md text-headline-md text-primary font-bold">Corporate Affairs Dept.</p>
+                <p class="text-on-surface-variant font-medium">Niger Delta Development Commission</p>
+                <p class="text-outline text-label-sm mt-2 font-semibold">@Model.Details.StartDate.ToString("MMMM dd, yyyy") · @_readMins min read</p>
+            </div>
+            
+            <div class="mt-12 flex flex-wrap gap-4">
+                <button id="shareAnnouncementBtn" data-url="@_ndRawUrl" class="flex items-center gap-2 px-6 py-3 bg-primary text-on-primary rounded-full hover:shadow-lg transition-all active:scale-95 group font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">share</span>
+                    <span class="font-label-sm">Share Article</span>
+                </button>
+                <button onclick="window.print();" class="flex items-center gap-2 px-6 py-3 border border-outline text-primary rounded-full hover:bg-surface-container-low transition-all active:scale-95 font-semibold">
+                    <span class="material-symbols-outlined text-[20px]">print</span>
+                    <span class="font-label-sm">Download PDF</span>
+                </button>
             </div>
         </div>
     </div>
 </section>
 
-<script>
-(function () {
-    var btn = document.querySelector('.nd-copy-btn');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-        navigator.clipboard.writeText(btn.dataset.url).then(function () {
-            var orig = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            setTimeout(function () { btn.innerHTML = orig; }, 2000);
+<!-- Newsletter / Contact CTA Section -->
+<section class="bg-surface-container py-section-gap-sm text-left">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter grid grid-cols-1 md:grid-cols-2 gap-stack-gap items-center">
+        <div>
+            <h2 class="font-headline-lg text-headline-lg text-primary mb-4 font-bold">Stay Informed Officially</h2>
+            <p class="text-body-lg text-on-surface-variant">Don't fall for misinformation. Subscribe to our official updates and verification channel to get verified news directly from the commission.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+            <form action="assets/inc/sendemail.php" method="post">
+                <input class="flex-grow rounded-xl border border-outline-variant focus:border-secondary focus:ring-secondary p-4 bg-white" placeholder="Enter your email address" type="email">
+                <button type="button" class="px-8 py-4 bg-secondary text-on-secondary rounded-xl font-bold hover:shadow-md transition-all">Subscribe</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const shareBtn = document.getElementById('shareAnnouncementBtn');
+            if (shareBtn) {
+                shareBtn.addEventListener('click', () => {
+                    navigator.clipboard.writeText(shareBtn.dataset.url).then(() => {
+                        const origHtml = shareBtn.innerHTML;
+                        shareBtn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span><span class="font-label-sm">Copied!</span>';
+                        setTimeout(() => { shareBtn.innerHTML = origHtml; }, 2000);
+                    });
+                });
+            }
         });
-    });
-}());
-</script>
+    </script>
+}

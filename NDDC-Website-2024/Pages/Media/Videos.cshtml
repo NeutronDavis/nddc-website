@@ -1,62 +1,205 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.Media.VideosModel
-@{
+@functions {
+    public static string GetYouTubeVideoId(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url)) return "";
+        url = url.Trim();
+        if (url.Contains("youtube.com") || url.Contains("youtu.be"))
+        {
+            var regex = new System.Text.RegularExpressions.Regex(@"(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^#\&\?]{11})", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+            var match = regex.Match(url);
+            if (match.Success)
+            {
+                return match.Groups[1].Value;
+            }
+        }
+        if (url.Contains("?"))
+        {
+            url = url.Split('?')[0];
+        }
+        if (url.Contains("/"))
+        {
+            url = url.Substring(url.LastIndexOf('/') + 1);
+        }
+        return url;
+    }
 }
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-			<li class="breadcrumb-item">
-				<a style="font-size: smaller;color: #003b49;">Media</a>
-			</li>
-			<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Videos</li>
-		</ol><!-- list-unstyled -->
-</nav>
-@*
-<section class="page-banner mb-5">
-	<div class="container">
-		<div class="page-breadcrumbs">
-			<ul class="list-unstyled">
-				<li><a href="index.html">Home</a></li>
-				<li>Videos</li>
-			</ul><!-- list-unstyled -->
-		</div><!-- page-breadcrumbs -->
-		<div class="page-banner-title">
-			<h3>Videos</h3>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->			
-</section><!--page-banner--> *@
+@{
+    Layout = "_Layout";
+}
 
-<div class="portfolio-section">
-		<div class="container">
-			<div class="section-title-box text-center">
-			<div class="section-tagline">Videos</div>
-			<h2 class="section-title">Check Out Our Latest Videos</h2>
-		</div>
-			<div class="row row-gutter-30">
-				@foreach (var item in Model.Videos)
-                    {
-				<div class="col-lg-4 col-md-4">
-					<div class="portfolio-card">
-						<iframe width="372" height="351"
-						src="https://www.youtube.com/embed/@item.YoutubeUrl"title="@item.VideoTitle" allowfullscreen>
-						</iframe>
+<style>
+    .video-card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .video-card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 25px -5px rgba(0, 75, 68, 0.08), 0 10px 10px -5px rgba(0, 75, 68, 0.04);
+    }
+    .video-card-hover img {
+        transition: transform 0.5s ease;
+    }
+    .video-card-hover:hover img {
+        transform: scale(1.05);
+    }
+</style>
 
-					</div><!--portfolio-card-->
-				</div><!-- col-lg-4 col-md-4 -->
-					}
-			</div><!-- row -->
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="blog-pagination-outer">
-						<div class="blog-pagination">
-								<a class="prev page-numbers" href="#"><b><i class="fa-solid fa-chevron-left"></i></b></a>
-								<span class="page-numbers current"><b>01</b></span>
-								<a class="page-numbers" href="#"><b>02</b></a>
-								<a class="page-numbers" href="#"><b>03</b></a>
-								<a class="page-numbers" href="#"><b>04</b></a>
-								<a class="next page-numbers" href="#"><b><i class="fa-solid fa-chevron-right"></i></b></a>
-						</div>
-					</div>
-				</div>	
-			</div>					
-		</div><!--container-->	
-	</div>
+<!-- Hero / Breadcrumbs -->
+<section class="py-12 bg-surface-container-low text-center">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+        <nav class="flex justify-center items-center gap-2 mb-6 text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider font-semibold">
+            <a class="hover:text-secondary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+            <a class="hover:text-secondary transition-colors" href="/Media/PhotoAlbum">Media</a>
+            <span class="material-symbols-outlined text-[14px]">chevron_right</span>
+            <span class="text-secondary font-bold">Videos</span>
+        </nav>
+        @* <p class="text-secondary font-label-sm text-label-sm uppercase tracking-[0.2em] mb-2 font-semibold">VIDEOS</p> *@
+        <h1 class="font-headline-lg text-headline-lg md:text-display-lg text-primary mb-4 font-bold">Check Out Our Latest Videos</h1>
+        <div class="w-24 h-1 bg-secondary mx-auto rounded-full"></div>
+    </div>
+</section>
+
+<!-- Video Grid Section -->
+<section class="py-section-gap-sm md:py-section-gap-lg text-left">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+            @if (Model.Videos != null && Model.Videos.Any())
+            {
+                @foreach (var item in Model.Videos)
+                {
+                    var videoId = GetYouTubeVideoId(item.YoutubeUrl);
+                    <!-- Video Card -->
+                    <div class="video-card-hover group relative bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/20 shadow-sm transition-all duration-300 cursor-pointer" data-video-id="@videoId">
+                        <div class="relative aspect-video overflow-hidden">
+                            <img class="w-full h-full object-cover" alt="@item.VideoTitle" src="https://img.youtube.com/vi/@videoId/hqdefault.jpg" loading="lazy">
+                            <div class="absolute inset-0 bg-primary/20 group-hover:bg-primary/40 transition-colors duration-300 flex items-center justify-center">
+                                <div class="w-16 h-16 bg-secondary text-on-secondary rounded-full flex items-center justify-center shadow-lg transform group-hover:scale-110 transition-transform duration-300">
+                                    <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-headline-md text-headline-md text-primary group-hover:text-secondary transition-colors mb-2 font-bold truncate">@item.VideoTitle</h3>
+                            <p class="text-on-surface-variant font-body-md text-body-md truncate">@item.VideoDesc</p>
+                            <div class="mt-4 flex items-center gap-2 text-label-sm text-outline font-semibold">
+                                <span class="material-symbols-outlined text-sm">schedule</span>
+                                <span>Watch on Youtube</span>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="col-span-full p-12 text-center bg-surface-container rounded-xl border border-outline-variant/20">
+                    <span class="material-symbols-outlined text-4xl text-outline mb-2">video_library</span>
+                    <p class="text-on-surface-variant font-body-lg font-semibold">No videos available at this time.</p>
+                </div>
+            }
+        </div>
+        
+        <!-- Pagination -->
+        @if (Model.Videos != null && Model.Videos.Any())
+        {
+            <div class="mt-section-gap-sm flex justify-center items-center gap-4">
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-outline hover:border-secondary hover:text-secondary transition-all">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <div class="flex items-center gap-2">
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg bg-secondary text-on-secondary font-bold shadow-md">01</button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">02</button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">03</button>
+                    <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-all">04</button>
+                </div>
+                <button class="w-10 h-10 flex items-center justify-center rounded-lg border border-outline-variant text-outline hover:border-secondary hover:text-secondary transition-all">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Video Lightbox Modal -->
+<div id="videoLightbox" class="fixed inset-0 z-50 bg-black/90 backdrop-blur-sm flex flex-col items-center justify-center hidden opacity-0 transition-all duration-300" style="backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);">
+    <!-- Close Button -->
+    <button id="closeVideoLightboxBtn" class="absolute top-6 right-6 text-white/75 hover:text-white transition-colors p-2 focus:outline-none" aria-label="Close Player">
+        <span class="material-symbols-outlined text-4xl">close</span>
+    </button>
+
+    <!-- Iframe Content Container -->
+    <div class="relative w-full max-w-4xl aspect-video px-4 transform scale-95 transition-transform duration-300 select-none">
+        <iframe id="lightboxVideoPlayer" class="w-full h-full rounded-lg shadow-2xl border border-white/10" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const lightbox = document.getElementById("videoLightbox");
+            const player = document.getElementById("lightboxVideoPlayer");
+            const closeBtn = document.getElementById("closeVideoLightboxBtn");
+            const cards = document.querySelectorAll(".video-card-hover");
+
+            function openVideo(videoId) {
+                if (!lightbox || !player) return;
+
+                player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                lightbox.classList.remove("hidden");
+
+                requestAnimationFrame(() => {
+                    lightbox.classList.add("opacity-100");
+                    const frameContainer = player.parentElement;
+                    if (frameContainer) {
+                        frameContainer.classList.remove("scale-95");
+                        frameContainer.classList.add("scale-100");
+                    }
+                });
+            }
+
+            function closeVideo() {
+                if (!lightbox || !player) return;
+
+                lightbox.classList.remove("opacity-100");
+                const frameContainer = player.parentElement;
+                if (frameContainer) {
+                    frameContainer.classList.remove("scale-100");
+                    frameContainer.classList.add("scale-95");
+                }
+
+                setTimeout(() => {
+                    lightbox.classList.add("hidden");
+                    player.src = "";
+                }, 300);
+            }
+
+            cards.forEach(card => {
+                card.addEventListener("click", () => {
+                    const videoId = card.dataset.videoId;
+                    if (videoId) {
+                        openVideo(videoId);
+                    }
+                });
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener("click", closeVideo);
+            }
+
+            if (lightbox) {
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox || e.target.closest("#closeVideoLightboxBtn")) {
+                        closeVideo();
+                    }
+                });
+            }
+
+            document.addEventListener("keyup", (e) => {
+                if (e.key === "Escape" && lightbox && !lightbox.classList.contains("hidden")) {
+                    closeVideo();
+                }
+            });
+        });
+    </script>
+}

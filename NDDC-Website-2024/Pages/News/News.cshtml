@@ -1,168 +1,238 @@
 @page
 @model NDDC_Website_2024.Pages.NewsModel
 @{
+    Layout = "_Layout";
 }
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-		<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-			<li class="breadcrumb-item">
-				<a style="font-size: smaller;color: #003b49;">News</a>
-			</li>
-			<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">All News</li>
-		</ol><!-- list-unstyled -->
-</nav>
-@* <section class="page-banner mb-5">
-	<div class="container">
-		<div class="page-breadcrumbs">
-			<ul class="list-unstyled">
-				<li><a href="index.html">Home</a></li>
-				<li>News</li>
-			</ul><!-- list-unstyled -->
-		</div><!-- page-breadcrumbs -->
-		<div class="page-banner-title">
-			<h3>News</h3>
-		</div><!-- page-banner-title -->
-	</div><!-- container -->			
-</section><!--page-banner--> *@
-<section class="blog-section blog-section-two p-5">
-	<div class="row">
-		<div class="section-title-box text-center">
-			@* <div class="section-tagline">News</div> *@
-			<h2 class="section-title">News</h2>
+
+<style>
+    .bento-card {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .bento-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 12px 32px rgba(0, 75, 68, 0.08);
+    }
+    .article-image-zoom {
+        overflow: hidden;
+    }
+    .article-image-zoom img {
+        transition: transform 0.5s ease;
+    }
+    .bento-card:hover .article-image-zoom img {
+        transform: scale(1.05);
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="relative py-section-gap-sm md:py-24 overflow-hidden bg-surface-container-low/30 text-left">
+    <div class="max-w-container-max mx-auto px-margin-mobile md:px-gutter relative z-10">
+        <div class="max-w-2xl">
+            <span class="inline-block px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container text-label-sm font-label-sm mb-4 font-semibold">COMMISSION UPDATES</span>
+            <h1 class="text-headline-lg-mobile md:text-headline-lg font-headline-lg mb-6 text-primary font-bold" style="text-align: start;">News &amp; Media Centre</h1>
+            <p class="text-body-lg font-body-lg text-on-surface-variant">Stay informed about the Niger Delta Development Commission’s latest projects, board decisions, and community impact initiatives across the region.</p>
         </div>
-		@if (Model.LatestNews != null)
-		{
-			<div class="d-flex justify-content-center">
-				<div class="col-lg-10">
-					<div class="blog-card">
-						<div class="blog-card-image m-0">
-						<img src="@Model._containerUrl@Model.LatestNews.ImageUrl" class="w-100" style="height: 450px !important; object-fit: cover !important; object-position: top !important;" alt="Latest News">
-						<a style="top:unset;" asp-route-nid="@Model.LatestNews.NID" asp-page="NewsDetails"></a>
-						</div><!-- blog-card-image -->
-						<div class="blog-card-content text-start bg-white p-0 pb-4">
-							<div class="py-5 row justify-content-between">
-								<p class="section-tagline">Highlighted News</p>
-							<h1 class="text-dark text-start"><a class="text-dark fw-semibold text-decoration-underline lh-base display-4" asp-route-nid="@Model.LatestNews.NID" asp-page="NewsDetails">@Model.LatestNews.Subject</a></h1>
-							</div>
-						</div><!-- blog-card-content -->
-					</div><!-- blog-card -->
-				</div><!-- col-lg-6 col-xl-4 -->
-			</div>
-		}
-		
-		<div class="d-flex justify-content-center">
-			@* <div class="col-lg-4">
-				<div class="sidebar">
-					<div class="sidebar-form-content">
-						<div class="sidebar__item sidebar__item--search">
-							<form action="#" class="sidebar__search">
-								<label for="search" class="sr-only">search here</label><!-- sr-only -->
-								<input type="text" placeholder="Search Here">
-								<button type="submit" aria-label="search submit" class="thm-btn">
-									<i class="flaticon-search-interface-symbol"></i>
-								</button><!-- thm-btn -->
-							</form><!-- sidebar__search -->
-						</div><!-- sidebar__item -->
-					</div><!-- sidebar-form-content -->
-					<div class="sidebar-widget sidebar-widget-recent-category">
-						<div class="sidebar-widget-recent-category-box">
-							<h4 class="section-title text-left">Categories</h4>
-							<ul class="list-unstyled">
-								<li><a href="/News/NewsDetails">Corporate Affairs<i class="fa-solid fa-chevron-right"></i></a></li>
-								<li><a href="/News/NewsDetails">Project Monitoring and Supervision<i class="fa-solid fa-chevron-right"></i></a></li>
-								<li><a href="/News/NewsDetails">Information Technology <i class="fa-solid fa-chevron-right"></i></a></li>
-								<li><a href="/News/NewsDetails">Agric<i class="fa-solid fa-chevron-right"></i></a></li>
-							</ul><!-- list-unstyled -->
-						</div><!-- sidebar-widget-recent-category-box -->
-					</div><!-- sidebar-widget-one sidebar-widget-recent-category -->
-					<div class="sidebar-widget sidebar-widget-tag d-none d-lg-block">
-						<h4>Tags</h4>
-						<div class="sidebar-widget-tag-inner">
-							<a href="/News/NewsDetails">Corporate Affairs</a>
-							<a href="/News/NewsDetails">Project Monitoring and Supervision</a>
-							<a href="/News/NewsDetails">Information Technology</a>
-							<a href="/News/NewsDetails">Agric</a>
-						</div><!-- sidebar-widget-tag-inner -->
-					</div><!-- sidebar-widget sidebar-widget-tag -->
-				</div><!-- sidebar -->
-			</div> *@
-
-
-			
-			
-			<div class="col-lg-10">
-				<h4 class="fs-2 lead pt-5 text-decoration-underline">All News</h4>
-				<div class="row m-0">
-					@foreach (var item in Model.NewsList)
-				{
-						<div class="card border-0 my-4 p-0 py-3" style="border-radius: 0;">
-							<div class="card-body col-lg-12 d-block d-md-flex p-0">
-								<img src="@Model._containerUrl@item.ImageUrl" class="col-12 col-sm-12 col-md-6 col-lg-4 col-xxxl-4 pe-3" style="height: 260px !important; object-fit: cover !important; object-position: top !important;" alt="News Image" loading="lazy">
-								<div class=" border-top border-bottom col-12 col-sm-12 col-md-6 col-lg-8 col-xxxl-8 ">
-								@* <div class="blog-card-meta m-0 d-flex justify-content-end" style="background-color: #2dcd7c; transform: none;">
-									<span class="text-white">
-											@item.PublishDate.ToString("dd/MM/yy")
-									</span><!-- author -->
-                                </div> *@
-									<h1 class="fs-4 text-start lead mt-2 m-0">
-										<a class=" link-underline link-underline-opacity-0 link-underline-opacity-100-hover text-primary fw-bold" asp-route-nid="@item.NID" asp-page="NewsDetails">@item.Subject</a>
-                                    </h1>
-									<div class="d-block justify-content-between">
-										<p class="m-0 fs-5" style="height: 10rem; overflow: hidden;">@item.Summary</p>
-                                        <p class="m-0">@item.PublishDate.ToString("dd/MM/yyyy")</p>
-									</div>
-									
-									
-							</div>
-						</div>
-					</div>
-				}
-				</div>
-				@* <div class="row row-gutter-y-155 m-0">
-					@foreach (var item in Model.NewsList)
-                {
-					<div class="col-lg-6">
-						<div class="blog-card">
-							<div class="blog-card-image">
-									<img src="@Model._containerUrl@item.ImageUrl" width="600" height="200" class="mw-100"  alt="img-184">
-								<a href="/News/NewsDetails"></a>
-							</div><!-- blog-card-image -->
-							<div class="blog-card-date">
-									<a href="/News/NewsDetails">@item.PublishDate.ToString("dd/MM/yy")</a>
-							</div><!-- blog-card-date -->
-							<div class="blog-card-content ">
-								<div class="blog-card-meta">
-									<span class="author">
-										by<a href="/News/NewsDetails">@item.CreatedBy</a>
-									</span><!-- author -->
-								</div><!-- blog-card-meta -->
-								<div class="" style="height: 12rem;overflow: hidden;">
-									<h5 style="height: 4.5rem;overflow: hidden;"><a href="/News/NewsDetails">@item.Subject</a></h5>
-									<p style="height: 6rem; overflow: hidden;">
-										@item.Summary
-									</p>
-								</div>
-								<span>
-									<a class="text-success pt-5" asp-route-nid="@item.NID" asp-page="NewsDetails">Read more</a>
-								</span><!-- comment -->	
-
-							</div><!-- blog-card-content -->
-						</div><!-- blog-card -->	
-					</div><!-- col-lg-6 col-xl-4 -->
-					}
-				</div> *@
-			</div>
-		</div>
-		<div class="col-lg-12">
-			<div class="blog-pagination-outer">
-				<div class="blog-pagination float-end">
-						<a class="prev page-numbers" href="#"><b><i class="fa-solid fa-chevron-left"></i></b></a>
-						<span class="page-numbers current"><b>01</b></span>
-						<a class="page-numbers" href="#"><b>02</b></a>
-						<a class="page-numbers" href="#"><b>03</b></a>
-						<a class="page-numbers" href="#"><b>04</b></a>
-						<a class="next page-numbers" href="#"><b><i class="fa-solid fa-chevron-right"></i></b></a>
-				</div>
-			</div>
-	</div>
-	</div>
+    </div>
 </section>
+
+<!-- Main Content Area -->
+<section class="pb-section-gap-lg max-w-container-max mx-auto px-margin-mobile md:px-gutter mt-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+        <!-- Left Content: Articles -->
+        <div class="lg:col-span-8 text-left">
+            @if (Model.LatestNews != null)
+            {
+                <!-- Featured Article -->
+                <div id="featuredArticleSection" class="mb-section-gap-sm">
+                    <div class="bento-card bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/20 shadow-sm group cursor-pointer">
+                        <a asp-page="NewsDetails" asp-route-nid="@Model.LatestNews.NID" class="block">
+                            <div class="article-image-zoom h-[400px] relative">
+                                <img class="w-full h-full object-cover ring-1 ring-inset ring-black/10 object-top" alt="@Model.LatestNews.Subject" src="@Model._containerUrl@Model.LatestNews.ImageUrl">
+                                <div class="absolute top-4 left-4">
+                                    <span class="px-3 py-1 bg-primary text-on-primary text-label-sm font-label-sm rounded-lg font-semibold">Featured Update</span>
+                                </div>
+                            </div>
+                            <div class="p-8">
+                                <span class="text-label-sm font-label-sm text-secondary mb-2 block font-semibold">@Model.LatestNews.PublishDate.ToString("dd/MM/yyyy")</span>
+                                <h2 class="text-headline-md font-headline-md text-primary mb-4 group-hover:text-secondary transition-colors font-bold">@Model.LatestNews.Subject</h2>
+                                <p class="text-body-md font-body-md text-on-surface-variant mb-6 leading-relaxed">@Model.LatestNews.Summary</p>
+                                <span class="inline-flex items-center text-primary font-bold hover:gap-2 transition-all">
+                                    Read Full Report <span class="material-symbols-outlined ml-1">arrow_forward</span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+
+            <!-- News List -->
+            <div class="space-y-6">
+                <h3 class="text-headline-md font-headline-md text-primary mb-8 border-b-2 border-surface-container-high pb-2 font-bold">Latest News</h3>
+                
+                <!-- No Results Message -->
+                <div id="noNewsResults" class="p-12 text-center bg-surface-container rounded-xl border border-outline-variant/20" style="display: none;">
+                    <span class="material-symbols-outlined text-4xl text-outline mb-2">search_off</span>
+                    <p class="text-on-surface-variant font-body-lg font-semibold">No matching news articles found.</p>
+                    <p class="text-on-surface-variant/70 font-body-md mt-1">Try searching for other keywords.</p>
+                </div>
+
+                @if (Model.NewsList != null && Model.NewsList.Any())
+                {
+                    @foreach (var item in Model.NewsList)
+                    {
+                        @if (Model.LatestNews == null || item.NID != Model.LatestNews.NID)
+                        {
+                            <!-- List Item -->
+                            <div class="news-card bento-card bg-surface-container-lowest rounded-xl overflow-hidden border border-outline-variant/20 shadow-sm group cursor-pointer"
+                                 data-search-subject="@item.Subject"
+                                 data-search-summary="@item.Summary">
+                                <a asp-page="NewsDetails" asp-route-nid="@item.NID" class="flex flex-col md:flex-row h-full">
+                                    <div class="md:w-1/3 article-image-zoom h-48 md:h-auto">
+                                        <img class="w-full h-full object-cover ring-1 ring-inset ring-black/10 object-top" alt="@item.Subject" src="@Model._containerUrl@item.ImageUrl" loading="lazy">
+                                    </div>
+                                    <div class="p-6 md:w-2/3 flex flex-col justify-between">
+                                        <div>
+                                            <div class="flex justify-between items-start mb-2">
+                                                <span class="text-label-sm font-label-sm text-secondary font-semibold">@item.PublishDate.ToString("dd/MM/yyyy")</span>
+                                                <span class="px-2 py-0.5 bg-surface-container text-on-surface-variant text-[10px] uppercase tracking-wider font-bold rounded">@(string.IsNullOrEmpty(item.Type) ? "Update" : item.Type)</span>
+                                            </div>
+                                            <h4 class="text-body-lg font-bold text-primary mb-3 group-hover:text-secondary transition-colors leading-tight">@item.Subject</h4>
+                                            <p class="text-body-md font-body-md text-on-surface-variant line-clamp-2 leading-relaxed">@item.Summary</p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                }
+            </div>
+            
+            <!-- Pagination Section -->
+            <div id="newsPaginationSection" class="flex justify-center items-center space-x-2 pt-12">
+                <button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant border border-outline-variant/40 hover:bg-surface-container transition-colors">
+                    <span class="material-symbols-outlined">chevron_left</span>
+                </button>
+                <button class="w-10 h-10 rounded-lg flex items-center justify-center bg-primary text-on-primary font-bold">1</button>
+                <button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">2</button>
+                <button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant hover:bg-surface-container transition-colors">3</button>
+                <button class="w-10 h-10 rounded-lg flex items-center justify-center text-on-surface-variant border border-outline-variant/40 hover:bg-surface-container transition-colors">
+                    <span class="material-symbols-outlined">chevron_right</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Sidebar Filters -->
+        <aside class="lg:col-span-4 space-y-8 text-left">
+            <!-- Search Widget -->
+            <div class="p-6 bg-surface-container rounded-xl border border-outline-variant/20">
+                <h5 class="text-label-sm font-label-sm text-primary mb-4 uppercase tracking-widest font-semibold">Search News</h5>
+                <div class="relative">
+                    <input id="newsSearchInput" class="w-full bg-surface-container-lowest border border-outline-variant/40 rounded-lg py-3 px-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" placeholder="Keywords..." type="text">
+                    <span class="material-symbols-outlined absolute right-3 top-3 text-outline">search</span>
+                </div>
+            </div>
+
+            <!-- Categories -->
+            @* <div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm">
+                <h5 class="text-label-sm font-label-sm text-primary mb-4 uppercase tracking-widest border-b border-surface-container pb-2 font-semibold">Categories</h5>
+                <ul class="space-y-3">
+                    <li>
+                        <a class="flex justify-between items-center group" href="#">
+                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Press Releases</span>
+                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">24</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex justify-between items-center group" href="#">
+                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Project Updates</span>
+                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">56</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex justify-between items-center group" href="#">
+                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Announcements</span>
+                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">12</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="flex justify-between items-center group" href="#">
+                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Speeches &amp; Addresses</span>
+                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">08</span>
+                        </a>
+                    </li>
+                </ul>
+            </div> *@
+
+            <!-- Newsletter -->
+            <div class="p-8 bg-primary text-on-primary rounded-xl overflow-hidden relative">
+                <div class="absolute -right-12 -top-12 w-32 h-32 bg-secondary-container opacity-10 rounded-full"></div>
+                <h5 class="text-headline-md font-headline-md mb-4 font-bold text-white">Stay Updated</h5>
+                <p class="text-body-md mb-6 opacity-90 leading-relaxed text-white">Receive the latest news and development updates directly in your inbox.</p>
+                <form action="assets/inc/sendemail.php" method="post" class="space-y-4">
+                    <input class="w-full bg-white/10 border border-white/20 rounded-lg py-3 px-4 placeholder:text-white/40 focus:bg-white/20 outline-none transition-all text-white" placeholder="Your email address" type="email">
+                    <button class="w-full bg-secondary-container text-on-secondary-container font-bold py-3 rounded-lg hover:bg-secondary-fixed transition-all active:scale-95" type="submit">Subscribe Now</button>
+                </form>
+            </div>
+        </aside>
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const searchInput = document.getElementById("newsSearchInput");
+            const newsCards = document.querySelectorAll(".news-card");
+            const featuredSection = document.getElementById("featuredArticleSection");
+            const paginationSection = document.getElementById("newsPaginationSection");
+            const noResults = document.getElementById("noNewsResults");
+
+            if (searchInput) {
+                searchInput.addEventListener("keyup", function () {
+                    const query = searchInput.value.trim().toLowerCase();
+
+                    // Only trigger search filtering if length is 5 or more characters
+                    if (query.length >= 5) {
+                        let visibleCount = 0;
+
+                        // Hide featured article and pagination during search
+                        if (featuredSection) {
+                            featuredSection.style.display = "none";
+                        }
+                        if (paginationSection) {
+                            paginationSection.style.display = "none";
+                        }
+
+                        newsCards.forEach(card => {
+                            const subject = card.getAttribute("data-search-subject").toLowerCase();
+                            const summary = card.getAttribute("data-search-summary").toLowerCase();
+
+                            if (subject.includes(query) || summary.includes(query)) {
+                                card.style.display = "block";
+                                visibleCount++;
+                            } else {
+                                card.style.display = "none";
+                            }
+                        });
+
+                        if (noResults) {
+                            noResults.style.display = visibleCount === 0 ? "block" : "none";
+                        }
+                    } else {
+                        // Restore original state if query is too short
+                        if (featuredSection) {
+                            featuredSection.style.display = "block";
+                        }
+                        if (paginationSection) {
+                            paginationSection.style.display = "flex";
+                        }
+                        newsCards.forEach(card => {
+                            card.style.display = "block";
+                        });
+                        if (noResults) {
+                            noResults.style.display = "none";
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+}

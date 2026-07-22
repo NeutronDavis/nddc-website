@@ -21,10 +21,19 @@ namespace NDDC_Website_2024.Pages.News
             this.homeDb = homeDb;
 			_containerUrl = config.GetConnectionString("AWSContainerUrl");
 		}
-        public void OnGet(int? nid)
+        public IActionResult OnGet(int? nid)
         {
+            if (!nid.HasValue || nid.Value <= 0)
+            {
+                return RedirectToPage("/News/News");
+            }
             NewsDetails = homeDb.GetNewsDetails(nid.Value);
             PhotoGallery = homeDb.GetNewsPhotoGallery(nid.Value);
+            if (NewsDetails == null)
+            {
+                return RedirectToPage("/News/News");
+            }
+            return Page();
         }
     }
 }

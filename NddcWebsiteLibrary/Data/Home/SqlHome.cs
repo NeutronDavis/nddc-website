@@ -1,4 +1,4 @@
-﻿
+
 using NddcWebsiteLibrary.Databases;
 using NddcWebsiteLibrary.Model.Home;
 using System;
@@ -31,7 +31,7 @@ namespace NddcWebsiteLibrary.Data.Home
         public List<MyNewsModel> ListHomePageNews()
         {
             //list all items in home page
-            return db.LoadData<MyNewsModel, dynamic>("select top 3 ROW_NUMBER() OVER (ORDER BY NID DESC) As SrNo, NID, Subject, Summary, ImageUrl, PublishDate, ExpiryDate, Views, Clicks, Type, SetAsSlide from News Where DisplayFormat = 'Default' Or DisplayFormat = 'Breaking' Order By NID DESC", new { }, connectionStringName, false).ToList();
+            return db.LoadData<MyNewsModel, dynamic>("select top 5 ROW_NUMBER() OVER (ORDER BY NID DESC) As SrNo, NID, Subject, Summary, ImageUrl, PublishDate, ExpiryDate, Views, Clicks, Type, SetAsSlide from News Where DisplayFormat = 'Default' Or DisplayFormat = 'Breaking' Order By NID DESC", new { }, connectionStringName, false).ToList();
         }
         public MyNewsModel GetNewsDetails(int nid)
         {

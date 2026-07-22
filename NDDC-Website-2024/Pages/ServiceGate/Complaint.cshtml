@@ -1,79 +1,141 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.ServiceGate.ComplaintModel
 @{
+	Layout = "_Layout";
 }
-<nav class="" style="--bs-breadcrumb-divider: '>';" @* style="top: 0px; right: 40px; position: absolute; " *@ aria-label="breadcrumb">
-        <ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-            <li class="breadcrumb-item">
-                <a style="font-size: smaller;color: #003b49;">
-                    Service Gate
-                </a>
-            </li>
-            <li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">Socials</li>
-        </ol><!-- list-unstyled -->
-</nav>
-<section class="blog-section">
-    <div class="container">
-        <div class="blog-box lh-lg row">
-            
-            <h1 class="section-title text-center ">All Socials</h1>
-            <div class="row">
-            <div b-ii0mdbbmlf="" class="footer-widget-socials col-md-3">
-                <h5 class="pe-3 m-0">Our Instagram</h5>
-                <a b-ii0mdbbmlf="" href="#"><i b-ii0mdbbmlf="" class="fa-brands fa-instagram"></i></a>
-            </div>
-            <div b-ii0mdbbmlf="" class="footer-widget-socials col-md-3">
-                <h5 class="pe-3 m-0">Our Twitter Handle</h5>
-                <a b-ii0mdbbmlf="" href="#"><i b-ii0mdbbmlf="" class="fa-brands fa-twitter"></i></a>
-            </div>
-            <div b-ii0mdbbmlf="" class="footer-widget-socials col-md-3">
-                <h5 class="pe-3 m-0">Our Facebook Page</h5>
-                <a b-ii0mdbbmlf="" href="#"><i b-ii0mdbbmlf="" class="fa-brands fa-facebook"></i></a>
-            </div>
-            <div b-ii0mdbbmlf="" class="footer-widget-socials col-md-3">
-                <h5 class="pe-3 m-0">Our LinkedIn Page</h5>
-                <a b-ii0mdbbmlf="" href="#"><i b-ii0mdbbmlf="" class="fa-brands fa-linkedin"></i></a>
-            </div>
-            </div>
-        </div>
-    </div>
+
+<!-- Hero / Breadcrumb Section -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+	<div class="max-w-container-max mx-auto text-left">
+		<nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+			<a class="hover:text-primary transition-colors" href="/">Home</a>
+			<span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+			<a class="hover:text-primary transition-colors" href="/ServiceGate/Index">Service Gate</a>
+			<span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+			<span class="text-primary font-semibold">Socials & Complaints</span>
+		</nav>
+		<h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+			Socials & Citizen Desk
+		</h1>
+		<div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+	</div>
 </section>
 
-@* <section class="blog-section">
-    <div class="container">
-        <div class="blog-box lh-lg">
-            <h1 class="section-title text-center">Complaint</h1>
-            <row class="d-flex justify-content-center">
-                <div class="col-lg-8">
-                    <form action="assets/inc/sendemail.php" class="contact-form  contact-form-validated" method="post" novalidate="novalidate">
-                        <div class="row row-gutter-10">
-                            <div class="col-12 col-lg-12">
-                                <input type="text" id="ComplaintTitle" class="input-text" placeholder="Complaint Title" name="Complaint Title" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="text" id="name" class="input-text" placeholder="Your name" name="name" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="email" id="email" class="input-text" placeholder="Email address" name="email" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="text" id="phone" class="input-text" placeholder="Phone number" name="phone" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            <div class="col-12 col-lg-6">
-                                <input type="text" id="location" class="input-text" placeholder="Location" name="Location" aria-required="true">
-                            </div><!-- col-12 col-lg-6 -->
-                            
-                            <div class="col-12 col-lg-12">
-                                <textarea name="message" placeholder="Message" class="input-text" aria-required="true"></textarea>
-                            </div><!-- col-12 col-lg-12 -->
-                            <div class="col-12 col-lg-12 d-flex justify-content-center">
-                                <button class="btn btn-primary">Send a Message</button>
-                            </div><!-- col-12 col-lg-12 -->
-                        </div><!-- row -->
-                    </form><!-- contact-form -->
-                </div><!-- col-lg-8 -->
-            </row>
+<!-- Official Social Media Channels -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+	<div class="text-left mb-8">
+		<span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Official Channels</span>
+		<h2 class="text-2xl sm:text-3xl font-bold text-primary mt-2">Connect With NDDC</h2>
+		<p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Follow and engage with our official verified social media pages.</p>
+	</div>
 
-        </div>
-    </div>
-</section> *@
+	<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+		<!-- Instagram -->
+		<a href="https://www.instagram.com/nddc_online/" target="_blank" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between">
+			<div class="flex items-center gap-4">
+				<div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-yellow-500 via-pink-500 to-purple-600 text-white flex items-center justify-center text-2xl shadow-sm">
+					<i class="fa-brands fa-instagram"></i>
+				</div>
+				<div class="text-left">
+					<h4 class="font-bold text-primary text-base group-hover:text-secondary transition-colors">Instagram</h4>
+					<p class="text-xs text-on-surface-variant/80">@@nddc_online</p>
+				</div>
+			</div>
+			<span class="material-symbols-outlined text-secondary text-lg group-hover:translate-x-1 transition-transform">open_in_new</span>
+		</a>
+
+		<!-- X / Twitter -->
+		<a href="https://x.com/NDDCOnline" target="_blank" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between">
+			<div class="flex items-center gap-4">
+				<div class="w-12 h-12 rounded-xl bg-black text-white flex items-center justify-center text-xl shadow-sm">
+					<i class="fa-brands fa-x-twitter"></i>
+				</div>
+				<div class="text-left">
+					<h4 class="font-bold text-primary text-base group-hover:text-secondary transition-colors">X (Twitter)</h4>
+					<p class="text-xs text-on-surface-variant/80">@@NDDCOnline</p>
+				</div>
+			</div>
+			<span class="material-symbols-outlined text-secondary text-lg group-hover:translate-x-1 transition-transform">open_in_new</span>
+		</a>
+
+		<!-- Facebook -->
+		<a href="https://web.facebook.com/OfficialNDDC" target="_blank" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between">
+			<div class="flex items-center gap-4">
+				<div class="w-12 h-12 rounded-xl bg-blue-600 text-white flex items-center justify-center text-2xl shadow-sm">
+					<i class="fa-brands fa-facebook-f"></i>
+				</div>
+				<div class="text-left">
+					<h4 class="font-bold text-primary text-base group-hover:text-secondary transition-colors">Facebook</h4>
+					<p class="text-xs text-on-surface-variant/80">OfficialNDDC</p>
+				</div>
+			</div>
+			<span class="material-symbols-outlined text-secondary text-lg group-hover:translate-x-1 transition-transform">open_in_new</span>
+		</a>
+
+		<!-- LinkedIn -->
+		<a href="https://www.linkedin.com/company/officialnddc/" target="_blank" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex items-center justify-between">
+			<div class="flex items-center gap-4">
+				<div class="w-12 h-12 rounded-xl bg-blue-700 text-white flex items-center justify-center text-xl shadow-sm">
+					<i class="fa-brands fa-linkedin-in"></i>
+				</div>
+				<div class="text-left">
+					<h4 class="font-bold text-primary text-base group-hover:text-secondary transition-colors">LinkedIn</h4>
+					<p class="text-xs text-on-surface-variant/80">officialnddc</p>
+				</div>
+			</div>
+			<span class="material-symbols-outlined text-secondary text-lg group-hover:translate-x-1 transition-transform">open_in_new</span>
+		</a>
+	</div>
+</section>
+
+<!-- Citizen Complaint Form Section -->
+<section class="pb-16 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+	<div class="max-w-3xl mx-auto bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+		<div class="border-b border-outline-variant/15 pb-6 mb-8 text-left">
+			<h3 class="text-2xl font-bold text-primary">Lodge a Formal Complaint</h3>
+			<p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">If you have experienced service delivery issues or concerns, please fill out the complaint form below and our SERVICOM desk will review it.</p>
+		</div>
+
+		<form method="post" class="space-y-6">
+			<div>
+				<label for="ComplaintTitle" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Complaint Subject / Title *</label>
+				<input type="text" id="ComplaintTitle" name="ComplaintTitle" required placeholder="Brief title of your complaint" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<label for="name" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Your Full Name *</label>
+					<input type="text" id="name" name="name" required placeholder="John Doe" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+				</div>
+
+				<div>
+					<label for="email" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Email Address *</label>
+					<input type="email" id="email" name="email" required placeholder="example@domain.com" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+				</div>
+			</div>
+
+			<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+				<div>
+					<label for="phone" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Phone Number</label>
+					<input type="tel" id="phone" name="phone" placeholder="+234..." class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+				</div>
+
+				<div>
+					<label for="location" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Location / State</label>
+					<input type="text" id="location" name="location" placeholder="e.g. Port Harcourt, Rivers State" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none">
+				</div>
+			</div>
+
+			<div>
+				<label for="message" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Complaint Details *</label>
+				<textarea id="message" name="message" rows="5" required placeholder="Describe your complaint in detail..." class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none resize-y"></textarea>
+			</div>
+
+			<div class="pt-2 text-center">
+				<button type="submit" class="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-10 py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
+					Submit Complaint <span class="material-symbols-outlined text-sm">send</span>
+				</button>
+			</div>
+		</form>
+	</div>
+</section>

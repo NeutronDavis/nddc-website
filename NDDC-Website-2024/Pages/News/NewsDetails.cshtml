@@ -3,6 +3,7 @@
 @using System.Text.RegularExpressions
 @model NDDC_Website_2024.Pages.News.NewsDetailsModel
 @{
+    Layout = "_Layout";
     var _ndRawUrl  = $"{Request.Scheme}://{Request.Host}/News/NewsDetails/{Model.NewsDetails.NID}";
     var _ndUrl     = Uri.EscapeDataString(_ndRawUrl);
     var _ndTitle   = Uri.EscapeDataString(Model.NewsDetails.Subject ?? "");
@@ -10,127 +11,137 @@
     var _readMins  = Math.Max(1, Regex.Matches(_plainText, @"\w+").Count / 200);
 }
 
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v19.0" nonce="ijI1VuoW"></script>
+<style>
+    .bento-card {
+        transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+    }
+    .bento-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px -12px rgba(0, 75, 68, 0.08);
+    }
+</style>
 
-<nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-    <ol class="breadcrumb bg-dark list-unstyled justify-content-end border-bottom p-2 pe-5" style="--bs-bg-opacity: .1;">
-        <li class="breadcrumb-item">
-            <a href="/News/News" style="font-size: smaller; color: #003b49;">News</a>
-        </li>
-        <li class="breadcrumb-item" style="font-size: smaller; color: #003b49;">News Details</li>
-    </ol>
-</nav>
+<!-- Hero Section -->
+<section class="relative h-[60vh] min-h-[500px] flex items-end overflow-hidden text-left">
+    <div class="absolute inset-0 z-0">
+        <img alt="@Model.NewsDetails.Subject" class="w-full h-full object-cover object-top" src="@Model._containerUrl@Model.NewsDetails.ImageUrl">
+        <div class="absolute inset-0 bg-gradient-to-t from-primary-container via-primary-container/40 to-transparent"></div>
+    </div>
+    <div class="relative z-10 w-full max-w-container-max mx-auto px-gutter pb-16">
+        <nav class="flex items-center gap-2 text-primary-fixed mb-6 font-label-sm text-label-sm">
+            <a class="hover:underline text-primary-fixed/80" href="/News/News">News</a>
+            <span class="material-symbols-outlined text-[16px] text-primary-fixed/50">chevron_right</span>
+            <span class="text-white opacity-70">News Details</span>
+        </nav>
+        <div class="inline-flex items-center gap-2 bg-secondary text-on-secondary px-4 py-1.5 rounded-full mb-6 shadow-lg">
+            <span class="material-symbols-outlined text-[18px]">calendar_today</span>
+            <span class="font-label-sm text-label-sm font-semibold">@Model.NewsDetails.PublishDate.ToString("dd MMM yyyy")</span>
+        </div>
+        <h1 class="font-display-lg text-display-lg text-white max-w-4xl leading-tight font-bold" style="text-align: start">
+            @Model.NewsDetails.Subject
+        </h1>
+    </div>
+</section>
 
-<section class="news-details-section">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-
-                <!-- ── Hero ─────────────────────────────────────────── -->
-                <div class="nd-hero-wrap">
-                    <img src="@Model._containerUrl@Model.NewsDetails.ImageUrl"
-                         class="w-100"
-                         alt="@Model.NewsDetails.Subject">
-                    <div class="nd-hero-gradient"></div>
-                    <h2 class="nd-hero-title">@Model.NewsDetails.Subject</h2>
-                    <span class="nd-date-badge">
-                        <i class="fa-regular fa-calendar me-1"></i>@Model.NewsDetails.PublishDate.ToString("dd MMM yyyy")
-                    </span>
+<!-- Article Content -->
+<section class="py-section-gap-sm md:py-section-gap-lg text-left">
+    <div class="max-w-4xl mx-auto px-gutter">
+        <div class="flex flex-col gap-8">
+            <!-- Featured Image Card -->
+            <div class="rounded-xl overflow-hidden ring-1 ring-inset ring-black/10 shadow-sm bento-card">
+                <img alt="@Model.NewsDetails.Subject" class="w-full h-auto object-cover hover:scale-105 transition-transform duration-700 object-top" src="@Model._containerUrl@Model.NewsDetails.ImageUrl">
+            </div>
+            
+            <!-- Article Text -->
+            <div class="prose prose-lg max-w-none text-on-surface-variant font-body-lg text-body-lg leading-relaxed flex flex-col gap-6">
+                <div class="font-semibold text-primary">
+                    @Html.Raw(Model.NewsDetails.Summary)
                 </div>
-
-                <!-- ── Meta strip ────────────────────────────────────── -->
-                <div class="nd-meta-strip">
-                    <span><i class="fa-solid fa-pen-nib"></i> Corporate Affairs Dept.</span>
-                    <span><i class="fa-regular fa-clock"></i> @_readMins min read</span>
-                    <a href="/News/News" class="ms-auto nd-back-link">
-                        <i class="fa-solid fa-arrow-left me-1"></i>Back to News
-                    </a>
+                <div>
+                    @Html.Raw(Model.NewsDetails.Details)
                 </div>
-
-                <!-- ── Article body ──────────────────────────────────── -->
-                <div class="nd-article-body">
-                    <div class="nd-summary">
-                        @Html.Raw(Model.NewsDetails.Summary)
-                    </div>
-                    <div class="nd-details">
-                        @Html.Raw(Model.NewsDetails.Details)
-                    </div>
+                
+                <div class="mt-12 pt-8 border-t border-outline-variant/30">
+                    <p class="font-bold text-primary mb-1">Corporate Affairs Dept.</p>
+                    <p class="text-sm uppercase tracking-widest text-on-surface-variant/70">Niger Delta Development Commission</p>
+                    <p class="text-xs mt-4 opacity-50 font-semibold">@Model.NewsDetails.PublishDate.ToString("MMMM dd, yyyy") · @_readMins min read</p>
                 </div>
-
-                <!-- ── Share strip ───────────────────────────────────── -->
-                <div class="nd-share-strip">
-                    <span class="nd-share-label">
-                        <i class="fa-solid fa-share-nodes me-1"></i>Share
-                    </span>
+            </div>
+            
+            <!-- Social Share -->
+            <div class="flex flex-col sm:flex-row items-center justify-between border-y border-outline-variant/20 py-8 mt-8 gap-4">
+                <span class="font-bold text-primary uppercase text-sm tracking-widest">Share Article</span>
+                <div class="flex flex-wrap gap-3">
                     <a href="https://twitter.com/intent/tweet?url=@_ndUrl&amp;text=@_ndTitle"
                        target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--twitter">
-                        <i class="fa-brands fa-x-twitter"></i> Twitter
+                       class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                       title="Share on X (Twitter)">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"></path></svg>
                     </a>
                     <a href="https://www.facebook.com/sharer/sharer.php?u=@_ndUrl"
                        target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--facebook">
-                        <i class="fa-brands fa-facebook"></i> Facebook
+                       class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                       title="Share on Facebook">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12V24h6.116c.73 0 1.323-.593 1.323-1.325V1.325C24 .593 23.407 0 22.675 0z"></path></svg>
                     </a>
                     <a href="https://www.linkedin.com/sharing/share-offsite/?url=@_ndUrl"
                        target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--linkedin">
-                        <i class="fa-brands fa-linkedin"></i> LinkedIn
+                       class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                       title="Share on LinkedIn">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"></path></svg>
                     </a>
                     <a href="https://wa.me/?text=@_ndTitle%20@_ndUrl"
                        target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--whatsapp">
-                        <i class="fa-brands fa-whatsapp"></i> WhatsApp
-                    </a>
-                    <a href="https://www.instagram.com/nddconline/"
-                       target="_blank" rel="noopener"
-                       class="nd-share-btn nd-share-btn--instagram">
-                        <i class="fa-brands fa-instagram"></i> Instagram
+                       class="w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                       title="Share on WhatsApp">
+                        <span class="material-symbols-outlined text-[20px]">chat</span>
                     </a>
                     <button type="button"
-                            class="nd-share-btn nd-share-btn--copy nd-copy-btn"
-                            data-url="@_ndRawUrl">
-                        <i class="fa-regular fa-copy"></i> Copy Link
+                            class="nd-copy-btn w-10 h-10 rounded-full border border-outline-variant flex items-center justify-center hover:bg-secondary hover:text-white hover:border-secondary transition-all"
+                            data-url="@_ndRawUrl"
+                            title="Copy Link">
+                        <span class="material-symbols-outlined text-[20px]">content_copy</span>
                     </button>
                 </div>
-
-                <!-- ── Photo gallery ─────────────────────────────────── -->
-                @if (Model.PhotoGallery.Any())
-                {
-                    <h3 class="nd-gallery-heading">Photo Gallery</h3>
-                    <div class="row g-3">
-                        @foreach (var item in Model.PhotoGallery)
-                        {
-                            <div class="col-lg-4 col-md-4 col-6">
-                                <div class="nd-gallery-item">
-                                    <img src="@Model._containerUrl@item.ImageUrl"
-                                         class="img-fluid w-100"
-                                         alt="Gallery Image" loading="lazy">
-                                    <div class="nd-gallery-overlay">
-                                        <i class="fa-solid fa-magnifying-glass-plus"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        }
-                    </div>
-                }
-
             </div>
         </div>
     </div>
 </section>
 
-<script>
-(function () {
-    var btn = document.querySelector('.nd-copy-btn');
-    if (!btn) return;
-    btn.addEventListener('click', function () {
-        navigator.clipboard.writeText(btn.dataset.url).then(function () {
-            var orig = btn.innerHTML;
-            btn.innerHTML = '<i class="fa-solid fa-check"></i> Copied!';
-            setTimeout(function () { btn.innerHTML = orig; }, 2000);
+<!-- Photo Gallery -->
+@if (Model.PhotoGallery != null && Model.PhotoGallery.Any())
+{
+    <section class="py-section-gap-sm bg-surface-container-lowest/50 text-left">
+        <div class="max-w-container-max mx-auto px-gutter">
+            <div class="flex items-center justify-between mb-12">
+                <h2 class="font-headline-md text-headline-md text-primary font-bold">Photo Gallery</h2>
+                <div class="h-px bg-outline-variant/30 flex-grow mx-8"></div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+                @foreach (var item in Model.PhotoGallery)
+                {
+                    <div class="aspect-[4/3] rounded-xl overflow-hidden bento-card shadow-sm">
+                        <img class="w-full h-full object-cover object-center" alt="Gallery Image" src="@Model._containerUrl@item.ImageUrl" loading="lazy">
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+}
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var btn = document.querySelector('.nd-copy-btn');
+            if (btn) {
+                btn.addEventListener('click', function () {
+                    navigator.clipboard.writeText(btn.dataset.url).then(function () {
+                        var origHtml = btn.innerHTML;
+                        btn.innerHTML = '<span class="material-symbols-outlined text-[20px]">check</span>';
+                        setTimeout(function () { btn.innerHTML = origHtml; }, 2000);
+                    });
+                });
+            }
         });
-    });
-}());
-</script>
+    </script>
+}

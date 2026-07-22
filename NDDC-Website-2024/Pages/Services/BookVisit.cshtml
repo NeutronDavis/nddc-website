@@ -1,256 +1,192 @@
 @page
 @model NDDC_Website_2024.Pages.Services.BookVisitModel
 @{
+    Layout = "_Layout";
     ViewData["Title"] = "Book a Visit - NDDC Portal";
 }
 
 <style>
-    .vms-booking-card {
-        background: #ffffff;
-        border-radius: 16px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-        border: 1px solid rgba(0,0,0,0.05);
-        padding: 2.5rem;
-        transition: all 0.3s ease;
-    }
-    .vms-card-header {
-        border-bottom: 2px solid #f4f6f9;
-        margin-bottom: 2rem;
-        padding-bottom: 1.5rem;
-    }
-    .vms-title {
-        color: #1a5632; /* NDDC green signature */
-        font-weight: 800;
-        font-size: 1.8rem;
-    }
-    .vms-subtitle {
-        color: #6c757d;
-        font-size: 0.95rem;
-    }
-    .form-label {
-        font-weight: 600;
-        color: #333333;
-        font-size: 0.9rem;
-        margin-bottom: 0.5rem;
-    }
-    .form-control, .form-select {
-        border: 2px solid #e9ecef;
-        border-radius: 8px;
-        padding: 0.75rem 1rem;
-        font-size: 0.95rem;
-        transition: all 0.25s ease-in-out;
-    }
-    .form-control:focus, .form-select:focus {
-        border-color: #1a5632;
-        box-shadow: 0 0 0 0.25rem rgba(26, 86, 50, 0.15);
-    }
     .visitor-item-card {
-        background: #f8f9fa;
-        border-radius: 12px;
-        border: 1px dashed #ced4da;
-        padding: 1.5rem;
+        background: #f8fafc;
+        border-radius: 1rem;
+        border: 1.5px dashed #cbd5e1;
+        padding: 1.25rem;
         position: relative;
-        margin-bottom: 1.5rem;
+        margin-bottom: 1.25rem;
         transition: all 0.2s ease;
     }
     .visitor-item-card:hover {
-        border-color: #1a5632;
-        background: #f4fbf7;
-    }
-    .btn-vms-primary {
-        background-color: #1a5632;
-        color: #ffffff;
-        font-weight: 700;
-        border: none;
-        padding: 0.8rem 2rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-    .btn-vms-primary:hover {
-        background-color: #113820;
-        color: #ffffff;
-        transform: translateY(-2px);
-    }
-    .btn-vms-outline {
-        border: 2px solid #1a5632;
-        color: #1a5632;
-        background: transparent;
-        font-weight: 700;
-        padding: 0.6rem 1.5rem;
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-    .btn-vms-outline:hover {
-        background-color: #1a5632;
-        color: #ffffff;
+        border-color: #15803d;
+        background: #f0fdf4;
     }
     .remove-visitor-btn {
         position: absolute;
-        top: 15px;
-        right: 15px;
-        color: #dc3545;
+        top: 1rem;
+        right: 1rem;
+        color: #ef4444;
         border: none;
         background: transparent;
         font-size: 1.1rem;
         cursor: pointer;
-        padding: 5px;
+        padding: 0.25rem;
     }
     .remove-visitor-btn:hover {
-        color: #a71d2a;
-    }
-    .info-badge {
-        background: rgba(26, 86, 50, 0.08);
-        color: #1a5632;
-        font-weight: 600;
-        font-size: 0.8rem;
-        padding: 4px 10px;
-        border-radius: 20px;
-        display: inline-block;
-        margin-bottom: 10px;
+        color: #b91c1c;
     }
 </style>
 
-<section class="announce mb-5">
-    <div class="container">
-        <div class="page-breadcrumbs">
-            <ul class="list-unstyled">
-                <li><a href="/index">Home</a></li>
-                <li><a href="/Services/OnlineForms">Services</a></li>
-                <li>Book a Visit</li>
-            </ul>
-        </div>
-        <div class="page-banner-title">
-            <h3 class="fs-1">Visitor Booking Portal</h3>
-        </div>
+<!-- Hero Banner -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="/Services/OnlineForms">Services</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Book a Visit</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            Visitor Booking Portal
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
     </div>
 </section>
 
-<section class="service-one-section mb-5">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-11">
-                <div class="vms-booking-card">
-                    <div class="vms-card-header text-center">
-                        <div class="info-badge"><i class="fa-solid fa-lock me-1"></i> Public Gate Entry Authorization</div>
-                        <h2 class="vms-title">Schedule a Visit</h2>
-                        <p class="vms-subtitle">Submit your visitor request directly to the appropriate host department or representative.</p>
-                    </div>
-
-                    <form id="publicBookingForm">
-                        <!-- Error Banner -->
-                        <div class="alert alert-danger alert-dismissible fade show mb-4 d-none" id="errorAlert" role="alert">
-                            <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                            <span id="errorMessage">An error occurred while submitting your booking request.</span>
-                            <button type="button" class="btn-close" id="closeErrorAlertBtn" aria-label="Close" style="background: none; border: none; float: right; font-size: 1.2rem; line-height: 1;"><i class="fa-solid fa-xmark"></i></button>
-                        </div>
-
-                        <div class="row g-4">
-                            <!-- Left Column: Visitor Profiles -->
-                            <div class="col-lg-6">
-                                <div class="d-flex justify-content-between align-items-center mb-4">
-                                    <h4 class="text-dark fw-bold m-0"><i class="fa-solid fa-users text-success me-2"></i>Visitor Profiles</h4>
-                                    <button type="button" class="btn-vms-outline btn-sm" id="addVisitorBtn"><i class="fa-solid fa-user-plus me-1"></i> Add Visitor</button>
-                                </div>
-
-                                <div id="visitorsContainer">
-                                    <!-- Dynamic visitor cards get injected here -->
-                                </div>
-                            </div>
-
-                            <!-- Right Column: Visit & Host Details -->
-                            <div class="col-lg-6">
-                                <h4 class="mb-4 text-dark fw-bold"><i class="fa-solid fa-calendar-days text-success me-2"></i>Visit Details</h4>
-                                
-                                <div class="mb-3">
-                                    <label for="hostName" class="form-label">Host Full Name *</label>
-                                    <input type="text" id="hostName" name="hostName" class="form-control" placeholder="e.g. John Doe" required />
-                                    <div class="form-text text-muted">The Full Name (or part of it) of the NDDC representative you are visiting. Approximate spelling is accepted.</div>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="locationId" class="form-label">Visit Location *</label>
-                                    <select id="locationId" name="locationId" class="form-select" required>
-                                        <option value="">-- Select Office / Location --</option>
-                                        <option value="1">Corporate Headquarters - Port Harcourt</option>
-                                        <option value="2">Abuja Liaison Office</option>
-                                        <option value="3">Abia State Office</option>
-                                        <option value="4">Akwa Ibom State Office</option>
-                                        <option value="5">Bayelsa State Office</option>
-                                        <option value="6">Cross River State Office</option>
-                                        <option value="7">Delta State Office</option>
-                                        <option value="8">Edo State Office</option>
-                                        <option value="9">Imo State Office</option>
-                                        <option value="10">Ondo State Office</option>
-                                        <option value="11">Rivers State Office</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="departmentId" class="form-label">Host Department</label>
-                                    <select id="departmentId" name="departmentId" class="form-select">
-                                        <option value="">-- Loading Departments... --</option>
-                                    </select>
-                                </div>
-
-                                <div class="mb-3">
-                                    <label for="purpose" class="form-label">Purpose of Visit *</label>
-                                    <textarea type="text" id="purpose" name="purpose" class="form-control" placeholder="e.g. Official Consultation, Technical Meeting" required> </textarea>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="visitDate" class="form-label">Visit Date *</label>
-                                        <input type="date" id="visitDate" name="visitDate" class="form-control" required />
-                                        <div class="form-text text-success fw-semibold"><i class="fa-solid fa-circle-info me-1"></i> Visits are only available on Tuesdays and Thursdays.</div>
-                                    </div>
-                                </div>
-
-                                <div class="row mb-3">
-                                    <div class="col-md-12">
-                                        <label for="visitStartTime" class="form-label">Start Time *</label>
-                                        <input type="time" id="visitStartTime" name="visitStartTime" class="form-control" required />
-                                        <div class="form-text text-success fw-semibold"><i class="fa-solid fa-clock me-1"></i> Visits must start between 11:00 AM and 5:00 PM.</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="border-top pt-4 mt-4 text-center">
-                            <button type="submit" class="btn-vms-primary btn-lg px-5 shadow-sm"><i class="fa-solid fa-paper-plane me-2"></i> Submit Booking Request</button>
-                        </div>
-                    </form>
+<!-- Form Container -->
+<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="vms-booking-card max-w-5xl mx-auto bg-white rounded-2xl p-6 sm:p-10 border border-outline-variant/20 shadow-md text-left">
+        <div class="border-b border-outline-variant/15 pb-6 mb-8 text-center sm:text-left flex flex-col sm:flex-row items-center sm:items-start justify-between gap-4">
+            <div>
+                <div class="inline-flex items-center gap-2 bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider mb-2">
+                    <i class="fa-solid fa-lock text-xs"></i> Public Gate Entry Authorization
                 </div>
+                <h2 class="text-2xl sm:text-3xl font-bold text-primary">Schedule a Visit</h2>
+                <p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Submit your visitor request directly to the appropriate host department or representative.</p>
             </div>
         </div>
+
+        <form id="publicBookingForm" class="space-y-8">
+            <!-- Error Banner -->
+            <div class="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-xl mb-6 hidden flex items-start justify-between gap-3 text-sm" id="errorAlert" role="alert">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-triangle-exclamation text-red-600"></i>
+                    <span id="errorMessage">An error occurred while submitting your booking request.</span>
+                </div>
+                <button type="button" id="closeErrorAlertBtn" class="text-red-500 hover:text-red-800 font-bold"><i class="fa-solid fa-xmark text-base"></i></button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <!-- Left Column: Visitor Profiles -->
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between border-b border-outline-variant/15 pb-3">
+                        <h4 class="text-lg font-bold text-primary flex items-center gap-2">
+                            <i class="fa-solid fa-users text-secondary"></i> Visitor Profiles
+                        </h4>
+                        <button type="button" class="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white font-bold text-xs px-4 py-2 rounded-lg transition-all inline-flex items-center gap-1" id="addVisitorBtn">
+                            <i class="fa-solid fa-user-plus"></i> Add Visitor
+                        </button>
+                    </div>
+
+                    <div id="visitorsContainer" class="space-y-4">
+                        <!-- Dynamic visitor cards get injected here -->
+                    </div>
+                </div>
+
+                <!-- Right Column: Visit & Host Details -->
+                <div class="space-y-6">
+                    <div class="border-b border-outline-variant/15 pb-3">
+                        <h4 class="text-lg font-bold text-primary flex items-center gap-2">
+                            <i class="fa-solid fa-calendar-days text-secondary"></i> Visit Details
+                        </h4>
+                    </div>
+
+                    <div>
+                        <label for="hostName" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Host Full Name *</label>
+                        <input type="text" id="hostName" name="hostName" required placeholder="e.g. John Doe" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none" />
+                        <p class="text-xs text-on-surface-variant/70 mt-1">The Full Name (or part of it) of the NDDC representative you are visiting.</p>
+                    </div>
+
+                    <div>
+                        <label for="locationId" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Visit Location *</label>
+                        <select id="locationId" name="locationId" required class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white">
+                            <option value="">-- Select Office / Location --</option>
+                            <option value="1">Corporate Headquarters - Port Harcourt</option>
+                            <option value="2">Abuja Liaison Office</option>
+                            <option value="3">Abia State Office</option>
+                            <option value="4">Akwa Ibom State Office</option>
+                            <option value="5">Bayelsa State Office</option>
+                            <option value="6">Cross River State Office</option>
+                            <option value="7">Delta State Office</option>
+                            <option value="8">Edo State Office</option>
+                            <option value="9">Imo State Office</option>
+                            <option value="10">Ondo State Office</option>
+                            <option value="11">Rivers State Office</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="departmentId" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Host Department</label>
+                        <select id="departmentId" name="departmentId" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white">
+                            <option value="">-- Loading Departments... --</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label for="purpose" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Purpose of Visit *</label>
+                        <textarea id="purpose" name="purpose" required rows="3" placeholder="e.g. Official Consultation, Technical Meeting" class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none resize-y"></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="visitDate" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Visit Date *</label>
+                            <input type="date" id="visitDate" name="visitDate" required class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white" />
+                            <p class="text-xs text-secondary font-semibold mt-1 flex items-center gap-1"><i class="fa-solid fa-circle-info"></i> Tuesdays & Thursdays only.</p>
+                        </div>
+
+                        <div>
+                            <label for="visitStartTime" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Start Time *</label>
+                            <input type="time" id="visitStartTime" name="visitStartTime" required class="w-full px-4 py-3 rounded-lg border border-outline-variant/30 focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all text-sm outline-none bg-white" />
+                            <p class="text-xs text-secondary font-semibold mt-1 flex items-center gap-1"><i class="fa-solid fa-clock"></i> Between 11:00 AM and 5:00 PM.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-outline-variant/15 pt-6 text-center">
+                <button type="submit" class="w-full sm:w-auto bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-10 py-4 rounded-full transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-paper-plane"></i> Submit Booking Request
+                </button>
+            </div>
+        </form>
     </div>
 </section>
 
 <!-- Visitor Card Template -->
 <template id="visitorTemplate">
-    <div class="visitor-item-card animate__animated animate__fadeInUp">
+    <div class="visitor-item-card">
         <button type="button" class="remove-visitor-btn" title="Remove Visitor"><i class="fa-solid fa-trash-can"></i></button>
-        <h5 class="fw-bold mb-3 text-success visitor-header"><i class="fa-regular fa-user me-2"></i>Visitor #1</h5>
+        <h5 class="font-bold text-sm text-secondary mb-3 visitor-header flex items-center gap-2"><i class="fa-regular fa-user"></i>Visitor #1</h5>
         
-        <div class="row g-3">
-            <div class="col-md-6">
-                <label class="form-label">Full Name *</label>
-                <input type="text" class="form-control visitor-name" placeholder="Full Name" required />
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-semibold text-primary mb-1">Full Name *</label>
+                <input type="text" class="w-full px-3 py-2 rounded-lg border border-outline-variant/30 text-xs outline-none focus:border-primary visitor-name" placeholder="Full Name" required />
             </div>
-            <div class="col-md-6">
-                <label class="form-label">Email Address *</label>
-                <input type="email" class="form-control visitor-email" placeholder="Email" required />
+            <div>
+                <label class="block text-xs font-semibold text-primary mb-1">Email Address *</label>
+                <input type="email" class="w-full px-3 py-2 rounded-lg border border-outline-variant/30 text-xs outline-none focus:border-primary visitor-email" placeholder="Email" required />
             </div>
-            <div class="col-md-6">
-                <label class="form-label">Phone Number *</label>
-                <input type="tel" class="form-control visitor-phone" placeholder="Phone Number" required />
+            <div>
+                <label class="block text-xs font-semibold text-primary mb-1">Phone Number *</label>
+                <input type="tel" class="w-full px-3 py-2 rounded-lg border border-outline-variant/30 text-xs outline-none focus:border-primary visitor-phone" placeholder="Phone Number" required />
             </div>
-            <div class="col-md-6">
-                <label class="form-label">Organization</label>
-                <input type="text" class="form-control visitor-org" placeholder="Company / Agency" />
+            <div>
+                <label class="block text-xs font-semibold text-primary mb-1">Organization</label>
+                <input type="text" class="w-full px-3 py-2 rounded-lg border border-outline-variant/30 text-xs outline-none focus:border-primary visitor-org" placeholder="Company / Agency" />
             </div>
-            <div class="col-md-6">
-                <label class="form-label">ID Type</label>
-                <select class="form-select visitor-idtype">
+            <div>
+                <label class="block text-xs font-semibold text-primary mb-1">ID Type</label>
+                <select class="w-full px-3 py-2 rounded-lg border border-outline-variant/30 text-xs outline-none focus:border-primary bg-white visitor-idtype">
                     <option value="">Select ID Type</option>
                     <option value="NationalID">National ID Card</option>
                     <option value="DriversLicense">Driver's License</option>
@@ -259,9 +195,9 @@
                     <option value="OfficeID">Company Office ID</option>
                 </select>
             </div>
-            <div class="col-md-6">
-                <label class="form-label">ID Number</label>
-                <input type="text" class="form-control visitor-idnumber" placeholder="ID Number" />
+            <div>
+                <label class="block text-xs font-semibold text-primary mb-1">ID Number</label>
+                <input type="text" class="w-full px-3 py-2 rounded-lg border border-outline-variant/30 text-xs outline-none focus:border-primary visitor-idnumber" placeholder="ID Number" />
             </div>
         </div>
     </div>
@@ -279,20 +215,16 @@
 
             // Update title
             const header = clone.querySelector('.visitor-header');
-            header.innerHTML = `<i class="fa-regular fa-user me-2"></i>Visitor #${visitorCount}`;
+            header.innerHTML = `<i class="fa-regular fa-user"></i> Visitor #${visitorCount}`;
 
             // Handle remove button
             const removeBtn = clone.querySelector('.remove-visitor-btn');
             removeBtn.addEventListener('click', function(e) {
                 const card = e.target.closest('.visitor-item-card');
-                card.classList.add('animate__fadeOutDown');
-                card.addEventListener('animationend', function() {
-                    card.remove();
-                    reorderVisitorHeaders();
-                });
+                card.remove();
+                reorderVisitorHeaders();
             });
 
-            // Input mapping names dynamically if needed for standard post
             container.appendChild(clone);
         }
 
@@ -301,7 +233,7 @@
             visitorCount = cards.length;
             cards.forEach((card, index) => {
                 const header = card.querySelector('.visitor-header');
-                header.innerHTML = `<i class="fa-regular fa-user me-2"></i>Visitor #${index + 1}`;
+                header.innerHTML = `<i class="fa-regular fa-user"></i> Visitor #${index + 1}`;
             });
         }
 
@@ -333,13 +265,13 @@
 
             // Close error alert handler
             document.getElementById('closeErrorAlertBtn').addEventListener('click', function() {
-                document.getElementById('errorAlert').classList.add('d-none');
+                document.getElementById('errorAlert').classList.add('hidden');
             });
 
             // ── Immediate date picker validation (Tuesday & Thursday only) ──
             const visitDateInput = document.getElementById('visitDate');
             const visitDateError = document.createElement('div');
-            visitDateError.className = 'text-danger small mt-1 d-none';
+            visitDateError.className = 'text-red-600 text-xs font-semibold mt-1 hidden';
             visitDateError.id = 'visitDateError';
             visitDateInput.parentElement.appendChild(visitDateError);
 
@@ -348,10 +280,10 @@
                 const day = dateObj.getUTCDay(); // 2 = Tuesday, 4 = Thursday
                 if (this.value && day !== 2 && day !== 4) {
                     visitDateError.textContent = '⚠ Visits can only be booked for Tuesday or Thursday.';
-                    visitDateError.classList.remove('d-none');
+                    visitDateError.classList.remove('hidden');
                     this.setCustomValidity('Visits can only be booked for Tuesday or Thursday.');
                 } else {
-                    visitDateError.classList.add('d-none');
+                    visitDateError.classList.add('hidden');
                     this.setCustomValidity('');
                 }
             });
@@ -359,7 +291,7 @@
             // ── Immediate time picker validation (11:00 AM – 5:00 PM) ──
             const visitStartTimeInput = document.getElementById('visitStartTime');
             const visitTimeError = document.createElement('div');
-            visitTimeError.className = 'text-danger small mt-1 d-none';
+            visitTimeError.className = 'text-red-600 text-xs font-semibold mt-1 hidden';
             visitTimeError.id = 'visitTimeError';
             visitStartTimeInput.parentElement.appendChild(visitTimeError);
 
@@ -369,17 +301,16 @@
                     const totalMinutes = parseInt(parts[0], 10) * 60 + parseInt(parts[1], 10);
                     if (totalMinutes < 11 * 60 || totalMinutes > 17 * 60) {
                         visitTimeError.textContent = '⚠ Visits must start between 11:00 AM and 5:00 PM.';
-                        visitTimeError.classList.remove('d-none');
+                        visitTimeError.classList.remove('hidden');
                         this.setCustomValidity('Visits must start between 11:00 AM and 5:00 PM.');
                     } else {
-                        visitTimeError.classList.add('d-none');
+                        visitTimeError.classList.add('hidden');
                         this.setCustomValidity('');
                     }
                 }
             });
 
-
-            // Prevent form submit for visual-only testing, show pretty alert
+            // Submit handler
             document.getElementById('publicBookingForm').addEventListener('submit', async function(e) {
                 e.preventDefault();
 
@@ -389,37 +320,31 @@
                 const originalBtnText = submitBtn.innerHTML;
 
                 // Hide old alerts & set loading state
-                errorAlert.classList.add('d-none');
+                errorAlert.classList.add('hidden');
                 submitBtn.disabled = true;
                 submitBtn.innerHTML = `<i class="fa-solid fa-circle-notch fa-spin me-2"></i> Submitting Request...`;
 
                 try {
-                    // 1. Gather form inputs
                     const hostName = document.getElementById('hostName').value.trim();
                     const locationId = parseInt(document.getElementById('locationId').value, 10);
                     const purpose = document.getElementById('purpose').value.trim();
                     const visitDate = document.getElementById('visitDate').value;
-                    
                     let visitStartTime = document.getElementById('visitStartTime').value;
                     
-                    // Day of week validation (Tuesday & Thursday only)
                     if (visitDate) {
                         const dateObj = new Date(visitDate);
-                        const day = dateObj.getUTCDay(); // 0 is Sunday, 1 is Monday, 2 is Tuesday, 3 is Wednesday, 4 is Thursday, etc.
+                        const day = dateObj.getUTCDay();
                         if (day !== 2 && day !== 4) {
                             throw new Error('Visits can only be booked for Tuesday or Thursday.');
                         }
                     }
 
-                    // Start Time range validation (11:00 AM - 5:00 PM)
                     if (visitStartTime) {
                         const timeParts = visitStartTime.split(':');
                         const hours = parseInt(timeParts[0], 10);
                         const minutes = parseInt(timeParts[1], 10);
                         const totalMinutes = hours * 60 + minutes;
-                        const startLimit = 11 * 60; // 11:00 AM
-                        const endLimit = 17 * 60;   // 5:00 PM
-                        if (totalMinutes < startLimit || totalMinutes > endLimit) {
+                        if (totalMinutes < 11 * 60 || totalMinutes > 17 * 60) {
                             throw new Error('Visits can only start between 11:00 AM and 5:00 PM.');
                         }
                     }
@@ -428,30 +353,17 @@
                         visitStartTime += ':00';
                     }
                     
-                    // Safely handle potentially commented out visitEndTime input
-                    const visitEndTimeEl = document.getElementById('visitEndTime');
-                    let visitEndTime = visitEndTimeEl ? visitEndTimeEl.value : null;
-                    if (visitEndTime && visitEndTime.split(':').length === 2) {
-                        visitEndTime += ':00';
-                    } else if (!visitEndTime && visitStartTime) {
-                        // Default to 1 hour after start time
+                    let visitEndTime = null;
+                    if (visitStartTime) {
                         const parts = visitStartTime.split(':');
                         const h = parseInt(parts[0], 10);
                         const m = parseInt(parts[1], 10);
                         const endH = (h + 1) % 24;
-                        const endHStr = endH.toString().padStart(2, '0');
-                        const endMStr = m.toString().padStart(2, '0');
-                        visitEndTime = `${endHStr}:${endMStr}:00`;
+                        visitEndTime = `${endH.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:00`;
                     }
-                    
-                    // Safely handle potentially commented out notes input
-                    const notesEl = document.getElementById('notes');
-                    const notes = notesEl ? notesEl.value.trim() : null;
 
-                    // 2. Gather dynamic visitors list
                     const visitors = [];
                     const visitorCards = document.querySelectorAll('.visitor-item-card');
-                    
                     if (visitorCards.length === 0) {
                         throw new Error('Please add at least one visitor to submit this booking request.');
                     }
@@ -465,65 +377,43 @@
                         const idNumber = card.querySelector('.visitor-idnumber').value.trim() || null;
 
                         if (fullName && email && phoneNumber) {
-                            visitors.push({
-                                fullName,
-                                email,
-                                phoneNumber,
-                                organisation,
-                                idType,
-                                idNumber
-                            });
+                            visitors.push({ fullName, email, phoneNumber, organisation, idType, idNumber });
                         }
                     });
 
-                    // Build JSON payload matching PublicBookingDto
                     const departmentIdRaw = document.getElementById('departmentId').value;
                     const departmentId = departmentIdRaw ? parseInt(departmentIdRaw, 10) : null;
 
-                    const payload = {
-                        hostName,
-                        locationId,
-                        departmentId,
-                        purpose,
-                        visitDate,
-                        visitStartTime,
-                        visitEndTime,
-                        notes: notes || null,
-                        visitors
-                    };
-
-                    // 3. Determine the correct API port based on current protocol to prevent Mixed Content blocking
+                    const payload = { hostName, locationId, departmentId, purpose, visitDate, visitStartTime, visitEndTime, notes: null, visitors };
                     const apiEndpoint = 'https://bookvisit.nddc.gov.ng/api/bookings';
 
-                    // Make POST request to VMS Bookings API
                     const response = await fetch(apiEndpoint, {
                         method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        },
+                        headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload)
                     });
 
                     const result = await response.json();
 
                     if (response.ok && result.success) {
-                        // Render beautiful success state inside the card container
                         const cardContainer = document.querySelector('.vms-booking-card');
                         cardContainer.innerHTML = `
-                            <div class="text-center py-5 animate__animated animate__fadeIn">
+                            <div class="text-center py-8">
                                 <div class="mb-4">
-                                    <i class="fa-solid fa-circle-check text-success" style="font-size: 5rem;"></i>
+                                    <i class="fa-solid fa-circle-check text-green-600 text-6xl"></i>
                                 </div>
-                                <h2 class="fw-bold mb-3" style="color: #1a5632;">Request Submitted Successfully!</h2>
-                                <p class="text-muted fs-5 mb-4">Your visit has been logged and is awaiting host approval.</p>
+                                <h2 class="text-2xl font-bold text-primary mb-2">Request Submitted Successfully!</h2>
+                                <p class="text-on-surface-variant/80 text-sm mb-6">Your visit has been logged and is awaiting host approval.</p>
                                 
-                                <div class="card bg-light border-0 p-4 mb-4 mx-auto" style="max-width: 500px; border-radius: 12px;">
-                                    <span class="text-uppercase tracking-wider text-muted small fw-bold mb-1">Booking Reference</span>
-                                    <h3 class="fw-extrabold text-success font-monospace mb-0" style="font-size: 1.8rem;">` + result.bookingReference + `</h3>
+                                <div class="bg-surface-container rounded-2xl p-6 mb-6 max-w-md mx-auto border border-outline-variant/20">
+                                    <span class="uppercase tracking-wider text-xs font-bold text-on-surface-variant/60 block mb-1">Booking Reference</span>
+                                    <h3 class="text-2xl font-extrabold text-secondary font-mono">` + result.bookingReference + `</h3>
                                 </div>
                                 
-                                <p class="text-muted small">Please keep this booking reference handy for check-in at the gate security.</p>
-                                <a href="/Services/BookVisit" class="btn-vms-primary mt-4 d-inline-block px-5 py-3 text-decoration-none shadow-sm"><i class="fa-solid fa-plus me-2"></i> Book Another Visit</a>
+                                <p class="text-xs text-on-surface-variant/70 mb-6">Please keep this booking reference handy for check-in at the gate security.</p>
+                                <a href="/Services/BookVisit" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-8 py-3.5 rounded-full transition-all duration-300 inline-flex items-center gap-2">
+                                    <i class="fa-solid fa-plus"></i> Book Another Visit
+                                </a>
                             </div>
                         `;
                     } else {
@@ -531,13 +421,12 @@
                     }
 
                 } catch (error) {
-                    // Show error state and restore submit button
                     let displayMessage = error.message;
                     if (error.name === 'TypeError' && error.message.toLowerCase().includes('fetch')) {
-                        displayMessage = 'Connection failed: Please make sure the VMS-BookVisit API server is running on localhost (Ports 7172 / 5258) and CORS is allowed.';
+                        displayMessage = 'Connection failed: Please make sure the VMS-BookVisit API server is reachable.';
                     }
                     errorMessage.textContent = displayMessage;
-                    errorAlert.classList.remove('d-none');
+                    errorAlert.classList.remove('hidden');
                     window.scrollTo({ top: errorAlert.offsetTop - 100, behavior: 'smooth' });
                     
                     submitBtn.disabled = false;

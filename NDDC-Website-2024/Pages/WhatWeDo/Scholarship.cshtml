@@ -1,33 +1,54 @@
-﻿@page
+@page
 @model NDDC_Website_2024.Pages.WhatWeDo.ScholarshipModel
 @{
+    Layout = "_Layout";
 }
 
-<nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
-	<ol class="breadcrumb bg-dark list-unstyled justify-content-end p-2 pe-5 border-bottom" style="--bs-bg-opacity: .1;">
-		<li class="breadcrumb-item">
-			<a style="font-size: smaller;color: #003b49;">What We Do</a>
-		</li>
-		<li class="breadcrumb-item" style="font-size: smaller;color: #003b49;">All Scholarships</li>
-	</ol><!-- list-unstyled -->
-</nav>
-<div class="">
-	<div class="section-title-box text-center">
-		<h2 class="section-title mt-5">Scholarships</h2>
-	</div>
-	<div class="col-lg-10 " style="
-    justify-self: center;
-    text-align-last: center;
-">
-		<div class="blog-card">
-			<div class="blog-card-image m-0">
-				<img src="/assets/image/NDDC-local-2.jpg" width="400" class="w-100 object-fit-cover mt-0" alt="img-184">
-			</div><!-- blog-card-image -->
-			<div class="blog-card-content text-start bg-white p-0 pb-4">
-				<div class="py-5">
-					<a href="https://scholarship.nddc.gov.ng/login" class="btn btn-primary">Apply now</a>
-				</div>
-			</div><!-- blog-card-content -->
-		</div><!-- blog-card -->
-	</div><!-- col-lg-6 col-xl-4 -->
-</div>
+<style>
+    .image-structure-ring {
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.1);
+    }
+</style>
+
+<!-- Hero / Breadcrumb Section -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-on-surface-variant">What We Do</span>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Scholarships</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            Scholarships
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+    </div>
+</section>
+
+<!-- Scholarship Content Section -->
+<section class="py-section-gap-lg px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="flex flex-col items-center">
+        <!-- Announcement Document -->
+        <div class="w-full max-w-4xl relative group">
+            <div class="absolute -inset-1 bg-gradient-to-b from-primary/5 to-transparent rounded-xl blur-lg opacity-25 group-hover:opacity-40 transition-opacity"></div>
+            <div class="relative bg-white p-4 md:p-8 rounded-xl border border-outline-variant/20 shadow-sm overflow-hidden image-structure-ring">
+                <img alt="NDDC Scholarship Announcement 2026/2027" class="w-full h-auto rounded-lg transition-transform duration-700 group-hover:scale-[1.01]" src="/assets/image/NDDC-local-2.jpg">
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="mt-section-gap-sm text-center">
+            <a href="https://scholarship.nddc.gov.ng/login" target="_blank" class="group relative inline-flex items-center justify-center px-12 py-5 font-headline-md text-headline-md bg-secondary text-on-secondary rounded-full overflow-hidden transition-all hover:pr-16 active:scale-95 shadow-lg shadow-secondary/20 font-bold">
+                <span class="relative z-10 transition-all duration-300 group-hover:-translate-x-2">Apply Now</span>
+                <span class="absolute right-6 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    <span class="material-symbols-outlined text-white">arrow_forward</span>
+                </span>
+            </a>
+            <p class="mt-6 text-on-surface-variant font-body-md max-w-md mx-auto">
+                Please ensure you meet all eligibility criteria before starting your application. Applications close April 19, 2026.
+            </p>
+        </div>
+    </div>
+</section>
