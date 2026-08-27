@@ -56,62 +56,17 @@
         }
         else
         {
-            <!-- Demo Tenders Cards when DB table is empty -->
-            <div class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl">construction</span>
-                    </div>
-                    <div>
-                        <span class="bg-secondary/10 text-secondary text-xs font-bold px-2.5 py-1 rounded-md mb-2 inline-block">Civil Works</span>
-                        <h3 class="text-lg font-bold text-primary leading-snug">Invitation for Pre-Qualification of Contractors for Shore Protection Projects</h3>
-                        <p class="text-xs text-on-surface-variant/80 mt-1">Request for Proposals for coastal erosion control across Rivers and Bayelsa States.</p>
-                    </div>
+            <!-- Empty state when no tenders are available -->
+            <div class="col-span-full py-12 px-6 bg-white rounded-3xl border border-outline-variant/20 shadow-sm text-center flex flex-col items-center justify-center">
+                <div class="w-24 h-24 sm:w-28 sm:h-28 bg-surface-container rounded-full flex items-center justify-center mb-6 text-secondary/80">
+                    <svg class="w-12 h-12 sm:w-14 sm:h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                    </svg>
                 </div>
-                <div class="pt-6 border-t border-outline-variant/15 mt-6 flex items-center justify-between">
-                    <span class="text-xs text-on-surface-variant/60 font-medium">Ref: NDDC/CW/2026/01</span>
-                    <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-5 py-2.5 rounded-full transition-all inline-flex items-center gap-1">
-                        Download RFP <span class="material-symbols-outlined text-xs">download</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl">memory</span>
-                    </div>
-                    <div>
-                        <span class="bg-secondary/10 text-secondary text-xs font-bold px-2.5 py-1 rounded-md mb-2 inline-block">Consultancy / ICT</span>
-                        <h3 class="text-lg font-bold text-primary leading-snug">Expression of Interest (EOI) for Digital Infrastructure Upgrade</h3>
-                        <p class="text-xs text-on-surface-variant/80 mt-1">Consultancy services for regional data center infrastructure and portal security integration.</p>
-                    </div>
-                </div>
-                <div class="pt-6 border-t border-outline-variant/15 mt-6 flex items-center justify-between">
-                    <span class="text-xs text-on-surface-variant/60 font-medium">Ref: NDDC/ICT/2026/04</span>
-                    <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-5 py-2.5 rounded-full transition-all inline-flex items-center gap-1">
-                        Download EOI <span class="material-symbols-outlined text-xs">download</span>
-                    </a>
-                </div>
-            </div>
-
-            <div class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-md transition-all flex flex-col justify-between text-left">
-                <div class="space-y-4">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center">
-                        <span class="material-symbols-outlined text-2xl">water_drop</span>
-                    </div>
-                    <div>
-                        <span class="bg-secondary/10 text-secondary text-xs font-bold px-2.5 py-1 rounded-md mb-2 inline-block">Water & Environment</span>
-                        <h3 class="text-lg font-bold text-primary leading-snug">Solar-Powered Water Treatment Plant Installation</h3>
-                        <p class="text-xs text-on-surface-variant/80 mt-1">Procurement and installation of community solar water schemes across Abia and Imo States.</p>
-                    </div>
-                </div>
-                <div class="pt-6 border-t border-outline-variant/15 mt-6 flex items-center justify-between">
-                    <span class="text-xs text-on-surface-variant/60 font-medium">Ref: NDDC/ENV/2026/09</span>
-                    <a href="#" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-5 py-2.5 rounded-full transition-all inline-flex items-center gap-1">
-                        Download Tender <span class="material-symbols-outlined text-xs">download</span>
-                    </a>
-                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">No Tenders Available</h3>
+                <p class="text-sm text-on-surface-variant/70 max-w-md mx-auto leading-relaxed">
+                    There are currently no active tender invitations or procurement requests published at this time. Please check back later for updates.
+                </p>
             </div>
         }
     </div>

@@ -63,6 +63,14 @@
                     </div>
                 </div>
             }
+            <!-- Mobile Search Box -->
+            <div class="block lg:hidden mb-6 p-4 sm:p-6 bg-surface-container rounded-xl border border-outline-variant/20 shadow-sm">
+                <h5 class="text-label-sm font-label-sm text-primary mb-3 uppercase tracking-widest font-semibold">Search News</h5>
+                <div class="relative">
+                    <input class="newsSearchInput w-full bg-surface-container-lowest border border-outline-variant/40 rounded-lg py-3 px-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all text-sm" placeholder="Keywords..." type="text">
+                    <span class="material-symbols-outlined absolute right-3 top-3 text-outline">search</span>
+                </div>
+            </div>
 
             <!-- News List -->
             <div class="space-y-6">
@@ -122,45 +130,14 @@
 
         <!-- Sidebar Filters -->
         <aside class="lg:col-span-4 space-y-8 text-left">
-            <!-- Search Widget -->
-            <div class="p-6 bg-surface-container rounded-xl border border-outline-variant/20">
+            <!-- Search Widget (Desktop) -->
+            <div class="hidden lg:block p-6 bg-surface-container rounded-xl border border-outline-variant/20">
                 <h5 class="text-label-sm font-label-sm text-primary mb-4 uppercase tracking-widest font-semibold">Search News</h5>
                 <div class="relative">
-                    <input id="newsSearchInput" class="w-full bg-surface-container-lowest border border-outline-variant/40 rounded-lg py-3 px-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" placeholder="Keywords..." type="text">
+                    <input class="newsSearchInput w-full bg-surface-container-lowest border border-outline-variant/40 rounded-lg py-3 px-4 focus:ring-2 focus:ring-secondary focus:border-transparent outline-none transition-all" placeholder="Keywords..." type="text">
                     <span class="material-symbols-outlined absolute right-3 top-3 text-outline">search</span>
                 </div>
             </div>
-
-            <!-- Categories -->
-            @* <div class="p-6 bg-surface-container-lowest rounded-xl border border-outline-variant/20 shadow-sm">
-                <h5 class="text-label-sm font-label-sm text-primary mb-4 uppercase tracking-widest border-b border-surface-container pb-2 font-semibold">Categories</h5>
-                <ul class="space-y-3">
-                    <li>
-                        <a class="flex justify-between items-center group" href="#">
-                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Press Releases</span>
-                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">24</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="flex justify-between items-center group" href="#">
-                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Project Updates</span>
-                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">56</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="flex justify-between items-center group" href="#">
-                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Announcements</span>
-                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">12</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a class="flex justify-between items-center group" href="#">
-                            <span class="text-on-surface-variant group-hover:text-secondary transition-colors">Speeches &amp; Addresses</span>
-                            <span class="text-label-sm font-label-sm text-outline-variant group-hover:text-secondary">08</span>
-                        </a>
-                    </li>
-                </ul>
-            </div> *@
 
             <!-- Newsletter -->
             <div class="p-8 bg-primary text-on-primary rounded-xl overflow-hidden relative">
@@ -179,60 +156,60 @@
 @section Scripts {
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const searchInput = document.getElementById("newsSearchInput");
+            const searchInputs = document.querySelectorAll(".newsSearchInput");
             const newsCards = document.querySelectorAll(".news-card");
             const featuredSection = document.getElementById("featuredArticleSection");
             const paginationSection = document.getElementById("newsPaginationSection");
             const noResults = document.getElementById("noNewsResults");
 
-            if (searchInput) {
-                searchInput.addEventListener("keyup", function () {
-                    const query = searchInput.value.trim().toLowerCase();
+            function handleSearch(val) {
+                const query = val.trim().toLowerCase();
 
-                    // Only trigger search filtering if length is 5 or more characters
-                    if (query.length >= 5) {
-                        let visibleCount = 0;
-
-                        // Hide featured article and pagination during search
-                        if (featuredSection) {
-                            featuredSection.style.display = "none";
-                        }
-                        if (paginationSection) {
-                            paginationSection.style.display = "none";
-                        }
-
-                        newsCards.forEach(card => {
-                            const subject = card.getAttribute("data-search-subject").toLowerCase();
-                            const summary = card.getAttribute("data-search-summary").toLowerCase();
-
-                            if (subject.includes(query) || summary.includes(query)) {
-                                card.style.display = "block";
-                                visibleCount++;
-                            } else {
-                                card.style.display = "none";
-                            }
-                        });
-
-                        if (noResults) {
-                            noResults.style.display = visibleCount === 0 ? "block" : "none";
-                        }
-                    } else {
-                        // Restore original state if query is too short
-                        if (featuredSection) {
-                            featuredSection.style.display = "block";
-                        }
-                        if (paginationSection) {
-                            paginationSection.style.display = "flex";
-                        }
-                        newsCards.forEach(card => {
-                            card.style.display = "block";
-                        });
-                        if (noResults) {
-                            noResults.style.display = "none";
-                        }
+                // Synchronize all search inputs
+                searchInputs.forEach(input => {
+                    if (input.value !== val) {
+                        input.value = val;
                     }
                 });
+
+                if (query.length >= 3) {
+                    let visibleCount = 0;
+
+                    if (featuredSection) featuredSection.style.display = "none";
+                    if (paginationSection) paginationSection.style.display = "none";
+
+                    newsCards.forEach(card => {
+                        const subject = (card.getAttribute("data-search-subject") || "").toLowerCase();
+                        const summary = (card.getAttribute("data-search-summary") || "").toLowerCase();
+
+                        if (subject.includes(query) || summary.includes(query)) {
+                            card.style.display = "block";
+                            visibleCount++;
+                        } else {
+                            card.style.display = "none";
+                        }
+                    });
+
+                    if (noResults) {
+                        noResults.style.display = visibleCount === 0 ? "block" : "none";
+                    }
+                } else {
+                    if (featuredSection) featuredSection.style.display = "block";
+                    if (paginationSection) paginationSection.style.display = "flex";
+                    newsCards.forEach(card => {
+                        card.style.display = "block";
+                    });
+                    if (noResults) {
+                        noResults.style.display = "none";
+                    }
+                }
             }
+
+            searchInputs.forEach(input => {
+                input.addEventListener("input", function () {
+                    handleSearch(this.value);
+                });
+            });
         });
     </script>
 }

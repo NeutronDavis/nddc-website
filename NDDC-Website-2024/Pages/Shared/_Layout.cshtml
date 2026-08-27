@@ -1,3 +1,11 @@
+@{
+    var requestPath = Context.Request.Path.Value?.ToLowerInvariant() ?? "";
+    bool isHomePage = (ViewData["IsHomePage"] as bool? == true) 
+                      || requestPath == "" 
+                      || requestPath == "/" 
+                      || requestPath == "/index" 
+                      || requestPath == "/index/";
+}
 <!DOCTYPE html>
 <html class="light" lang="en">
 <head>
@@ -169,20 +177,133 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-        /* Topbar height variable — used to offset the fixed nav and body wrapper */
+        /* Topbar & Navbar height variables — used to offset the fixed nav and body wrapper */
         :root {
-            --topbar-h: 42px;
+            --topbar-h: 28px;
+            --nav-h: 52px;
         }
 
         /* Fix top margin for body when fixed header is active */
-        /* On desktop: topbar (42px) + nav (80px) = 122px */
         .page-wrapper-fixed-nav {
-            margin-top: calc(5rem + var(--topbar-h));
+            margin-top: calc(var(--nav-h) + var(--topbar-h));
         }
-        /* On mobile: topbar is hidden by style.css, only the nav (80px) remains */
+        /* On mobile: topbar is hidden by style.css, only the nav remains */
         @@media (max-width: 1199px) {
-            .page-wrapper-fixed-nav { margin-top: 5rem; }
+            .page-wrapper-fixed-nav { margin-top: var(--nav-h); }
             .nav-main-bar { top: 0 !important; }
+        }
+
+        /* ---------------------------------------------------- */
+        /* Home Page Transparent-to-Filled Hero Navbar Styles    */
+        /* ---------------------------------------------------- */
+        .nav-main-bar {
+            transition: background-color 0.35s ease, backdrop-filter 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease, top 0.35s ease;
+        }
+
+        /* Topbar stays fixed at top: 0 */
+        body.home-transparent-nav .topbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 60;
+        }
+
+        /* Body wrapper top-margin zero on home page so hero starts directly behind transparent header */
+        body.home-transparent-nav .page-wrapper-fixed-nav {
+            margin-top: 0 !important;
+        }
+
+        /* Base Transparent Nav State - anchored directly under topbar (top: var(--topbar-h)) */
+        body.home-transparent-nav .nav-main-bar.nav-transparent {
+            background-color: transparent !important;
+            backdrop-filter: none !important;
+            -webkit-backdrop-filter: none !important;
+            border-bottom-color: transparent !important;
+            box-shadow: none !important;
+            top: var(--topbar-h) !important;
+        }
+
+        @@media (max-width: 1199px) {
+            body.home-transparent-nav .nav-main-bar.nav-transparent {
+                top: 0 !important;
+            }
+        }
+
+        /* Text & icon styling in transparent mode */
+        body.home-transparent-nav .nav-main-bar.nav-transparent .nav-link-item,
+        body.home-transparent-nav .nav-main-bar.nav-transparent button.nav-link-item,
+        body.home-transparent-nav .nav-main-bar.nav-transparent #mobile-menu-toggle {
+            color: rgba(255, 255, 255, 0.95) !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-transparent .nav-link-item:hover,
+        body.home-transparent-nav .nav-main-bar.nav-transparent button.nav-link-item:hover {
+            color: #ffffff !important;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.85);
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-transparent .nav-link-item.text-secondary {
+            color: #6afe9c !important;
+            text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-transparent .material-symbols-outlined {
+            color: inherit !important;
+        }
+
+        /* Dropdown popover containers in transparent mode - remain crisp white with dark text */
+        body.home-transparent-nav .nav-main-bar.nav-transparent .group > div {
+            background-color: #ffffff !important;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1) !important;
+            border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-transparent .group > div a {
+            color: #3f4947 !important;
+            text-shadow: none !important;
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-transparent .group > div a:hover {
+            color: #00322d !important;
+            background-color: #f0fdf4 !important;
+        }
+
+        /* Filled / Scrolled Nav State - stays below topbar (top: var(--topbar-h)) with solid white glass fill */
+        body.home-transparent-nav .nav-main-bar.nav-scrolled {
+            top: var(--topbar-h) !important;
+            background-color: rgba(255, 255, 255, 0.97) !important;
+            backdrop-filter: blur(12px) !important;
+            -webkit-backdrop-filter: blur(12px) !important;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+            box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.08) !important;
+        }
+
+        @@media (max-width: 1199px) {
+            body.home-transparent-nav .nav-main-bar.nav-scrolled {
+                top: 0 !important;
+            }
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-scrolled .nav-link-item,
+        body.home-transparent-nav .nav-main-bar.nav-scrolled button.nav-link-item {
+            color: #3f4947 !important;
+            text-shadow: none !important;
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-scrolled .nav-link-item:hover,
+        body.home-transparent-nav .nav-main-bar.nav-scrolled button.nav-link-item:hover {
+            color: #00322d !important;
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-scrolled .nav-link-item.text-secondary {
+            color: #006d37 !important;
+            text-shadow: none !important;
+        }
+
+        body.home-transparent-nav .nav-main-bar.nav-scrolled #mobile-menu-toggle {
+            color: #3f4947 !important;
         }
 
         /* Force standard links to not inherit blue colors from bootstrap default */
@@ -225,12 +346,90 @@
         .footer-widget-socials a {
             color: #ffffff !important;
         }
+        /* Topbar Background, Socials & Contact Icon Colors */
+        .topbar,
+        .topbar-inner {
+            background-color: #002824 !important;
+            height: 28px !important;
+            min-height: 28px !important;
+            line-height: 1 !important;
+            padding-top: 0 !important;
+            padding-bottom: 0 !important;
+        }
+        .topbar-inner {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+        }
+        .topbar-left {
+            display: flex !important;
+            align-items: center !important;
+            height: 100% !important;
+        }
+        .topbar-socials {
+            background-color: #006D37 !important;
+            height: 28px !important;
+            min-height: 28px !important;
+            padding: 0 12px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1 !important;
+        }
+        .topbar-socials a {
+            display: inline-flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            line-height: 1 !important;
+            font-size: 12px !important;
+        }
+        .topbar-info {
+            height: 28px !important;
+            padding: 0 10px !important;
+            display: flex !important;
+            align-items: center !important;
+            line-height: 1 !important;
+        }
+        .topbar-info ul {
+            display: flex !important;
+            align-items: center !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            list-style: none !important;
+        }
+        .topbar-info ul li {
+            display: flex !important;
+            align-items: center !important;
+            line-height: 1 !important;
+            margin-bottom: 0 !important;
+        }
+        .topbar-text,
+        .topbar-text-div,
+        .topbar-text a,
+        .topbar-text span {
+            font-size: 12px !important;
+            line-height: 1 !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            margin-top: 0 !important;
+            margin-bottom: 0 !important;
+        }
+        .topbar-icon {
+            display: inline-flex !important;
+            align-items: center !important;
+        }
+        .topbar-icon i {
+            color: #006D37 !important;
+            font-size: 12px !important;
+            line-height: 1 !important;
+        }
+
         .bottom-footer {
             padding: 15px 0 !important;
         }
     </style>
 </head>
-<body class="antialiased selection:bg-secondary-container selection:text-on-secondary-container">
+<body class="antialiased selection:bg-secondary-container selection:text-on-secondary-container @(isHomePage ? "home-transparent-nav" : "")">
 
     <!-- Topbar: social icons + latest news ticker + contact info -->
     <div class="topbar fixed top-0 left-0 w-full z-[60]">
@@ -254,7 +453,7 @@
                         </li>
                         <li>
                             <div class="topbar-text-div">
-                                <span class="fs-4 fw-lighter">|</span>
+                                <span class="opacity-40 text-xs px-1">|</span>
                             </div>
                         </li>
                         <li>
@@ -292,24 +491,22 @@
     </div><!--topbar-->
 
     <!-- TopNavBar (Tailwind Visual Design + Dropdowns) -->
-    <nav class="nav-main-bar fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/30 shadow-sm h-20" style="top: var(--topbar-h)">
+    <nav class="nav-main-bar fixed w-full z-50 @(isHomePage ? "nav-transparent" : "bg-white/95 backdrop-blur-md border-b border-outline-variant/30 shadow-sm") h-[52px]" style="top: var(--topbar-h)">
         <div class="max-w-container-max mx-auto px-gutter flex justify-between items-center h-full">
             <div class="flex items-center gap-4">
-                <a href="/index">
-                    <img src="/assets/image/nddclogo.png" alt="NDDC Logo" class="h-12 w-auto object-contain">
+                <a href="/index" class="flex items-center">
+                    <img src="/assets/image/nddclogo.png" alt="NDDC Logo" class="h-10 md:h-11 w-auto object-contain">
                 </a>
             </div>
             
             <!-- Desktop Navigation Links -->
             <div class="hidden md:flex items-center gap-8 h-full">
-                <a id="nav-home" class="text-on-surface-variant hover:text-primary transition-colors font-body-md" href="/index">Home</a>
-                
                 <!-- Who We Are Dropdown -->
                 <div class="relative group h-full flex items-center">
-                    <button id="nav-who-we-are" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                    <button id="nav-who-we-are" class="nav-link-item text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
                         Who We Are <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                     </button>
-                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                    <div class="absolute top-full left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
                         <a href="/WhoWeAre/Vision" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Mission and Vision</a>
                         <a href="/WhoWeAre/MasterPlan" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Master Plan</a>
                         <a href="/WhoWeAre/Board" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Our Board</a>
@@ -319,10 +516,10 @@
                 
                 <!-- What We Do Dropdown -->
                 <div class="relative group h-full flex items-center">
-                    <button id="nav-what-we-do" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                    <button id="nav-what-we-do" class="nav-link-item text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
                         What We Do <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                     </button>
-                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                    <div class="absolute top-full left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
                         <a href="/Services/ProjectDatabase/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Transformational Projects</a>
                         <a href="/WhatWeDo/Scholarship" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Scholarships</a>
                     </div>
@@ -330,10 +527,10 @@
                 
                 <!-- News Dropdown -->
                 <div class="relative group h-full flex items-center">
-                    <button id="nav-news" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                    <button id="nav-news" class="nav-link-item text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
                         News <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                     </button>
-                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                    <div class="absolute top-full left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
                         <a href="/News/News" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">All News</a>
                         <a href="/News/Announcements" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Announcements</a>
                     </div>
@@ -341,10 +538,10 @@
                 
                 <!-- Media Dropdown -->
                 <div class="relative group h-full flex items-center">
-                    <button id="nav-media" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                    <button id="nav-media" class="nav-link-item text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
                         Media <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                     </button>
-                    <div class="absolute top-[80%] left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                    <div class="absolute top-full left-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
                         <a href="/Media/PhotoAlbum" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Photo Album</a>
                         <a href="/Media/Videos" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Videos</a>
                     </div>
@@ -352,10 +549,10 @@
                 
                 <!-- e-Services Dropdown -->
                 <div class="relative group h-full flex items-center">
-                    <button id="nav-e-services" class="text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
+                    <button id="nav-e-services" class="nav-link-item text-on-surface-variant group-hover:text-primary transition-colors font-body-md flex items-center gap-1 focus:outline-none">
                         e-Services <span class="material-symbols-outlined text-sm transition-transform duration-200 group-hover:rotate-180">expand_more</span>
                     </button>
-                    <div class="absolute top-[80%] right-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
+                    <div class="absolute top-full right-0 mt-0 w-64 rounded-xl bg-white border border-outline-variant/30 shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-[100] transform translate-y-2 group-hover:translate-y-0">
                         <a href="/ServiceGate/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Service Gate</a>
                         <a href="/Media/Videos" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Videos</a>
                         <a href="/Services/ProjectDatabase/index" class="block px-4 py-2.5 text-sm text-on-surface-variant hover:bg-surface-container-low hover:text-primary font-body-md transition-colors">Project Database</a>
@@ -709,6 +906,31 @@
                 });
             });
         });
+
+        // Transparent Hero Navbar scroll transition for Home Page
+        (function () {
+            const isHomeBody = document.body.classList.contains('home-transparent-nav');
+            const nav = document.querySelector('.nav-main-bar');
+            if (!isHomeBody || !nav) return;
+
+            function handleScroll() {
+                const hero = document.getElementById('hero-section');
+                const heroThreshold = hero ? (hero.offsetHeight - 100) : 450;
+                const scrollY = window.scrollY || window.pageYOffset || 0;
+
+                if (scrollY > heroThreshold) {
+                    nav.classList.remove('nav-transparent');
+                    nav.classList.add('nav-scrolled');
+                } else {
+                    nav.classList.remove('nav-scrolled');
+                    nav.classList.add('nav-transparent');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll, { passive: true });
+            window.addEventListener('resize', handleScroll, { passive: true });
+            handleScroll();
+        })();
     </script>
 
     @await RenderSectionAsync("Scripts", required: false)

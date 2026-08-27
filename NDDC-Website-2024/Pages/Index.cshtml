@@ -3,6 +3,33 @@
 @using NddcWebsiteLibrary.Model.Home
 @{
 	Layout = "_Layout";
+	ViewData["IsHomePage"] = true;
+}
+
+@functions {
+	public static string GetYouTubeVideoId(string url)
+	{
+		if (string.IsNullOrWhiteSpace(url)) return "";
+		url = url.Trim();
+		if (url.Contains("youtube.com") || url.Contains("youtu.be"))
+		{
+			var regex = new System.Text.RegularExpressions.Regex(@"(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^#\&\?]{11})", System.Text.RegularExpressions.RegexOptions.IgnoreCase);
+			var match = regex.Match(url);
+			if (match.Success)
+			{
+				return match.Groups[1].Value;
+			}
+		}
+		if (url.Contains("?"))
+		{
+			url = url.Split('?')[0];
+		}
+		if (url.Contains("/"))
+		{
+			url = url.Substring(url.LastIndexOf('/') + 1);
+		}
+		return url;
+	}
 }
 
 <style>
@@ -107,10 +134,19 @@
 	.hero-slide.opacity-100 .animate-hero-content > *:nth-child(2) { animation-delay: 300ms; }
 	.hero-slide.opacity-100 .animate-hero-content > *:nth-child(3) { animation-delay: 450ms; }
 	.hero-slide.opacity-100 .animate-hero-content > *:nth-child(4) { animation-delay: 600ms; }
+
+	/* Utility for hiding scrollbars */
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+	.no-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
 </style>
 
 	<!-- Hero Carousel -->
-	<section class="relative w-full h-[75vh] md:h-[calc(100vh-5rem)] min-h-[480px] md:min-h-[600px] bg-primary flex items-center justify-center overflow-hidden mt-20">
+	<section id="hero-section" class="relative w-full h-[85vh] md:h-screen min-h-[520px] md:min-h-[640px] bg-primary flex items-center justify-center overflow-hidden">
 		@if (Model.NewsSlide != null && Model.NewsSlide.Any())
 		{
 			@for (int i = 0; i < Model.NewsSlide.Count; i++)
@@ -122,7 +158,7 @@
 				<div class="absolute inset-0 w-full h-full hero-slide @(i == 0 ? "opacity-100 transition-all duration-1000" : "opacity-0 pointer-events-none transition-all duration-1000")" data-slide-index="@i">
 					<img alt="Hero Image" class="absolute inset-0 object-cover object-top w-full h-full opacity-70" src="@slideImage">
 					<div class="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/30 to-transparent"></div>
-					<div class="relative z-10 max-w-container-max mx-auto px-6 md:px-gutter w-full h-full flex items-center">
+					<div class="relative z-10 max-w-container-max mx-auto px-6 md:px-gutter w-full h-full flex items-center pt-20 md:pt-24">
 						<div class="max-w-3xl flex flex-col justify-center items-start text-left animate-hero-content">
 							<span class="inline-block font-label-sm text-[12px] md:text-label-sm text-secondary-fixed mb-3 md:mb-4 tracking-widest uppercase font-semibold">@(string.IsNullOrEmpty(slide.Type) ? "Niger Delta Development Commission" : slide.Type)</span>
 							<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-primary mb-4 md:mb-6 leading-tight text-white font-bold text-left">@slide.Subject</h1>
@@ -145,7 +181,7 @@
 			<div class="absolute inset-0 w-full h-full hero-slide opacity-100" data-slide-index="0">
 				<img alt="Hero Image" class="absolute inset-0 object-cover object-top w-full h-full opacity-70" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVKDs9QFDoYC-J_Ga230U9uPORsK4Aw0--pwFgVD4cIWNehYuWXjT1WopKjn7Se9M9oPnBFMRGKPJ07Ot1Emon_PAQl29op2zSJtiKdb90-RWRxbGP0lv5kzYVx1R8bpAQ_CCFolx1ambVH6uSVXOtx3A1UjQOOxPuJUQXlgyWp1dqtBFmpdRcZkVqa8NG-smykmSP5moh2U4T0c-u7HTbJvIqT-oAIkYpLYWABiGhngTR6bCqEZc3ro-OSl3ncW2ezVQp5N69Xw4">
 				<div class="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/30 to-transparent"></div>
-				<div class="relative z-10 max-w-container-max mx-auto px-6 md:px-gutter w-full h-full flex items-center">
+				<div class="relative z-10 max-w-container-max mx-auto px-6 md:px-gutter w-full h-full flex items-center pt-20 md:pt-24">
 					<div class="max-w-3xl flex flex-col justify-center items-start text-left animate-hero-content">
 						<span class="inline-block font-label-sm text-[12px] md:text-label-sm text-secondary-fixed mb-3 md:mb-4 tracking-widest uppercase font-semibold">Niger Delta Development Commission</span>
 						<h1 class="font-display-lg text-headline-lg-mobile md:text-display-lg text-on-primary mb-4 md:mb-6 leading-tight text-white font-bold text-left">Empowering Communities, Building the Future.</h1>
@@ -160,67 +196,72 @@
 			</div>
 		}
 
-		<!-- Carousel Indicators -->
-		<div class="absolute bottom-6 md:bottom-12 left-1/2 -translate-x-1/2 flex space-x-3 z-20" id="hero-indicators">
-			@if (Model.NewsSlide != null && Model.NewsSlide.Count > 1)
-			{
-				@for (int i = 0; i < Model.NewsSlide.Count; i++)
-				{
-					<button class="hero-dot h-1.5 rounded-full transition-all duration-300 @(i == 0 ? "w-12 bg-secondary" : "w-8 bg-on-primary/30 hover:bg-on-primary/50")" data-slide-to="@i"></button>
-				}
-			}
-			else
-			{
-				<button class="hero-dot w-12 h-1.5 bg-secondary rounded-full"></button>
-			}
+		<!-- Hero Carousel Navigator (White Circle Buttons + Green Progress Line) -->
+		<div class="absolute bottom-6 md:bottom-12 left-0 right-0 z-20 w-full pointer-events-none">
+			<div class="max-w-container-max mx-auto px-6 md:px-gutter flex items-center gap-3 sm:gap-4 md:gap-6 pointer-events-auto">
+				<!-- White Circle Arrow Buttons -->
+				<div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+					<button id="hero-prev-btn" aria-label="Previous Slide" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-[#006D37] active:scale-95 text-[#006D37] hover:text-white flex items-center justify-center transition-all duration-300 shadow-md hover:scale-105 cursor-pointer border-0 focus:outline-none group">
+						<span class="material-symbols-outlined text-xl sm:text-2xl font-bold select-none transition-colors">chevron_left</span>
+					</button>
+					<button id="hero-next-btn" aria-label="Next Slide" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white hover:bg-[#006D37] active:scale-95 text-[#006D37] hover:text-white flex items-center justify-center transition-all duration-300 shadow-md hover:scale-105 cursor-pointer border-0 focus:outline-none group">
+						<span class="material-symbols-outlined text-xl sm:text-2xl font-bold select-none transition-colors">chevron_right</span>
+					</button>
+				</div>
+
+				<!-- Progress Bar Track & Green Fill Line -->
+				<div id="hero-progress-track" class="relative flex-1 max-w-xs sm:max-w-md md:max-w-lg lg:max-w-xl h-1.5 sm:h-2 bg-white rounded-full overflow-hidden cursor-pointer shadow-sm select-none" title="Click to navigate">
+					<div id="hero-progress-bar" class="h-full rounded-full" style="width: 0%; background-color: #006D37 !important; opacity: 1 !important;"></div>
+				</div>
+			</div>
 		</div>
 	</section>
 
-	<!-- Icon Quick Links (Bento Grid Style) -->
-	<section class="py-10 md:py-section-gap-sm relative z-20 -mt-10 md:-mt-16 reveal-init reveal-fade-up">
+	<!-- Icon Quick Links (Bento Grid / Mobile Slider Style) -->
+	<section class="py-10 md:py-14 relative z-20 mt-6 md:mt-10 reveal-init reveal-fade-up">
 		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
-			<div class="grid grid-cols-2 md:grid-cols-6 gap-3 md:gap-4">
+			<div class="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-3 md:pb-0 md:grid md:grid-cols-6 md:gap-4 no-scrollbar">
 				<!-- Item 1 -->
-				<a class="bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center group border-b-2 border-transparent hover:border-secondary" href="/WhoWeAre/Index">
-					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-secondary/10 transition-colors">
-						<span class="material-symbols-outlined text-primary group-hover:text-secondary text-xl sm:text-2xl">account_balance</span>
+				<a class="min-w-[140px] sm:min-w-[150px] md:min-w-0 flex-1 flex-shrink-0 snap-start bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] border-b-4 border-transparent hover:border-[#006D37] transition-all duration-300 flex flex-col items-center text-center group" href="/WhoWeAre/Vision">
+					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#006D37]/10 transition-colors">
+						<span class="material-symbols-outlined text-primary group-hover:text-[#006D37] text-xl sm:text-2xl">account_balance</span>
 					</div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface">Our Mission</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface font-medium">Our Mission</span>
 				</a>
 				<!-- Item 2 -->
-				<a class="bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center group border-b-2 border-transparent hover:border-secondary" href="/WhoWeAre/BoardDetails">
-					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-secondary/10 transition-colors">
-						<span class="material-symbols-outlined text-primary group-hover:text-secondary text-xl sm:text-2xl">groups</span>
+				<a class="min-w-[140px] sm:min-w-[150px] md:min-w-0 flex-1 flex-shrink-0 snap-start bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] border-b-4 border-transparent hover:border-[#006D37] transition-all duration-300 flex flex-col items-center text-center group" href="/WhoWeAre/Board">
+					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#006D37]/10 transition-colors">
+						<span class="material-symbols-outlined text-primary group-hover:text-[#006D37] text-xl sm:text-2xl">groups</span>
 					</div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface">Our Leadership</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface font-medium">Our Leadership</span>
 				</a>
 				<!-- Item 3 -->
-				<a class="bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center group border-b-2 border-transparent hover:border-secondary" href="/Services/ProjectDatabase/index">
-					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-secondary/10 transition-colors">
-						<span class="material-symbols-outlined text-primary group-hover:text-secondary text-xl sm:text-2xl">architecture</span>
+				<a class="min-w-[140px] sm:min-w-[150px] md:min-w-0 flex-1 flex-shrink-0 snap-start bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] border-b-4 border-transparent hover:border-[#006D37] transition-all duration-300 flex flex-col items-center text-center group" href="/WhatWeDo/Projects">
+					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#006D37]/10 transition-colors">
+						<span class="material-symbols-outlined text-primary group-hover:text-[#006D37] text-xl sm:text-2xl">architecture</span>
 					</div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface">Projects</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface font-medium">Projects</span>
 				</a>
 				<!-- Item 4 -->
-				<a class="bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center group border-b-2 border-transparent hover:border-secondary" href="#">
-					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-secondary/10 transition-colors">
-						<span class="material-symbols-outlined text-primary group-hover:text-secondary text-xl sm:text-2xl">description</span>
+				<a class="min-w-[140px] sm:min-w-[150px] md:min-w-0 flex-1 flex-shrink-0 snap-start bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] border-b-4 border-transparent hover:border-[#006D37] transition-all duration-300 flex flex-col items-center text-center group" href="/Services/OnlineForms">
+					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#006D37]/10 transition-colors">
+						<span class="material-symbols-outlined text-primary group-hover:text-[#006D37] text-xl sm:text-2xl">description</span>
 					</div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface">Online Forms</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface font-medium">Online Forms</span>
 				</a>
 				<!-- Item 5 -->
-				<a class="bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center group border-b-2 border-transparent hover:border-secondary" href="#">
-					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-secondary/10 transition-colors">
-						<span class="material-symbols-outlined text-primary group-hover:text-secondary text-xl sm:text-2xl">campaign</span>
+				<a class="min-w-[140px] sm:min-w-[150px] md:min-w-0 flex-1 flex-shrink-0 snap-start bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] border-b-4 border-transparent hover:border-[#006D37] transition-all duration-300 flex flex-col items-center text-center group" href="/Services/Tenders">
+					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#006D37]/10 transition-colors">
+						<span class="material-symbols-outlined text-primary group-hover:text-[#006D37] text-xl sm:text-2xl">campaign</span>
 					</div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface">Tenders</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface font-medium">Tenders</span>
 				</a>
 				<!-- Item 6 -->
-				<a class="bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] hover:-translate-y-1 hover:shadow-lg transition-all duration-300 flex flex-col items-center text-center group border-b-2 border-transparent hover:border-secondary" href="#">
-					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-secondary/10 transition-colors">
-						<span class="material-symbols-outlined text-primary group-hover:text-secondary text-xl sm:text-2xl">school</span>
+				<a class="min-w-[140px] sm:min-w-[150px] md:min-w-0 flex-1 flex-shrink-0 snap-start bg-white rounded-xl p-4 sm:p-6 shadow-[0px_4px_20px_rgba(0,75,68,0.05)] border-b-4 border-transparent hover:border-[#006D37] transition-all duration-300 flex flex-col items-center text-center group" href="/Services/Jobs">
+					<div class="w-10 h-10 sm:w-12 sm:h-12 bg-surface-container rounded-full flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-[#006D37]/10 transition-colors">
+						<span class="material-symbols-outlined text-primary group-hover:text-[#006D37] text-xl sm:text-2xl">school</span>
 					</div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface">Empowerment</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-on-surface font-medium">Empowerment</span>
 				</a>
 			</div>
 		</div>
@@ -351,8 +392,8 @@
 										</div>
 										<div class="mt-3">
 											<a asp-page="/News/NewsDetails" asp-route-nid="@news.NID" class="inline-flex items-center text-xs font-bold text-secondary hover:text-primary transition-colors tracking-widest uppercase">
-												Read Post 
-												<span class="material-symbols-outlined text-xs ml-1 font-bold">double_arrow</span>
+												Read Post →
+												@* <span class="material-symbols-outlined text-xs ml-1 font-bold">double_arrow</span> *@
 											</a>
 										</div>
 									</div>
@@ -368,11 +409,8 @@
 
 						<!-- View All Button Grid-aligned at bottom right -->
 						<div class="flex justify-end mt-8 lg:mt-6">
-							<a href="/News/News" class="inline-flex items-center bg-[#012520] hover:bg-secondary text-white font-bold transition-all duration-300 text-xs tracking-wider">
-								<span class="px-6 py-3.5 border-r border-white/10 uppercase">View All News</span>
-								<span class="px-4 py-3.5 flex items-center justify-center">
-									<span class="material-symbols-outlined text-xs">double_arrow</span>
-								</span>
+							<a href="/News/News" class="text-secondary font-bold hover:underline inline-flex items-center text-sm tracking-wider uppercase">
+								View All News →
 							</a>
 						</div>
 					</div>
@@ -415,17 +453,15 @@
 			<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 md:gap-8 items-start">
 				<!-- Left Column: Vision & Mission (lg:col-span-5) -->
 				<div class="lg:col-span-5 flex flex-col gap-4 md:gap-6 reveal-init reveal-fade-left">
-					<!-- Vision Card -->
+					<!-- Vision section -->
 					<div class="bg-white/5 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/10 text-left">
 						<div class="flex items-center space-x-3 mb-3">
 							<span class="material-symbols-outlined text-secondary-fixed text-2xl">star</span>
 							<h3 class="font-headline-md text-on-primary font-bold text-base sm:text-lg">Vision</h3>
 						</div>
 						<p class="text-on-primary/80 font-body-md text-xs sm:text-sm leading-relaxed">To offer a lasting solution to the socio-economic difficulties in the Niger Delta region.</p>
-					</div>
-
-					<!-- Mission Card -->
-					<div class="bg-white/5 backdrop-blur-md p-6 sm:p-8 rounded-2xl border border-white/10 text-left">
+						<br/>
+					<!-- Mission section -->
 						<div class="flex items-center space-x-3 mb-3">
 							<span class="material-symbols-outlined text-secondary-fixed text-2xl">verified</span>
 							<h3 class="font-headline-md text-on-primary font-bold text-base sm:text-lg">Mission</h3>
@@ -476,11 +512,6 @@
 					</div>
 
 					<!-- Core Values Card -->
-					<div class="bg-white/5 backdrop-blur-md p-5 sm:p-6 rounded-2xl border border-white/10 text-left">
-						<h4 class="font-headline-md text-on-primary font-bold text-sm mb-3 flex items-center gap-2">
-							<span class="material-symbols-outlined text-secondary-fixed text-lg">shield_heart</span>
-							Core Values
-						</h4>
 						<div class="flex flex-wrap gap-2">
 							<span class="text-xs bg-white/5 border border-white/10 text-on-primary/90 px-3 py-1.5 rounded-full font-medium">Patriotism</span>
 							<span class="text-xs bg-white/5 border border-white/10 text-on-primary/90 px-3 py-1.5 rounded-full font-medium">Passion</span>
@@ -489,74 +520,115 @@
 							<span class="text-xs bg-white/5 border border-white/10 text-on-primary/90 px-3 py-1.5 rounded-full font-medium">Creativity</span>
 							<span class="text-xs bg-white/5 border border-white/10 text-on-primary/90 px-3 py-1.5 rounded-full font-medium">Team Spirit</span>
 						</div>
-					</div>
 				</div>
 			</div>
 		</div>
 	</section>
 
 	<!-- Photo Speak Section -->
-	<section class="py-12 md:py-section-gap-lg bg-white reveal-init reveal-fade-up">
-		<div class="w-full px-4 md:px-gutter">
-			<div class="text-center mb-10 md:mb-16">
-				<div class="w-12 h-1 bg-secondary mx-auto mb-4"></div>
-				<span class="font-label-sm text-xs sm:text-label-sm text-secondary uppercase tracking-widest font-semibold">Recent Photos of Our Activities</span>
-				<h2 class="font-headline-lg text-2xl sm:text-3xl md:text-headline-lg text-primary mt-3 md:mt-4 font-bold">Photo Speak</h2>
-			</div>
+	<section class="py-12 md:py-section-gap-lg bg-white reveal-init reveal-fade-up overflow-hidden">
+		<!-- Section Header (Centered in Container) -->
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter text-center mb-10 md:mb-14">
+			<div class="w-10 sm:w-12 h-1 bg-[#006D37] mx-auto rounded-full mb-3"></div>
+			<span class="font-label-sm text-xs sm:text-sm text-[#006D37] uppercase tracking-widest font-semibold block mb-1">Recent Photos of Our Activities</span>
+			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">Photo Speak</h2>
+		</div>
 
-			<div class="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-6 md:pb-8 no-scrollbar" id="photo-speak-container">
-				@if (Model.Photos != null && Model.Photos.Any())
+		<!-- End-to-End Bleeding Horizontal Slider Track -->
+		<div class="w-full flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 no-scrollbar px-4 sm:px-8 md:px-12 lg:px-16" id="photo-speak-container">
+			@if (Model.Photos != null && Model.Photos.Any())
+			{
+				@foreach (var photo in Model.Photos)
 				{
-					@foreach (var photo in Model.Photos)
-					{
-						var photoUrl = $"{Model._containerUrl}{photo.ImageUrl}";
-						<div class="group relative overflow-hidden rounded-xl aspect-[4/3] shadow-md cursor-pointer min-w-[85vw] sm:min-w-[320px] md:min-w-[calc(33.33%-1rem)] snap-center flex-shrink-0">
-							<img alt="@photo.Title" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="@photoUrl">
-							<div class="absolute inset-0 bg-primary/85 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 sm:p-6 text-left">
-								<span class="text-secondary-fixed font-label-sm text-xs uppercase tracking-wider mb-1">Niger Delta</span>
-								<p class="text-on-primary font-body-md text-xs sm:text-sm font-semibold leading-snug">@photo.Title</p>
+					var photoUrl = $"{Model._containerUrl}{photo.ImageUrl}";
+					<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+						<div>
+							<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="@photo.Title" src="@photoUrl" loading="lazy">
 							</div>
+							<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">
+								@(string.IsNullOrEmpty(photo.Location) ? "Activity" : photo.Location)
+							</p>
+							<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">
+								@photo.Title
+							</h3>
+							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">
+								Discover recent updates and developmental milestones across the Nine States of the Niger Delta region.
+							</p>
 						</div>
-					}
-				}
-				else
-				{
-					<!-- Photo Card 1 -->
-					<div class="group relative overflow-hidden rounded-xl aspect-[4/3] shadow-md cursor-pointer min-w-[85vw] sm:min-w-[320px] md:min-w-[calc(33.33%-1rem)] snap-center flex-shrink-0">
-						<img alt="Healthcare Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYIUI-otrzwMV11fKi1df9MhCbuw6Rj9f2KA5WshiYxIivL5E3KVk-IHs5Aegy00e5LrTB3zPgl3Dsevc_PiWI0KFAwR9uys2Twh4ECGT9Hr4povoo8d5Bq4tOB2zkOTsVBa0eDgeoCqpKvUswvCzE6DPHZWhPNmOWcO_PjswCz_saMAuO7awTyoDFslZhRO89IqHRMxyGRZucdBNPD_fctrKK5W5u12bJgRAA0lGc0pQk36IdoqPct3V7urfvozJ85uLKuMOK_tE">
-						<div class="absolute inset-0 bg-primary/85 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 sm:p-6 text-left">
-							<span class="text-secondary-fixed font-label-sm text-xs uppercase tracking-wider mb-1">Rivers State</span>
-							<p class="text-on-primary font-body-md text-xs sm:text-sm font-semibold leading-snug">Modern medical equipment distribution to rural health centers.</p>
-						</div>
-					</div>
-					<!-- Photo Card 2 -->
-					<div class="group relative overflow-hidden rounded-xl aspect-[4/3] shadow-md cursor-pointer min-w-[85vw] sm:min-w-[320px] md:min-w-[calc(33.33%-1rem)] snap-center flex-shrink-0">
-						<img alt="Infrastructure Project" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw9VaAC7Jv-KWPrbirqeBYD-sL1fLdAlcHeBwILxeTOuzrIOUabXQhU0ciqGgrrUW4sBist7lS8ewc3QmH4_CdFObogjogiLtLmXExKBSPAwzi3MUTWPOhSxFE163BR-ecB8PQ85ahd-gC_B97DNKd2f_wi2V0vcAorC6XpP8ssRbOboMpyIjQAelDm7vcV1xAAjgUlDqeTMM_N5kSO1r3sjd1AF_rm7-w5F8dorWn4HsdyVN_i5sI46pS1Z0GTqXIFtcdDJySv5w">
-						<div class="absolute inset-0 bg-primary/85 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 sm:p-6 text-left">
-							<span class="text-secondary-fixed font-label-sm text-xs uppercase tracking-wider mb-1">Delta State</span>
-							<p class="text-on-primary font-body-md text-xs sm:text-sm font-semibold leading-snug">Structural inspection of the new regional administrative complex.</p>
-						</div>
-					</div>
-					<!-- Photo Card 3 -->
-					<div class="group relative overflow-hidden rounded-xl aspect-[4/3] shadow-md cursor-pointer min-w-[85vw] sm:min-w-[320px] md:min-w-[calc(33.33%-1rem)] snap-center flex-shrink-0">
-						<img alt="Community Engagement" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgyYx5j6MF87eVFNUik-qYwqQFeB-_j9xxLD5EKMYuHmm5R3kiaylUV0babnj_sZI9FHN3ME4npLymQheAqonW58aok29aMqlP5Ui-nOsl13wqxuvrZGEud2MiaavzLU8FaA8XO6KBxWIB2dpqUbCJE8PkMGvyY0s533cosCMWg84S1Z1I-gj_584DbeDXsVcI8YifpueSTBP5PWwoFpWFELNn4bBqore732BeOoSDB0hf7JugqkZ8sioZXu71yINfS3DTRaSAiZU">
-						<div class="absolute inset-0 bg-primary/85 opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col justify-end p-4 sm:p-6 text-left">
-							<span class="text-secondary-fixed font-label-sm text-xs uppercase tracking-wider mb-1">Bayelsa State</span>
-							<p class="text-on-primary font-body-md text-xs sm:text-sm font-semibold leading-snug">Stakeholder engagement meeting with community youth leaders.</p>
-						</div>
+						<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
+							<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+								<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+							</div>
+							<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
+						</a>
 					</div>
 				}
-			</div>
+			}
+			else
+			{
+				<!-- Fallback Photo Cards matching screenshot design -->
+				<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+					<div>
+						<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Healthcare Project" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" loading="lazy">
+						</div>
+						<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">Rivers State</p>
+						<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Medical Equipment Distribution</h3>
+						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">Modern medical equipment distribution to rural health centers across the Niger Delta.</p>
+					</div>
+					<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
+						<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+							<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+						</div>
+						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
+					</a>
+				</div>
 
-			<!-- Carousel Controls -->
-			<div class="flex justify-center space-x-4 mt-8 md:mt-12">
-				<button id="photo-prev" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-outline flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all duration-200">
-					<span class="material-symbols-outlined">chevron_left</span>
-				</button>
-				<button id="photo-next" class="w-10 h-10 sm:w-12 sm:h-12 rounded-full border border-outline flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all duration-200">
-					<span class="material-symbols-outlined">chevron_right</span>
-				</button>
-			</div>
+				<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+					<div>
+						<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Infrastructure Project" src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=800&auto=format&fit=crop" loading="lazy">
+						</div>
+						<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">Delta State</p>
+						<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Regional Complex Inspection</h3>
+						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">Structural inspection of the new regional administrative complex.</p>
+					</div>
+					<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
+						<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+							<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+						</div>
+						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
+					</a>
+				</div>
+
+				<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+					<div>
+						<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Community Engagement" src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=800&auto=format&fit=crop" loading="lazy">
+						</div>
+						<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">Bayelsa State</p>
+						<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Stakeholder Engagement Meeting</h3>
+						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">Stakeholder engagement meeting with community youth leaders.</p>
+					</div>
+					<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
+						<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+							<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+						</div>
+						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
+					</a>
+				</div>
+			}
+		</div>
+
+		<!-- Carousel Controls (Aligned in Container) -->
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter flex items-center gap-3 mt-6 sm:mt-8">
+			<button id="photo-prev" aria-label="Previous photo" class="w-11 h-11 rounded-full border border-outline-variant text-on-surface-variant hover:border-[#006D37] hover:text-[#006D37] flex items-center justify-center transition-all cursor-pointer shadow-sm">
+				<span class="material-symbols-outlined text-xl">chevron_left</span>
+			</button>
+			<button id="photo-next" aria-label="Next photo" class="w-11 h-11 rounded-full border border-[#006D37] text-[#006D37] hover:bg-[#006D37] hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-md">
+				<span class="material-symbols-outlined text-xl">chevron_right</span>
+			</button>
 		</div>
 	</section>
 
@@ -652,7 +724,7 @@
 						}
 					}
 				</div>
-				<a href="/WhoWeAre/BoardDetails" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-semibold font-label-sm text-xs sm:text-label-sm px-8 sm:px-10 py-3 sm:py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
+				<a href="/WhoWeAre/Board" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-semibold font-label-sm text-xs sm:text-label-sm px-8 sm:px-10 py-3 sm:py-3.5 rounded-full transition-all duration-300 shadow-md hover:shadow-lg hover:-translate-y-0.5">
 					View More Staff
 				</a>
 			</div>
@@ -674,100 +746,244 @@
 						Search Our Project Database
 					</a>
 				</div>
-				<!-- Right Card -->
+				<!-- Right Grid of 4 Key Stats -->
 				<div class="relative flex justify-center lg:justify-end reveal-init reveal-fade-right">
-					<!-- Curved Arrow (Decorative) -->
-					<div class="absolute -left-12 top-1/2 hidden lg:block">
-						<svg class="text-on-primary/40" fill="none" height="60" viewBox="0 0 120 60" width="120" xmlns="http://www.w3.org/2000/svg">
-							<path d="M10 50C40 50 60 10 110 10" stroke="currentColor" stroke-dasharray="4 4" stroke-width="2"></path>
-							<path d="M105 5L115 10L105 15" stroke="currentColor" stroke-width="2"></path>
-						</svg>
-					</div>
-					<div class="bg-white rounded-xl p-1 shadow-2xl max-w-md w-full overflow-hidden">
-						<div class="p-5 sm:p-8">
-							<div class="flex justify-between items-start mb-6">
-								<div class="bg-primary p-3 rounded-lg flex items-center justify-center">
-									<span class="material-symbols-outlined text-secondary-fixed text-2xl">bar_chart</span>
-								</div>
-								<div class="text-right">
-									<h4 class="font-headline-md text-primary text-base sm:text-lg font-bold">Projects Delivered</h4>
-									<p class="text-xs text-on-surface-variant/80">Detailed assessment across nine states.</p>
-								</div>
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
+						<!-- Stat 1 -->
+						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
+								<span class="material-symbols-outlined text-2xl">directions_run</span>
 							</div>
-							<div class="mb-6">
-								<div class="flex items-baseline gap-2 mb-1">
-									<span class="text-2xl sm:text-3xl font-bold text-primary">20,000+</span>
-								</div>
-								<p class="text-[10px] uppercase tracking-widest text-on-surface-variant font-bold mb-4">Since 2015</p>
-								<!-- Chart Placeholder -->
-								<div class="flex items-end justify-between h-28 sm:h-32 gap-1.5 sm:gap-2 px-2 border-b border-outline-variant/30 pb-1">
-									<div class="bg-surface-container w-full h-[40%] rounded-t-md hover:bg-secondary transition-all text-left"></div>
-									<div class="bg-secondary w-full h-[60%] rounded-t-md hover:bg-primary transition-all text-left"></div>
-									<div class="bg-surface-container w-full h-[50%] rounded-t-md hover:bg-secondary transition-all text-left"></div>
-									<div class="bg-secondary w-full h-[30%] rounded-t-md hover:bg-primary transition-all text-left"></div>
-									<div class="bg-secondary-fixed w-full h-[80%] rounded-t-md hover:bg-primary transition-all text-left"></div>
-									<div class="bg-secondary w-full h-[45%] rounded-t-md hover:bg-primary transition-all text-left"></div>
-									<div class="bg-surface-container w-full h-[55%] rounded-t-md hover:bg-secondary transition-all text-left"></div>
-									<div class="bg-primary w-full h-[90%] rounded-t-md hover:bg-secondary transition-all text-left"></div>
-								</div>
+							<div>
+								<div class="text-xl sm:text-2xl font-bold text-primary">20k+</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Projects Delivered</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Since 2015 in All Regions</p>
 							</div>
-							<a href="/Services/ProjectDatabase/index" class="block w-full text-center bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm py-3 rounded-lg transition-colors font-semibold shadow-md text-xs sm:text-sm">
-								Discover More
-							</a>
+						</div>
+						<!-- Stat 2 -->
+						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
+								<span class="material-symbols-outlined text-2xl">track_changes</span>
+							</div>
+							<div>
+								<div class="text-xl sm:text-2xl font-bold text-primary">60%</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Capital Projects</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Covering Roads, Electricity &amp; Water</p>
+							</div>
+						</div>
+						<!-- Stat 3 -->
+						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
+								<span class="material-symbols-outlined text-2xl">forest</span>
+							</div>
+							<div>
+								<div class="text-xl sm:text-2xl font-bold text-primary">26%</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Private &amp; Domestic</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Garden Land</p>
+							</div>
+						</div>
+						<!-- Stat 4 -->
+						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
+								<span class="material-symbols-outlined text-2xl">home_work</span>
+							</div>
+							<div>
+								<div class="text-xl sm:text-2xl font-bold text-primary">3,000+</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Rural Projects</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Electrification &amp; Water Projects</p>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</section>
 
-		<!-- Statistics Strip -->
-		<div class="bg-secondary-fixed py-8 sm:py-12 reveal-init reveal-fade-up">
-			<div class="max-w-container-max mx-auto px-4 md:px-gutter">
-				<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">
-					<!-- Stat 1 -->
-					<div class="flex items-center gap-4 text-left">
-						<div class="bg-primary p-3 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
-							<span class="material-symbols-outlined text-secondary-fixed text-2xl">directions_run</span>
+	<!-- Videos Section -->
+	<section class="py-12 md:py-16 bg-white reveal-init reveal-fade-up">
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
+			<div class="text-center mb-8 md:mb-12">
+				<div class="w-10 sm:w-12 h-1 bg-[#006D37] mx-auto rounded-full mb-3"></div>
+				<p class="text-[#006D37] font-bold text-xs sm:text-sm uppercase tracking-wider mb-2">VIDEOS OF ACTIVITIES FROM THE REGION</p>
+				<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">Videos</h2>
+			</div>
+
+			@{
+				var allVideosList = Model.Videos != null && Model.Videos.Any() ? Model.Videos.Take(4).ToList() : new List<MyVideoModel>();
+				var mainVideo = Model.MainVideo ?? allVideosList.FirstOrDefault();
+				var mainTitle = mainVideo != null && !string.IsNullOrEmpty(mainVideo.VideoTitle) ? mainVideo.VideoTitle : "See Something, Say Something: Protecting NDDC Solar Streetlights in Rivers State";
+				var mainUrl = mainVideo != null ? mainVideo.YoutubeUrl : "https://www.youtube.com/watch?v=dQw4w9WgXcQ";
+				var mainVideoIdRaw = GetYouTubeVideoId(mainUrl);
+				var mainVideoId = !string.IsNullOrEmpty(mainVideoIdRaw) ? mainVideoIdRaw : "dQw4w9WgXcQ";
+
+				var sideVideos = allVideosList.Where(v => v != mainVideo).Take(3).ToList();
+			}
+
+			<div class="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6 items-stretch">
+				<!-- Main Featured Video (Left 2 Columns) -->
+				<div class="lg:col-span-2 relative rounded-2xl overflow-hidden shadow-lg group cursor-pointer aspect-video bg-black flex items-center justify-center index-video-card" data-video-id="@mainVideoId" title="@mainTitle">
+					<img src="https://img.youtube.com/vi/@mainVideoId/hqdefault.jpg" alt="@mainTitle" class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=1200&auto=format&fit=crop'">
+					<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60"></div>
+					
+					<!-- Top Title Overlay -->
+					<div class="absolute top-4 left-4 right-4 z-10 flex items-center gap-3">
+						<div class="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-xs font-bold flex-shrink-0">
+							<span class="material-symbols-outlined text-base">video_library</span>
 						</div>
-						<div>
-							<div class="text-xl sm:text-2xl font-bold text-primary">20k+</div>
-							<p class="text-xs text-primary/80 font-bold leading-tight">Projects Delivered</p>
-							<p class="text-[10px] text-primary/60">Since 2015 in All Regions.</p>
-						</div>
+						<h3 class="text-white font-bold text-sm sm:text-base md:text-lg line-clamp-2 drop-shadow-md">@mainTitle</h3>
 					</div>
-					<!-- Stat 2 -->
-					<div class="flex items-center gap-4 text-left">
-						<div class="bg-primary p-3 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
-							<span class="material-symbols-outlined text-secondary-fixed text-2xl">track_changes</span>
-						</div>
-						<div>
-							<div class="text-xl sm:text-2xl font-bold text-primary">60%</div>
-							<p class="text-xs text-primary/80 font-bold leading-tight">Capital Projects</p>
-							<p class="text-[10px] text-primary/60">Covering Roads, Electricity and Water.</p>
-						</div>
+
+					<!-- Green Center Play Button (Matching Website Brand Color) -->
+					<div class="relative z-10 w-16 h-12 sm:w-20 sm:h-14 bg-[#006D37] hover:bg-[#005229] rounded-2xl flex items-center justify-center shadow-xl group-hover:scale-110 transition-all duration-300">
+						<svg class="w-8 h-8 text-white fill-current ml-1" viewBox="0 0 24 24">
+							<path d="M8 5v14l11-7z"/>
+						</svg>
 					</div>
-					<!-- Stat 3 -->
-					<div class="flex items-center gap-4 text-left">
-						<div class="bg-primary p-3 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
-							<span class="material-symbols-outlined text-secondary-fixed text-2xl">forest</span>
-						</div>
-						<div>
-							<div class="text-xl sm:text-2xl font-bold text-primary">26%</div>
-							<p class="text-xs text-primary/80 font-bold leading-tight">Private &amp; Domestic</p>
-							<p class="text-[10px] text-primary/60">Garden Land</p>
-						</div>
+
+					<!-- Bottom Right "Watch on YouTube" Pill -->
+					<div class="absolute bottom-4 right-4 z-10 bg-black/80 backdrop-blur-md text-white text-xs font-semibold px-3 py-1.5 rounded-lg flex items-center gap-1.5 border border-white/10 shadow-md">
+						<span>Watch on</span>
+						<span class="font-bold text-red-500 flex items-center gap-0.5">
+							<svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816zm-10.615 12.816v-8l8 4-8 4z"/></svg> YouTube
+						</span>
 					</div>
-					<!-- Stat 4 -->
-					<div class="flex items-center gap-4 text-left">
-						<div class="bg-primary p-3 rounded-xl flex items-center justify-center shadow-md flex-shrink-0">
-							<span class="material-symbols-outlined text-secondary-fixed text-2xl">home_work</span>
+				</div>
+
+				<!-- Secondary Side Videos (Right 1 Column) -->
+				<div class="lg:col-span-1 flex flex-col gap-4 justify-between">
+					@if (sideVideos.Any())
+					{
+						@foreach (var sv in sideVideos)
+						{
+							var svIdRaw = GetYouTubeVideoId(sv.YoutubeUrl);
+							var svId = !string.IsNullOrEmpty(svIdRaw) ? svIdRaw : "dQw4w9WgXcQ";
+							<div class="relative rounded-xl overflow-hidden shadow-md group cursor-pointer aspect-video bg-black flex items-center justify-center index-video-card" data-video-id="@svId" title="@sv.VideoTitle">
+								<img src="https://img.youtube.com/vi/@svId/hqdefault.jpg" alt="@sv.VideoTitle" class="absolute inset-0 w-full h-full object-cover opacity-85 group-hover:scale-105 transition-transform duration-500">
+								<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60"></div>
+								<div class="absolute top-3 left-3 right-3 z-10 flex items-center gap-2">
+									<div class="w-6 h-6 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white text-[10px]">
+										<span class="material-symbols-outlined text-xs">play_circle</span>
+									</div>
+									<h4 class="text-white font-bold text-xs sm:text-sm line-clamp-1 drop-shadow-md">@sv.VideoTitle</h4>
+								</div>
+								<div class="relative z-10 w-12 h-9 bg-[#006D37] hover:bg-[#005229] rounded-xl flex items-center justify-center shadow-md group-hover:scale-110 transition-all duration-300">
+									<svg class="w-6 h-6 text-white fill-current ml-0.5" viewBox="0 0 24 24">
+										<path d="M8 5v14l11-7z"/>
+									</svg>
+								</div>
+							</div>
+						}
+					}
+					else
+					{
+						<!-- SVG Empty State when no side videos are available -->
+						<div class="h-full flex flex-col items-center justify-center p-8 text-center bg-surface-container-lowest rounded-xl border border-dashed border-outline-variant/40 min-h-[240px]">
+							<div class="w-14 h-14 rounded-full bg-[#006D37]/10 flex items-center justify-center text-[#006D37] mb-3">
+								<svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+									<path d="M21 6.5l-4 3.2V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-2.7l4 3.2c.38.3.9.03.9-.46V6.96c0-.49-.52-.76-.9-.46zM15 16H5V8h10v8z"/>
+								</svg>
+							</div>
+							<h4 class="text-sm font-bold text-primary mb-1">No Additional Videos</h4>
+							<p class="text-xs text-on-surface-variant/70 max-w-xs leading-relaxed">More video updates from our regional activities will be published here soon.</p>
 						</div>
-						<div>
-							<div class="text-xl sm:text-2xl font-bold text-primary">3,000+</div>
-							<p class="text-xs text-primary/80 font-bold leading-tight">Rural Projects</p>
-							<p class="text-[10px] text-primary/60">Electrification and Water Projects</p>
-						</div>
+					}
+				</div>
+			</div>
+
+			<!-- View More Videos CTA Button -->
+			<div class="mt-8 sm:mt-10 text-center">
+				<a href="/Media/Videos" class="inline-flex items-center gap-2 bg-[#006D37] hover:bg-[#005229] text-white font-bold text-xs sm:text-sm px-8 py-3.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5 group">
+					<span>View More Videos</span>
+					<span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+				</a>
+			</div>
+		</div>
+	</section>
+
+	<!-- NDDC i Report Center Banner -->
+	<section class="py-6 md:py-8 bg-white reveal-init reveal-fade-up">
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
+			<div class="relative bg-white rounded-3xl p-6 sm:p-8 md:p-10 border border-outline-variant/15 shadow-[0px_10px_30px_rgba(0,0,0,0.05)] overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+				<!-- Faint Document Background SVG Watermark -->
+				<div class="absolute -right-8 -bottom-10 pointer-events-none opacity-10 text-primary">
+					<svg class="w-64 h-64" fill="currentColor" viewBox="0 0 24 24">
+						<path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+					</svg>
+				</div>
+
+				<div class="flex flex-col sm:flex-row items-center sm:items-start text-center sm:text-left gap-5 relative z-10">
+					<!-- Green Download Icon Box -->
+					<div class="w-16 h-16 sm:w-20 sm:h-20 rounded-2xl bg-[#22C55E] text-white flex items-center justify-center flex-shrink-0 shadow-md">
+						<span class="material-symbols-outlined text-3xl sm:text-4xl">file_download</span>
 					</div>
+					<div>
+						<h3 class="text-2xl sm:text-3xl font-bold text-primary flex items-center justify-center sm:justify-start gap-2 flex-wrap">
+							NDDC <span class="bg-[#006D37] text-white text-xs px-2 py-0.5 rounded font-bold font-mono tracking-wider">i</span> Report Center
+						</h3>
+						<p class="text-on-surface-variant/80 text-xs sm:text-sm mt-2 max-w-xl leading-relaxed">
+							You can send us a report on the performance of NDDC Projects in your community to give us direct performance reports on our project.
+						</p>
+					</div>
+				</div>
+
+				<!-- Send i Report CTA Button -->
+				<div class="relative z-10 flex-shrink-0">
+					<a href="/Services/IReports/index" class="bg-[#003831] hover:bg-[#002621] text-white font-bold text-sm px-6 py-3.5 rounded-xl shadow-md transition-all duration-300 flex items-center gap-2 group hover:scale-105">
+						<span>Send</span>
+						<span class="bg-[#22C55E] text-white text-[11px] px-1.5 py-0.5 rounded font-bold">i</span>
+						<span>Report</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Join Our Newsletter Banner -->
+	<section class="py-8 md:py-12 bg-white reveal-init reveal-fade-up">
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
+			<div class="relative bg-gradient-to-r from-[#006D37] via-[#059669] to-[#004B44] rounded-[28px] p-6 sm:p-10 md:p-12 text-white overflow-hidden shadow-[0_20px_50px_rgba(0,109,55,0.2)] border border-white/20 flex flex-col lg:flex-row items-center justify-between gap-8 group">
+				<!-- Decorative Glowing Background Orbs & Flowing Waves -->
+				<div class="absolute -right-20 -top-20 w-80 h-80 bg-emerald-400/20 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
+				<div class="absolute -left-20 -bottom-20 w-80 h-80 bg-[#006D37]/40 rounded-full blur-3xl pointer-events-none"></div>
+
+				<div class="absolute inset-0 opacity-20 pointer-events-none">
+					<svg class="w-full h-full" viewBox="0 0 1000 200" preserveAspectRatio="none" fill="none" stroke="currentColor">
+						<path d="M0,100 C200,160 400,40 600,120 C800,180 900,40 1000,100" stroke-width="2.5" stroke-dasharray="6 6"/>
+						<path d="M0,40 C300,120 500,10 700,90 C900,170 950,30 1000,70" stroke-width="1.5"/>
+					</svg>
+				</div>
+
+				<div class="flex items-center gap-5 sm:gap-6 text-left relative z-10 w-full lg:w-auto">
+					<!-- Glassmorphic Icon Badge -->
+					<div class="w-14 h-14 sm:w-20 sm:h-20 rounded-2xl bg-white/15 backdrop-blur-md border border-white/25 flex items-center justify-center text-white flex-shrink-0 shadow-inner group-hover:rotate-6 group-hover:scale-105 transition-all duration-300">
+						<span class="material-symbols-outlined text-3xl sm:text-4xl text-emerald-200">mark_email_unread</span>
+					</div>
+					<div>
+						<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/15 text-white/90 text-[11px] font-bold uppercase tracking-wider mb-2">
+							@* <span class="w-2 h-2 rounded-full bg-[#FFE01B] animate-ping"></span> *@
+							<span>Stay Connected</span>
+						</div>
+						<h3 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight leading-tight">
+							Join Our Newsletter
+						</h3>
+						<p class="text-white/80 text-xs sm:text-sm mt-1 max-w-md font-medium">
+							Get official updates, project releases, and announcements delivered directly to your inbox.
+						</p>
+					</div>
+				</div>
+
+				<!-- Floating Premium Input Box -->
+				<div class="relative z-10 w-full lg:w-auto max-w-lg">
+					<form class="flex items-center bg-white p-1.5 sm:p-2 rounded-2xl shadow-2xl border border-white/40 focus-within:ring-4 focus-within:ring-white/30 transition-all duration-300" onsubmit="event.preventDefault(); alert('Thank you for subscribing to NDDC Newsletter!');">
+						<div class="pl-3.5 text-on-surface-variant/50 flex items-center justify-center">
+							<span class="material-symbols-outlined text-xl">mail</span>
+						</div>
+						<input type="email" required placeholder="Enter your email address..." class="w-full bg-transparent px-3 py-3 text-sm text-on-surface placeholder:text-on-surface-variant/50 focus:outline-none border-0">
+						<button type="submit" class="bg-[#003831] hover:bg-[#002621] text-white font-bold text-xs sm:text-sm px-6 sm:px-7 py-3 sm:py-3.5 rounded-xl transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-xl active:scale-95 flex-shrink-0 cursor-pointer border-0 group/btn">
+							<span>Subscribe</span>
+							<span class="material-symbols-outlined text-base group-hover/btn:translate-x-1 transition-transform">send</span>
+						</button>
+					</form>
 				</div>
 			</div>
 		</div>
@@ -777,16 +993,31 @@
 	<!-- Scripts for Animations, Slider, and Interactions -->
 	<script>
 		document.addEventListener('DOMContentLoaded', function () {
-			// 1. Hero Carousel Controller
-			const slides = document.querySelectorAll('.hero-slide');
-			const dots = document.querySelectorAll('.hero-dot');
-			let activeIndex = 0;
-			let slideInterval = null;
+			// 1. Hero Carousel Controller (Custom Yellow Circles + Progress Line)
+			const heroSlides = document.querySelectorAll('.hero-slide');
+			const heroPrevBtn = document.getElementById('hero-prev-btn');
+			const heroNextBtn = document.getElementById('hero-next-btn');
+			const heroProgressTrack = document.getElementById('hero-progress-track');
+			const heroProgressBar = document.getElementById('hero-progress-bar');
 
-			function showSlide(index) {
-				if (slides.length === 0) return;
-				slides.forEach((slide, idx) => {
-					if (idx === index) {
+			let heroActiveIndex = 0;
+			let heroAnimFrame = null;
+			const HERO_SLIDE_DURATION = 5000; // 5 seconds per slide
+
+			function setProgressBarWidth(pct) {
+				if (heroProgressBar) {
+					heroProgressBar.style.setProperty('width', `${pct}%`, 'important');
+				}
+			}
+
+			function showHeroSlide(index) {
+				if (!heroSlides || heroSlides.length === 0) return;
+
+				const totalSlides = heroSlides.length;
+				heroActiveIndex = (index + totalSlides) % totalSlides;
+
+				heroSlides.forEach((slide, idx) => {
+					if (idx === heroActiveIndex) {
 						slide.classList.remove('opacity-0', 'pointer-events-none');
 						slide.classList.add('opacity-100');
 					} else {
@@ -794,42 +1025,72 @@
 						slide.classList.add('opacity-0', 'pointer-events-none');
 					}
 				});
-				dots.forEach((dot, idx) => {
-					if (idx === index) {
-						dot.classList.add('w-12', 'bg-secondary');
-						dot.classList.remove('w-8', 'bg-on-primary/30');
-					} else {
-						dot.classList.remove('w-12', 'bg-secondary');
-						dot.classList.add('w-8', 'bg-on-primary/30');
-					}
-				});
-				activeIndex = index;
+
+				startProgressAndTimer();
 			}
 
-			function nextSlide() {
-				let nextIdx = (activeIndex + 1) % slides.length;
-				showSlide(nextIdx);
-			}
-
-			function startAutoplay() {
-				if (slides.length > 1) {
-					slideInterval = setInterval(nextSlide, 5000);
+			function startProgressAndTimer() {
+				if (heroAnimFrame) {
+					cancelAnimationFrame(heroAnimFrame);
+					heroAnimFrame = null;
 				}
+
+				if (!heroSlides || heroSlides.length === 0) return;
+
+				// Immediately reset/reduce progress bar to 0% when slide changes
+				setProgressBarWidth(0);
+
+				if (heroSlides.length <= 1) {
+					setProgressBarWidth(100);
+					return;
+				}
+
+				const startTime = performance.now();
+
+				function step(now) {
+					const elapsed = now - startTime;
+					const progress = Math.min(elapsed / HERO_SLIDE_DURATION, 1);
+
+					setProgressBarWidth(progress * 100);
+
+					if (progress < 1) {
+						heroAnimFrame = requestAnimationFrame(step);
+					} else {
+						showHeroSlide(heroActiveIndex + 1);
+					}
+				}
+
+				heroAnimFrame = requestAnimationFrame(step);
 			}
 
-			function stopAutoplay() {
-				if (slideInterval) clearInterval(slideInterval);
-			}
-
-			dots.forEach((dot, idx) => {
-				dot.addEventListener('click', () => {
-					stopAutoplay();
-					showSlide(idx);
-					startAutoplay();
+			if (heroPrevBtn) {
+				heroPrevBtn.addEventListener('click', () => {
+					showHeroSlide(heroActiveIndex - 1);
 				});
-			});
+			}
 
-			startAutoplay();
+			if (heroNextBtn) {
+				heroNextBtn.addEventListener('click', () => {
+					showHeroSlide(heroActiveIndex + 1);
+				});
+			}
+
+			if (heroProgressTrack) {
+				heroProgressTrack.addEventListener('click', (e) => {
+					const totalSlides = heroSlides.length;
+					if (totalSlides <= 1) return;
+
+					const rect = heroProgressTrack.getBoundingClientRect();
+					const clickX = e.clientX - rect.left;
+					const width = rect.width;
+					const fraction = Math.max(0, Math.min(0.99, clickX / width));
+					const targetIndex = Math.floor(fraction * totalSlides);
+
+					showHeroSlide(targetIndex);
+				});
+			}
+
+			showHeroSlide(0);
 
 			// 2. Photo Speak Horizontal Scrolling & Autoplay
 			const container = document.getElementById('photo-speak-container');
@@ -842,7 +1103,7 @@
 				let interactionTimeout = null;
 
 				function getScrollAmount() {
-					const card = container.querySelector('.group.relative.overflow-hidden');
+					const card = container.querySelector('.photo-speak-card') || container.querySelector('.group');
 					return card ? card.offsetWidth + 24 : container.offsetWidth / 2; // 24 is gap-6 (1.5rem)
 				}
 
@@ -996,6 +1257,47 @@
 
 			revealElements.forEach(element => {
 				revealObserver.observe(element);
+			});
+
+			// 5. Video Player Modal Controller
+			const indexVideoCards = document.querySelectorAll('.index-video-card');
+			let indexVideoModal = null;
+
+			indexVideoCards.forEach(card => {
+				card.addEventListener('click', () => {
+					const videoId = card.getAttribute('data-video-id') || 'dQw4w9WgXcQ';
+					if (!indexVideoModal) {
+						indexVideoModal = document.createElement('div');
+						indexVideoModal.id = 'index-video-modal';
+						indexVideoModal.className = 'fixed inset-0 z-50 bg-black/90 backdrop-blur-md flex items-center justify-center p-4 transition-all duration-300';
+						indexVideoModal.innerHTML = `
+							<div class="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden shadow-2xl border border-white/10">
+								<button id="close-index-video-modal" class="absolute top-3 right-3 z-10 w-10 h-10 rounded-full bg-black/70 text-white flex items-center justify-center hover:bg-red-600 transition-colors cursor-pointer border-0">
+									<span class="material-symbols-outlined text-xl">close</span>
+								</button>
+								<div class="relative aspect-video w-full">
+									<iframe id="index-video-iframe" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+								</div>
+							</div>
+						`;
+						document.body.appendChild(indexVideoModal);
+
+						indexVideoModal.querySelector('#close-index-video-modal').addEventListener('click', () => {
+							indexVideoModal.classList.add('hidden');
+							indexVideoModal.querySelector('#index-video-iframe').src = '';
+						});
+
+						indexVideoModal.addEventListener('click', (e) => {
+							if (e.target === indexVideoModal) {
+								indexVideoModal.classList.add('hidden');
+								indexVideoModal.querySelector('#index-video-iframe').src = '';
+							}
+						});
+					}
+
+					indexVideoModal.querySelector('#index-video-iframe').src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+					indexVideoModal.classList.remove('hidden');
+				});
 			});
 		});
 	</script>

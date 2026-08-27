@@ -62,7 +62,7 @@ namespace NDDC_Website_2024.Pages
             SocialInfraUpdatePhoto   = homeDb.GetImageByUpdateCategory("Social");
             PartnershipsPhoto        = homeDb.GetImageByUpdateCategory("Partnerships");
             MainVideo                = homeDb.DisplayMainVideo();
-            Videos                   = homeDb.DisplayVideos()            ?? new List<MyVideoModel>();
+            Videos                   = homeDb.DisplayAllVideos()         ?? homeDb.DisplayVideos() ?? new List<MyVideoModel>();
             Announcement             = homeDb.GetAnnouncement();
             CriticalUpdate           = homeDb.GetCriticalNewsUpdate();
             Testimonials             = homeDb.ViewTestimonials()         ?? new List<MyTestimonialModel>();
