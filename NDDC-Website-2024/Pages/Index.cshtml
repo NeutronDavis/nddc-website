@@ -534,31 +534,31 @@
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">Photo Speak</h2>
 		</div>
 
-		<!-- End-to-End Bleeding Horizontal Slider Track -->
-		<div class="w-full flex overflow-x-auto snap-x snap-mandatory gap-6 pb-6 no-scrollbar px-4 sm:px-8 md:px-12 lg:px-16" id="photo-speak-container">
+		<!-- End-to-End Bleeding Dynamic Horizontal Slider Track -->
+		<div class="w-full flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 md:gap-8 py-6 no-scrollbar px-6 sm:px-12 md:px-24 lg:px-32" id="photo-speak-container">
 			@if (Model.Photos != null && Model.Photos.Any())
 			{
 				@foreach (var photo in Model.Photos)
 				{
 					var photoUrl = $"{Model._containerUrl}{photo.ImageUrl}";
-					<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+					<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 						<div>
-							<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+							<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
 								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="@photo.Title" src="@photoUrl" loading="lazy">
 							</div>
-							<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">
+							<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">
 								@(string.IsNullOrEmpty(photo.Location) ? "Activity" : photo.Location)
 							</p>
-							<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">
+							<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">
 								@photo.Title
 							</h3>
-							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">
+							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">
 								Discover recent updates and developmental milestones across the Nine States of the Niger Delta region.
 							</p>
 						</div>
-						<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
-							<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-								<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+						<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
+							<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+								<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
 							</div>
 							<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
 						</a>
@@ -568,52 +568,52 @@
 			else
 			{
 				<!-- Fallback Photo Cards matching screenshot design -->
-				<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
 							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Healthcare Project" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" loading="lazy">
 						</div>
-						<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">Rivers State</p>
-						<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Medical Equipment Distribution</h3>
-						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">Modern medical equipment distribution to rural health centers across the Niger Delta.</p>
+						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Rivers State</p>
+						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Medical Equipment Distribution</h3>
+						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">Modern medical equipment distribution to rural health centers across the Niger Delta.</p>
 					</div>
-					<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
-						<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-							<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+					<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
+						<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+							<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
 						</div>
 						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
 					</a>
 				</div>
 
-				<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
 							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Infrastructure Project" src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=800&auto=format&fit=crop" loading="lazy">
 						</div>
-						<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">Delta State</p>
-						<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Regional Complex Inspection</h3>
-						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">Structural inspection of the new regional administrative complex.</p>
+						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Delta State</p>
+						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Regional Complex Inspection</h3>
+						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">Structural inspection of the new regional administrative complex.</p>
 					</div>
-					<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
-						<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-							<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+					<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
+						<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+							<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
 						</div>
 						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
 					</a>
 				</div>
 
-				<div class="photo-speak-card bg-white rounded-3xl p-6 border border-outline-variant/15 shadow-[0_10px_30px_rgba(0,0,0,0.05)] flex flex-col justify-between min-w-[85vw] sm:min-w-[340px] md:min-w-[360px] lg:min-w-[380px] snap-start flex-shrink-0 group hover:shadow-xl transition-all duration-300 text-left">
+				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-2xl mb-5 bg-surface-container">
+						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
 							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Community Engagement" src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=800&auto=format&fit=crop" loading="lazy">
 						</div>
-						<p class="text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-2 font-mono">Bayelsa State</p>
-						<h3 class="text-lg sm:text-xl font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Stakeholder Engagement Meeting</h3>
-						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-6 leading-relaxed">Stakeholder engagement meeting with community youth leaders.</p>
+						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Bayelsa State</p>
+						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Stakeholder Engagement Meeting</h3>
+						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">Stakeholder engagement meeting with community youth leaders.</p>
 					</div>
-					<a href="/Media/PhotoAlbum" class="flex items-center gap-3 pt-2 group/btn cursor-pointer">
-						<div class="w-8 h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-							<span class="material-symbols-outlined text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+					<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
+						<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
+							<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
 						</div>
 						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photo</span>
 					</a>
@@ -621,14 +621,35 @@
 			}
 		</div>
 
-		<!-- Carousel Controls (Aligned in Container) -->
-		<div class="max-w-container-max mx-auto px-4 md:px-gutter flex items-center gap-3 mt-6 sm:mt-8">
-			<button id="photo-prev" aria-label="Previous photo" class="w-11 h-11 rounded-full border border-outline-variant text-on-surface-variant hover:border-[#006D37] hover:text-[#006D37] flex items-center justify-center transition-all cursor-pointer shadow-sm">
-				<span class="material-symbols-outlined text-xl">chevron_left</span>
-			</button>
-			<button id="photo-next" aria-label="Next photo" class="w-11 h-11 rounded-full border border-[#006D37] text-[#006D37] hover:bg-[#006D37] hover:text-white flex items-center justify-center transition-all cursor-pointer shadow-md">
-				<span class="material-symbols-outlined text-xl">chevron_right</span>
-			</button>
+		<!-- Dynamic Carousel Controls & Progress Indicator -->
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 sm:mt-6">
+			<!-- Progress Bar & Slide Counter -->
+			<div class="flex items-center gap-4 w-full sm:w-auto">
+				<span id="photo-slide-counter" class="text-xs font-mono font-bold tracking-wider text-[#006D37] min-w-[55px]">
+					01 <span class="text-on-surface-variant/40 font-normal">/ 03</span>
+				</span>
+				<div id="photo-progress-track" class="h-2 bg-outline-variant/20 rounded-full overflow-hidden flex-1 w-full sm:w-48 md:w-64 cursor-pointer">
+					<div id="photo-progress-bar" class="h-full bg-[#006D37] rounded-full transition-all duration-300 min-w-[12px]" style="width: 20%;"></div>
+				</div>
+			</div>
+
+			<!-- Pagination Dots & Nav Controls -->
+			<div class="flex items-center gap-5 w-full sm:w-auto justify-between sm:justify-end">
+				<!-- Dots Container -->
+				<div id="photo-dots-container" class="flex items-center gap-1.5">
+					<!-- Generated dynamically in JS -->
+				</div>
+
+				<!-- Nav Arrows -->
+				<div class="flex items-center gap-2">
+					<button id="photo-prev" aria-label="Previous photo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-outline-variant text-on-surface-variant hover:border-[#006D37] hover:bg-[#006D37]/5 hover:text-[#006D37] flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95">
+						<span class="material-symbols-outlined text-lg sm:text-xl">chevron_left</span>
+					</button>
+					<button id="photo-next" aria-label="Next photo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#006D37] bg-[#006D37] text-white hover:bg-[#005229] hover:border-[#005229] flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95">
+						<span class="material-symbols-outlined text-lg sm:text-xl">chevron_right</span>
+					</button>
+				</div>
+			</div>
 		</div>
 	</section>
 
@@ -1092,43 +1113,142 @@
 
 			showHeroSlide(0);
 
-			// 2. Photo Speak Horizontal Scrolling & Autoplay
 			const container = document.getElementById('photo-speak-container');
 			const prevBtn = document.getElementById('photo-prev');
 			const nextBtn = document.getElementById('photo-next');
+			const progressTrack = document.getElementById('photo-progress-track');
+			const progressBar = document.getElementById('photo-progress-bar');
+			const slideCounter = document.getElementById('photo-slide-counter');
+			const dotsContainer = document.getElementById('photo-dots-container');
 
 			if (container && prevBtn && nextBtn) {
+				const cards = Array.from(container.querySelectorAll('.photo-speak-card'));
 				let scrollInterval = null;
 				let isUserInteracting = false;
 				let interactionTimeout = null;
+				let activeIndex = 0;
 
-				function getScrollAmount() {
-					const card = container.querySelector('.photo-speak-card') || container.querySelector('.group');
-					return card ? card.offsetWidth + 24 : container.offsetWidth / 2; // 24 is gap-6 (1.5rem)
+				// Generate Pagination Dots
+				if (dotsContainer && cards.length > 0) {
+					dotsContainer.innerHTML = '';
+					cards.forEach((_, idx) => {
+						const dot = document.createElement('button');
+						dot.type = 'button';
+						dot.ariaLabel = `Go to slide ${idx + 1}`;
+						dot.className = idx === 0 
+							? 'w-6 h-2 bg-[#006D37] rounded-full transition-all duration-300' 
+							: 'w-2 h-2 bg-outline-variant/40 hover:bg-[#006D37]/60 rounded-full transition-all duration-300 cursor-pointer';
+						dot.addEventListener('click', () => {
+							resetInteractionDelay();
+							scrollToCard(idx);
+						});
+						dotsContainer.appendChild(dot);
+					});
 				}
 
-				function autoScroll() {
-					if (isUserInteracting) return;
-					
-					const scrollAmount = getScrollAmount();
-					const maxScroll = container.scrollWidth - container.clientWidth;
-					
-					if (container.scrollLeft >= maxScroll - 10) {
+				// Click on Progress Track to seek slide
+				if (progressTrack) {
+					progressTrack.addEventListener('click', (e) => {
+						if (!cards.length) return;
+						const rect = progressTrack.getBoundingClientRect();
+						const clickX = e.clientX - rect.left;
+						const fraction = Math.max(0, Math.min(0.99, clickX / rect.width));
+						const targetIndex = Math.floor(fraction * cards.length);
+						resetInteractionDelay();
+						scrollToCard(targetIndex);
+					});
+				}
+
+				function scrollToCard(index) {
+					if (index >= 0 && index < cards.length) {
+						const card = cards[index];
+						const containerRect = container.getBoundingClientRect();
+						const cardRect = card.getBoundingClientRect();
+						const targetScrollLeft = container.scrollLeft + (cardRect.left - containerRect.left) - (containerRect.width / 2) + (cardRect.width / 2);
 						container.scrollTo({
-							left: 0,
-							behavior: 'smooth'
-						});
-					} else {
-						container.scrollBy({
-							left: scrollAmount,
+							left: targetScrollLeft,
 							behavior: 'smooth'
 						});
 					}
 				}
 
+				function updateActiveState() {
+					if (!cards.length) return;
+
+					const containerRect = container.getBoundingClientRect();
+					const containerCenter = containerRect.left + containerRect.width / 2;
+					let closestIndex = 0;
+					let minDistance = Infinity;
+
+					cards.forEach((card, idx) => {
+						const cardRect = card.getBoundingClientRect();
+						const cardCenter = cardRect.left + cardRect.width / 2;
+						const distance = Math.abs(containerCenter - cardCenter);
+
+						if (distance < minDistance) {
+							minDistance = distance;
+							closestIndex = idx;
+						}
+					});
+
+					activeIndex = closestIndex;
+
+					// Update Card Focus Styles
+					cards.forEach((card, idx) => {
+						if (idx === activeIndex) {
+							card.classList.add('scale-100', 'sm:scale-105', 'opacity-100', 'shadow-[0_20px_40px_rgba(0,109,55,0.14)]', 'border-[#006D37]/40', 'z-10');
+							card.classList.remove('scale-95', 'opacity-70', 'shadow-none', 'border-outline-variant/15', 'z-0');
+						} else {
+							card.classList.remove('scale-100', 'sm:scale-105', 'opacity-100', 'shadow-[0_20px_40px_rgba(0,109,55,0.14)]', 'border-[#006D37]/40', 'z-10');
+							card.classList.add('scale-95', 'opacity-70', 'shadow-none', 'border-outline-variant/15', 'z-0');
+						}
+					});
+
+					// Update Progress Bar (Percentage based on active card index)
+					if (progressBar) {
+						const progressPercent = cards.length > 0 ? Math.round(((activeIndex + 1) / cards.length) * 100) : 20;
+						progressBar.style.setProperty('width', `${progressPercent}%`, 'important');
+					}
+
+					// Update Counter
+					if (slideCounter) {
+						const activeStr = String(activeIndex + 1).padStart(2, '0');
+						const totalStr = String(cards.length).padStart(2, '0');
+						slideCounter.innerHTML = `${activeStr} <span class="text-on-surface-variant/40 font-normal">/ ${totalStr}</span>`;
+					}
+
+					// Update Dots
+					if (dotsContainer) {
+						const dots = Array.from(dotsContainer.children);
+						dots.forEach((dot, idx) => {
+							if (idx === activeIndex) {
+								dot.className = 'w-6 h-2 bg-[#006D37] rounded-full transition-all duration-300';
+							} else {
+								dot.className = 'w-2 h-2 bg-outline-variant/40 hover:bg-[#006D37]/60 rounded-full transition-all duration-300 cursor-pointer';
+							}
+						});
+					}
+				}
+
+				// Click card directly to center it
+				cards.forEach((card, idx) => {
+					card.addEventListener('click', (e) => {
+						if (!e.target.closest('a')) {
+							resetInteractionDelay();
+							scrollToCard(idx);
+						}
+					});
+				});
+
+				function autoScroll() {
+					if (isUserInteracting) return;
+					const nextIndex = (activeIndex + 1) % cards.length;
+					scrollToCard(nextIndex);
+				}
+
 				function startAutoScroll() {
 					stopAutoScroll();
-					scrollInterval = setInterval(autoScroll, 4000);
+					scrollInterval = setInterval(autoScroll, 4500);
 				}
 
 				function stopAutoScroll() {
@@ -1142,41 +1262,31 @@
 					interactionTimeout = setTimeout(() => {
 						isUserInteracting = false;
 						startAutoScroll();
-					}, 5000);
+					}, 6000);
 				}
 
 				prevBtn.addEventListener('click', () => {
 					resetInteractionDelay();
-					const scrollAmount = getScrollAmount();
-					if (container.scrollLeft <= 10) {
-						container.scrollTo({
-							left: container.scrollWidth,
-							behavior: 'smooth'
-						});
-					} else {
-						container.scrollBy({
-							left: -scrollAmount,
-							behavior: 'smooth'
-						});
-					}
+					const prevIndex = activeIndex > 0 ? activeIndex - 1 : cards.length - 1;
+					scrollToCard(prevIndex);
 				});
 
 				nextBtn.addEventListener('click', () => {
 					resetInteractionDelay();
-					const scrollAmount = getScrollAmount();
-					const maxScroll = container.scrollWidth - container.clientWidth;
-					if (container.scrollLeft >= maxScroll - 10) {
-						container.scrollTo({
-							left: 0,
-							behavior: 'smooth'
-						});
-					} else {
-						container.scrollBy({
-							left: scrollAmount,
-							behavior: 'smooth'
-						});
-					}
+					const nextIndex = (activeIndex + 1) % cards.length;
+					scrollToCard(nextIndex);
 				});
+
+				let ticking = false;
+				container.addEventListener('scroll', () => {
+					if (!ticking) {
+						window.requestAnimationFrame(() => {
+							updateActiveState();
+							ticking = false;
+						});
+						ticking = true;
+					}
+				}, { passive: true });
 
 				container.addEventListener('mouseenter', () => { 
 					isUserInteracting = true; 
@@ -1190,6 +1300,8 @@
 					resetInteractionDelay();
 				}, { passive: true });
 
+				// Initial trigger
+				updateActiveState();
 				startAutoScroll();
 			}
 
