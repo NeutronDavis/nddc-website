@@ -1,6 +1,7 @@
 using EFCore_Lib.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using NDDC_Website_2024.Validators;
 using NddcWebsiteLibrary.Data.CloudStorage;
@@ -12,6 +13,18 @@ using NddcWebsiteLibrary.Model.IReport;
 using NddcWebsiteLibrary.Model.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
+
+// Render (and any reverse proxy) terminates TLS and forwards to us over plain HTTP.
+// Without this, UseHttpsRedirection below cannot see the original scheme and
+// either no-ops or produces a redirect loop.
+builder.Services.Configure<ForwardedHeadersOptions>(options =>
+{
+    options.ForwardedHeaders = ForwardedHeaders.XForwardedFor
+                             | ForwardedHeaders.XForwardedProto
+                             | ForwardedHeaders.XForwardedHost;
+    options.KnownNetworks.Clear();
+    options.KnownProxies.Clear();
+});
 
 // Add services to the container.
 builder.Services.AddRazorPages();
@@ -30,6 +43,8 @@ builder.Services.AddDbContext<NDDCWebsiteContext>(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
+app.UseForwardedHeaders();
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
@@ -43,6 +58,11 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+
+// Liveness probe. Deliberately does NOT touch the database: Render restarts the
+// container on a failed health check, and we do not want a database blip to
+// trigger a restart loop of an otherwise-healthy web process.
+app.MapGet("/healthz", () => "OK").AllowAnonymous();
 
 app.MapRazorPages();
 

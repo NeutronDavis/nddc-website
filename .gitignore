@@ -360,3 +360,33 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# ---------------------------------------------------------------------
+# Secrets — added for Render/container deployment
+#
+# This project reads every credential through
+# IConfiguration.GetConnectionString(...). In production those values are
+# supplied as `ConnectionStrings__*` environment variables by Render (see
+# render.yaml). Do NOT ever place real credentials in a committed JSON file:
+# appsettings.json is copied into the Docker image and is readable by anyone
+# who can pull the image.
+#
+# Local development keeps using .NET User Secrets, which live outside the repo:
+#   dotnet user-secrets set "ConnectionStrings:SqlDb" "<value>"
+#   dotnet user-secrets set "ConnectionStrings:PMIS" "<value>"
+#   dotnet user-secrets set "ConnectionStrings:AWSAccessKeyId" "<value>"
+#   dotnet user-secrets set "ConnectionStrings:AWSSecreteAccessKey" "<value>"
+#   dotnet user-secrets set "ConnectionStrings:AWSBucketName" "<value>"
+#   dotnet user-secrets set "ConnectionStrings:AWSContainerUrl" "<value>"
+#   dotnet user-secrets set "ConnectionStrings:RackspaceCDN" "<value>"
+#
+# appsettings.json and appsettings.Development.json remain tracked; they are
+# safe because they contain no credentials.
+# ---------------------------------------------------------------------
+.env
+.env.*
+!.env.example
+appsettings.Production.json
+appsettings.*.local.json
+secrets.json
+*.pubxml.user

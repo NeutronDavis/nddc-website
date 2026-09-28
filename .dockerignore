@@ -1,0 +1,23 @@
+# Build output MUST be excluded. The local bin/obj were produced on Windows and
+# shipping them into a Linux image causes confusing build or runtime failures.
+**/bin/
+**/obj/
+**/out/
+
+# Front-end toolchain
+**/node_modules/
+
+# IDE / OS noise
+**/.vs/
+**/.vscode/
+**/.idea/
+**/*.user
+**/logs/
+.git/
+.gitignore
+.dockerignore
+
+# CI + container definition are not needed inside the image
+azure-pipelines.yml
+Dockerfile
+.dockerignore

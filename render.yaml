@@ -1,0 +1,51 @@
+# Render Blueprint — NDDC Website 2024
+#
+# Docs: https://render.com/docs/blueprint-spec
+# Every key marked `sync: false` is a SECRET. Render will PROMPT you for its
+# value on first apply and stores it encrypted. It is never written to this file
+# and never baked into the Docker image.
+#
+# Apply:  Render dashboard -> New -> Blueprint -> point at this repo
+#   (or: render blueprint launch)
+
+services:
+  - type: web
+    name: nddc-website
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    region: frankfurt # closest Render region to Nigeria / EU latency
+    branch: main
+
+    # /healthz is mapped in Program.cs and does not touch the database, so a
+    # database outage will not cause Render to restart-loop the web process.
+    healthCheckPath: /healthz
+
+    envVars:
+      # ---- framework ----
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
+
+      # ---- database (SQL Server, hosted outside Render — see notes) ----
+      # The app reads all of these through IConfiguration.GetConnectionString(...),
+      # and .NET maps the `ConnectionStrings:` section to `ConnectionStrings__*`
+      # environment variables automatically. No code change is required.
+      - key: ConnectionStrings__SqlDb
+        sync: false   # e.g. "Server=xyz.database.windows.net;Database=NDDCWebsite;User Id=...;Password=...;Encrypt=True;TrustServerCertificate=False"
+      - key: ConnectionStrings__PMIS
+        sync: false   # second SQL Server database used by SqlProjects
+
+      # ---- AWS S3 (media/CDN) ----
+      - key: ConnectionStrings__AWSAccessKeyId
+        sync: false
+      - key: ConnectionStrings__AWSSecreteAccessKey
+        sync: false
+      # Not secret, but deployment-specific — set explicitly so the image does
+      # not depend on a baked-in default.
+      - key: ConnectionStrings__AWSBucketName
+        sync: false
+      - key: ConnectionStrings__AWSContainerUrl
+        sync: false
+      - key: ConnectionStrings__RackspaceCDN
+        sync: false
