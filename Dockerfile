@@ -25,11 +25,23 @@ RUN dotnet publish NDDC-Website-2024/NDDC-Website-2024.csproj \
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
+# Custom OpenSSL config that allows older TLS versions for legacy SQL Server.
 # Must run as root, so it goes BEFORE `USER`.
-# Lets the container negotiate with older SQL Server TLS setups.
-RUN sed -i 's/MinProtocol = TLSv1.2/MinProtocol = TLSv1/' /etc/ssl/openssl.cnf \
- && sed -i 's/CipherString = DEFAULT:@SECLEVEL=2/CipherString = DEFAULT:@SECLEVEL=0/' /etc/ssl/openssl.cnf \
- && grep -E "MinProtocol|CipherString" /etc/ssl/openssl.cnf
+RUN printf '%s\n' \
+  'openssl_conf = openssl_init' \
+  '' \
+  '[openssl_init]' \
+  'ssl_conf = ssl_sect' \
+  '' \
+  '[ssl_sect]' \
+  'system_default = system_default_sect' \
+  '' \
+  '[system_default_sect]' \
+  'MinProtocol = TLSv1' \
+  'CipherString = DEFAULT:@SECLEVEL=0' \
+  > /etc/ssl/openssl-legacy.cnf
+
+ENV OPENSSL_CONF=/etc/ssl/openssl-legacy.cnf
 
 # Run unprivileged. The base image ships a built-in `app` user (UID 1654).
 USER $APP_UID
