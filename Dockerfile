@@ -25,6 +25,12 @@ RUN dotnet publish NDDC-Website-2024/NDDC-Website-2024.csproj \
 FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS final
 WORKDIR /app
 
+# Must run as root, so it goes BEFORE `USER`.
+# Lets the container negotiate with older SQL Server TLS setups.
+RUN sed -i 's/MinProtocol = TLSv1.2/MinProtocol = TLSv1/' /etc/ssl/openssl.cnf \
+ && sed -i 's/CipherString = DEFAULT:@SECLEVEL=2/CipherString = DEFAULT:@SECLEVEL=0/' /etc/ssl/openssl.cnf \
+ && grep -E "MinProtocol|CipherString" /etc/ssl/openssl.cnf
+
 # Run unprivileged. The base image ships a built-in `app` user (UID 1654).
 USER $APP_UID
 
