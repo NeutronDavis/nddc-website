@@ -59,6 +59,30 @@ builder.Services.AddDataProtection()
 
 var app = builder.Build();
 
+// Automatically ensure DataProtectionKeys table exists for ASP.NET Core Data Protection
+using (var scope = app.Services.CreateScope())
+{
+    try
+    {
+        var db = scope.ServiceProvider.GetRequiredService<NDDCWebsiteContext>();
+        db.Database.ExecuteSqlRaw(@"
+            IF NOT EXISTS (SELECT 1 FROM sys.tables WHERE object_id = OBJECT_ID(N'[dbo].[DataProtectionKeys]'))
+            BEGIN
+                CREATE TABLE [dbo].[DataProtectionKeys] (
+                    [Id]           INT IDENTITY (1, 1) NOT NULL,
+                    [FriendlyName] NVARCHAR (512)   NULL,
+                    [Xml]          NVARCHAR (MAX)     NOT NULL,
+                    CONSTRAINT [PK_DataProtectionKeys] PRIMARY KEY CLUSTERED ([Id] ASC)
+                );
+            END");
+    }
+    catch (Exception ex)
+    {
+        var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+        logger.LogWarning(ex, "Could not ensure DataProtectionKeys table exists at startup. If DataProtectionKeys table is missing, run NDDC_Patch_002_DataProtectionKeys.sql.");
+    }
+}
+
 // Configure the HTTP request pipeline.
 app.UseForwardedHeaders();
 

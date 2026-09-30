@@ -24,13 +24,27 @@ namespace NDDC_Website_2024.Pages.Services.ProjectDatabase
         public IndexModel(IProjectsData projDb)
         {
 			this.projDb = projDb;
+            LatestProjects = new List<MyProjectModel>();
+            States = new List<MyStateModel>();
+            ProjectCategories = new List<MyProjectCategoryModel>();
+            Project = new MyProjectModel();
 		}
         public void OnGet()
         {
-            LatestProjects = projDb.GetLatestProjects();
-            RoadsCount = projDb.CountRoadProjects();
-            States = projDb.GetStates();
-            ProjectCategories = projDb.GetProjectCategories();
+            try
+            {
+                LatestProjects = projDb.GetLatestProjects() ?? new List<MyProjectModel>();
+                RoadsCount = projDb.CountRoadProjects();
+                States = projDb.GetStates() ?? new List<MyStateModel>();
+                ProjectCategories = projDb.GetProjectCategories() ?? new List<MyProjectCategoryModel>();
+            }
+            catch
+            {
+                // Graceful fallback: allows the page to load even if the PMIS database is offline or unconfigured
+                LatestProjects = new List<MyProjectModel>();
+                States = new List<MyStateModel>();
+                ProjectCategories = new List<MyProjectCategoryModel>();
+            }
         }
         public async Task<IActionResult> OnPost()
         {
