@@ -2,11 +2,12 @@
 @model NDDC_Website_2024.Pages.Services.ProjectDatabase.SearchResultsModel
 @{
     Layout = "_Layout";
+    var resultCount = Model.Projects?.Count ?? 0;
 }
 
 <!-- Hero Banner -->
 <section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
-    <div class="max-w-container-max mx-auto text-left space-y-6">
+    <div class="max-w-container-max mx-auto text-left space-y-4">
         <nav class="flex flex-wrap items-center gap-2 text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
             <a class="hover:text-primary transition-colors" href="/">Home</a>
             <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
@@ -14,88 +15,166 @@
             <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
             <span class="text-primary font-semibold">Search Results</span>
         </nav>
-        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
-            Database Search Results
-        </h1>
-        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
+            <div>
+                <h1 class="font-display-lg text-2xl sm:text-4xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+                    Search Results
+                </h1>
+                <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-2.5 sm:mt-3 rounded-full"></div>
+            </div>
+            <span class="bg-secondary/10 text-secondary font-extrabold text-xs sm:text-sm md:text-base px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-secondary/20 shadow-sm shrink-0">
+                @resultCount.ToString("N0") Projects Found
+            </span>
+        </div>
     </div>
 </section>
 
 <!-- Filter Form & Table Section -->
-<section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-8">
+<section class="py-8 sm:py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-6 sm:space-y-8">
     <!-- Filter Card -->
     <div class="bg-white rounded-2xl p-4 sm:p-6 border border-outline-variant/20 shadow-md text-left">
-        <form method="post" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+        <form method="post" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-end">
             <div>
                 <label for="projectName" class="block text-xs font-bold text-primary uppercase tracking-wider mb-1.5">Project Title</label>
-                <input type="text" id="projectName" asp-for="@Model.Project.ProjectName" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Enter Project Name">
+                <input type="text" id="projectName" asp-for="@Model.Project.ProjectName" class="w-full px-4 py-2.5 rounded-xl border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Enter keyword or location...">
             </div>
             <div>
                 <label for="stateSelect" class="block text-xs font-bold text-primary uppercase tracking-wider mb-1.5">State</label>
-                <select id="stateSelect" asp-for="@Model.Project.SID" asp-items="@(new SelectList(Model.States, "SID", "StateName"))" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white">
-                    <option value="0">Select State</option>
+                <select id="stateSelect" asp-for="@Model.Project.SID" asp-items="@(new SelectList(Model.States, "SID", "StateName"))" class="w-full px-4 py-2.5 rounded-xl border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white">
+                    <option value="0">All States</option>
                 </select>
             </div>
             <div>
                 <label for="categorySelect" class="block text-xs font-bold text-primary uppercase tracking-wider mb-1.5">Category</label>
-                <select id="categorySelect" asp-for="@Model.Project.PCID" asp-items="@(new SelectList(Model.ProjectCategories, "PCID", "CatName"))" class="w-full px-4 py-2.5 rounded-lg border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white">
-                    <option value="0">Select Category</option>
+                <select id="categorySelect" asp-for="@Model.Project.PCID" asp-items="@(new SelectList(Model.ProjectCategories, "PCID", "CatName"))" class="w-full px-4 py-2.5 rounded-xl border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all bg-white">
+                    <option value="0">All Categories</option>
                 </select>
             </div>
-            <div class="pt-2 sm:pt-6">
-                <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
+            <div>
+                <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-2.5 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
                     <span class="material-symbols-outlined text-sm">filter_list</span> Refine Search
                 </button>
             </div>
         </form>
     </div>
 
-    <!-- Results Table Container -->
-    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-outline-variant/20 shadow-md text-left space-y-6">
-        <div class="border-b border-outline-variant/15 pb-4 flex items-center justify-between">
-            <h2 class="text-xl font-bold text-primary">Matching Project Records</h2>
-            <span class="text-xs font-semibold text-on-surface-variant/80">Showing database records</span>
+    <!-- Results Container -->
+    <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-outline-variant/20 shadow-md text-left space-y-4 sm:space-y-6">
+        <div class="border-b border-outline-variant/15 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+                <h2 class="text-lg sm:text-xl font-bold text-primary">Matching Project Records</h2>
+                <p class="text-xs text-on-surface-variant/80">Filtered results from the Niger Delta Development Commission Database</p>
+            </div>
+            <span class="text-xs font-semibold text-on-surface-variant/80 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/20 self-start sm:self-auto">
+                @resultCount record@(resultCount != 1 ? "s" : "")
+            </span>
         </div>
 
-        <div class="overflow-x-auto rounded-xl border border-outline-variant/20">
-            <table class="w-full text-left text-sm">
+        <!-- Desktop Table View (Hidden on mobile) -->
+        <div class="hidden md:block overflow-x-auto rounded-xl border border-outline-variant/20">
+            <table class="w-full text-left text-sm min-w-[680px]">
                 <thead class="bg-surface-container text-primary uppercase text-xs font-bold border-b border-outline-variant/20">
                     <tr>
-                        <th scope="col" class="px-6 py-4">S/N</th>
-                        <th scope="col" class="px-6 py-4">Project Title</th>
-                        <th scope="col" class="px-6 py-4">LGA / Location</th>
-                        <th scope="col" class="px-6 py-4">State</th>
-                        <th scope="col" class="px-6 py-4">Category</th>
-                        <th scope="col" class="px-6 py-4 text-right">Action</th>
+                        <th scope="col" class="px-5 py-4 w-16">S/N</th>
+                        <th scope="col" class="px-5 py-4">Project Title</th>
+                        <th scope="col" class="px-5 py-4">Location / LGA</th>
+                        <th scope="col" class="px-5 py-4">State</th>
+                        <th scope="col" class="px-5 py-4">Category</th>
+                        <th scope="col" class="px-5 py-4 text-right">Action</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-outline-variant/15 text-on-surface">
                     @if (Model.Projects != null && Model.Projects.Any())
                     {
+                        var index = 1;
                         foreach (var item in Model.Projects)
                         {
                             <tr class="hover:bg-surface-container-low transition-colors">
-                                <td class="px-6 py-4 font-bold text-primary">@item.SrNo</td>
-                                <td class="px-6 py-4 font-semibold text-primary">@item.ProjectName</td>
-                                <td class="px-6 py-4 text-on-surface-variant">@item.Location</td>
-                                <td class="px-6 py-4 text-on-surface-variant">@item.StateName</td>
-                                <td class="px-6 py-4 text-on-surface-variant">@item.CatName</td>
-                                <td class="px-6 py-4 text-right">
-                                    <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all shadow-sm">View Details</a>
+                                <td class="px-5 py-4 font-bold text-primary/80">@(item.SrNo > 0 ? item.SrNo : index)</td>
+                                <td class="px-5 py-4 font-semibold text-primary">
+                                    <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="hover:text-secondary transition-colors line-clamp-2">
+                                        @item.ProjectName
+                                    </a>
+                                </td>
+                                <td class="px-5 py-4 text-on-surface-variant whitespace-nowrap">
+                                    @(string.IsNullOrEmpty(item.Location) ? "-" : item.Location)
+                                </td>
+                                <td class="px-5 py-4 text-on-surface-variant whitespace-nowrap">
+                                    <span class="inline-flex items-center gap-1 font-medium text-primary">
+                                        <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
+                                        @item.StateName
+                                    </span>
+                                </td>
+                                <td class="px-5 py-4 whitespace-nowrap">
+                                    <span class="bg-surface-container text-primary text-xs font-semibold px-2.5 py-1 rounded-full border border-outline-variant/20">
+                                        @(string.IsNullOrEmpty(item.CatName) ? "General" : item.CatName)
+                                    </span>
+                                </td>
+                                <td class="px-5 py-4 text-right whitespace-nowrap">
+                                    <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all shadow-sm inline-flex items-center gap-1">
+                                        <span>View</span>
+                                        <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    </a>
                                 </td>
                             </tr>
+                            index++;
                         }
                     }
                     else
                     {
                         <tr>
-                            <td colspan="6" class="px-6 py-8 text-center text-on-surface-variant/70 italic">
-                                No matching projects found. Please adjust your search criteria above.
+                            <td colspan="6" class="px-6 py-12 text-center text-on-surface-variant">
+                                <span class="material-symbols-outlined text-4xl text-on-surface-variant/40 mb-2 block">search_off</span>
+                                <p class="text-sm font-semibold text-primary">No matching projects found</p>
+                                <p class="text-xs text-on-surface-variant/70 mt-1">Please try modifying your keywords, state, or category filters above.</p>
                             </td>
                         </tr>
                     }
                 </tbody>
             </table>
+        </div>
+
+        <!-- Mobile Projects Card List (Shown on screens < 768px) -->
+        <div class="block md:hidden space-y-3">
+            @if (Model.Projects != null && Model.Projects.Any())
+            {
+                var mIndex = 1;
+                foreach (var item in Model.Projects)
+                {
+                    <div class="bg-surface-container-low/60 rounded-xl p-4 border border-outline-variant/20 space-y-2.5">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-xs font-mono font-bold text-primary/70">#@(item.SrNo > 0 ? item.SrNo : mIndex)</span>
+                            <span class="bg-surface-container text-primary text-[11px] font-semibold px-2 py-0.5 rounded-full border border-outline-variant/20">
+                                @(string.IsNullOrEmpty(item.CatName) ? "General" : item.CatName)
+                            </span>
+                        </div>
+                        <h4 class="text-sm font-bold text-primary leading-snug">
+                            <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="hover:text-secondary transition-colors">
+                                @item.ProjectName
+                            </a>
+                        </h4>
+                        <div class="flex items-center justify-between gap-2 pt-2 border-t border-outline-variant/10 text-xs">
+                            <span class="text-on-surface-variant flex items-center gap-1 truncate max-w-[65%]">
+                                <span class="material-symbols-outlined text-[14px] text-secondary shrink-0">location_on</span>
+                                <span class="truncate">@(string.IsNullOrEmpty(item.Location) ? item.StateName : $"{item.Location}, {item.StateName}")</span>
+                            </span>
+                            <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="bg-secondary text-white font-bold px-3 py-1.5 rounded-lg text-xs shrink-0 inline-flex items-center gap-1 shadow-sm">
+                                <span>View</span>
+                                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    mIndex++;
+                }
+            }
+            else
+            {
+                <div class="py-8 text-center text-on-surface-variant">
+                    <span class="material-symbols-outlined text-3xl text-on-surface-variant/40 mb-1 block">search_off</span>
+                    <p class="text-xs font-semibold text-primary">No matching projects found</p>
+                    <p class="text-[11px] text-on-surface-variant/70 mt-1">Please try modifying your keywords, state, or category filters above.</p>
+                </div>
+            }
         </div>
     </div>
 </section>

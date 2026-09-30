@@ -24,7 +24,7 @@
 
         <!-- Search Bar Card -->
         <div class="bg-white rounded-2xl p-4 sm:p-6 border border-outline-variant/20 shadow-lg text-left">
-            <form method="post" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-center">
+            <form method="post" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-end">
                 <div>
                     <label for="projectNameInput" class="block text-xs font-bold text-primary uppercase tracking-wider mb-1.5">Project Name / Keyword</label>
                     <input type="text" id="projectNameInput" asp-for="@Model.Project.ProjectName" placeholder="Enter keyword or title..." class="w-full px-4 py-2.5 rounded-lg border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
@@ -44,12 +44,57 @@
                     </select>
                 </div>
 
-                <div class="pt-2 sm:pt-6">
-                    <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-3 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
+                <div>
+                    <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-2.5 rounded-lg transition-all duration-300 shadow-md hover:shadow-lg inline-flex items-center justify-center gap-2">
                         <span class="material-symbols-outlined text-sm">search</span> Search Database
                     </button>
                 </div>
             </form>
+        </div>
+
+        <!-- High-Impact KPI Metrics Bar (Version 1 Reference) -->
+        <div class="mt-6 sm:mt-8 bg-[#006d37] text-white rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden border border-white/10">
+            <div class="grid grid-cols-2 lg:grid-cols-4">
+                <!-- KPI 1: Projects and Programs -->
+                <div class="p-5 sm:p-7 md:p-8 flex flex-col justify-center text-left border-b lg:border-b-0 border-r border-white/20">
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        @((Model.Insights?.TotalProjects > 0 ? Model.Insights.TotalProjects : 21283).ToString("N0"))
+                    </span>
+                    <span class="text-white/90 text-xs sm:text-sm md:text-base font-medium mt-2 sm:mt-3 leading-snug">
+                        Projects and Programs
+                    </span>
+                </div>
+
+                <!-- KPI 2: Completed Projects -->
+                <div class="p-5 sm:p-7 md:p-8 flex flex-col justify-center text-left border-b lg:border-b-0 lg:border-r border-white/20">
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        @((Model.Insights?.CompletedProjects > 0 ? Model.Insights.CompletedProjects : 184).ToString("N0"))
+                    </span>
+                    <span class="text-white/90 text-xs sm:text-sm md:text-base font-medium mt-2 sm:mt-3 leading-snug">
+                        Completed Projects
+                    </span>
+                </div>
+
+                <!-- KPI 3: Mandate States Covered -->
+                <div class="p-5 sm:p-7 md:p-8 flex flex-col justify-center text-left border-r border-white/20">
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        @((Model.Insights?.StatesCovered > 0 ? Model.Insights.StatesCovered : 13).ToString("N0"))
+                    </span>
+                    <span class="text-white/90 text-xs sm:text-sm md:text-base font-medium mt-2 sm:mt-3 leading-snug">
+                        Mandate States Covered
+                    </span>
+                </div>
+
+                <!-- KPI 4: Development Sectors -->
+                <div class="p-5 sm:p-7 md:p-8 flex flex-col justify-center text-left">
+                    <span class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-none">
+                        @((Model.Insights?.TotalCategories > 0 ? Model.Insights.TotalCategories : 18).ToString("N0"))
+                    </span>
+                    <span class="text-white/90 text-xs sm:text-sm md:text-base font-medium mt-2 sm:mt-3 leading-snug">
+                        Development Sectors
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
 </section>
@@ -58,114 +103,162 @@
 <section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-12">
     <!-- Categories Grid -->
     <div>
-        <div class="text-left mb-6">
-            <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Sectors</span>
-            <h2 class="text-2xl font-bold text-primary mt-1">Browse Projects by Category</h2>
+        <div class="flex items-center justify-between mb-6 flex-wrap gap-2 text-left">
+            <div>
+                <h2 class="text-2xl font-bold text-primary mt-1">Browse Projects by Category</h2>
+            </div>
+      
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <!-- Roads/Bridges -->
-            <a href="/Services/ProjectDatabase/Category" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">add_road</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            @if (Model.TopCategories != null && Model.TopCategories.Any())
+            {
+                foreach (var cat in Model.TopCategories)
+                {
+                    <a asp-page="Category" asp-route-pcid="@cat.PCID" class="group bg-white rounded-2xl p-5 sm:p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between">
+                        <div class="space-y-3">
+                            <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+                                <span class="material-symbols-outlined text-2xl">
+                                    @(cat.CatName.ToLower().Contains("road") || cat.CatName.ToLower().Contains("bridge") ? "add_road" :
+                                      cat.CatName.ToLower().Contains("water") ? "water_drop" :
+                                      cat.CatName.ToLower().Contains("solar") || cat.CatName.ToLower().Contains("electric") ? "lightbulb" :
+                                      cat.CatName.ToLower().Contains("canal") || cat.CatName.ToLower().Contains("desilt") ? "waves" : "account_tree")
+                                </span>
+                            </div>
+                            <h3 class="text-base sm:text-lg font-bold text-primary group-hover:text-secondary transition-colors line-clamp-1">@cat.CatName</h3>
+                            @if (cat.ProjCount > 0)
+                            {
+                                <p class="text-xl sm:text-2xl font-extrabold text-secondary">@cat.ProjCount.ToString("N0") <span class="text-xs font-normal text-on-surface-variant">Projects</span></p>
+                            }
+                        </div>
+                        <span class="mt-4 text-xs font-bold text-secondary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                            View Projects <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                        </span>
+                    </a>
+                }
+            }
+            else
+            {
+                <a asp-page="Category" asp-route-pcid="1" class="group bg-white rounded-2xl p-5 sm:p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between">
+                    <div class="space-y-3">
+                        <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
+                            <span class="material-symbols-outlined text-2xl">add_road</span>
+                        </div>
+                        <h3 class="text-base sm:text-lg font-bold text-primary group-hover:text-secondary transition-colors">Roads & Bridges</h3>
+                        <p class="text-xl sm:text-2xl font-extrabold text-secondary">@Model.RoadsCount.ToString("N0") <span class="text-xs font-normal text-on-surface-variant">Projects</span></p>
                     </div>
-                    <h3 class="text-lg font-bold text-primary group-hover:text-secondary transition-colors">Roads & Bridges</h3>
-                    <p class="text-2xl font-extrabold text-secondary">@Model.RoadsCount <span class="text-xs font-normal text-on-surface-variant">Projects</span></p>
-                </div>
-                <span class="mt-4 text-xs font-bold text-secondary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    View Projects <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                </span>
-            </a>
-
-            <!-- Desilting -->
-            <a href="/Services/ProjectDatabase/Category" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">waves</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-primary group-hover:text-secondary transition-colors">Canal Desilting</h3>
-                    <p class="text-2xl font-extrabold text-secondary">2,773 <span class="text-xs font-normal text-on-surface-variant">Projects</span></p>
-                </div>
-                <span class="mt-4 text-xs font-bold text-secondary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    View Insights <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                </span>
-            </a>
-
-            <!-- Water Supply -->
-            <a href="/Services/ProjectDatabase/Category" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">water_drop</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-primary group-hover:text-secondary transition-colors">Water Supply</h3>
-                    <p class="text-2xl font-extrabold text-secondary">1,845 <span class="text-xs font-normal text-on-surface-variant">Projects</span></p>
-                </div>
-                <span class="mt-4 text-xs font-bold text-secondary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    View Insights <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                </span>
-            </a>
-
-            <!-- Electricity & Solar -->
-            <a href="/Services/ProjectDatabase/Category" class="group bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left flex flex-col justify-between">
-                <div class="space-y-3">
-                    <div class="w-12 h-12 rounded-xl bg-primary/10 text-primary flex items-center justify-center group-hover:bg-secondary group-hover:text-white transition-colors duration-300">
-                        <span class="material-symbols-outlined text-2xl">lightbulb</span>
-                    </div>
-                    <h3 class="text-lg font-bold text-primary group-hover:text-secondary transition-colors">Electrification & Solar</h3>
-                    <p class="text-2xl font-extrabold text-secondary">3,120 <span class="text-xs font-normal text-on-surface-variant">Projects</span></p>
-                </div>
-                <span class="mt-4 text-xs font-bold text-secondary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    View Insights <span class="material-symbols-outlined text-xs">arrow_forward</span>
-                </span>
-            </a>
+                    <span class="mt-4 text-xs font-bold text-secondary group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
+                        View Projects <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                    </span>
+                </a>
+            }
         </div>
     </div>
+
+    <!-- Latest Projects Showcase -->
+    @if (Model.LatestProjects != null && Model.LatestProjects.Any())
+    {
+        <div>
+            <div class="flex items-center justify-between mb-6 flex-wrap gap-2 text-left">
+                <div>
+                    <h2 class="text-xl sm:text-2xl font-bold text-primary mt-1">Latest Commissioned Projects</h2>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 text-left">
+                @foreach (var item in Model.LatestProjects)
+                {
+                    <div class="bg-white rounded-2xl p-5 sm:p-6 border border-outline-variant/20 shadow-sm hover:shadow-lg transition-all duration-300 flex flex-col justify-between space-y-4">
+                        <div class="space-y-2.5">
+                            <div class="flex items-center justify-between gap-2 flex-wrap">
+                                <span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-primary/5 text-primary border border-primary/10">
+                                    @(item.CatName ?? "Project")
+                                </span>
+                                @if (item.PID > 0)
+                                {
+                                    <span class="text-[11px] font-mono text-on-surface-variant/70">#@item.PID</span>
+                                }
+                            </div>
+                            <h3 class="text-sm sm:text-base font-bold text-primary hover:text-secondary transition-colors line-clamp-2">
+                                <a asp-page="ProjectDetails" asp-route-pid="@item.PID">@item.ProjectName</a>
+                            </h3>
+                            @if (!string.IsNullOrEmpty(item.Location))
+                            {
+                                <p class="text-xs text-on-surface-variant flex items-start gap-1.5 break-words">
+                                    <span class="material-symbols-outlined text-sm text-secondary shrink-0 mt-0.5">location_on</span>
+                                    <span>@item.Location</span>
+                                </p>
+                            }
+                        </div>
+                        <div class="pt-3 border-t border-outline-variant/10 flex items-center justify-between">
+                            <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="text-xs font-bold text-secondary hover:text-primary transition-colors inline-flex items-center gap-1">
+                                View Details <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
 
     <!-- State Offices / Region Distribution Grid -->
     <div>
         <div class="text-left mb-6">
-            <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Member States</span>
-            <h2 class="text-2xl font-bold text-primary mt-1">Regional State Distribution</h2>
+            <h2 class="text-xl sm:text-2xl font-bold text-primary mt-1">Regional State Distribution</h2>
         </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 text-left">
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Abia State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">1,240 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Akwa Ibom</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">3,150 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Bayelsa State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">4,344 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Cross River</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">2,080 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Delta State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">4,890 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Edo State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">1,960 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Imo State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">1,780 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Ondo State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">1,450 Projects</p>
-            </a>
-            <a href="/Services/ProjectDatabase/StateDetails" class="bg-white hover:bg-surface-container rounded-xl p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all">
-                <h4 class="font-bold text-primary text-base">Rivers State</h4>
-                <p class="text-xs text-secondary font-semibold mt-1">5,120 Projects</p>
-            </a>
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 text-left">
+            @if (Model.States != null && Model.States.Any())
+            {
+                foreach (var state in Model.States)
+                {
+                    <a asp-page="SearchResults" asp-route-sid="@state.SID" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                        <h4 class="font-bold text-primary text-sm sm:text-base truncate">@state.StateName</h4>
+                        <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">
+                            Explore <span class="material-symbols-outlined text-xs">chevron_right</span>
+                        </span>
+                    </a>
+                }
+            }
+            else
+            {
+                <a asp-page="SearchResults" asp-route-sid="1" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Abia State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="2" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Akwa Ibom</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="3" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Bayelsa State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="4" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Cross River</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="5" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Delta State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="6" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Edo State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="7" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Imo State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="8" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Ondo State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+                <a asp-page="SearchResults" asp-route-sid="9" class="bg-white hover:bg-surface-container rounded-xl p-3.5 sm:p-4 border border-outline-variant/20 shadow-sm hover:border-secondary transition-all block">
+                    <h4 class="font-bold text-primary text-sm sm:text-base truncate">Rivers State</h4>
+                    <span class="text-xs text-secondary font-semibold mt-1 inline-flex items-center gap-0.5 sm:gap-1">Explore <span class="material-symbols-outlined text-xs">chevron_right</span></span>
+                </a>
+            }
         </div>
     </div>
 </section>

@@ -1,4 +1,4 @@
-﻿using NddcWebsiteLibrary.Model.Projects;
+using NddcWebsiteLibrary.Model.Projects;
 
 namespace NddcWebsiteLibrary.Data.Projects
 {
@@ -12,5 +12,11 @@ namespace NddcWebsiteLibrary.Data.Projects
         List<MyProjectModel> GetProjectsAdhocAsync(string projectName, int sid, int pcid);
 		List<MyStateModel> GetStates();
         List<MyProjectModel> ViewRoadsAndBridgesProjects();
+        List<MyProjectCategoryModel> GetTopCategoriesWithCounts(int count = 4);
+        MyProjectCategoryModel GetCategoryById(int pcid);
+        int CountCategoryProjects(int pcid);
+        List<MyProjectModel> GetProjectsByCategory(int pcid, int top = 50);
+        List<MyProjectModel> GetProjectsByCategoryPaged(int pcid, int pageNumber, int pageSize);
+        MyProjectInsightsModel GetProjectInsights();
 	}
 }

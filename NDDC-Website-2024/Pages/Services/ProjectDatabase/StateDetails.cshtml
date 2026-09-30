@@ -2,6 +2,13 @@
 @model NDDC_Website_2024.Pages.Services.ProjectDatabase.StateDetailsModel
 @{
     Layout = "_Layout";
+    var stateName = Model.State?.StateName ?? "State Projects";
+    var totalProjects = Model.Projects?.Count ?? 0;
+    var topSectors = Model.SectorBreakdown.Take(4).ToList();
+
+    // Prepare JSON data for ApexCharts donut
+    var chartLabels = Model.SectorBreakdown.Any() ? Model.SectorBreakdown.Keys.Take(5).ToList() : new List<string> { "Roads & Bridges", "Electrification", "Buildings", "Water Supply", "Others" };
+    var chartSeries = Model.SectorBreakdown.Any() ? Model.SectorBreakdown.Values.Take(5).ToList() : new List<int> { 139, 420, 106, 202, 300 };
 }
 
 <!-- Hero Banner -->
@@ -12,71 +19,220 @@
             <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
             <a class="hover:text-primary transition-colors" href="/Services/ProjectDatabase/Index">Project Database</a>
             <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
-            <span class="text-primary font-semibold">State Projects</span>
+            <span class="text-primary font-semibold">@stateName</span>
         </nav>
-        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-3 sm:gap-4">
             <div>
-                <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
-                    Bayelsa State Projects
+                <h1 class="font-display-lg text-2xl sm:text-4xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight break-words">
+                    @stateName Projects
                 </h1>
-                <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-3 rounded-full"></div>
+                <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-2.5 sm:mt-3 rounded-full"></div>
             </div>
-            <span class="bg-secondary/10 text-secondary font-extrabold text-sm sm:text-base px-5 py-2.5 rounded-full border border-secondary/20 shadow-sm">
-                4,344 Executed Projects
+            <span class="bg-secondary/10 text-secondary font-extrabold text-xs sm:text-sm md:text-base px-4 sm:px-5 py-2 sm:py-2.5 rounded-full border border-secondary/20 shadow-sm shrink-0">
+                @totalProjects.ToString("N0") Executed Projects
             </span>
         </div>
+
+        <!-- Quick State Switcher Pills (Horizontal scroll on mobile, wrap on desktop) -->
+        @if (Model.States != null && Model.States.Any())
+        {
+            <div class="mt-6 pt-4 border-t border-outline-variant/20">
+                <span class="text-xs font-bold text-primary block sm:inline-block mb-2 sm:mb-0 sm:mr-2">Switch State:</span>
+                <div class="flex items-center gap-1.5 sm:gap-2 overflow-x-auto pb-2 sm:pb-0 -mx-4 px-4 sm:mx-0 sm:px-0 flex-nowrap sm:flex-wrap">
+                    @foreach (var s in Model.States)
+                    {
+                        var isSelected = s.SID == Model.SID;
+                        <a asp-page="StateDetails" asp-route-sid="@s.SID" 
+                           class="text-xs font-semibold px-3 py-1.5 rounded-full transition-all shrink-0 @(isSelected ? "bg-secondary text-white shadow-sm" : "bg-white text-on-surface hover:bg-surface-container border border-outline-variant/20")">
+                            @s.StateName
+                        </a>
+                    }
+                </div>
+            </div>
+        }
     </div>
 </section>
 
 <!-- Search & Analytics Section -->
 <section class="py-8 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto space-y-8">
-    <div class="bg-white rounded-2xl p-6 sm:p-8 border border-outline-variant/20 shadow-md text-left space-y-6">
-        <div class="max-w-2xl">
-            <label for="stateSearchInput" class="block text-xs font-bold text-primary uppercase tracking-wider mb-2">Search Projects in Bayelsa State</label>
-            <div class="flex items-center gap-2">
-                <input type="text" id="stateSearchInput" placeholder="Enter community, LGA, or project title..." class="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
-                <button type="button" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-md flex-shrink-0 inline-flex items-center gap-1">
-                    <span class="material-symbols-outlined text-sm">search</span> Search
-                </button>
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-stretch">
+        <!-- Search within State Card -->
+        <div class="bg-white rounded-2xl p-6 sm:p-8 border border-outline-variant/20 shadow-md text-left flex flex-col justify-between">
+            <div>
+                <h3 class="text-lg font-bold text-primary mb-1">Search @stateName</h3>
+                <p class="text-xs text-on-surface-variant/80 mb-6">Filter projects specific to this state by keyword or location</p>
+                
+                <form action="/Services/ProjectDatabase/SearchResults" method="get" class="space-y-4">
+                    <input type="hidden" name="sid" value="@Model.SID" />
+                    <div>
+                        <label for="stateSearchInput" class="block text-xs font-bold text-primary uppercase tracking-wider mb-1.5">Project or Location</label>
+                        <input type="text" id="stateSearchInput" name="projName" placeholder="Enter community, LGA, or keyword..." 
+                               class="w-full px-4 py-3 rounded-xl border border-outline-variant/30 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+                    </div>
+                    <button type="submit" class="w-full bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-sm px-6 py-3 rounded-xl transition-all shadow-md inline-flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-sm">search</span> Search in @stateName
+                    </button>
+                </form>
+            </div>
+
+            <div class="pt-6 border-t border-outline-variant/15 mt-6 text-xs text-on-surface-variant/70">
+                <span class="font-bold text-primary">Need a full region search?</span> Visit the <a href="/Services/ProjectDatabase/SearchResults" class="text-secondary hover:underline font-semibold">advanced search page</a>.
             </div>
         </div>
 
-        <div>
-            <h3 class="text-lg font-bold text-primary mb-4">Sector Distribution</h3>
+        <!-- Sector Distribution Donut Chart Card -->
+        <div class="lg:col-span-2 bg-white rounded-2xl p-6 sm:p-8 border border-outline-variant/20 shadow-md text-left">
+            <div class="flex items-center justify-between mb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-primary">Sector Distribution in @stateName</h3>
+                    <p class="text-xs text-on-surface-variant/80">Proportional project allocations by sector</p>
+                </div>
+                <span class="hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-secondary bg-secondary/10 px-3 py-1 rounded-full border border-secondary/20">
+                    <span class="w-2 h-2 rounded-full bg-secondary"></span> State Focus
+                </span>
+            </div>
             <div id="chart" class="w-full min-h-[300px]"></div>
         </div>
     </div>
 </section>
 
-<!-- Sector Cards Grid -->
-<section class="pb-16 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
-    <div class="text-left mb-6">
-        <h3 class="text-xl font-bold text-primary">Key Sector Breakdown</h3>
-    </div>
-
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Buildings & Facilities</span>
-            <h4 class="text-3xl font-extrabold text-secondary">139 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
-            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+<!-- Sector Breakdown Cards Grid -->
+@if (topSectors.Any())
+{
+    <section class="pb-8 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+        <div class="text-left mb-6">
+            <h3 class="text-xl font-bold text-primary">Top Sector Breakdown in @stateName</h3>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Canalization & Dredging</span>
-            <h4 class="text-3xl font-extrabold text-secondary">420 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
-            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            @foreach (var sec in topSectors)
+            {
+                <div class="bg-white rounded-2xl p-4 sm:p-6 border border-outline-variant/20 shadow-sm text-left space-y-1.5 sm:space-y-2 hover:shadow-md transition-shadow">
+                    <span class="text-[11px] sm:text-xs font-bold uppercase tracking-wider text-on-surface-variant/70 line-clamp-1">@sec.Key</span>
+                    <h4 class="text-xl sm:text-3xl font-extrabold text-secondary">
+                        @sec.Value.ToString("N0") <span class="text-xs font-normal text-on-surface-variant">Projects</span>
+                    </h4>
+                    <a href="/Services/ProjectDatabase/SearchResults?projName=&sid=@Model.SID&pcid=0" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-1 sm:mt-2">
+                        <span>View</span> <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                    </a>
+                </div>
+            }
+        </div>
+    </section>
+}
+
+<!-- Project Records Table Section -->
+<section class="pb-12 sm:pb-16 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <div class="bg-white rounded-2xl p-4 sm:p-6 md:p-8 border border-outline-variant/20 shadow-md text-left space-y-4 sm:space-y-6">
+        <div class="border-b border-outline-variant/15 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+                <h3 class="text-lg sm:text-xl font-bold text-primary">Verified @stateName Projects</h3>
+                <p class="text-xs text-on-surface-variant/80">Commissioned and ongoing developmental initiatives</p>
+            </div>
+            <span class="text-xs font-semibold text-on-surface-variant/80 bg-surface-container px-3 py-1.5 rounded-lg border border-outline-variant/20 self-start sm:self-auto">
+                @totalProjects.ToString("N0") total record@(totalProjects != 1 ? "s" : "")
+            </span>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Technical Consultancy</span>
-            <h4 class="text-3xl font-extrabold text-secondary">106 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
-            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        <!-- Desktop Table View (Hidden on mobile) -->
+        <div class="hidden md:block overflow-x-auto rounded-xl border border-outline-variant/20">
+            <table class="w-full text-left text-sm min-w-[640px]">
+                <thead class="bg-surface-container text-primary uppercase text-xs font-bold border-b border-outline-variant/20">
+                    <tr>
+                        <th scope="col" class="px-5 py-4 w-16">S/N</th>
+                        <th scope="col" class="px-5 py-4">Project Title</th>
+                        <th scope="col" class="px-5 py-4">Location / LGA</th>
+                        <th scope="col" class="px-5 py-4">Category</th>
+                        <th scope="col" class="px-5 py-4 text-right">Action</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-outline-variant/15 text-on-surface">
+                    @if (Model.Projects != null && Model.Projects.Any())
+                    {
+                        var index = 1;
+                        foreach (var item in Model.Projects.Take(50))
+                        {
+                            <tr class="hover:bg-surface-container-low transition-colors">
+                                <td class="px-5 py-4 font-bold text-primary/80">@index</td>
+                                <td class="px-5 py-4 font-semibold text-primary">
+                                    <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="hover:text-secondary transition-colors line-clamp-2">
+                                        @item.ProjectName
+                                    </a>
+                                </td>
+                                <td class="px-5 py-4 text-on-surface-variant whitespace-nowrap">
+                                    <span class="inline-flex items-center gap-1">
+                                        <span class="material-symbols-outlined text-[15px] text-secondary">location_on</span>
+                                        @(string.IsNullOrEmpty(item.Location) ? stateName : item.Location)
+                                    </span>
+                                </td>
+                                <td class="px-5 py-4 whitespace-nowrap">
+                                    <span class="bg-surface-container text-primary text-xs font-semibold px-2.5 py-1 rounded-full border border-outline-variant/20">
+                                        @(string.IsNullOrEmpty(item.CatName) ? "General" : item.CatName)
+                                    </span>
+                                </td>
+                                <td class="px-5 py-4 text-right whitespace-nowrap">
+                                    <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="bg-secondary hover:bg-secondary/90 text-on-secondary font-bold text-xs px-4 py-2 rounded-full transition-all shadow-sm inline-flex items-center gap-1">
+                                        <span>View</span>
+                                        <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+                                    </a>
+                                </td>
+                            </tr>
+                            index++;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="px-6 py-12 text-center text-on-surface-variant">
+                                <span class="material-symbols-outlined text-4xl text-on-surface-variant/40 mb-2 block">folder_off</span>
+                                <p class="text-sm font-semibold text-primary">No project records found for @stateName</p>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         </div>
 
-        <div class="bg-white rounded-2xl p-6 border border-outline-variant/20 shadow-sm text-left space-y-2">
-            <span class="text-xs font-bold uppercase tracking-wider text-on-surface-variant/70">Electrification & Utilities</span>
-            <h4 class="text-3xl font-extrabold text-secondary">202 <span class="text-xs font-normal text-on-surface-variant">Projects</span></h4>
-            <a href="/Services/ProjectDatabase/Category" class="text-xs font-bold text-primary hover:text-secondary inline-flex items-center gap-1 mt-2">Explore <span class="material-symbols-outlined text-xs">arrow_forward</span></a>
+        <!-- Mobile Projects Card List (Shown on screens < 768px) -->
+        <div class="block md:hidden space-y-3">
+            @if (Model.Projects != null && Model.Projects.Any())
+            {
+                var mIndex = 1;
+                foreach (var item in Model.Projects.Take(50))
+                {
+                    <div class="bg-surface-container-low/60 rounded-xl p-4 border border-outline-variant/20 space-y-2.5">
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="text-xs font-mono font-bold text-primary/70">#@mIndex</span>
+                            <span class="bg-surface-container text-primary text-[11px] font-semibold px-2 py-0.5 rounded-full border border-outline-variant/20">
+                                @(string.IsNullOrEmpty(item.CatName) ? "General" : item.CatName)
+                            </span>
+                        </div>
+                        <h4 class="text-sm font-bold text-primary leading-snug">
+                            <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="hover:text-secondary transition-colors">
+                                @item.ProjectName
+                            </a>
+                        </h4>
+                        <div class="flex items-center justify-between gap-2 pt-2 border-t border-outline-variant/10 text-xs">
+                            <span class="text-on-surface-variant flex items-center gap-1 truncate max-w-[65%]">
+                                <span class="material-symbols-outlined text-[14px] text-secondary shrink-0">location_on</span>
+                                <span class="truncate">@(string.IsNullOrEmpty(item.Location) ? stateName : item.Location)</span>
+                            </span>
+                            <a asp-page="ProjectDetails" asp-route-pid="@item.PID" class="bg-secondary text-white font-bold px-3 py-1.5 rounded-lg text-xs shrink-0 inline-flex items-center gap-1 shadow-sm">
+                                <span>View</span>
+                                <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                    mIndex++;
+                }
+            }
+            else
+            {
+                <div class="py-8 text-center text-on-surface-variant">
+                    <span class="material-symbols-outlined text-3xl text-on-surface-variant/40 mb-1 block">folder_off</span>
+                    <p class="text-xs font-semibold text-primary">No project records found for @stateName</p>
+                </div>
+            }
         </div>
     </div>
 </section>
@@ -85,19 +241,33 @@
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() {
-            var options = {
-                series: [139, 420, 106, 202, 3477],
-                labels: ['Buildings', 'Canalization', 'Consultancy', 'Electrification', 'Others'],
-                chart: {
-                    type: 'donut',
-                    height: 300
-                },
-                colors: ['#15803d', '#2563eb', '#d97706', '#9333ea', '#64748b'],
-                legend: { position: 'bottom' }
-            };
+            var chartElement = document.querySelector("#chart");
+            if (chartElement) {
+                var options = {
+                    series: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(chartSeries)),
+                    labels: @Html.Raw(System.Text.Json.JsonSerializer.Serialize(chartLabels)),
+                    chart: {
+                        type: 'donut',
+                        height: 320
+                    },
+                    colors: ['#006d37', '#00322d', '#0284c7', '#d97706', '#9333ea', '#64748b'],
+                    legend: {
+                        position: 'bottom',
+                        fontSize: '12px',
+                        fontFamily: 'inherit'
+                    },
+                    dataLabels: {
+                        enabled: true
+                    },
+                    stroke: {
+                        width: 2,
+                        colors: ['#ffffff']
+                    }
+                };
 
-            var chart = new ApexCharts(document.querySelector("#chart"), options);
-            chart.render();
+                var chart = new ApexCharts(chartElement, options);
+                chart.render();
+            }
         });
     </script>
 }

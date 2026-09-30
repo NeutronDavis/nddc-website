@@ -32,8 +32,20 @@ builder.Services.AddRazorPages();
 builder.Services.AddFluentValidationAutoValidation();
 builder.Services.AddTransient<IValidator<MyIReportModel>, EyeReportValidator>();
 builder.Services.AddTransient<ISqlDataAccess, SqlDataAccess>();
+builder.Services.AddHttpClient("PmisApi", client =>
+{
+    var baseUrl = builder.Configuration["PmisApi:BaseUrl"] ?? "https://pmis-2026-ayf5gnhzgdb4d9dt.westeurope-01.azurewebsites.net/api/projects/";
+    client.BaseAddress = new Uri(baseUrl);
+    var apiKey = builder.Configuration["PmisApi:ApiKey"];
+    if (!string.IsNullOrEmpty(apiKey))
+    {
+        client.DefaultRequestHeaders.Add("X-Api-Key", apiKey);
+    }
+    client.DefaultRequestHeaders.Add("Accept", "application/json");
+    client.DefaultRequestHeaders.Add("User-Agent", "curl/8.4.0");
+});
+builder.Services.AddTransient<IProjectsData, ApiProjects>();
 builder.Services.AddTransient<IHomeData, SqlHome>();
-builder.Services.AddTransient<IProjectsData, SqlProjects>();
 builder.Services.AddTransient<IReportData, SqlIReport>();
 builder.Services.AddTransient<ICloudStorage, AWSCloudStorage>();
 builder.Services.AddDbContext<NDDCWebsiteContext>(options =>
@@ -106,5 +118,15 @@ app.UseAuthorization();
 app.MapGet("/healthz", () => "OK").AllowAnonymous();
 
 app.MapRazorPages();
+
+app.MapGet("/images/projects/{imageId:int}", async (int imageId, IHttpClientFactory clientFactory) =>
+{
+    var client = clientFactory.CreateClient("PmisApi");
+    var response = await client.GetAsync($"images/{imageId}");
+    if (!response.IsSuccessStatusCode) return Results.NotFound();
+    var stream = await response.Content.ReadAsStreamAsync();
+    var contentType = response.Content.Headers.ContentType?.ToString() ?? "image/jpeg";
+    return Results.Stream(stream, contentType);
+});
 
 app.Run();

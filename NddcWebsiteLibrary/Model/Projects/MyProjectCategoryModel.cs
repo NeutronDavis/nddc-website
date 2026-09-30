@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +10,6 @@ namespace NddcWebsiteLibrary.Model.Projects
     {
         public int PCID { get; set; }
         public string CatName { get; set; }
+        public int ProjCount { get; set; }
     }
 }

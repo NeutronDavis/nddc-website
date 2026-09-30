@@ -24,20 +24,50 @@
 <!-- Main Forms Grid Section -->
 <section class="py-12 px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
     <div class="text-left mb-8">
-        <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Downloads Portal</span>
-        <h2 class="text-2xl sm:text-3xl font-bold text-primary mt-2">Download Public & Contractor Forms</h2>
-        <p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Access official NDDC registration forms, guidelines, newsletters, and service requests.</p>
+        <span class="bg-secondary/10 text-secondary text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider inline-block">Online Services & Portals</span>
+        <h2 class="text-2xl sm:text-3xl font-bold text-primary mt-2">Interactive Services & Form Applications</h2>
+        <p class="text-on-surface-variant/80 text-xs sm:text-sm mt-1">Submit digital requests, schedule official appointments, and access official NDDC forms.</p>
     </div>
 
-    <div class="py-12 px-6 bg-white rounded-3xl border border-outline-variant/20 shadow-sm text-center flex flex-col items-center justify-center">
-        <div class="w-24 h-24 sm:w-28 sm:h-28 bg-surface-container rounded-full flex items-center justify-center mb-6 text-secondary/80">
-            <svg class="w-12 h-12 sm:w-14 sm:h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-            </svg>
+    @if (Model.AvailableForms != null && Model.AvailableForms.Any())
+    {
+        <!-- Active Digital Services Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            @foreach (var form in Model.AvailableForms)
+            {
+                <div class="bg-white rounded-2xl border border-outline-variant/20 p-6 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-secondary/10 text-secondary flex items-center justify-center mb-4 group-hover:bg-secondary group-hover:text-white transition-colors">
+                            <span class="material-symbols-outlined text-2xl">@form.Icon</span>
+                        </div>
+                        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary uppercase tracking-wider mb-2">
+                            <span class="w-2 h-2 rounded-full bg-secondary"></span> @form.BadgeText
+                        </div>
+                        <h3 class="text-xl font-bold text-primary mb-2">@form.Title</h3>
+                        <p class="text-sm text-on-surface-variant/80 leading-relaxed mb-6">
+                            @form.Description
+                        </p>
+                    </div>
+                    <a href="@form.ActionUrl" class="inline-flex items-center justify-center gap-2 bg-secondary hover:bg-secondary/90 text-white font-bold text-xs px-5 py-3 rounded-xl transition-all shadow-sm">
+                        @form.ButtonText <span class="material-symbols-outlined text-base">arrow_forward</span>
+                    </a>
+                </div>
+            }
         </div>
-        <h3 class="text-xl sm:text-2xl font-bold text-primary mb-2">No Online Forms Available</h3>
-        <p class="text-sm text-on-surface-variant/70 max-w-md mx-auto leading-relaxed">
-            There are currently no public download forms or application documents published at this time. Please check back later for updates.
-        </p>
-    </div>
+    }
+    else
+    {
+        <!-- Empty State: only displayed when there are no forms on the page -->
+        <div class="py-12 px-6 bg-white rounded-3xl border border-outline-variant/20 shadow-sm text-center flex flex-col items-center justify-center">
+            <div class="w-20 h-20 sm:w-24 sm:h-24 bg-surface-container rounded-full flex items-center justify-center mb-5 text-secondary/80">
+                <svg class="w-10 h-10 sm:w-12 sm:h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                </svg>
+            </div>
+            <h4 class="text-lg sm:text-xl font-bold text-primary mb-2">No Online Forms Available</h4>
+            <p class="text-sm text-on-surface-variant/70 max-w-md mx-auto leading-relaxed">
+                There are currently no public download forms or application documents published at this time. Please check back later for updates.
+            </p>
+        </div>
+    }
 </section>
