@@ -17,10 +17,19 @@ namespace NDDC_Website_2024.Pages.Services.ProjectDatabase
             this.projDb = projDb;
             _containerUrl = configuration.GetConnectionString("RackspaceCDN");
         }
-        public void OnGet(int? pid)
+        public IActionResult OnGet(int? pid)
         {
+            if (!pid.HasValue || pid.Value <= 0)
+            {
+                return RedirectToPage("/Services/ProjectDatabase/Index");
+            }
             ProjectDetails = projDb.GetProjectDetails(pid.Value);
             ProjectPictures = projDb.GetProjectPictures(pid.Value);
+            if (ProjectDetails == null)
+            {
+                return RedirectToPage("/Services/ProjectDatabase/Index");
+            }
+            return Page();
         }
     }
 }

@@ -1,11 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.DataProtection.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace EFCore_Lib.Models
 {
-    public partial class NDDCWebsiteContext : DbContext
+    // Implements IDataProtectionKeyContext so ASP.NET Core's Data Protection
+    // stack can persist its key ring here via PersistKeysToDbContext.
+    // Without a durable key ring, every deploy/restart invalidates the
+    // antiforgery cookies already sitting in users' browsers, which surfaces as
+    // "The key {...} was not found in the key ring" on the next POST.
+    public partial class NDDCWebsiteContext : DbContext, IDataProtectionKeyContext
     {
         public NDDCWebsiteContext()
         {
@@ -71,6 +77,8 @@ namespace EFCore_Lib.Models
         public virtual DbSet<VwAspnetWebPartStatePath> VwAspnetWebPartStatePaths { get; set; } = null!;
         public virtual DbSet<VwAspnetWebPartStateShared> VwAspnetWebPartStateShareds { get; set; } = null!;
         public virtual DbSet<VwAspnetWebPartStateUser> VwAspnetWebPartStateUsers { get; set; } = null!;
+
+        public virtual DbSet<DataProtectionKey> DataProtectionKeys { get; set; } = null!;
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

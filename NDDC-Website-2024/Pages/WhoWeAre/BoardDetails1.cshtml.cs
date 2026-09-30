@@ -16,9 +16,18 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
 			this.homeDb = homeDb;
 			_containerUrl = config.GetConnectionString("AWSContainerUrl");
 		}
-        public void OnGet(int? EMID)
+        public IActionResult OnGet(int? EMID)
         {
+            if (!EMID.HasValue || EMID.Value <= 0)
+            {
+                return RedirectToPage("/WhoWeAre/Board");
+            }
             BoardDetails = homeDb.ViewExecMngtDetails(EMID.Value);
+            if (BoardDetails == null)
+            {
+                return RedirectToPage("/WhoWeAre/Board");
+            }
+            return Page();
         }
     }
 }

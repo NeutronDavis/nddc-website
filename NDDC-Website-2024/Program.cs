@@ -1,6 +1,7 @@
 using EFCore_Lib.Models;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.DataProtection;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.EntityFrameworkCore;
 using NDDC_Website_2024.Validators;
@@ -39,6 +40,22 @@ builder.Services.AddDbContext<NDDCWebsiteContext>(options =>
     options
     .UseSqlServer(builder.Configuration.GetConnectionString("SqlDb"))
     );
+
+// The container filesystem is ephemeral: every Render deploy or restart wipes
+// ~/.aspnet/DataProtection-Keys, which mints a brand-new key ring. Any
+// antiforgery cookie already in a user's browser can then no longer be
+// decrypted, and the next POST fails with "The key {...} was not found in the
+// key ring". Persisting the key ring to the database keeps it stable across
+// deploys and lets every instance share it.
+//
+// This only affects antiforgery/session cookies — no user data is encrypted
+// with these keys yet — so an already-lost key ring needs no migration: users
+// simply get a fresh cookie on their next page load.
+//
+// NOTE: this deliberately reuses the SqlDb connection, not PMIS.
+builder.Services.AddDataProtection()
+    .PersistKeysToDbContext<NDDCWebsiteContext>()
+    .SetApplicationName("NDDC-Website-2024");
 
 var app = builder.Build();
 

@@ -13,10 +13,18 @@ namespace NDDC_Website_2024.Pages.News
         {
 			this.homeDb = homeDb;
 		}
-        public void OnGet(int? Id)
+        public IActionResult OnGet(int? Id)
         {
+            if (!Id.HasValue || Id.Value <= 0)
+            {
+                return RedirectToPage("/News/Announcements");
+            }
             Details = homeDb.ViewAnnouncementDetails(Id.Value);
-
-		}
+            if (Details == null)
+            {
+                return RedirectToPage("/News/Announcements");
+            }
+            return Page();
+        }
     }
 }

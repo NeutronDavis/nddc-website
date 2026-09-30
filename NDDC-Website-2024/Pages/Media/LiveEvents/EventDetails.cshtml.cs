@@ -17,10 +17,18 @@ namespace NDDC_Website_2024.Pages.Media.LiveEvents
 
 			_containerUrl = configuration.GetConnectionString("AWSContainerUrl");
 		}
-        public void OnGet(int? Id)
+        public IActionResult OnGet(int? Id)
         {
+            if (!Id.HasValue || Id.Value <= 0)
+            {
+                return RedirectToPage("/Media/LiveEvents/Events");
+            }
             EventDetails = homeDb.GetLiveEventDetails(Id.Value);
-
-		}
+            if (EventDetails == null)
+            {
+                return RedirectToPage("/Media/LiveEvents/Events");
+            }
+            return Page();
+        }
     }
 }
