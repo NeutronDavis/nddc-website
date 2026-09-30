@@ -92,12 +92,16 @@
 		transform: translateY(40px);
 	}
 
+	/* FIX: translateX animations cause horizontal scroll on mobile because the
+	   element is rendered 40px OUTSIDE the viewport before the IntersectionObserver
+	   fires and adds .reveal-active. The section wrapper clips them so no horizontal
+	   scrollbar / overflow appears on initial load. */
 	.reveal-fade-left {
-		transform: translateX(-40px);
+		transform: translateX(-30px);
 	}
 
 	.reveal-fade-right {
-		transform: translateX(40px);
+		transform: translateX(30px);
 	}
 
 	.reveal-scale {
@@ -108,6 +112,7 @@
 		opacity: 1;
 		transform: translate(0) scale(1);
 	}
+
 
 	.delay-100 { transition-delay: 100ms; }
 	.delay-200 { transition-delay: 200ms; }
@@ -218,7 +223,7 @@
 	</section>
 
 	<!-- Icon Quick Links (Bento Grid / Mobile Slider Style) -->
-	<section class="py-10 md:py-14 relative z-20 mt-6 md:mt-10 reveal-init reveal-fade-up">
+	<section class="py-10 md:py-14 relative z-20 mt-6 md:mt-10 reveal-init reveal-fade-up overflow-x-hidden">
 		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
 			<div class="flex overflow-x-auto snap-x snap-mandatory gap-3 pb-3 md:pb-0 md:grid md:grid-cols-6 md:gap-4 no-scrollbar">
 				<!-- Item 1 -->
@@ -267,7 +272,7 @@
 		</div>
 	</section>
 
-	<section class="about-two-section py-8 md:py-16">
+	<section class="about-two-section py-8 md:py-16 overflow-x-hidden">
 		<div class="container px-4 md:px-gutter">
 			<div class="row justify-content-between row-gutter-y-60">
 				<div class="col-lg-12 col-xl-6 col-xxl-6 reveal-init reveal-fade-left">
@@ -320,7 +325,7 @@
 
 	@if (mainNews != null)
 	{
-		<section class="py-10 md:py-section-gap-lg bg-white">
+		<section class="py-10 md:py-section-gap-lg bg-white overflow-x-hidden">
 			<div class="max-w-container-max mx-auto px-4 md:px-gutter">
 				<div class="border-b border-gray-300 pb-4 mb-6 md:mb-10 text-left flex justify-between items-end">
 					<h3 class="bg-secondary text-white font-bold px-3 py-1.5 text-xs md:text-sm uppercase tracking-widest leading-none">
