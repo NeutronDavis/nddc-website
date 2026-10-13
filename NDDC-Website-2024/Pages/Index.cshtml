@@ -647,9 +647,9 @@
 			<!-- Pagination Dots & Nav Controls -->
 			<div class="flex items-center gap-5 w-full sm:w-auto justify-between sm:justify-end">
 				<!-- Dots Container -->
-				<div id="photo-dots-container" class="flex items-center gap-1.5">
+				@* <div id="photo-dots-container" class="flex items-center gap-1.5">
 					<!-- Generated dynamically in JS -->
-				</div>
+				</div> *@
 
 				<!-- Nav Arrows -->
 				<div class="flex items-center gap-2">
@@ -681,7 +681,7 @@
 							var t = Model.Testimonials[i];
 							<div class="testimonial-slide @(i == 0 ? "flex" : "hidden") flex-col items-center w-full transition-all duration-500" data-t-index="@i">
 								<div class="h-[130px] sm:h-[140px] md:h-[160px] w-full flex items-center justify-center mb-4 sm:mb-6 md:mb-8 text-center overflow-y-auto no-scrollbar">
-									<p class="text-on-primary font-headline-md text-base sm:text-xl md:text-headline-md italic leading-relaxed">"@t.Testimonial"</p>
+									<p class="text-on-primary font-headline-md text-sm sm:text-base md:text-lg italic leading-relaxed">"@t.Testimonial"</p>
 								</div>
 								<div class="text-on-primary text-center">
 									<p class="font-headline-md text-sm sm:text-body-lg font-bold">@t.TestimonialBy</p>
@@ -694,7 +694,7 @@
 					{
 						<div class="testimonial-slide flex flex-col items-center w-full" data-t-index="0">
 							<div class="h-[130px] sm:h-[140px] md:h-[160px] w-full flex items-center justify-center mb-4 sm:mb-6 md:mb-8 text-center overflow-y-auto no-scrollbar">
-								<p class="text-on-primary font-headline-md text-base sm:text-xl md:text-headline-md italic leading-relaxed">"NDDC Is A good place and they are trying"</p>
+								<p class="text-on-primary font-headline-md text-sm sm:text-base md:text-lg italic leading-relaxed">"NDDC Is A good place and they are trying"</p>
 							</div>
 							<div class="text-on-primary text-center">
 								<p class="font-headline-md text-sm sm:text-body-lg font-bold">Dagogo Tolofari</p>
@@ -1133,7 +1133,7 @@
 			const progressTrack = document.getElementById('photo-progress-track');
 			const progressBar = document.getElementById('photo-progress-bar');
 			const slideCounter = document.getElementById('photo-slide-counter');
-			const dotsContainer = document.getElementById('photo-dots-container');
+			@* const dotsContainer = document.getElementById('photo-dots-container'); *@
 
 			if (container && prevBtn && nextBtn) {
 				const cards = Array.from(container.querySelectorAll('.photo-speak-card'));
@@ -1143,7 +1143,7 @@
 				let activeIndex = 0;
 
 				// Generate Pagination Dots
-				if (dotsContainer && cards.length > 0) {
+				@* if (dotsContainer && cards.length > 0) {
 					dotsContainer.innerHTML = '';
 					cards.forEach((_, idx) => {
 						const dot = document.createElement('button');
@@ -1158,7 +1158,7 @@
 						});
 						dotsContainer.appendChild(dot);
 					});
-				}
+				} *@
 
 				// Click on Progress Track to seek slide
 				if (progressTrack) {
@@ -1232,7 +1232,7 @@
 					}
 
 					// Update Dots
-					if (dotsContainer) {
+					@* if (dotsContainer) {
 						const dots = Array.from(dotsContainer.children);
 						dots.forEach((dot, idx) => {
 							if (idx === activeIndex) {
@@ -1241,7 +1241,7 @@
 								dot.className = 'w-2 h-2 bg-outline-variant/40 hover:bg-[#006D37]/60 rounded-full transition-all duration-300 cursor-pointer';
 							}
 						});
-					}
+					} *@
 				}
 
 				// Click card directly to center it
