@@ -531,8 +531,13 @@
 					var photoUrl = $"{Model._containerUrl}{photo.ImageUrl}";
 					<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 						<div>
-							<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
+							<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
 								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="@photo.Title" src="@photoUrl" loading="lazy">
+								<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+									<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+										<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+									</span>
+								</div>
 							</div>
 							<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">
 								@(string.IsNullOrEmpty(photo.Location) ? "Activity" : photo.Location)
@@ -558,8 +563,13 @@
 				<!-- Fallback Photo Cards matching screenshot design -->
 				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
+						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
 							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Healthcare Project" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" loading="lazy">
+							<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+								<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+									<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+								</span>
+							</div>
 						</div>
 						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Rivers State</p>
 						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Medical Equipment Distribution</h3>
@@ -575,8 +585,13 @@
 
 				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
+						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
 							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Infrastructure Project" src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=800&auto=format&fit=crop" loading="lazy">
+							<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+								<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+									<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+								</span>
+							</div>
 						</div>
 						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Delta State</p>
 						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Regional Complex Inspection</h3>
@@ -592,8 +607,13 @@
 
 				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
 					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container">
+						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
 							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Community Engagement" src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=800&auto=format&fit=crop" loading="lazy">
+							<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+								<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+									<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+								</span>
+							</div>
 						</div>
 						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Bayelsa State</p>
 						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Stakeholder Engagement Meeting</h3>
@@ -640,6 +660,48 @@
 			</div>
 		</div>
 	</section>
+
+	<!-- Photo Speak Lightbox Modal -->
+	<div id="photoSpeakModal" class="fixed inset-0 z-[9999] bg-black/95 backdrop-blur-md hidden opacity-0 transition-all duration-300 flex flex-col justify-between" role="dialog" aria-modal="true" aria-label="Photo Preview">
+		<!-- Top Bar -->
+		<div class="relative z-10 flex items-center justify-between p-4 sm:p-6 bg-gradient-to-b from-black/80 to-transparent">
+			<div class="text-left max-w-xl pr-4">
+				<span id="psModalLocation" class="text-secondary-fixed font-semibold uppercase tracking-widest text-xs"></span>
+				<h4 id="psModalTitle" class="text-white font-headline-md text-base sm:text-lg font-bold truncate mt-0.5"></h4>
+			</div>
+			<div class="flex items-center gap-2">
+				<a id="psModalOpenTab" href="#" target="_blank" rel="noopener noreferrer" class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors" title="Open Original Image in New Tab">
+					<span class="material-symbols-outlined text-xl">open_in_new</span>
+				</a>
+				<button id="psModalCloseBtn" type="button" class="w-10 h-10 rounded-full bg-white/10 hover:bg-red-600 text-white flex items-center justify-center transition-colors cursor-pointer border-0" aria-label="Close Preview (Esc)">
+					<span class="material-symbols-outlined text-2xl">close</span>
+				</button>
+			</div>
+		</div>
+
+		<!-- Stage with Image & Prev/Next Arrows -->
+		<div class="relative flex-1 flex items-center justify-center px-4 sm:px-16 overflow-hidden cursor-pointer" id="psModalStage">
+			<!-- Prev Arrow -->
+			<button id="psModalPrevBtn" type="button" class="absolute left-2 sm:left-6 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-[#006D37] text-white flex items-center justify-center shadow-2xl transition border border-white/20 hover:scale-105 cursor-pointer" title="Previous Photo">
+				<span class="material-symbols-outlined text-2xl sm:text-3xl">chevron_left</span>
+			</button>
+
+			<!-- Image Display -->
+			<div class="relative max-w-full max-h-full flex items-center justify-center pointer-events-none">
+				<img id="psModalImg" src="" alt="Photo Preview" class="max-h-[75vh] max-w-[92vw] sm:max-w-[85vw] object-contain rounded-xl shadow-2xl border border-white/10 transform scale-95 transition-transform duration-300 pointer-events-auto select-none">
+			</div>
+
+			<!-- Next Arrow -->
+			<button id="psModalNextBtn" type="button" class="absolute right-2 sm:right-6 z-20 w-11 h-11 sm:w-14 sm:h-14 rounded-full bg-black/60 hover:bg-[#006D37] text-white flex items-center justify-center shadow-2xl transition border border-white/20 hover:scale-105 cursor-pointer" title="Next Photo">
+				<span class="material-symbols-outlined text-2xl sm:text-3xl">chevron_right</span>
+			</button>
+		</div>
+
+		<!-- Bottom Bar: Counter -->
+		<div class="relative z-10 flex items-center justify-center p-4 bg-gradient-to-t from-black/80 to-transparent">
+			<span id="psModalCounter" class="text-xs font-mono font-semibold text-white/80 bg-white/10 px-3 py-1 rounded-full border border-white/10">01 / 01</span>
+		</div>
+	</div>
 
 	<!-- Testimonials Section -->
 	<section class="bg-white py-10 md:py-section-gap-sm">
@@ -1221,10 +1283,10 @@
 					} *@
 				}
 
-				// Click card directly to center it
+				// Click card directly to center it (excluding link buttons and preview triggers)
 				cards.forEach((card, idx) => {
 					card.addEventListener('click', (e) => {
-						if (!e.target.closest('a')) {
+						if (!e.target.closest('a') && !e.target.closest('.photo-image-preview-trigger')) {
 							resetInteractionDelay();
 							scrollToCard(idx);
 						}
@@ -1290,6 +1352,160 @@
 				container.addEventListener('touchstart', () => { 
 					resetInteractionDelay();
 				}, { passive: true });
+
+				// -------------------------------------------------------------
+				// Photo Speak Lightbox Modal Preview Controller
+				// -------------------------------------------------------------
+				const psModal = document.getElementById('photoSpeakModal');
+				const psImg = document.getElementById('psModalImg');
+				const psLocation = document.getElementById('psModalLocation');
+				const psTitle = document.getElementById('psModalTitle');
+				const psCounter = document.getElementById('psModalCounter');
+				const psOpenTab = document.getElementById('psModalOpenTab');
+				const psCloseBtn = document.getElementById('psModalCloseBtn');
+				const psPrevBtn = document.getElementById('psModalPrevBtn');
+				const psNextBtn = document.getElementById('psModalNextBtn');
+				const psStage = document.getElementById('psModalStage');
+
+				if (psModal) {
+					const photoData = cards.map(card => {
+						const img = card.querySelector('.photo-image-preview-trigger img') || card.querySelector('img');
+						const loc = card.querySelector('p.font-mono');
+						const heading = card.querySelector('h3');
+						return {
+							src: img ? (img.getAttribute('src') || '') : '',
+							alt: img ? (img.getAttribute('alt') || 'NDDC Activity') : 'NDDC Activity',
+							location: loc ? loc.innerText.trim() : 'Activity',
+							title: heading ? heading.innerText.trim() : 'NDDC Activity Photo'
+						};
+					});
+
+					let psCurrentIdx = 0;
+					let psIsOpen = false;
+
+					function updateModalContent() {
+						const item = photoData[psCurrentIdx];
+						if (!item) return;
+
+						if (psImg) {
+							psImg.src = item.src;
+							psImg.alt = item.alt;
+						}
+						if (psLocation) psLocation.textContent = item.location;
+						if (psTitle) psTitle.textContent = item.title;
+						if (psOpenTab) psOpenTab.href = item.src;
+						if (psCounter) {
+							const cur = String(psCurrentIdx + 1).padStart(2, '0');
+							const tot = String(photoData.length).padStart(2, '0');
+							psCounter.textContent = `${cur} / ${tot}`;
+						}
+					}
+
+					function openPhotoPreview(index) {
+						if (!photoData.length) return;
+						psCurrentIdx = (index + photoData.length) % photoData.length;
+						updateModalContent();
+
+						psModal.classList.remove('hidden');
+						requestAnimationFrame(() => {
+							psModal.classList.remove('opacity-0');
+							psModal.classList.add('opacity-100');
+							if (psImg) {
+								psImg.classList.remove('scale-95');
+								psImg.classList.add('scale-100');
+							}
+						});
+						document.body.style.overflow = 'hidden';
+						psIsOpen = true;
+						stopAutoScroll();
+					}
+
+					function closePhotoPreview() {
+						if (!psIsOpen) return;
+						psModal.classList.remove('opacity-100');
+						psModal.classList.add('opacity-0');
+						if (psImg) {
+							psImg.classList.remove('scale-100');
+							psImg.classList.add('scale-95');
+						}
+						setTimeout(() => {
+							psModal.classList.add('hidden');
+							document.body.style.overflow = '';
+							psIsOpen = false;
+							startAutoScroll();
+						}, 300);
+					}
+
+					function navigatePreview(dir) {
+						if (!psIsOpen || !photoData.length) return;
+						psCurrentIdx = (psCurrentIdx + dir + photoData.length) % photoData.length;
+						if (psImg) {
+							psImg.style.opacity = '0.3';
+							psImg.style.transform = 'scale(0.96)';
+							setTimeout(() => {
+								updateModalContent();
+								psImg.style.opacity = '1';
+								psImg.style.transform = 'scale(1)';
+							}, 120);
+						} else {
+							updateModalContent();
+						}
+					}
+
+					// Attach click handlers to each card's image trigger
+					cards.forEach((card, idx) => {
+						const trigger = card.querySelector('.photo-image-preview-trigger');
+						if (trigger) {
+							trigger.addEventListener('click', (e) => {
+								e.stopPropagation();
+								openPhotoPreview(idx);
+							});
+						}
+					});
+
+					// Lightbox action controls
+					if (psCloseBtn) {
+						psCloseBtn.addEventListener('click', (e) => {
+							e.stopPropagation();
+							closePhotoPreview();
+						});
+					}
+
+					if (psPrevBtn) {
+						psPrevBtn.addEventListener('click', (e) => {
+							e.stopPropagation();
+							navigatePreview(-1);
+						});
+					}
+
+					if (psNextBtn) {
+						psNextBtn.addEventListener('click', (e) => {
+							e.stopPropagation();
+							navigatePreview(1);
+						});
+					}
+
+					// Click backdrop on stage to close
+					if (psStage) {
+						psStage.addEventListener('click', (e) => {
+							if (e.target === psStage || e.target.id === 'psModalStage') {
+								closePhotoPreview();
+							}
+						});
+					}
+
+					// Keyboard shortcuts (Escape, Left, Right)
+					window.addEventListener('keydown', (e) => {
+						if (!psIsOpen) return;
+						if (e.key === 'Escape') {
+							closePhotoPreview();
+						} else if (e.key === 'ArrowLeft') {
+							navigatePreview(-1);
+						} else if (e.key === 'ArrowRight') {
+							navigatePreview(1);
+						}
+					});
+				}
 
 				// Initial trigger
 				updateActiveState();
