@@ -10,19 +10,28 @@ namespace NDDC_Website_2024.Pages.WhoWeAre
         public MyExecMngtModel BoardDetails { get; set; }
         private readonly IHomeData homeDb;
         public readonly string _containerUrl;
-        
+
         public BoardDetailsModel(IHomeData homeDb, IConfiguration config)
         {
             this.homeDb = homeDb;
             _containerUrl = config.GetConnectionString("AWSContainerUrl");
         }
 
-        public void OnGet(int? EMID)
+        public IActionResult OnGet(int? EMID)
         {
-            if (EMID.HasValue)
+            if (!EMID.HasValue || EMID.Value <= 0)
             {
-                BoardDetails = homeDb.ViewExecMngtDetails(EMID.Value);
+                return RedirectToPage("/WhoWeAre/Board");
             }
+
+            BoardDetails = homeDb.ViewBoardMemberDetails(EMID.Value);
+
+            if (BoardDetails == null)
+            {
+                return RedirectToPage("/WhoWeAre/Board");
+            }
+
+            return Page();
         }
     }
 }
