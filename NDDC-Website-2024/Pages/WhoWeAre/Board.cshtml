@@ -100,7 +100,7 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 w-full mb-16">
                 @foreach (var p in Model.BoardMembers)
                 {
-                    @if (Model.ChairmanItem == null || (p.EMID != Model.ChairmanItem.EMID && p.ImageUrl != Model.ChairmanItem.ImageUrl))
+                    @if (Model.ChairmanItem == null ||  p.ImageUrl != Model.ChairmanItem.ImageUrl)
                     {
                         <a asp-page="BoardDetails" asp-route-EMID="@p.EMID" class="max-w-[320px] sm:max-w-none mx-auto sm:mx-0 w-full rounded-2xl overflow-hidden shadow-md border border-outline-variant/20 relative group hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer block aspect-square reveal-scroll reveal-init">
                             <img alt="@p.ExecName" class="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-105" src="@Model._containerUrl@p.ImageUrl" loading="lazy">
