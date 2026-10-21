@@ -1,0 +1,302 @@
+@page
+@model NDDC_Website_2024.Pages.WhatWeDo.ScholarshipHistoryModel
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Past Scholarships & Programme History - NDDC";
+}
+
+<style>
+    .image-structure-ring {
+        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+    }
+    .history-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .history-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 25px -5px rgba(0, 50, 45, 0.08), 0 10px 10px -5px rgba(0, 50, 45, 0.04);
+    }
+    .history-card:hover .history-image {
+        transform: scale(1.04);
+    }
+</style>
+
+<!-- Hero / Breadcrumb Section -->
+<section class="bg-surface-container py-8 sm:py-12 md:py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter">
+    <div class="max-w-container-max mx-auto text-left">
+        <nav class="flex flex-wrap items-center gap-2 mb-4 md:mb-stack-gap text-xs sm:text-label-sm font-label-sm text-on-surface-variant">
+            <a class="hover:text-primary transition-colors" href="/">Home</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-on-surface-variant">What We Do</span>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <a class="hover:text-primary transition-colors" href="/WhatWeDo/Scholarship">Scholarships</a>
+            <span class="material-symbols-outlined text-[14px] sm:text-[16px] text-on-surface-variant/50">chevron_right</span>
+            <span class="text-primary font-semibold">Past History & Archive</span>
+        </nav>
+        <h1 class="font-display-lg text-3xl sm:text-5xl md:text-display-lg tracking-tight font-bold text-left text-primary leading-tight">
+            Past Scholarships & Programme History
+        </h1>
+        <div class="w-16 sm:w-24 h-1 sm:h-1.5 bg-secondary mt-4 sm:mt-6 rounded-full"></div>
+        <p class="max-w-3xl text-on-surface-variant font-body-md text-base sm:text-lg mt-4 leading-relaxed">
+            A photographic retrospective highlighting the milestones, examination processes, orientation ceremonies, and beneficiaries of the NDDC Local and Foreign Postgraduate Scholarship Programmes.
+        </p>
+
+        <!-- Navigation Tabs -->
+        <div class="mt-8 flex flex-wrap gap-3 border-b border-outline-variant/30 pb-3">
+            <a href="/WhatWeDo/Scholarship" class="px-5 py-2.5 rounded-full text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-all flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">campaign</span>
+                Active Announcement
+            </a>
+            <a href="/WhatWeDo/ScholarshipHistory" class="px-5 py-2.5 rounded-full text-sm font-semibold bg-primary text-white shadow-sm flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">photo_library</span>
+                History & Photo Archive
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Gallery Filter & Grid Section -->
+<section class="py-section-gap-sm px-4 sm:px-margin-mobile md:px-gutter max-w-container-max mx-auto">
+    <!-- Filter Pills -->
+    <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
+        <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+            <button class="filter-btn active px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-secondary text-white shadow-sm transition-all" data-filter="all">
+                All Photos (@Model.Photos.Count)
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" data-filter="foreign">
+                Foreign Scholarship
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" data-filter="local">
+                Local Scholarship
+            </button>
+            <button class="filter-btn px-4 py-2 rounded-full text-xs sm:text-sm font-semibold bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-primary transition-all" data-filter="events">
+                CBT & Events
+            </button>
+        </div>
+        <div class="text-xs sm:text-sm text-on-surface-variant font-medium">
+            Click any photo to enlarge and view details
+        </div>
+    </div>
+
+    <!-- Image Grid -->
+    <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        @foreach (var photo in Model.Photos)
+        {
+            <div class="history-card group relative bg-white rounded-xl border border-outline-variant/20 shadow-sm overflow-hidden flex flex-col cursor-pointer"
+                 data-category="@photo.Category"
+                 data-img="@photo.ImageUrl"
+                 data-title="@photo.Title"
+                 data-category-label="@photo.CategoryLabel"
+                 data-desc="@photo.Description">
+                
+                <div class="relative aspect-[4/3] bg-surface-container overflow-hidden image-structure-ring">
+                    <img src="@photo.ImageUrl"
+                         alt="@photo.Title"
+                         loading="lazy"
+                         class="history-image w-full h-full object-cover transition-transform duration-500" />
+                    
+                    <div class="absolute top-3 left-3 flex flex-wrap gap-2">
+                        <span class="bg-primary/85 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                            @photo.CategoryLabel
+                        </span>
+                        @if (!string.IsNullOrEmpty(photo.YearBadge))
+                        {
+                            <span class="bg-secondary/90 backdrop-blur-md text-white text-[11px] font-semibold px-2.5 py-1 rounded-full shadow-sm">
+                                @photo.YearBadge
+                            </span>
+                        }
+                    </div>
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end p-4">
+                        <span class="text-white text-xs font-semibold flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">visibility</span> View Photo
+                        </span>
+                    </div>
+                </div>
+
+                <div class="p-5 flex-1 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-headline-md text-base sm:text-lg font-bold text-primary group-hover:text-secondary transition-colors leading-snug">
+                            @photo.Title
+                        </h3>
+                        <p class="text-xs sm:text-sm text-on-surface-variant mt-2 line-clamp-2 leading-relaxed">
+                            @photo.Description
+                        </p>
+                    </div>
+                    <div class="mt-4 pt-3 border-t border-outline-variant/10 flex items-center justify-between text-xs text-on-surface-variant">
+                        <span class="text-secondary font-medium">NDDC Human Capital</span>
+                        <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform text-secondary">arrow_forward</span>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+    <!-- Empty State for Filters (hidden by default) -->
+    <div id="noResults" class="hidden py-16 text-center bg-surface-container rounded-2xl border border-outline-variant/20 mt-8">
+        <span class="material-symbols-outlined text-5xl text-outline mb-3">image_not_supported</span>
+        <h4 class="text-lg font-bold text-primary">No images found</h4>
+        <p class="text-on-surface-variant text-sm mt-1">There are no photos matching the selected filter.</p>
+    </div>
+
+    <!-- Bottom CTA Card Section -->
+    <div class="mt-16 bg-gradient-to-br from-primary via-primary to-primary-container text-white rounded-2xl p-8 sm:p-12 relative overflow-hidden shadow-xl">
+        <div class="absolute -right-12 -bottom-12 w-64 h-64 bg-secondary/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+            <div class="max-w-2xl">
+                <span class="inline-block bg-secondary/80 text-white px-3.5 py-1 rounded-full text-xs font-semibold uppercase tracking-wider mb-3">
+                    Empowering The Niger Delta
+                </span>
+                <h3 class="text-2xl sm:text-3xl font-bold tracking-tight text-white leading-snug">
+                    Ready to Join the Next Generation of Scholars?
+                </h3>
+                <p class="text-white/80 text-sm sm:text-base mt-2">
+                    Check the current scholarship eligibility criteria, requirements, and submit your application through the official NDDC Scholarship Portal.
+                </p>
+            </div>
+            <div class="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+                <a href="/WhatWeDo/Scholarship" class="px-6 py-3.5 bg-white text-primary rounded-full font-bold text-sm hover:bg-surface-container transition-all text-center shadow-md">
+                    View Announcement
+                </a>
+                <a href="https://scholarship.nddc.gov.ng/login" target="_blank" class="px-6 py-3.5 bg-secondary text-white rounded-full font-bold text-sm hover:bg-secondary/90 transition-all text-center shadow-lg shadow-secondary/30 flex items-center justify-center gap-2">
+                    <span>Apply on Portal</span>
+                    <span class="material-symbols-outlined text-base">open_in_new</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Lightbox Modal -->
+<div id="photoLightbox" class="fixed inset-0 z-50 bg-black/95 backdrop-blur-md flex flex-col items-center justify-center hidden opacity-0 transition-all duration-300 px-4">
+    <!-- Close Button -->
+    <button id="closeLightboxBtn" class="absolute top-5 right-5 text-white/80 hover:text-white transition-colors p-2.5 rounded-full hover:bg-white/10 focus:outline-none" aria-label="Close Preview">
+        <span class="material-symbols-outlined text-3xl">close</span>
+    </button>
+
+    <!-- Modal Content Wrap -->
+    <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center justify-center select-none w-full">
+        <div class="relative w-full max-h-[70vh] flex items-center justify-center">
+            <img id="lightboxImg" class="max-w-full max-h-[70vh] object-contain rounded-xl shadow-2xl border border-white/10 transform scale-95 transition-transform duration-300" src="" alt="">
+        </div>
+        
+        <!-- Caption Info Box -->
+        <div class="text-center mt-5 max-w-2xl px-4 bg-white/5 backdrop-blur-sm p-4 rounded-xl border border-white/10 w-full">
+            <span id="lightboxBadge" class="inline-block bg-secondary text-white font-semibold uppercase tracking-widest text-[11px] px-3 py-0.5 rounded-full mb-1.5"></span>
+            <h4 id="lightboxTitle" class="text-white font-bold text-lg md:text-xl leading-tight"></h4>
+            <p id="lightboxDesc" class="text-white/80 text-xs sm:text-sm mt-2 leading-relaxed"></p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Category Filter Functionality
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const cards = document.querySelectorAll(".history-card");
+            const noResults = document.getElementById("noResults");
+
+            filterBtns.forEach(btn => {
+                btn.addEventListener("click", () => {
+                    filterBtns.forEach(b => {
+                        b.classList.remove("active", "bg-secondary", "text-white", "shadow-sm");
+                        b.classList.add("bg-surface-container", "text-on-surface-variant");
+                    });
+
+                    btn.classList.add("active", "bg-secondary", "text-white", "shadow-sm");
+                    btn.classList.remove("bg-surface-container", "text-on-surface-variant");
+
+                    const filter = btn.getAttribute("data-filter");
+                    let visibleCount = 0;
+
+                    cards.forEach(card => {
+                        const category = card.getAttribute("data-category");
+                        if (filter === "all" || category === filter) {
+                            card.classList.remove("hidden");
+                            visibleCount++;
+                        } else {
+                            card.classList.add("hidden");
+                        }
+                    });
+
+                    if (noResults) {
+                        if (visibleCount === 0) {
+                            noResults.classList.remove("hidden");
+                        } else {
+                            noResults.classList.add("hidden");
+                        }
+                    }
+                });
+            });
+
+            // Lightbox Modal Functionality
+            const lightbox = document.getElementById("photoLightbox");
+            const lightboxImg = document.getElementById("lightboxImg");
+            const lightboxBadge = document.getElementById("lightboxBadge");
+            const lightboxTitle = document.getElementById("lightboxTitle");
+            const lightboxDesc = document.getElementById("lightboxDesc");
+            const closeBtn = document.getElementById("closeLightboxBtn");
+
+            function openLightbox(imgSrc, title, badge, desc) {
+                if (!lightbox) return;
+
+                lightboxImg.src = imgSrc;
+                lightboxImg.alt = title;
+                lightboxBadge.textContent = badge;
+                lightboxTitle.textContent = title;
+                lightboxDesc.textContent = desc;
+
+                lightbox.classList.remove("hidden");
+                requestAnimationFrame(() => {
+                    lightbox.classList.add("opacity-100");
+                    lightboxImg.classList.remove("scale-95");
+                    lightboxImg.classList.add("scale-100");
+                });
+                document.body.style.overflow = "hidden";
+            }
+
+            function closeLightbox() {
+                if (!lightbox) return;
+
+                lightbox.classList.remove("opacity-100");
+                lightboxImg.classList.remove("scale-100");
+                lightboxImg.classList.add("scale-95");
+
+                setTimeout(() => {
+                    lightbox.classList.add("hidden");
+                    lightboxImg.src = "";
+                    document.body.style.overflow = "";
+                }, 300);
+            }
+
+            cards.forEach(card => {
+                card.addEventListener("click", () => {
+                    const src = card.getAttribute("data-img");
+                    const title = card.getAttribute("data-title");
+                    const badge = card.getAttribute("data-category-label");
+                    const desc = card.getAttribute("data-desc");
+                    openLightbox(src, title, badge, desc);
+                });
+            });
+
+            if (closeBtn) {
+                closeBtn.addEventListener("click", closeLightbox);
+            }
+
+            if (lightbox) {
+                lightbox.addEventListener("click", (e) => {
+                    if (e.target === lightbox || e.target.closest("#closeLightboxBtn")) {
+                        closeLightbox();
+                    }
+                });
+            }
+
+            document.addEventListener("keyup", (e) => {
+                if (e.key === "Escape" && lightbox && !lightbox.classList.contains("hidden")) {
+                    closeLightbox();
+                }
+            });
+        });
+    </script>
+}
