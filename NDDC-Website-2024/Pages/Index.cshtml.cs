@@ -1,13 +1,16 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using NddcWebsiteLibrary.Data.Home;
+using NddcWebsiteLibrary.Data.Projects;
 using NddcWebsiteLibrary.Model.Home;
+using NddcWebsiteLibrary.Model.Projects;
 
 namespace NDDC_Website_2024.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly IHomeData homeDb;
+        private readonly IProjectsData projDb;
         public List<MyNewsModel> NewsSlide { get; set; }
         public List<MyNewsModel> NewsList { get; set; }
         public readonly string _containerUrl;
@@ -25,19 +28,22 @@ namespace NDDC_Website_2024.Pages
         public bool IsEventLive { get; set; }
         public MyExecMngtModel ChairmanItem { get; set; }
         public List<MyExecMngtModel> BoardMembers { get; set; }
+        public MyProjectInsightsModel ProjectInsights { get; set; }
 
-        public IndexModel(IHomeData homeDb, IConfiguration configuration)
+        public IndexModel(IHomeData homeDb, IProjectsData projDb, IConfiguration configuration)
         {
             this.homeDb = homeDb;
+            this.projDb = projDb;
 			_containerUrl = configuration.GetConnectionString("AWSContainerUrl");
 
             // Initialise lists to empty so Razor foreach never receives null
-            NewsSlide    = new List<MyNewsModel>();
-            NewsList     = new List<MyNewsModel>();
-            Photos       = new List<MyPhotoSpeakModel>();
-            Videos       = new List<MyVideoModel>();
-            Testimonials = new List<MyTestimonialModel>();
-            BoardMembers = new List<MyExecMngtModel>();
+            NewsSlide       = new List<MyNewsModel>();
+            NewsList        = new List<MyNewsModel>();
+            Photos          = new List<MyPhotoSpeakModel>();
+            Videos          = new List<MyVideoModel>();
+            Testimonials    = new List<MyTestimonialModel>();
+            BoardMembers    = new List<MyExecMngtModel>();
+            ProjectInsights = new MyProjectInsightsModel();
 		}
 
         public void OnGet()
@@ -74,6 +80,28 @@ namespace NDDC_Website_2024.Pages
 				CountDownDate = new DateTime(LiveEvent.StartDate.Year, LiveEvent.StartDate.Month, LiveEvent.StartDate.Day, LiveEvent.StartTime.Hour, LiveEvent.StartTime.Minute, 00);
 			}
             IsEventLive = homeDb.GoLive();
+
+            try
+            {
+                ProjectInsights = projDb.GetProjectInsights() ?? new MyProjectInsightsModel();
+                if (ProjectInsights.TotalProjects == 0)
+                {
+                    ProjectInsights.TotalProjects = 21283;
+                    ProjectInsights.CompletedProjects = 184;
+                    ProjectInsights.StatesCovered = 9;
+                    ProjectInsights.TotalCategories = 18;
+                }
+            }
+            catch
+            {
+                ProjectInsights = new MyProjectInsightsModel
+                {
+                    TotalProjects = 21283,
+                    CompletedProjects = 184,
+                    StatesCovered = 9,
+                    TotalCategories = 18
+                };
+            }
 		}
     }
 }

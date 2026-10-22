@@ -819,7 +819,7 @@
 				<!-- Left Content -->
 				<div class="text-on-primary z-10 text-left reveal-init reveal-fade-left">
 					<div class="w-8 h-1 bg-secondary mb-3 md:mb-4"></div>
-					<span class="font-label-sm text-xs sm:text-label-sm text-secondary-fixed uppercase tracking-widest mb-3 block font-semibold">Government Service</span>
+					<span class="font-label-sm text-xs sm:text-label-sm text-secondary-fixed uppercase tracking-widest mb-3 block font-semibold">Project Management Information System (PMIS)</span>
 					<h2 class="font-display-lg text-2xl sm:text-4xl md:text-display-lg mb-4 md:mb-6 leading-tight font-bold text-white">Explore our Online Project Database &amp; Resources</h2>
 					<p class="font-body-lg text-on-primary/80 mb-6 md:mb-8 max-w-xl leading-relaxed text-sm sm:text-base text-left">Get current updates on our Projects and Programs cut across the Nine States of the Niger Delta Region, gain deep insights and analysis of developmental trends within the region and the impact of our Projects and Programs on our people along with developmental projections.</p>
 					<a href="/Services/ProjectDatabase/index" class="inline-block bg-secondary hover:bg-secondary/90 text-on-secondary font-label-sm text-xs sm:text-label-sm px-6 sm:px-8 py-3.5 sm:py-4 rounded-full transition-all shadow-lg font-semibold hover:-translate-y-0.5">
@@ -829,50 +829,50 @@
 				<!-- Right Grid of 4 Key Stats -->
 				<div class="relative flex justify-center lg:justify-end reveal-init reveal-fade-right">
 					<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full max-w-xl">
-						<!-- Stat 1 -->
-						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
-								<span class="material-symbols-outlined text-2xl">directions_run</span>
+						<!-- Stat 1: Total Projects & Programs -->
+						<a href="/Services/ProjectDatabase/index" class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
+								<span class="material-symbols-outlined text-2xl">construction</span>
 							</div>
 							<div>
-								<div class="text-xl sm:text-2xl font-bold text-primary">20k+</div>
-								<p class="text-xs text-primary/80 font-bold leading-tight">Projects Delivered</p>
-								<p class="text-[10px] text-primary/60 mt-0.5">Since 2015 in All Regions</p>
+								<div class="text-xl sm:text-2xl font-bold text-primary">@((Model.ProjectInsights?.TotalProjects > 0 ? Model.ProjectInsights.TotalProjects : 21283).ToString("N0"))</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Projects &amp; Programs</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Documented in PMIS Database</p>
 							</div>
-						</div>
-						<!-- Stat 2 -->
-						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
-								<span class="material-symbols-outlined text-2xl">track_changes</span>
-							</div>
-							<div>
-								<div class="text-xl sm:text-2xl font-bold text-primary">60%</div>
-								<p class="text-xs text-primary/80 font-bold leading-tight">Capital Projects</p>
-								<p class="text-[10px] text-primary/60 mt-0.5">Covering Roads, Electricity &amp; Water</p>
-							</div>
-						</div>
-						<!-- Stat 3 -->
-						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
-								<span class="material-symbols-outlined text-2xl">forest</span>
+						</a>
+						<!-- Stat 2: Completed Projects -->
+						<a href="/Services/ProjectDatabase/index" class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
+								<span class="material-symbols-outlined text-2xl">task_alt</span>
 							</div>
 							<div>
-								<div class="text-xl sm:text-2xl font-bold text-primary">26%</div>
-								<p class="text-xs text-primary/80 font-bold leading-tight">Private &amp; Domestic</p>
-								<p class="text-[10px] text-primary/60 mt-0.5">Garden Land</p>
+								<div class="text-xl sm:text-2xl font-bold text-primary">@((Model.ProjectInsights?.CompletedProjects > 0 ? Model.ProjectInsights.CompletedProjects : 184).ToString("N0"))</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Completed Projects</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Delivered &amp; Commissioned</p>
 							</div>
-						</div>
-						<!-- Stat 4 -->
-						<div class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300">
-							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0">
-								<span class="material-symbols-outlined text-2xl">home_work</span>
+						</a>
+						<!-- Stat 3: Mandate States -->
+						<a href="/Services/ProjectDatabase/index" class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
+								<span class="material-symbols-outlined text-2xl">map</span>
 							</div>
 							<div>
-								<div class="text-xl sm:text-2xl font-bold text-primary">3,000+</div>
-								<p class="text-xs text-primary/80 font-bold leading-tight">Rural Projects</p>
-								<p class="text-[10px] text-primary/60 mt-0.5">Electrification &amp; Water Projects</p>
+								<div class="text-xl sm:text-2xl font-bold text-primary">@((Model.ProjectInsights?.StatesCovered > 0 ? Model.ProjectInsights.StatesCovered : 9).ToString("N0"))</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Mandate States</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Across Niger Delta Region</p>
 							</div>
-						</div>
+						</a>
+						<!-- Stat 4: Development Sectors -->
+						<a href="/Services/ProjectDatabase/index" class="bg-white rounded-2xl p-5 shadow-lg border border-outline-variant/10 flex items-center gap-4 text-left hover:-translate-y-1 hover:shadow-xl transition-all duration-300 group">
+							<div class="w-12 h-12 rounded-xl bg-[#006D37] text-white flex items-center justify-center shadow-md flex-shrink-0 group-hover:scale-105 transition-transform">
+								<span class="material-symbols-outlined text-2xl">category</span>
+							</div>
+							<div>
+								<div class="text-xl sm:text-2xl font-bold text-primary">@((Model.ProjectInsights?.TotalCategories > 0 ? Model.ProjectInsights.TotalCategories : 18).ToString("N0"))</div>
+								<p class="text-xs text-primary/80 font-bold leading-tight">Development Sectors</p>
+								<p class="text-[10px] text-primary/60 mt-0.5">Intervention Categories</p>
+							</div>
+						</a>
 					</div>
 				</div>
 			</div>
