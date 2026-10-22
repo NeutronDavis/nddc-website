@@ -48,31 +48,41 @@
 		display: flex !important;
 		gap: 12px !important;
 		width: 100% !important;
+		align-items: stretch !important;
 	}
 	.imageHolderDiv img {
 		display: block !important;
-		width: 15% !important;
+		flex: 1 1 0% !important;
+		width: 0 !important;
+		min-width: 0 !important;
 		height: 18rem !important;
-		max-width: none !important;
-		flex-shrink: 0 !important;
+		max-width: 100% !important;
 		object-fit: cover !important;
-		border-radius: 12px !important;
-		transition: width 0.4s ease, filter 0.4s ease !important;
+		border-radius: 16px !important;
+		border: 1px solid rgba(0, 0, 0, 0.08) !important;
+		filter: saturate(0%) !important;
+		transition: flex 0.45s cubic-bezier(0.4, 0, 0.2, 1), filter 0.45s ease, transform 0.45s ease !important;
+		cursor: pointer !important;
 	}
 	.imageHolderDiv img:hover {
-		width: 37% !important;
+		flex: 2.2 1 0% !important;
+		filter: saturate(100%) !important;
+	}
+	.about-two-inner {
+		padding-left: 0 !important;
+		margin-left: 0 !important;
+		padding-top: 0 !important;
 	}
 	@@media (max-width: 767px) {
 		.imageHolderDiv {
 			gap: 8px !important;
 		}
 		.imageHolderDiv img {
-			height: 15rem !important;
-			width: 17% !important;
-			border-radius: 8px !important;
+			height: 16rem !important;
+			border-radius: 10px !important;
 		}
 		.imageHolderDiv img:hover {
-			width: 32% !important;
+			flex: 1.8 1 0% !important;
 		}
 	}
 	@@media (min-width: 768px) {
@@ -273,17 +283,15 @@
 	</section>
 
 	<section class="about-two-section py-8 md:py-16 overflow-x-hidden">
-		<div class="container px-4 md:px-gutter">
-			<div class="row justify-content-between row-gutter-y-60">
-				<div class="col-lg-12 col-xl-6 col-xxl-6 reveal-init reveal-fade-left">
-					<div class="about-two-image">
-						<div id="imageHolder" class="">
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
+			<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+				<div class="lg:col-span-6 reveal-init reveal-fade-left">
+					<div class="about-two-image w-full">
+						<div id="imageHolder" class="w-full">
 							<div class="imageHolderDiv">
-								<img src="/assets/image/gallery/inf1.png" alt="NDDC HQ building">
-								<img src="/assets/image/gallery/inf2.png" alt="NDDC HQ building">
-								@* <img src="/assets/image/gallery/graduate.png" alt="NDDC HQ building"> *@
-								<img src="/assets/image/gallery/construction.jfif" alt="Constuction">
-								<img src="/assets/image/gallery/light.jfif" alt="Lighting">
+								<img src="/assets/image/gallery/inf111.jfif" alt="NDDC HQ building">
+								<img src="/assets/image/gallery/scholership.jfif" alt="NDDC HQ building">
+								<img src="/assets/image/gallery/construction.png" alt="Constuction">
 								<img src="/assets/image/gallery/huspital.webp" alt="Huspital">
 								@* 	<img src="/assets/image/gallery/Chairman.png" alt="Chairman- Chiedu Ebie">
 								<img src="/assets/image/gallery/MD.png" alt="Managing Director- Samuel Ogbuku">
@@ -294,8 +302,8 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-lg-12 col-xl-6 col-xxl-6 reveal-init reveal-fade-right">
-					<div class="about-two-inner pt-4 md:pt-0">
+				<div class="lg:col-span-6 reveal-init reveal-fade-right">
+					<div class="about-two-inner pt-4 lg:pt-0 text-left">
 						<h2 class="section-title text-2xl sm:text-3xl font-bold text-primary mb-4">Welcome to The Niger Delta Development Commission</h2><!-- section-title -->
 						<div class="about-two-text space-y-4 text-sm sm:text-base text-on-surface-variant leading-relaxed">
 							<div class="about-two-text-inner-one">
@@ -345,7 +353,7 @@
 					<div class="lg:col-span-5 flex flex-col justify-between text-left reveal-init reveal-fade-left">
 						<a asp-page="/News/NewsDetails" asp-route-nid="@mainNews.NID" class="block group">
 							<div class="relative w-full aspect-[16/10] bg-gray-100 overflow-hidden rounded-sm border border-gray-100 shadow-sm">
-								<img id="news-featured-img" alt="Featured News Image" class="w-full h-full object-cover transition-opacity duration-300 ease-in-out opacity-100" src="@mainNewsImage">
+								<img alt="Featured News Image" class="w-full h-full object-cover" src="@mainNewsImage">
 								<!-- Badge and Date Strip -->
 								<div class="absolute bottom-0 inset-x-0 bg-white/95 border-t border-gray-200 flex justify-between items-center h-10 px-4">
 									<span class="bg-secondary text-white text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">News</span>
@@ -366,7 +374,6 @@
 								@for (int i = 0; i < otherNews.Count; i++)
 								{
 									var news = otherNews[i];
-									var newsImage = GetImageUrl(news);
 									
 									string borderClasses = "border-b border-gray-200 pb-6 md:pb-8 ";
 									if (otherNews.Count == 4)
@@ -392,9 +399,7 @@
 										borderClasses = "pb-6 md:pb-0";
 									}
 									
-									<div class="text-left flex flex-col justify-between min-h-[9rem] md:h-44 @borderClasses"
-									     onmouseenter="changeFeaturedImage('@newsImage')"
-									     onmouseleave="resetFeaturedImage()">
+									<div class="text-left flex flex-col justify-between min-h-[9rem] md:h-44 @borderClasses">
 										<div>
 											<span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider block mb-2">@news.PublishDate.ToString("MMMM dd, yyyy")</span>
 											<h4 class="font-body-lg font-bold text-gray-900 leading-snug hover:text-secondary cursor-pointer transition-colors duration-200 line-clamp-3 text-sm sm:text-base">
@@ -428,23 +433,6 @@
 				</div>
 			</div>
 		</section>
-
-		<script>
-			let originalNewsImage = "@mainNewsImage";
-			function changeFeaturedImage(newSrc) {
-				const img = document.getElementById('news-featured-img');
-				if (img) {
-					img.style.opacity = '0';
-					setTimeout(() => {
-						img.src = newSrc;
-						img.style.opacity = '1';
-					}, 150);
-				}
-			}
-			function resetFeaturedImage() {
-				changeFeaturedImage(originalNewsImage);
-			}
-		</script>
 	}
 
 	<!-- Core Focus Section -->
@@ -516,147 +504,164 @@
 	<!-- Photo Speak Section -->
 	<section class="py-12 md:py-section-gap-lg bg-white reveal-init reveal-fade-up overflow-hidden">
 		<!-- Section Header (Centered in Container) -->
-		<div class="max-w-container-max mx-auto px-4 md:px-gutter text-center mb-10 md:mb-14">
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter text-center mb-8 md:mb-12">
 			<div class="w-10 sm:w-12 h-1 bg-[#006D37] mx-auto rounded-full mb-3"></div>
 			<span class="font-label-sm text-xs sm:text-sm text-[#006D37] uppercase tracking-widest font-semibold block mb-1">Recent Photos of Our Activities</span>
 			<h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-primary">Photo Speak</h2>
 		</div>
 
-		<!-- End-to-End Bleeding Dynamic Horizontal Slider Track -->
-		<div class="w-full flex overflow-x-auto snap-x snap-mandatory gap-4 sm:gap-6 md:gap-8 py-6 no-scrollbar px-6 sm:px-12 md:px-24 lg:px-32" id="photo-speak-container">
-			@if (Model.Photos != null && Model.Photos.Any())
-			{
-				@foreach (var photo in Model.Photos)
+		<!-- Desktop & Mobile Contained Responsive Carousel Slider Track -->
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter">
+			<div class="w-full flex overflow-x-auto snap-x snap-mandatory gap-5 sm:gap-6 py-4 no-scrollbar scroll-smooth" id="photo-speak-container">
+				@if (Model.Photos != null && Model.Photos.Any())
 				{
-					var photoUrl = $"{Model._containerUrl}{photo.ImageUrl}";
-					<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
+					@foreach (var photo in Model.Photos)
+					{
+						var photoUrl = $"{Model._containerUrl}{photo.ImageUrl}";
+						<div class="photo-speak-card bg-white rounded-2xl p-4 sm:p-5 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:border-[#006D37]/30 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between w-[84vw] sm:w-[320px] md:w-[calc(50%-12px)] lg:w-[calc(33.3333%-16px)] snap-start flex-shrink-0 group text-left cursor-pointer">
+							<div>
+								<div class="relative aspect-video w-full overflow-hidden rounded-xl mb-3 sm:mb-4 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
+									<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="@photo.Title" src="@photoUrl" loading="lazy">
+									<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+										<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+											<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+										</span>
+									</div>
+								</div>
+								<span class="photo-location-tag inline-flex items-center gap-1 text-[11px] font-semibold text-[#006D37] bg-[#006D37]/10 px-2.5 py-1 rounded-full uppercase tracking-wider mb-2.5">
+									<span class="material-symbols-outlined text-xs">location_on</span>
+									@(string.IsNullOrEmpty(photo.Location) ? "Activity" : photo.Location)
+								</span>
+								<h3 class="text-base sm:text-lg font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">
+									@photo.Title
+								</h3>
+								<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 leading-relaxed">
+									Discover recent updates and developmental milestones across the Nine States of the Niger Delta region.
+								</p>
+							</div>
+							<div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+								<a href="/Media/PhotoAlbum" class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors tracking-widest uppercase group/btn">
+									<span>View Album</span>
+									<span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+								</a>
+								<span class="photo-image-preview-trigger text-gray-400 hover:text-[#006D37] transition-colors p-1 flex items-center justify-center cursor-pointer" title="Preview Photo">
+									<span class="material-symbols-outlined text-lg">fullscreen</span>
+								</span>
+							</div>
+						</div>
+					}
+				}
+				else
+				{
+					<!-- Fallback Photo Cards -->
+					<div class="photo-speak-card bg-white rounded-2xl p-4 sm:p-5 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:border-[#006D37]/30 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between w-[84vw] sm:w-[320px] md:w-[calc(50%-12px)] lg:w-[calc(33.3333%-16px)] snap-start flex-shrink-0 group text-left cursor-pointer">
 						<div>
-							<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
-								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="@photo.Title" src="@photoUrl" loading="lazy">
+							<div class="relative aspect-video w-full overflow-hidden rounded-xl mb-3 sm:mb-4 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
+								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Healthcare Project" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" loading="lazy">
 								<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
 									<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
 										<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
 									</span>
 								</div>
 							</div>
-							<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">
-								@(string.IsNullOrEmpty(photo.Location) ? "Activity" : photo.Location)
-							</p>
-							<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">
-								@photo.Title
-							</h3>
-							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">
-								Discover recent updates and developmental milestones across the Nine States of the Niger Delta region.
-							</p>
+							<span class="photo-location-tag inline-flex items-center gap-1 text-[11px] font-semibold text-[#006D37] bg-[#006D37]/10 px-2.5 py-1 rounded-full uppercase tracking-wider mb-2.5">
+								<span class="material-symbols-outlined text-xs">location_on</span>
+								Rivers State
+							</span>
+							<h3 class="text-base sm:text-lg font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Medical Equipment Distribution</h3>
+							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 leading-relaxed">Modern medical equipment distribution to rural health centers across the Niger Delta.</p>
 						</div>
-						<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
-							<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-								<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
+						<div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+							<a href="/Media/PhotoAlbum" class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors tracking-widest uppercase group/btn">
+								<span>View Album</span>
+								<span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+							</a>
+							<span class="photo-image-preview-trigger text-gray-400 hover:text-[#006D37] transition-colors p-1 flex items-center justify-center cursor-pointer" title="Preview Photo">
+								<span class="material-symbols-outlined text-lg">fullscreen</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="photo-speak-card bg-white rounded-2xl p-4 sm:p-5 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:border-[#006D37]/30 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between w-[84vw] sm:w-[320px] md:w-[calc(50%-12px)] lg:w-[calc(33.3333%-16px)] snap-start flex-shrink-0 group text-left cursor-pointer">
+						<div>
+							<div class="relative aspect-video w-full overflow-hidden rounded-xl mb-3 sm:mb-4 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
+								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Infrastructure Project" src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=800&auto=format&fit=crop" loading="lazy">
+								<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+									<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+										<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+									</span>
+								</div>
 							</div>
-							<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photos</span>
-						</a>
+							<span class="photo-location-tag inline-flex items-center gap-1 text-[11px] font-semibold text-[#006D37] bg-[#006D37]/10 px-2.5 py-1 rounded-full uppercase tracking-wider mb-2.5">
+								<span class="material-symbols-outlined text-xs">location_on</span>
+								Delta State
+							</span>
+							<h3 class="text-base sm:text-lg font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Regional Complex Inspection</h3>
+							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 leading-relaxed">Structural inspection of the new regional administrative complex.</p>
+						</div>
+						<div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+							<a href="/Media/PhotoAlbum" class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors tracking-widest uppercase group/btn">
+								<span>View Album</span>
+								<span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+							</a>
+							<span class="photo-image-preview-trigger text-gray-400 hover:text-[#006D37] transition-colors p-1 flex items-center justify-center cursor-pointer" title="Preview Photo">
+								<span class="material-symbols-outlined text-lg">fullscreen</span>
+							</span>
+						</div>
+					</div>
+
+					<div class="photo-speak-card bg-white rounded-2xl p-4 sm:p-5 border border-outline-variant/20 shadow-sm hover:shadow-xl hover:border-[#006D37]/30 hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between w-[84vw] sm:w-[320px] md:w-[calc(50%-12px)] lg:w-[calc(33.3333%-16px)] snap-start flex-shrink-0 group text-left cursor-pointer">
+						<div>
+							<div class="relative aspect-video w-full overflow-hidden rounded-xl mb-3 sm:mb-4 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
+								<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Community Engagement" src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=800&auto=format&fit=crop" loading="lazy">
+								<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
+									<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
+										<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
+									</span>
+								</div>
+							</div>
+							<span class="photo-location-tag inline-flex items-center gap-1 text-[11px] font-semibold text-[#006D37] bg-[#006D37]/10 px-2.5 py-1 rounded-full uppercase tracking-wider mb-2.5">
+								<span class="material-symbols-outlined text-xs">location_on</span>
+								Bayelsa State
+							</span>
+							<h3 class="text-base sm:text-lg font-bold text-primary mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Stakeholder Engagement Meeting</h3>
+							<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 leading-relaxed">Stakeholder engagement meeting with community youth leaders.</p>
+						</div>
+						<div class="pt-3 border-t border-gray-100 flex items-center justify-between">
+							<a href="/Media/PhotoAlbum" class="inline-flex items-center gap-1.5 text-xs font-bold text-secondary hover:text-primary transition-colors tracking-widest uppercase group/btn">
+								<span>View Album</span>
+								<span class="material-symbols-outlined text-sm transition-transform group-hover/btn:translate-x-1">arrow_forward</span>
+							</a>
+							<span class="photo-image-preview-trigger text-gray-400 hover:text-[#006D37] transition-colors p-1 flex items-center justify-center cursor-pointer" title="Preview Photo">
+								<span class="material-symbols-outlined text-lg">fullscreen</span>
+							</span>
+						</div>
 					</div>
 				}
-			}
-			else
-			{
-				<!-- Fallback Photo Cards matching screenshot design -->
-				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
-					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
-							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Healthcare Project" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=800&auto=format&fit=crop" loading="lazy">
-							<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-								<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
-									<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
-								</span>
-							</div>
-						</div>
-						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Rivers State</p>
-						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Medical Equipment Distribution</h3>
-						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">Modern medical equipment distribution to rural health centers across the Niger Delta.</p>
-					</div>
-					<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
-						<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-							<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
-						</div>
-						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photos</span>
-					</a>
-				</div>
-
-				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
-					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
-							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Infrastructure Project" src="https://images.unsplash.com/photo-1541888946425-d0fbb186a5b7?q=80&w=800&auto=format&fit=crop" loading="lazy">
-							<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-								<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
-									<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
-								</span>
-							</div>
-						</div>
-						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Delta State</p>
-						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Regional Complex Inspection</h3>
-						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">Structural inspection of the new regional administrative complex.</p>
-					</div>
-					<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
-						<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-							<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
-						</div>
-						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photos</span>
-					</a>
-				</div>
-
-				<div class="photo-speak-card bg-white rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-outline-variant/15 flex flex-col justify-between min-w-[78vw] max-w-[280px] sm:max-w-none sm:min-w-[330px] md:min-w-[360px] lg:min-w-[380px] snap-center flex-shrink-0 group transition-all duration-500 ease-out text-left cursor-pointer transform scale-95 opacity-70 hover:opacity-100">
-					<div>
-						<div class="relative aspect-video w-full overflow-hidden rounded-xl sm:rounded-2xl mb-3 sm:mb-5 bg-surface-container group/img cursor-pointer photo-image-preview-trigger" title="Click to preview image">
-							<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" alt="Community Engagement" src="https://images.unsplash.com/photo-1531206715517-5c0ba140b2b8?q=80&w=800&auto=format&fit=crop" loading="lazy">
-							<div class="absolute inset-0 bg-black/25 opacity-0 group-hover/img:opacity-100 transition-opacity flex items-center justify-center pointer-events-none">
-								<span class="w-10 h-10 rounded-full bg-white/90 text-[#006D37] flex items-center justify-center shadow-lg transform scale-90 group-hover/img:scale-100 transition-transform">
-									<span class="material-symbols-outlined text-2xl font-bold">zoom_in</span>
-								</span>
-							</div>
-						</div>
-						<p class="text-[10px] sm:text-xs font-semibold text-[#006D37] uppercase tracking-wider mb-1.5 sm:mb-2 font-mono">Bayelsa State</p>
-						<h3 class="text-base sm:text-xl font-bold text-primary mb-1.5 sm:mb-2 line-clamp-2 leading-snug group-hover:text-[#006D37] transition-colors">Stakeholder Engagement Meeting</h3>
-						<p class="text-xs sm:text-sm text-on-surface-variant/80 line-clamp-2 mb-4 sm:mb-6 leading-relaxed">Stakeholder engagement meeting with community youth leaders.</p>
-					</div>
-					<a href="/Media/PhotoAlbum" class="flex items-center gap-2.5 sm:gap-3 pt-1 sm:pt-2 group/btn cursor-pointer">
-						<div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-[#006D37] text-white flex items-center justify-center shadow-md group-hover/btn:bg-[#005229] transition-colors flex-shrink-0">
-							<span class="material-symbols-outlined text-xs sm:text-sm font-bold group-hover/btn:translate-x-0.5 transition-transform">chevron_right</span>
-						</div>
-						<span class="text-xs font-bold text-primary group-hover/btn:text-[#006D37] transition-colors">View Photos</span>
-					</a>
-				</div>
-			}
+			</div>
 		</div>
 
 		<!-- Dynamic Carousel Controls & Progress Indicator -->
-		<div class="max-w-container-max mx-auto px-4 md:px-gutter flex flex-col sm:flex-row items-center justify-between gap-4 mt-4 sm:mt-6">
+		<div class="max-w-container-max mx-auto px-4 md:px-gutter flex items-center justify-between gap-4 mt-6 sm:mt-8">
 			<!-- Progress Bar & Slide Counter -->
-			<div class="flex items-center gap-4 w-full sm:w-auto">
+			<div class="flex items-center gap-3 sm:gap-4">
 				<span id="photo-slide-counter" class="text-xs font-mono font-bold tracking-wider text-[#006D37] min-w-[55px]">
 					01 <span class="text-on-surface-variant/40 font-normal">/ 03</span>
 				</span>
-				<div id="photo-progress-track" class="h-2 bg-outline-variant/20 rounded-full overflow-hidden flex-1 w-full sm:w-48 md:w-64 cursor-pointer">
+				<!-- Hidden on mobile screen -->
+				<div id="photo-progress-track" class="hidden sm:block h-2 bg-outline-variant/20 rounded-full overflow-hidden w-40 sm:w-48 md:w-64 cursor-pointer" title="Click to seek">
 					<div id="photo-progress-bar" class="h-full bg-[#006D37] rounded-full transition-all duration-300 min-w-[12px]" style="width: 20%;"></div>
 				</div>
 			</div>
 
-			<!-- Pagination Dots & Nav Controls -->
-			<div class="flex items-center gap-5 w-full sm:w-auto justify-between sm:justify-end">
-				<!-- Dots Container -->
-				@* <div id="photo-dots-container" class="flex items-center gap-1.5">
-					<!-- Generated dynamically in JS -->
-				</div> *@
-
-				<!-- Nav Arrows -->
-				<div class="flex items-center gap-2">
-					<button id="photo-prev" aria-label="Previous photo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-outline-variant text-on-surface-variant hover:border-[#006D37] hover:bg-[#006D37]/5 hover:text-[#006D37] flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95">
-						<span class="material-symbols-outlined text-lg sm:text-xl">chevron_left</span>
-					</button>
-					<button id="photo-next" aria-label="Next photo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#006D37] bg-[#006D37] text-white hover:bg-[#005229] hover:border-[#005229] flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95">
-						<span class="material-symbols-outlined text-lg sm:text-xl">chevron_right</span>
-					</button>
-				</div>
+			<!-- Nav Arrows -->
+			<div class="flex items-center gap-2">
+				<button id="photo-prev" type="button" aria-label="Previous photo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-outline-variant text-on-surface-variant hover:border-[#006D37] hover:bg-[#006D37]/5 hover:text-[#006D37] flex items-center justify-center transition-all cursor-pointer shadow-sm active:scale-95">
+					<span class="material-symbols-outlined text-lg sm:text-xl">chevron_left</span>
+				</button>
+				<button id="photo-next" type="button" aria-label="Next photo" class="w-10 h-10 sm:w-11 sm:h-11 rounded-full border border-[#006D37] bg-[#006D37] text-white hover:bg-[#005229] hover:border-[#005229] flex items-center justify-center transition-all cursor-pointer shadow-md active:scale-95">
+					<span class="material-symbols-outlined text-lg sm:text-xl">chevron_right</span>
+				</button>
 			</div>
 		</div>
 	</section>
@@ -1205,19 +1210,20 @@
 						if (!cards.length) return;
 						const rect = progressTrack.getBoundingClientRect();
 						const clickX = e.clientX - rect.left;
-						const fraction = Math.max(0, Math.min(0.99, clickX / rect.width));
-						const targetIndex = Math.floor(fraction * cards.length);
+						const fraction = Math.max(0, Math.min(1, clickX / rect.width));
+						const maxScroll = container.scrollWidth - container.clientWidth;
 						resetInteractionDelay();
-						scrollToCard(targetIndex);
+						container.scrollTo({
+							left: fraction * maxScroll,
+							behavior: 'smooth'
+						});
 					});
 				}
 
 				function scrollToCard(index) {
 					if (index >= 0 && index < cards.length) {
 						const card = cards[index];
-						const containerRect = container.getBoundingClientRect();
-						const cardRect = card.getBoundingClientRect();
-						const targetScrollLeft = container.scrollLeft + (cardRect.left - containerRect.left) - (containerRect.width / 2) + (cardRect.width / 2);
+						const targetScrollLeft = card.offsetLeft - container.offsetLeft;
 						container.scrollTo({
 							left: targetScrollLeft,
 							behavior: 'smooth'
@@ -1228,16 +1234,14 @@
 				function updateActiveState() {
 					if (!cards.length) return;
 
-					const containerRect = container.getBoundingClientRect();
-					const containerCenter = containerRect.left + containerRect.width / 2;
+					const scrollLeft = container.scrollLeft;
+					const maxScrollLeft = container.scrollWidth - container.clientWidth;
 					let closestIndex = 0;
 					let minDistance = Infinity;
 
 					cards.forEach((card, idx) => {
-						const cardRect = card.getBoundingClientRect();
-						const cardCenter = cardRect.left + cardRect.width / 2;
-						const distance = Math.abs(containerCenter - cardCenter);
-
+						const cardOffset = card.offsetLeft - container.offsetLeft;
+						const distance = Math.abs(scrollLeft - cardOffset);
 						if (distance < minDistance) {
 							minDistance = distance;
 							closestIndex = idx;
@@ -1246,20 +1250,11 @@
 
 					activeIndex = closestIndex;
 
-					// Update Card Focus Styles
-					cards.forEach((card, idx) => {
-						if (idx === activeIndex) {
-							card.classList.add('scale-100', 'sm:scale-105', 'opacity-100', 'shadow-[0_20px_40px_rgba(0,109,55,0.14)]', 'border-[#006D37]/40', 'z-10');
-							card.classList.remove('scale-95', 'opacity-70', 'shadow-none', 'border-outline-variant/15', 'z-0');
-						} else {
-							card.classList.remove('scale-100', 'sm:scale-105', 'opacity-100', 'shadow-[0_20px_40px_rgba(0,109,55,0.14)]', 'border-[#006D37]/40', 'z-10');
-							card.classList.add('scale-95', 'opacity-70', 'shadow-none', 'border-outline-variant/15', 'z-0');
-						}
-					});
-
-					// Update Progress Bar (Percentage based on active card index)
+					// Update Progress Bar
 					if (progressBar) {
-						const progressPercent = cards.length > 0 ? Math.round(((activeIndex + 1) / cards.length) * 100) : 20;
+						const progressPercent = maxScrollLeft > 0 
+							? Math.min(100, Math.max(5, Math.round((scrollLeft / maxScrollLeft) * 100))) 
+							: Math.round(((activeIndex + 1) / cards.length) * 100);
 						progressBar.style.setProperty('width', `${progressPercent}%`, 'important');
 					}
 
@@ -1269,21 +1264,9 @@
 						const totalStr = String(cards.length).padStart(2, '0');
 						slideCounter.innerHTML = `${activeStr} <span class="text-on-surface-variant/40 font-normal">/ ${totalStr}</span>`;
 					}
-
-					// Update Dots
-					@* if (dotsContainer) {
-						const dots = Array.from(dotsContainer.children);
-						dots.forEach((dot, idx) => {
-							if (idx === activeIndex) {
-								dot.className = 'w-6 h-2 bg-[#006D37] rounded-full transition-all duration-300';
-							} else {
-								dot.className = 'w-2 h-2 bg-outline-variant/40 hover:bg-[#006D37]/60 rounded-full transition-all duration-300 cursor-pointer';
-							}
-						});
-					} *@
 				}
 
-				// Click card directly to center it (excluding link buttons and preview triggers)
+				// Click card directly to scroll to it (excluding link buttons and preview triggers)
 				cards.forEach((card, idx) => {
 					card.addEventListener('click', (e) => {
 						if (!e.target.closest('a') && !e.target.closest('.photo-image-preview-trigger')) {
@@ -1295,13 +1278,18 @@
 
 				function autoScroll() {
 					if (isUserInteracting) return;
-					const nextIndex = (activeIndex + 1) % cards.length;
-					scrollToCard(nextIndex);
+					const maxScroll = container.scrollWidth - container.clientWidth;
+					if (container.scrollLeft >= maxScroll - 15) {
+						scrollToCard(0);
+					} else {
+						const nextIndex = Math.min(cards.length - 1, activeIndex + 1);
+						scrollToCard(nextIndex);
+					}
 				}
 
 				function startAutoScroll() {
 					stopAutoScroll();
-					scrollInterval = setInterval(autoScroll, 4500);
+					scrollInterval = setInterval(autoScroll, 5000);
 				}
 
 				function stopAutoScroll() {
@@ -1326,8 +1314,13 @@
 
 				nextBtn.addEventListener('click', () => {
 					resetInteractionDelay();
-					const nextIndex = (activeIndex + 1) % cards.length;
-					scrollToCard(nextIndex);
+					const maxScroll = container.scrollWidth - container.clientWidth;
+					if (container.scrollLeft >= maxScroll - 15) {
+						scrollToCard(0);
+					} else {
+						const nextIndex = Math.min(cards.length - 1, activeIndex + 1);
+						scrollToCard(nextIndex);
+					}
 				});
 
 				let ticking = false;
@@ -1370,7 +1363,7 @@
 				if (psModal) {
 					const photoData = cards.map(card => {
 						const img = card.querySelector('.photo-image-preview-trigger img') || card.querySelector('img');
-						const loc = card.querySelector('p.font-mono');
+						const loc = card.querySelector('.photo-location-tag') || card.querySelector('p.font-mono') || card.querySelector('p');
 						const heading = card.querySelector('h3');
 						return {
 							src: img ? (img.getAttribute('src') || '') : '',
