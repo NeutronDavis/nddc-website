@@ -146,12 +146,18 @@
                     @Model.ProjectPictures.Count Photo@(Model.ProjectPictures.Count > 1 ? "s" : "") • Click to Preview
                 </span>
             }
+            else
+            {
+                <span class="bg-surface-container text-on-surface-variant font-medium text-xs px-3 py-1.5 rounded-full border border-outline-variant/20 self-start sm:self-auto inline-flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm text-on-surface-variant/60">hide_image</span> No Photos Recorded
+                </span>
+            }
         </div>
 
-        <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
-            @if (Model.ProjectPictures != null && Model.ProjectPictures.Any())
-            {
-                for (int i = 0; i < Model.ProjectPictures.Count; i++)
+        @if (Model.ProjectPictures != null && Model.ProjectPictures.Any())
+        {
+            <div id="gallery" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4">
+                @for (int i = 0; i < Model.ProjectPictures.Count; i++)
                 {
                     var item = Model.ProjectPictures[i];
                     var imgUrl = Model.GetImageUrl(item.ImageUrl, item.ImageId);
@@ -172,16 +178,25 @@
                         </div>
                     </a>
                 }
-            }
-            else
-            {
-                <div class="col-span-full py-12 text-center text-on-surface-variant">
-                    <span class="material-symbols-outlined text-5xl text-on-surface-variant/40 mb-2 block">image_not_supported</span>
-                    <p class="text-sm font-semibold text-primary">No site photos are currently available for this project</p>
-                    <p class="text-xs text-on-surface-variant/70 mt-1">Field monitoring records for this project are currently being updated.</p>
+            </div>
+        }
+        else
+        {
+            <!-- Sign indicating no images available for this project -->
+            <div class="py-12 sm:py-16 px-4 sm:px-8 rounded-2xl border-2 border-dashed border-outline-variant/30 bg-surface-container/20 flex flex-col items-center justify-center text-center">
+                <div class="w-16 h-16 rounded-2xl bg-white shadow-sm border border-outline-variant/20 flex items-center justify-center text-secondary mb-4">
+                    <span class="material-symbols-outlined text-3xl">no_photography</span>
                 </div>
-            }
-        </div>
+                <h3 class="text-base sm:text-lg font-bold text-primary mb-1">No Project Images Available</h3>
+                <p class="text-xs sm:text-sm text-on-surface-variant max-w-md leading-relaxed">
+                    There are currently no field verification or site inspection photos uploaded for this project in the database.
+                </p>
+                <div class="mt-4 inline-flex items-center gap-1.5 text-xs text-on-surface-variant/70 bg-white px-3.5 py-1.5 rounded-full border border-outline-variant/20 shadow-xs">
+                    <span class="material-symbols-outlined text-sm text-[#006D37]">verified_user</span>
+                    <span>Monitoring images will be displayed once recorded by field inspection officers.</span>
+                </div>
+            </div>
+        }
     </div>
 </section>
 

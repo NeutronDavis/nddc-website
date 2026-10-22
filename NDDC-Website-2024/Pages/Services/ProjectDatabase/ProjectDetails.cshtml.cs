@@ -27,30 +27,14 @@ namespace NDDC_Website_2024.Pages.Services.ProjectDatabase
             try
             {
                 ProjectDetails = projDb.GetProjectDetails(pid.Value) ?? new MyProjectModel();
-                ProjectPictures = projDb.GetProjectPictures(pid.Value) ?? new List<MyActivityImageModel>();
-
-                // If no photos recorded in DB for this project, provide sample inspection photos for preview
-                if (ProjectPictures == null || !ProjectPictures.Any())
-                {
-                    ProjectPictures = new List<MyActivityImageModel>
-                    {
-                        new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-1.png", PID = pid.Value },
-                        new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-2.png", PID = pid.Value },
-                        new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-3.png", PID = pid.Value },
-                        new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-4.png", PID = pid.Value }
-                    };
-                }
+                ProjectPictures = (projDb.GetProjectPictures(pid.Value) ?? new List<MyActivityImageModel>())
+                    .Where(p => !string.IsNullOrWhiteSpace(p.ImageUrl) || p.ImageId > 0)
+                    .ToList();
             }
             catch
             {
                 ProjectDetails = new MyProjectModel();
-                ProjectPictures = new List<MyActivityImageModel>
-                {
-                    new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-1.png", PID = pid.Value },
-                    new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-2.png", PID = pid.Value },
-                    new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-3.png", PID = pid.Value },
-                    new MyActivityImageModel { ImageId = 0, ImageUrl = "/assets/image/portfolio/portfolio-4.png", PID = pid.Value }
-                };
+                ProjectPictures = new List<MyActivityImageModel>();
             }
 
             if (ProjectDetails == null || ProjectDetails.PID <= 0)
